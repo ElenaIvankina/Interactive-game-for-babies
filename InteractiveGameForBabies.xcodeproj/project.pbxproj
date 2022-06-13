@@ -1,0 +1,795 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B33428CA28575CD4008600DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428C928575CD4008600DB /* AppDelegate.swift */; };
+		B33428CC28575CD4008600DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CB28575CD4008600DB /* SceneDelegate.swift */; };
+		B33428CE28575CD4008600DB /* GameMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CD28575CD4008600DB /* GameMenuViewController.swift */; };
+		B33428D128575CD4008600DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B33428CF28575CD4008600DB /* Main.storyboard */; };
+		B33428D328575CD7008600DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33428D228575CD7008600DB /* Assets.xcassets */; };
+		B33428D628575CD7008600DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B33428D428575CD7008600DB /* LaunchScreen.storyboard */; };
+		B33428E128575CD7008600DB /* InteractiveGameForBabiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428E028575CD7008600DB /* InteractiveGameForBabiesTests.swift */; };
+		B33428EB28575CD7008600DB /* InteractiveGameForBabiesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428EA28575CD7008600DB /* InteractiveGameForBabiesUITests.swift */; };
+		B33428ED28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428EC28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift */; };
+		B334290128575E37008600DB /* SpeakAnimalGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334290028575E37008600DB /* SpeakAnimalGameViewController.swift */; };
+		B334290328575EE7008600DB /* ColorGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334290228575EE7008600DB /* ColorGameViewController.swift */; };
+		B334290528575EFC008600DB /* CountGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334290428575EFC008600DB /* CountGameViewController.swift */; };
+		B334290728575F11008600DB /* FigureGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334290628575F11008600DB /* FigureGameViewController.swift */; };
+		B334290F2857603C008600DB /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334290E2857603C008600DB /* Observable.swift */; };
+		B334291128576050008600DB /* ObservableOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291028576050008600DB /* ObservableOptions.swift */; };
+		B3342913285760B5008600DB /* Randomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3342912285760B5008600DB /* Randomizer.swift */; };
+		B33429152857614E008600DB /* GameDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429142857614E008600DB /* GameDatabase.swift */; };
+		B334291728576198008600DB /* ColorGameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291628576198008600DB /* ColorGameSession.swift */; };
+		B3342919285761F5008600DB /* AnimalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3342918285761F5008600DB /* AnimalCard.swift */; };
+		B334291B28576210008600DB /* ColorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291A28576210008600DB /* ColorCard.swift */; };
+		B334291D28576224008600DB /* CountCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291C28576224008600DB /* CountCard.swift */; };
+		B334291F28576234008600DB /* FigureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291E28576234008600DB /* FigureCard.swift */; };
+		B33429212857677F008600DB /* CountGameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429202857677F008600DB /* CountGameSession.swift */; };
+		B33429232857678F008600DB /* FigureGameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429222857678F008600DB /* FigureGameSession.swift */; };
+		B334292528576EB0008600DB /* CardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292428576EB0008600DB /* CardProtocol.swift */; };
+		B334292728576F51008600DB /* GameSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292628576F51008600DB /* GameSessionProtocol.swift */; };
+		B334292928577278008600DB /* ColorQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292828577278008600DB /* ColorQuestion.swift */; };
+		B334292B28577441008600DB /* CountQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292A28577441008600DB /* CountQuestion.swift */; };
+		B334292D2857748B008600DB /* QuestionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292C2857748B008600DB /* QuestionProtocol.swift */; };
+		B334292F285778E7008600DB /* FigureQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292E285778E7008600DB /* FigureQuestion.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B33428DD28575CD7008600DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B33428BE28575CD4008600DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B33428C528575CD4008600DB;
+			remoteInfo = InteractiveGameForBabies;
+		};
+		B33428E728575CD7008600DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B33428BE28575CD4008600DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B33428C528575CD4008600DB;
+			remoteInfo = InteractiveGameForBabies;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B33428C628575CD4008600DB /* InteractiveGameForBabies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InteractiveGameForBabies.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B33428C928575CD4008600DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B33428CB28575CD4008600DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B33428CD28575CD4008600DB /* GameMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMenuViewController.swift; sourceTree = "<group>"; };
+		B33428D028575CD4008600DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B33428D228575CD7008600DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B33428D528575CD7008600DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B33428D728575CD7008600DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B33428DC28575CD7008600DB /* InteractiveGameForBabiesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InteractiveGameForBabiesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B33428E028575CD7008600DB /* InteractiveGameForBabiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveGameForBabiesTests.swift; sourceTree = "<group>"; };
+		B33428E628575CD7008600DB /* InteractiveGameForBabiesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InteractiveGameForBabiesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B33428EA28575CD7008600DB /* InteractiveGameForBabiesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveGameForBabiesUITests.swift; sourceTree = "<group>"; };
+		B33428EC28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveGameForBabiesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B334290028575E37008600DB /* SpeakAnimalGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakAnimalGameViewController.swift; sourceTree = "<group>"; };
+		B334290228575EE7008600DB /* ColorGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGameViewController.swift; sourceTree = "<group>"; };
+		B334290428575EFC008600DB /* CountGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountGameViewController.swift; sourceTree = "<group>"; };
+		B334290628575F11008600DB /* FigureGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureGameViewController.swift; sourceTree = "<group>"; };
+		B334290E2857603C008600DB /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		B334291028576050008600DB /* ObservableOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableOptions.swift; sourceTree = "<group>"; };
+		B3342912285760B5008600DB /* Randomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Randomizer.swift; sourceTree = "<group>"; };
+		B33429142857614E008600DB /* GameDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDatabase.swift; sourceTree = "<group>"; };
+		B334291628576198008600DB /* ColorGameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGameSession.swift; sourceTree = "<group>"; };
+		B3342918285761F5008600DB /* AnimalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCard.swift; sourceTree = "<group>"; };
+		B334291A28576210008600DB /* ColorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCard.swift; sourceTree = "<group>"; };
+		B334291C28576224008600DB /* CountCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountCard.swift; sourceTree = "<group>"; };
+		B334291E28576234008600DB /* FigureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureCard.swift; sourceTree = "<group>"; };
+		B33429202857677F008600DB /* CountGameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountGameSession.swift; sourceTree = "<group>"; };
+		B33429222857678F008600DB /* FigureGameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureGameSession.swift; sourceTree = "<group>"; };
+		B334292428576EB0008600DB /* CardProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardProtocol.swift; sourceTree = "<group>"; };
+		B334292628576F51008600DB /* GameSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSessionProtocol.swift; sourceTree = "<group>"; };
+		B334292828577278008600DB /* ColorQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorQuestion.swift; sourceTree = "<group>"; };
+		B334292A28577441008600DB /* CountQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountQuestion.swift; sourceTree = "<group>"; };
+		B334292C2857748B008600DB /* QuestionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProtocol.swift; sourceTree = "<group>"; };
+		B334292E285778E7008600DB /* FigureQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureQuestion.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B33428C328575CD4008600DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B33428D928575CD7008600DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B33428E328575CD7008600DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B33428BD28575CD4008600DB = {
+			isa = PBXGroup;
+			children = (
+				B33428C828575CD4008600DB /* InteractiveGameForBabies */,
+				B33428DF28575CD7008600DB /* InteractiveGameForBabiesTests */,
+				B33428E928575CD7008600DB /* InteractiveGameForBabiesUITests */,
+				B33428C728575CD4008600DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B33428C728575CD4008600DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B33428C628575CD4008600DB /* InteractiveGameForBabies.app */,
+				B33428DC28575CD7008600DB /* InteractiveGameForBabiesTests.xctest */,
+				B33428E628575CD7008600DB /* InteractiveGameForBabiesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B33428C828575CD4008600DB /* InteractiveGameForBabies */ = {
+			isa = PBXGroup;
+			children = (
+				B334290B28575FA7008600DB /* GameProcess */,
+				B334290A28575F9D008600DB /* Model */,
+				B334290928575F7F008600DB /* Services */,
+				B334290828575F74008600DB /* Animation */,
+				B33428F928575D35008600DB /* UI */,
+				B33428C928575CD4008600DB /* AppDelegate.swift */,
+				B33428CB28575CD4008600DB /* SceneDelegate.swift */,
+				B33428CF28575CD4008600DB /* Main.storyboard */,
+				B33428D228575CD7008600DB /* Assets.xcassets */,
+				B33428D428575CD7008600DB /* LaunchScreen.storyboard */,
+				B33428D728575CD7008600DB /* Info.plist */,
+			);
+			path = InteractiveGameForBabies;
+			sourceTree = "<group>";
+		};
+		B33428DF28575CD7008600DB /* InteractiveGameForBabiesTests */ = {
+			isa = PBXGroup;
+			children = (
+				B33428E028575CD7008600DB /* InteractiveGameForBabiesTests.swift */,
+			);
+			path = InteractiveGameForBabiesTests;
+			sourceTree = "<group>";
+		};
+		B33428E928575CD7008600DB /* InteractiveGameForBabiesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B33428EA28575CD7008600DB /* InteractiveGameForBabiesUITests.swift */,
+				B33428EC28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift */,
+			);
+			path = InteractiveGameForBabiesUITests;
+			sourceTree = "<group>";
+		};
+		B33428F928575D35008600DB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B33428FF28575D90008600DB /* LoadingScreen */,
+				B33428FA28575D45008600DB /* GameMenu */,
+				B33428FB28575D59008600DB /* SpeakAnimalGame */,
+				B33428FC28575D6F008600DB /* ColorGame */,
+				B33428FD28575D77008600DB /* CountGame */,
+				B33428FE28575D84008600DB /* FigureGame */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		B33428FA28575D45008600DB /* GameMenu */ = {
+			isa = PBXGroup;
+			children = (
+				B33428CD28575CD4008600DB /* GameMenuViewController.swift */,
+			);
+			path = GameMenu;
+			sourceTree = "<group>";
+		};
+		B33428FB28575D59008600DB /* SpeakAnimalGame */ = {
+			isa = PBXGroup;
+			children = (
+				B334290028575E37008600DB /* SpeakAnimalGameViewController.swift */,
+			);
+			path = SpeakAnimalGame;
+			sourceTree = "<group>";
+		};
+		B33428FC28575D6F008600DB /* ColorGame */ = {
+			isa = PBXGroup;
+			children = (
+				B334290228575EE7008600DB /* ColorGameViewController.swift */,
+			);
+			path = ColorGame;
+			sourceTree = "<group>";
+		};
+		B33428FD28575D77008600DB /* CountGame */ = {
+			isa = PBXGroup;
+			children = (
+				B334290428575EFC008600DB /* CountGameViewController.swift */,
+			);
+			path = CountGame;
+			sourceTree = "<group>";
+		};
+		B33428FE28575D84008600DB /* FigureGame */ = {
+			isa = PBXGroup;
+			children = (
+				B334290628575F11008600DB /* FigureGameViewController.swift */,
+			);
+			path = FigureGame;
+			sourceTree = "<group>";
+		};
+		B33428FF28575D90008600DB /* LoadingScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoadingScreen;
+			sourceTree = "<group>";
+		};
+		B334290828575F74008600DB /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		B334290928575F7F008600DB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B334290D28575FF9008600DB /* Randomizer */,
+				B334290C28575FE9008600DB /* Observe */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B334290A28575F9D008600DB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B334292E285778E7008600DB /* FigureQuestion.swift */,
+				B334292A28577441008600DB /* CountQuestion.swift */,
+				B334292828577278008600DB /* ColorQuestion.swift */,
+				B3342918285761F5008600DB /* AnimalCard.swift */,
+				B334291A28576210008600DB /* ColorCard.swift */,
+				B334291C28576224008600DB /* CountCard.swift */,
+				B334291E28576234008600DB /* FigureCard.swift */,
+				B334292428576EB0008600DB /* CardProtocol.swift */,
+				B334292C2857748B008600DB /* QuestionProtocol.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B334290B28575FA7008600DB /* GameProcess */ = {
+			isa = PBXGroup;
+			children = (
+				B334291628576198008600DB /* ColorGameSession.swift */,
+				B33429202857677F008600DB /* CountGameSession.swift */,
+				B33429222857678F008600DB /* FigureGameSession.swift */,
+				B33429142857614E008600DB /* GameDatabase.swift */,
+				B334292628576F51008600DB /* GameSessionProtocol.swift */,
+			);
+			path = GameProcess;
+			sourceTree = "<group>";
+		};
+		B334290C28575FE9008600DB /* Observe */ = {
+			isa = PBXGroup;
+			children = (
+				B334291028576050008600DB /* ObservableOptions.swift */,
+				B334290E2857603C008600DB /* Observable.swift */,
+			);
+			path = Observe;
+			sourceTree = "<group>";
+		};
+		B334290D28575FF9008600DB /* Randomizer */ = {
+			isa = PBXGroup;
+			children = (
+				B3342912285760B5008600DB /* Randomizer.swift */,
+			);
+			path = Randomizer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B33428C528575CD4008600DB /* InteractiveGameForBabies */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B33428F028575CD7008600DB /* Build configuration list for PBXNativeTarget "InteractiveGameForBabies" */;
+			buildPhases = (
+				B33428C228575CD4008600DB /* Sources */,
+				B33428C328575CD4008600DB /* Frameworks */,
+				B33428C428575CD4008600DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InteractiveGameForBabies;
+			productName = InteractiveGameForBabies;
+			productReference = B33428C628575CD4008600DB /* InteractiveGameForBabies.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B33428DB28575CD7008600DB /* InteractiveGameForBabiesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B33428F328575CD7008600DB /* Build configuration list for PBXNativeTarget "InteractiveGameForBabiesTests" */;
+			buildPhases = (
+				B33428D828575CD7008600DB /* Sources */,
+				B33428D928575CD7008600DB /* Frameworks */,
+				B33428DA28575CD7008600DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B33428DE28575CD7008600DB /* PBXTargetDependency */,
+			);
+			name = InteractiveGameForBabiesTests;
+			productName = InteractiveGameForBabiesTests;
+			productReference = B33428DC28575CD7008600DB /* InteractiveGameForBabiesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B33428E528575CD7008600DB /* InteractiveGameForBabiesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B33428F628575CD7008600DB /* Build configuration list for PBXNativeTarget "InteractiveGameForBabiesUITests" */;
+			buildPhases = (
+				B33428E228575CD7008600DB /* Sources */,
+				B33428E328575CD7008600DB /* Frameworks */,
+				B33428E428575CD7008600DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B33428E828575CD7008600DB /* PBXTargetDependency */,
+			);
+			name = InteractiveGameForBabiesUITests;
+			productName = InteractiveGameForBabiesUITests;
+			productReference = B33428E628575CD7008600DB /* InteractiveGameForBabiesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B33428BE28575CD4008600DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					B33428C528575CD4008600DB = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					B33428DB28575CD7008600DB = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = B33428C528575CD4008600DB;
+					};
+					B33428E528575CD7008600DB = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = B33428C528575CD4008600DB;
+					};
+				};
+			};
+			buildConfigurationList = B33428C128575CD4008600DB /* Build configuration list for PBXProject "InteractiveGameForBabies" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B33428BD28575CD4008600DB;
+			productRefGroup = B33428C728575CD4008600DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B33428C528575CD4008600DB /* InteractiveGameForBabies */,
+				B33428DB28575CD7008600DB /* InteractiveGameForBabiesTests */,
+				B33428E528575CD7008600DB /* InteractiveGameForBabiesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B33428C428575CD4008600DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B33428D628575CD7008600DB /* LaunchScreen.storyboard in Resources */,
+				B33428D328575CD7008600DB /* Assets.xcassets in Resources */,
+				B33428D128575CD4008600DB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B33428DA28575CD7008600DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B33428E428575CD7008600DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B33428C228575CD4008600DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B334290F2857603C008600DB /* Observable.swift in Sources */,
+				B334292F285778E7008600DB /* FigureQuestion.swift in Sources */,
+				B334290528575EFC008600DB /* CountGameViewController.swift in Sources */,
+				B334290328575EE7008600DB /* ColorGameViewController.swift in Sources */,
+				B334291D28576224008600DB /* CountCard.swift in Sources */,
+				B33429212857677F008600DB /* CountGameSession.swift in Sources */,
+				B334291B28576210008600DB /* ColorCard.swift in Sources */,
+				B334291128576050008600DB /* ObservableOptions.swift in Sources */,
+				B334292528576EB0008600DB /* CardProtocol.swift in Sources */,
+				B33428CE28575CD4008600DB /* GameMenuViewController.swift in Sources */,
+				B334291F28576234008600DB /* FigureCard.swift in Sources */,
+				B3342919285761F5008600DB /* AnimalCard.swift in Sources */,
+				B334290128575E37008600DB /* SpeakAnimalGameViewController.swift in Sources */,
+				B334292928577278008600DB /* ColorQuestion.swift in Sources */,
+				B334292728576F51008600DB /* GameSessionProtocol.swift in Sources */,
+				B3342913285760B5008600DB /* Randomizer.swift in Sources */,
+				B33428CA28575CD4008600DB /* AppDelegate.swift in Sources */,
+				B334290728575F11008600DB /* FigureGameViewController.swift in Sources */,
+				B334292D2857748B008600DB /* QuestionProtocol.swift in Sources */,
+				B33428CC28575CD4008600DB /* SceneDelegate.swift in Sources */,
+				B334291728576198008600DB /* ColorGameSession.swift in Sources */,
+				B334292B28577441008600DB /* CountQuestion.swift in Sources */,
+				B33429232857678F008600DB /* FigureGameSession.swift in Sources */,
+				B33429152857614E008600DB /* GameDatabase.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B33428D828575CD7008600DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B33428E128575CD7008600DB /* InteractiveGameForBabiesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B33428E228575CD7008600DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B33428EB28575CD7008600DB /* InteractiveGameForBabiesUITests.swift in Sources */,
+				B33428ED28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B33428DE28575CD7008600DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B33428C528575CD4008600DB /* InteractiveGameForBabies */;
+			targetProxy = B33428DD28575CD7008600DB /* PBXContainerItemProxy */;
+		};
+		B33428E828575CD7008600DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B33428C528575CD4008600DB /* InteractiveGameForBabies */;
+			targetProxy = B33428E728575CD7008600DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B33428CF28575CD4008600DB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B33428D028575CD4008600DB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B33428D428575CD7008600DB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B33428D528575CD7008600DB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B33428EE28575CD7008600DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B33428EF28575CD7008600DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B33428F128575CD7008600DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 22RDDP38QF;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InteractiveGameForBabies/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-11.InteractiveGameForBabies";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B33428F228575CD7008600DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 22RDDP38QF;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InteractiveGameForBabies/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-11.InteractiveGameForBabies";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B33428F428575CD7008600DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 22RDDP38QF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-11.InteractiveGameForBabiesTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InteractiveGameForBabies.app/InteractiveGameForBabies";
+			};
+			name = Debug;
+		};
+		B33428F528575CD7008600DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 22RDDP38QF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-11.InteractiveGameForBabiesTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InteractiveGameForBabies.app/InteractiveGameForBabies";
+			};
+			name = Release;
+		};
+		B33428F728575CD7008600DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 22RDDP38QF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-11.InteractiveGameForBabiesUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = InteractiveGameForBabies;
+			};
+			name = Debug;
+		};
+		B33428F828575CD7008600DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 22RDDP38QF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-11.InteractiveGameForBabiesUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = InteractiveGameForBabies;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B33428C128575CD4008600DB /* Build configuration list for PBXProject "InteractiveGameForBabies" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B33428EE28575CD7008600DB /* Debug */,
+				B33428EF28575CD7008600DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B33428F028575CD7008600DB /* Build configuration list for PBXNativeTarget "InteractiveGameForBabies" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B33428F128575CD7008600DB /* Debug */,
+				B33428F228575CD7008600DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B33428F328575CD7008600DB /* Build configuration list for PBXNativeTarget "InteractiveGameForBabiesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B33428F428575CD7008600DB /* Debug */,
+				B33428F528575CD7008600DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B33428F628575CD7008600DB /* Build configuration list for PBXNativeTarget "InteractiveGameForBabiesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B33428F728575CD7008600DB /* Debug */,
+				B33428F828575CD7008600DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B33428BE28575CD4008600DB /* Project object */;
+}
