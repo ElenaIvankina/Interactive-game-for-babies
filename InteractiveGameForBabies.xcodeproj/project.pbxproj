@@ -10,7 +10,6 @@
 		B33428CA28575CD4008600DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428C928575CD4008600DB /* AppDelegate.swift */; };
 		B33428CC28575CD4008600DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CB28575CD4008600DB /* SceneDelegate.swift */; };
 		B33428CE28575CD4008600DB /* GameMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CD28575CD4008600DB /* GameMenuViewController.swift */; };
-		B33428D128575CD4008600DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B33428CF28575CD4008600DB /* Main.storyboard */; };
 		B33428D328575CD7008600DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33428D228575CD7008600DB /* Assets.xcassets */; };
 		B33428D628575CD7008600DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B33428D428575CD7008600DB /* LaunchScreen.storyboard */; };
 		B33428E128575CD7008600DB /* InteractiveGameForBabiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428E028575CD7008600DB /* InteractiveGameForBabiesTests.swift */; };
@@ -61,7 +60,6 @@
 		B33428C928575CD4008600DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B33428CB28575CD4008600DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B33428CD28575CD4008600DB /* GameMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMenuViewController.swift; sourceTree = "<group>"; };
-		B33428D028575CD4008600DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B33428D228575CD7008600DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B33428D528575CD7008600DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B33428D728575CD7008600DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 				B33428F928575D35008600DB /* UI */,
 				B33428C928575CD4008600DB /* AppDelegate.swift */,
 				B33428CB28575CD4008600DB /* SceneDelegate.swift */,
-				B33428CF28575CD4008600DB /* Main.storyboard */,
 				B33428D228575CD7008600DB /* Assets.xcassets */,
 				B33428D428575CD7008600DB /* LaunchScreen.storyboard */,
 				B33428D728575CD7008600DB /* Info.plist */,
@@ -400,7 +397,6 @@
 			files = (
 				B33428D628575CD7008600DB /* LaunchScreen.storyboard in Resources */,
 				B33428D328575CD7008600DB /* Assets.xcassets in Resources */,
-				B33428D128575CD4008600DB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,14 +481,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B33428CF28575CD4008600DB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B33428D028575CD4008600DB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B33428D428575CD7008600DB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -630,7 +618,6 @@
 				INFOPLIST_FILE = InteractiveGameForBabies/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -658,7 +645,6 @@
 				INFOPLIST_FILE = InteractiveGameForBabies/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
