@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 class GameMenuViewController: UIViewController {
     
@@ -35,111 +34,121 @@ class GameMenuViewController: UIViewController {
         return label
     }()
     
-    let gameViews = [
-        GameView()
-    ]
     
-    private func setupUI() {
-        self.view.addSubview(headerLabel)
-        self.view.addSubview(subLabel)
+    let stackView: UIStackView = {
         
-        for game in gameViews {
-            self.view.addSubview(game)
+        let gamesNames = [
+            "Как говорят животные",
+            "Один - много",
+            "Изучаем цвета",
+            "Лягушки и фигуры"
+        ]
+        
+        let gamesImages = [
+            UIImage(named: "notes"),
+            UIImage(named: "many"),
+            UIImage(named: "colors"),
+            UIImage(named: "figures")
+        ]
+        
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let rows = 2
+        let columns = 2
+        
+        for row in 0 ..< rows {
+            let stackViewH = UIStackView()
+            stackViewH.axis = .horizontal
+            stackViewH.alignment = .fill
+            stackViewH.distribution = .fillEqually
+            stackViewH.spacing = 5
+            
+            for col in 0 ..< columns {
+                let index = row * columns + col
+                
+                let view = GameItemView()
+                view.configure(name: gamesNames[index], image: gamesImages[index])
+                
+                stackViewH.addArrangedSubview(view)
+            }
+            
+            stackView.addArrangedSubview(stackViewH)
         }
         
-        NSLayoutConstraint.activate([
-            headerLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            headerLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 15),
-            headerLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1),
-            headerLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1),
-            
-            subLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            subLabel.topAnchor.constraint(equalTo: self.headerLabel.bottomAnchor, constant: 15),
-            subLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1),
-            subLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1),
-        ])
-    }
-    
-    //Наверху
-    //UILabel Привет, малыш!
-    //под ним UILabel Выбери игру
-    //под ними слева 4 кнопки с названием игр : Как говорят животные, Изучаем цвета, Один - много, Лягушки и фигуры
-    //под ними справа красивая картинка типа винни пуха
-    
-    
-    
-    
-}
-
-class GameView: UIView {
-    
-    // MARK: - Subviews
-    
-    private(set) lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
-        label.numberOfLines = 3
-        label.textColor = .label
-        return label
+        return stackView
     }()
     
-    private lazy var addToBasketButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "cart.fill.badge.plus"),
-                        for: .normal)
-        return button
-    }()
+    private func setBackgroundImage() {
+        let imageView = UIImageView(frame: self.view.bounds)
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "menu_bg")
+        imageView.center = self.view.center
+        self.view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
     
-    // MARK: - Inits
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private func setupUI() {
+        setBackgroundImage()
         
-        self.setupView()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        self.setupView()
-    }
-    
-    func configure(name: String) {
-        self.nameLabel.text = name
-    }
-    
-    // MARK: - Private methods
-    private func setupView() {
-        //self.addSubview(nameLabel)
-        self.addSubview(addToBasketButton)
+        self.view.addSubview(headerLabel)
+        self.view.addSubview(subLabel)
+        self.view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            addToBasketButton
-                .heightAnchor
-                .constraint(equalToConstant: 100),
-            addToBasketButton
-                .widthAnchor
-                .constraint(equalToConstant: 100),
-            addToBasketButton
+            headerLabel
                 .leadingAnchor
-                .constraint(equalTo: self.leadingAnchor,
-                            constant: 15),
-            addToBasketButton
+                .constraint(equalTo: self.view.leadingAnchor),
+            headerLabel
                 .topAnchor
-                .constraint(equalTo: self.topAnchor,
-                            constant: 10),
+                .constraint(equalTo: self.view.topAnchor,
+                            constant: 15),
+            headerLabel
+                .widthAnchor
+                .constraint(equalTo: self.view.widthAnchor,
+                            multiplier: 1),
+            headerLabel
+                .heightAnchor
+                .constraint(equalTo: self.view.heightAnchor,
+                            multiplier: 0.1),
+            
+            subLabel
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor),
+            subLabel
+                .topAnchor
+                .constraint(equalTo: self.headerLabel.bottomAnchor,
+                            constant: 15),
+            subLabel
+                .widthAnchor
+                .constraint(equalTo: self.view.widthAnchor,
+                            multiplier: 1),
+            subLabel
+                .heightAnchor
+                .constraint(equalTo: self.view.heightAnchor,
+                            multiplier: 0.1),
+            
+            stackView
+                .topAnchor
+                .constraint(equalTo: subLabel.bottomAnchor,
+                            constant: 5),
+            stackView
+                .leftAnchor
+                .constraint(equalTo: self.view.leftAnchor,
+                            constant: 5),
+            stackView
+                .rightAnchor
+                .constraint(equalTo: self.view.rightAnchor,
+                            constant: -5),
+            stackView
+                .bottomAnchor
+                .constraint(equalTo: self.view.bottomAnchor,
+                            constant: -5)
         ])
-    }
-}
-
-struct GameView_Preview: PreviewProvider {
-    static var previews: some View {
-        let view = GameView()
-        view.configure(name: "Как говорит")
-        
-        return UIPreviewView(view)
-            .preferredColorScheme(.dark)
-            .previewLayout(.fixed(width: 375, height: 200))
     }
 }
