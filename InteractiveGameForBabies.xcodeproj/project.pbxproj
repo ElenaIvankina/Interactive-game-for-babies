@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0D27A62858F8E2004995CB /* UIPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D27A52858F8E2004995CB /* UIPreviewView.swift */; };
 		B33428CA28575CD4008600DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428C928575CD4008600DB /* AppDelegate.swift */; };
 		B33428CC28575CD4008600DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CB28575CD4008600DB /* SceneDelegate.swift */; };
 		B33428CE28575CD4008600DB /* GameMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CD28575CD4008600DB /* GameMenuViewController.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A0D27A52858F8E2004995CB /* UIPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreviewView.swift; sourceTree = "<group>"; };
 		B33428C628575CD4008600DB /* InteractiveGameForBabies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InteractiveGameForBabies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33428C928575CD4008600DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B33428CB28575CD4008600DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A0D27A42858F8BE004995CB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0A0D27A52858F8E2004995CB /* UIPreviewView.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		B33428BD28575CD4008600DB = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +149,7 @@
 		B33428C828575CD4008600DB /* InteractiveGameForBabies */ = {
 			isa = PBXGroup;
 			children = (
+				0A0D27A42858F8BE004995CB /* Core */,
 				B334290B28575FA7008600DB /* GameProcess */,
 				B334290A28575F9D008600DB /* Model */,
 				B334290928575F7F008600DB /* Services */,
@@ -438,6 +449,7 @@
 				B334292728576F51008600DB /* GameSessionProtocol.swift in Sources */,
 				B3342913285760B5008600DB /* Randomizer.swift in Sources */,
 				B33428CA28575CD4008600DB /* AppDelegate.swift in Sources */,
+				0A0D27A62858F8E2004995CB /* UIPreviewView.swift in Sources */,
 				B334290728575F11008600DB /* FigureGameViewController.swift in Sources */,
 				B334292D2857748B008600DB /* QuestionProtocol.swift in Sources */,
 				B33428CC28575CD4008600DB /* SceneDelegate.swift in Sources */,
