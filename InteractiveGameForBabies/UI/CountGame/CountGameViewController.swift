@@ -19,6 +19,15 @@ class CountGameViewController: UIViewController {
         setupViews()
     }
     
+    init(countQuestion: CountQuestion) {
+        self.countQuestion = countQuestion
+        super.init(nibName:  nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func setupViews() {
         view.backgroundColor = .systemBackground
         
