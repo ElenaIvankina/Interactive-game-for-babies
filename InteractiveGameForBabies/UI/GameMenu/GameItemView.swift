@@ -29,7 +29,7 @@ class GameItemView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         label.textColor = .label
         label.textAlignment = .center
         return label
@@ -49,6 +49,13 @@ class GameItemView: UIView {
     func configure(name: String, image: UIImage?) {
         nameLabel.text = name
         startGameButton.image = image
+    }
+    
+    func addButtonTarget(target: Any?, action: Selector) {
+        startGameButton.addTarget(target,
+                                  action: action,
+                                  for: .touchUpInside)
+        
     }
     
     // MARK: - Private methods
