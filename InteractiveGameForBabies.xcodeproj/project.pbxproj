@@ -40,6 +40,7 @@
 		B334292B28577441008600DB /* CountQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292A28577441008600DB /* CountQuestion.swift */; };
 		B334292D2857748B008600DB /* QuestionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292C2857748B008600DB /* QuestionProtocol.swift */; };
 		B334292F285778E7008600DB /* FigureQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292E285778E7008600DB /* FigureQuestion.swift */; };
+		B33429312859A5F4008600DB /* AnimalCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429302859A5F4008600DB /* AnimalCardButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		B334292A28577441008600DB /* CountQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountQuestion.swift; sourceTree = "<group>"; };
 		B334292C2857748B008600DB /* QuestionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProtocol.swift; sourceTree = "<group>"; };
 		B334292E285778E7008600DB /* FigureQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureQuestion.swift; sourceTree = "<group>"; };
+		B33429302859A5F4008600DB /* AnimalCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCardButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				B334290028575E37008600DB /* SpeakAnimalGameViewController.swift */,
+				B33429302859A5F4008600DB /* AnimalCardButton.swift */,
 			);
 			path = SpeakAnimalGame;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				B334292F285778E7008600DB /* FigureQuestion.swift in Sources */,
 				B334290528575EFC008600DB /* CountGameViewController.swift in Sources */,
 				B334290328575EE7008600DB /* ColorGameViewController.swift in Sources */,
+				B33429312859A5F4008600DB /* AnimalCardButton.swift in Sources */,
 				B334291D28576224008600DB /* CountCard.swift in Sources */,
 				B33429212857677F008600DB /* CountGameSession.swift in Sources */,
 				B334291B28576210008600DB /* ColorCard.swift in Sources */,
