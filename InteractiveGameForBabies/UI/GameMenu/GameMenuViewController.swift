@@ -84,53 +84,53 @@ class GameMenuViewController: UIViewController {
     }()
     
     private func setBackgroundImage() {
-        let imageView = UIImageView(frame: self.view.bounds)
+        let imageView = UIImageView(frame: view.bounds)
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "menu_bg")
         imageView.center = self.view.center
-        self.view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
+        view.addSubview(imageView)
+        view.sendSubviewToBack(imageView)
     }
     
     private func setupUI() {
         setBackgroundImage()
         
-        self.view.addSubview(headerLabel)
-        self.view.addSubview(subLabel)
-        self.view.addSubview(stackView)
+        view.addSubview(headerLabel)
+        view.addSubview(subLabel)
+        view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
             headerLabel
                 .leadingAnchor
-                .constraint(equalTo: self.view.leadingAnchor),
+                .constraint(equalTo: view.leadingAnchor),
             headerLabel
                 .topAnchor
-                .constraint(equalTo: self.view.topAnchor,
-                            constant: 15),
+                .constraint(equalTo: view.topAnchor,
+                            constant: 20),
             headerLabel
                 .widthAnchor
-                .constraint(equalTo: self.view.widthAnchor,
+                .constraint(equalTo: view.widthAnchor,
                             multiplier: 1),
             headerLabel
                 .heightAnchor
-                .constraint(equalTo: self.view.heightAnchor,
+                .constraint(equalTo: view.heightAnchor,
                             multiplier: 0.1),
             
             subLabel
                 .leadingAnchor
-                .constraint(equalTo: self.view.leadingAnchor),
+                .constraint(equalTo: view.leadingAnchor),
             subLabel
                 .topAnchor
-                .constraint(equalTo: self.headerLabel.bottomAnchor,
-                            constant: 15),
+                .constraint(equalTo: headerLabel.bottomAnchor,
+                            constant: 7),
             subLabel
                 .widthAnchor
-                .constraint(equalTo: self.view.widthAnchor,
+                .constraint(equalTo: view.widthAnchor,
                             multiplier: 1),
             subLabel
                 .heightAnchor
-                .constraint(equalTo: self.view.heightAnchor,
+                .constraint(equalTo: view.heightAnchor,
                             multiplier: 0.1),
             
             stackView
@@ -139,15 +139,15 @@ class GameMenuViewController: UIViewController {
                             constant: 5),
             stackView
                 .leftAnchor
-                .constraint(equalTo: self.view.leftAnchor,
+                .constraint(equalTo: view.leftAnchor,
                             constant: 5),
             stackView
                 .rightAnchor
-                .constraint(equalTo: self.view.rightAnchor,
+                .constraint(equalTo: view.rightAnchor,
                             constant: -5),
             stackView
                 .bottomAnchor
-                .constraint(equalTo: self.view.bottomAnchor,
+                .constraint(equalTo: view.bottomAnchor,
                             constant: -5)
         ])
     }

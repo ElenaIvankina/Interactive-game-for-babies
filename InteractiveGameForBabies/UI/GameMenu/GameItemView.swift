@@ -5,13 +5,12 @@
 //  Created by Дмитрий Дуденин on 14.06.2022.
 //
 
-import UIKit
 import SwiftUI
 
 class GameItemView: UIView {
     
     // MARK: - Subviews
-    private lazy var startGameButton: StartGameButton = {
+    private var startGameButton: StartGameButton = {
         let button = StartGameButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.bgColor = UIColor.rgba(1.0,
@@ -26,7 +25,7 @@ class GameItemView: UIView {
         return button
     }()
     
-    private(set) lazy var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
@@ -39,25 +38,23 @@ class GameItemView: UIView {
     // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.setupView()
+        setupView()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
-        self.setupView()
+        setupView()
     }
     
     func configure(name: String, image: UIImage?) {
-        self.nameLabel.text = name
-        self.startGameButton.image = image
+        nameLabel.text = name
+        startGameButton.image = image
     }
     
     // MARK: - Private methods
     private func setupView() {
-        self.addSubview(startGameButton)
-        self.addSubview(nameLabel)
+        addSubview(startGameButton)
+        addSubview(nameLabel)
         
         NSLayoutConstraint.activate([
             startGameButton
