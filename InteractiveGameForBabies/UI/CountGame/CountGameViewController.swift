@@ -8,7 +8,7 @@
 import UIKit
 
 class CountGameViewController: UIViewController {
-    private var headerLabel: UILabel!
+//    private var headerLabel: UILabel!
     private var questionLabel: UILabel!
     private var questionImage: UIImageView!
     private var questionStackView: UIStackView!
@@ -31,8 +31,8 @@ class CountGameViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .systemBackground
         
-        headerLabel = setupHeaderLabel()
-        view.addSubview(headerLabel)
+//        headerLabel = setupHeaderLabel()
+//        view.addSubview(headerLabel)
         
         questionLabel = setupQuestionLabel(countQuestion: self.countQuestion)
         view.addSubview(questionLabel)
@@ -45,12 +45,12 @@ class CountGameViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            headerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
-            headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
-            headerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
-            headerLabel.heightAnchor.constraint(equalToConstant: 20),
+//            headerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
+//            headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
+//            headerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
+//            headerLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            questionLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
+            questionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             questionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             questionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -96),
             
@@ -69,14 +69,14 @@ class CountGameViewController: UIViewController {
     
     // MARK: - setup views
     
-    private func setupHeaderLabel() -> UILabel {
-        let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
-        headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        headerLabel.text = "Вопрос 1 из 10" //номер текущего вопроса брать из текущей сессии (если оно вообще тут надо)
-        headerLabel.font = .boldSystemFont(ofSize: 16)
-        headerLabel.textAlignment = .center
-        return headerLabel
-    }
+//    private func setupHeaderLabel() -> UILabel {
+//        let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+//        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+//        headerLabel.text = "Вопрос 1 из 10" //номер текущего вопроса брать из текущей сессии (если оно вообще тут надо)
+//        headerLabel.font = .boldSystemFont(ofSize: 16)
+//        headerLabel.textAlignment = .center
+//        return headerLabel
+//    }
     
     private func setupQuestionLabel(countQuestion: CountQuestion?) -> UILabel {
         let headLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 16))
@@ -87,6 +87,8 @@ class CountGameViewController: UIViewController {
         headLabel.numberOfLines = 0
         return headLabel
     }
+    
+    //название headLabel, но по сути это questionLabel
     
     private func setupQuestionImage(countQuestion: CountQuestion?) -> UIImageView {
         var questionImage: UIImage?
@@ -151,25 +153,22 @@ class CountGameViewController: UIViewController {
         var name = ""
         switch tag {
         case 0:
-            name = "person.fill"
+            name = "one1"
         case 1:
-            name = "person"
+            name = "many2"
         case 2:
-            name = "person.2"
+            name = "one5"
         case 3:
-            name = "person.2.fill"
+            name = "many6"
         case 4:
-            name = "person.3"
+            name = "many10"
         case 5:
-            name = "person.3.fill"
+            name = "one7"
         default:
-            name = "trash.fill"
+            name = "many13"
         }
-        return UIImage(systemName: name)
+        return UIImage(named: name)
     
     }
     
-    //Наверху экрана UILabel с вопросом, чуть правее картинка, под ними 6 одинаковых элементов, которые реализуют возможность нажатия и проверки данных (кнопка, просто UI Control и тд) (6 элементов возможно будет удобно обернуть в stackView), в readme есть картинка
-
-
 }
