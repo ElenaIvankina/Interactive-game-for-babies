@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0D27A62858F8E2004995CB /* UIPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D27A52858F8E2004995CB /* UIPreviewView.swift */; };
+		0A0D27A82858FF00004995CB /* GameItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D27A72858FF00004995CB /* GameItemView.swift */; };
+		0A0D27AA28590D48004995CB /* StartGameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D27A928590D48004995CB /* StartGameButton.swift */; };
+		0A4AF20D2859CACC002F8ABF /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4AF20C2859CACC002F8ABF /* Ext+UIColor.swift */; };
 		B33428CA28575CD4008600DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428C928575CD4008600DB /* AppDelegate.swift */; };
 		B33428CC28575CD4008600DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CB28575CD4008600DB /* SceneDelegate.swift */; };
 		B33428CE28575CD4008600DB /* GameMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CD28575CD4008600DB /* GameMenuViewController.swift */; };
@@ -36,6 +40,7 @@
 		B334292B28577441008600DB /* CountQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292A28577441008600DB /* CountQuestion.swift */; };
 		B334292D2857748B008600DB /* QuestionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292C2857748B008600DB /* QuestionProtocol.swift */; };
 		B334292F285778E7008600DB /* FigureQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292E285778E7008600DB /* FigureQuestion.swift */; };
+		B33429312859A5F4008600DB /* AnimalCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429302859A5F4008600DB /* AnimalCardButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A0D27A52858F8E2004995CB /* UIPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreviewView.swift; sourceTree = "<group>"; };
+		0A0D27A72858FF00004995CB /* GameItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameItemView.swift; sourceTree = "<group>"; };
+		0A0D27A928590D48004995CB /* StartGameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameButton.swift; sourceTree = "<group>"; };
+		0A4AF20C2859CACC002F8ABF /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
 		B33428C628575CD4008600DB /* InteractiveGameForBabies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InteractiveGameForBabies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33428C928575CD4008600DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B33428CB28575CD4008600DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +98,7 @@
 		B334292A28577441008600DB /* CountQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountQuestion.swift; sourceTree = "<group>"; };
 		B334292C2857748B008600DB /* QuestionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProtocol.swift; sourceTree = "<group>"; };
 		B334292E285778E7008600DB /* FigureQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureQuestion.swift; sourceTree = "<group>"; };
+		B33429302859A5F4008600DB /* AnimalCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCardButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +126,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A0D27A42858F8BE004995CB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0A0D27A52858F8E2004995CB /* UIPreviewView.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		0A4AF20B2859CAAB002F8ABF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0A4AF20C2859CACC002F8ABF /* Ext+UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B33428BD28575CD4008600DB = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +165,7 @@
 		B33428C828575CD4008600DB /* InteractiveGameForBabies */ = {
 			isa = PBXGroup;
 			children = (
+				0A0D27A42858F8BE004995CB /* Core */,
 				B334290B28575FA7008600DB /* GameProcess */,
 				B334290A28575F9D008600DB /* Model */,
 				B334290928575F7F008600DB /* Services */,
@@ -187,6 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				B33428CD28575CD4008600DB /* GameMenuViewController.swift */,
+				0A0D27A72858FF00004995CB /* GameItemView.swift */,
+				0A0D27A928590D48004995CB /* StartGameButton.swift */,
 			);
 			path = GameMenu;
 			sourceTree = "<group>";
@@ -195,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				B334290028575E37008600DB /* SpeakAnimalGameViewController.swift */,
+				B33429302859A5F4008600DB /* AnimalCardButton.swift */,
 			);
 			path = SpeakAnimalGame;
 			sourceTree = "<group>";
@@ -240,6 +270,7 @@
 		B334290928575F7F008600DB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0A4AF20B2859CAAB002F8ABF /* Extensions */,
 				B334290D28575FF9008600DB /* Randomizer */,
 				B334290C28575FE9008600DB /* Observe */,
 			);
@@ -425,6 +456,7 @@
 				B334292F285778E7008600DB /* FigureQuestion.swift in Sources */,
 				B334290528575EFC008600DB /* CountGameViewController.swift in Sources */,
 				B334290328575EE7008600DB /* ColorGameViewController.swift in Sources */,
+				B33429312859A5F4008600DB /* AnimalCardButton.swift in Sources */,
 				B334291D28576224008600DB /* CountCard.swift in Sources */,
 				B33429212857677F008600DB /* CountGameSession.swift in Sources */,
 				B334291B28576210008600DB /* ColorCard.swift in Sources */,
@@ -438,12 +470,16 @@
 				B334292728576F51008600DB /* GameSessionProtocol.swift in Sources */,
 				B3342913285760B5008600DB /* Randomizer.swift in Sources */,
 				B33428CA28575CD4008600DB /* AppDelegate.swift in Sources */,
+				0A0D27A62858F8E2004995CB /* UIPreviewView.swift in Sources */,
 				B334290728575F11008600DB /* FigureGameViewController.swift in Sources */,
 				B334292D2857748B008600DB /* QuestionProtocol.swift in Sources */,
 				B33428CC28575CD4008600DB /* SceneDelegate.swift in Sources */,
+				0A4AF20D2859CACC002F8ABF /* Ext+UIColor.swift in Sources */,
+				0A0D27AA28590D48004995CB /* StartGameButton.swift in Sources */,
 				B334291728576198008600DB /* ColorGameSession.swift in Sources */,
 				B334292B28577441008600DB /* CountQuestion.swift in Sources */,
 				B33429232857678F008600DB /* FigureGameSession.swift in Sources */,
+				0A0D27A82858FF00004995CB /* GameItemView.swift in Sources */,
 				B33429152857614E008600DB /* GameDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
