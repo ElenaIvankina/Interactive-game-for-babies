@@ -8,7 +8,6 @@
 import UIKit
 
 class CountGameViewController: UIViewController {
-//    private var headerLabel: UILabel!
     private var questionLabel: UILabel!
     private var questionImage: UIImageView!
     private var questionStackView: UIStackView!
@@ -31,9 +30,6 @@ class CountGameViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .systemBackground
         
-//        headerLabel = setupHeaderLabel()
-//        view.addSubview(headerLabel)
-        
         questionLabel = setupQuestionLabel(countQuestion: self.countQuestion)
         view.addSubview(questionLabel)
 
@@ -44,11 +40,6 @@ class CountGameViewController: UIViewController {
         view.addSubview(questionStackView)
         
         NSLayoutConstraint.activate([
-            
-//            headerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
-//            headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
-//            headerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
-//            headerLabel.heightAnchor.constraint(equalToConstant: 20),
             
             questionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             questionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -69,26 +60,15 @@ class CountGameViewController: UIViewController {
     
     // MARK: - setup views
     
-//    private func setupHeaderLabel() -> UILabel {
-//        let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
-//        headerLabel.translatesAutoresizingMaskIntoConstraints = false
-//        headerLabel.text = "Вопрос 1 из 10" //номер текущего вопроса брать из текущей сессии (если оно вообще тут надо)
-//        headerLabel.font = .boldSystemFont(ofSize: 16)
-//        headerLabel.textAlignment = .center
-//        return headerLabel
-//    }
-    
     private func setupQuestionLabel(countQuestion: CountQuestion?) -> UILabel {
-        let headLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 16))
-        headLabel.translatesAutoresizingMaskIntoConstraints = false
-        headLabel.text = countQuestion?.questionText ?? "Нажми на все картинки на экране где ты видишь только один предмет"
-        headLabel.font = .systemFont(ofSize: 16)
-        headLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
-        headLabel.numberOfLines = 0
-        return headLabel
+        let questionLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 16))
+        questionLabel.translatesAutoresizingMaskIntoConstraints = false
+        questionLabel.text = countQuestion?.questionText ?? "Нажми на все картинки на экране где ты видишь только один предмет"
+        questionLabel.font = .systemFont(ofSize: 16)
+        questionLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        questionLabel.numberOfLines = 0
+        return questionLabel
     }
-    
-    //название headLabel, но по сути это questionLabel
     
     private func setupQuestionImage(countQuestion: CountQuestion?) -> UIImageView {
         var questionImage: UIImage?

@@ -92,7 +92,7 @@ class SpeakAnimalGameViewController: UIViewController {
     }()
     
     
-    lazy var soundButton: UIButton = {
+    var soundButton: UIButton = {
         let button: UIButton = UIButton(type: .system)
         button.setImage(UIImage(systemName: "speaker.wave.3.fill"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false

@@ -171,11 +171,13 @@ class GameMenuViewController: UIViewController {
     }
     
     @objc func gameAnimalsButtonTapped() {
+        //TODO убрать принт
         print("Переход к игре КАК ГОВОРЯТ ЖИВОТНЫЕ")
         self.navigationController?.pushViewController(SpeakAnimalGameViewController(), animated: true)
     }
     
     @objc func gameAmountButtonTapped() {
+        //TODO убрать принт
         print("Переход к игре ОДИН - МНОГО")
         self.navigationController?.pushViewController(
             CountGameViewController(countQuestion:
