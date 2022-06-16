@@ -7,10 +7,12 @@
 
 import Foundation
 
-class AnimalCard: CardProtocol {
+struct AnimalCard: CardProtocol {
     var imageName: String
-    
-    init (imageName : String) {
-        self.imageName = imageName
+}
+
+extension AnimalCard: Equatable {
+    static func ==(lhs: AnimalCard, rhs: AnimalCard) -> Bool {
+        return lhs.imageName == rhs.imageName
     }
 }

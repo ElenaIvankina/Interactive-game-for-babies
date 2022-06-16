@@ -7,12 +7,7 @@
 
 import Foundation
 
-class FigureQuestion: QuestionProtocol {
+struct FigureQuestion: QuestionProtocol {
     var card: CardProtocol
     var questionText: String
-    
-    init (countCard: FigureCard, questionText: String ) {
-        self.card = countCard
-        self.questionText = questionText
-    }
 }

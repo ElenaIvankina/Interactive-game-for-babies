@@ -9,7 +9,7 @@ import Foundation
 
 class ColorGameSession: GameSessionProtocol {
     
-    var question: QuestionProtocol = ColorQuestion(colorCard: ColorCard(imageName: "", color: .green),
+    var question: QuestionProtocol = ColorQuestion(card: ColorCard(imageName: "", color: .green),
                                                    questionText: "Нажми на все предметы зеленого цвета")
     
     var randomCards: [CardProtocol] = []

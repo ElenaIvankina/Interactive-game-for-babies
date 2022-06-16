@@ -14,6 +14,29 @@ class GameMenuViewController: UIViewController {
         view.backgroundColor = .white
         
         setupUI()
+        
+        
+        
+        
+        let lAnCard = AnimalCard(imageName: "tst1")
+        let rAnCard = AnimalCard(imageName: "tst2")
+
+        let lCount = CountCard(imageName: "tstw3", count: .one)
+        let rCount = CountCard(imageName: "tstw4", count: .many)
+
+
+        print("== \(lAnCard == rAnCard)")
+        print("== \(lAnCard == lCount)")
+        print("== \(lCount == rCount)")
+
+        let arr: [CardProtocol] = [lAnCard, rAnCard, lCount, rCount]
+
+        let tstC = CountCard(imageName: "qwerty", count: .many)
+        let resArr = arr.filter() {$0 == tstC}
+
+        for i in resArr {
+            print(i.imageName)
+        }
     }
     
     //MARK: - Views
@@ -182,7 +205,7 @@ class GameMenuViewController: UIViewController {
         self.navigationController?.pushViewController(
             CountGameViewController(countQuestion:
                                         CountQuestion(
-                                            countCard: CountCard(imageName: "one0", count: .one),
+                                            card: CountCard(imageName: "one0", count: .one),
                                             questionText: "Нажми на все картинки, где предмет один")),
             animated: true)
     }

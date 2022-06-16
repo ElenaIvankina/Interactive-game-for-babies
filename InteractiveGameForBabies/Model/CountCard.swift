@@ -7,18 +7,18 @@
 
 import Foundation
 
-class CountCard: CardProtocol {
+struct CountCard: CardProtocol {
     var imageName: String
     let count: Count
-    
-    init (imageName : String, count: Count) {
-        self.imageName = imageName
-        self.count = count
+}
+
+extension CountCard: Equatable {
+    static func ==(lhs: CountCard, rhs: CountCard) -> Bool {
+        return lhs.count == rhs.count
     }
-    
-    enum Count  {
-        case one
-        case many
-    }
-    
+}
+
+enum Count  {
+    case one
+    case many
 }

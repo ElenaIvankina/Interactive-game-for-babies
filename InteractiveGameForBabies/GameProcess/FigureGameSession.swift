@@ -9,7 +9,7 @@ import Foundation
 
 class FigureGameSession: GameSessionProtocol {
     
-    var question: QuestionProtocol = FigureQuestion (countCard: FigureCard(imageName: "", figure: .circle),
+    var question: QuestionProtocol = FigureQuestion (card: FigureCard(imageName: "", figure: .circle),
                                                      questionText: "Протяни цветные фигуры к их теням")
     
     var randomCards: [CardProtocol] = []

@@ -7,26 +7,25 @@
 
 import Foundation
 
-class ColorCard: CardProtocol {
+struct ColorCard: CardProtocol {
     var imageName: String
     let color: Color
-    
-    init (imageName : String, color: Color) {
-        self.imageName = imageName
-        self.color = color
-    }
-    
-    enum Color  {
-        case green
-        case red
-        case yellow
-        case blue
-        case pink
-        case orange
-        case grey
-        case black
-        case violet
-    }
-    
 }
 
+extension ColorCard: Equatable {
+    static func ==(lhs: ColorCard, rhs: ColorCard) -> Bool {
+        return lhs.color == rhs.color
+    }
+}
+
+enum Color  {
+    case green
+    case red
+    case yellow
+    case blue
+    case pink
+    case orange
+    case grey
+    case black
+    case violet
+}
