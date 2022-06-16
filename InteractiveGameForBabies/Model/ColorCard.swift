@@ -12,12 +12,6 @@ struct ColorCard: CardProtocol {
     let color: Color
 }
 
-extension ColorCard: Equatable {
-    static func ==(lhs: ColorCard, rhs: ColorCard) -> Bool {
-        return lhs.color == rhs.color
-    }
-}
-
 enum Color  {
     case green
     case red

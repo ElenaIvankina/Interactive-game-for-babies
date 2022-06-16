@@ -12,12 +12,6 @@ struct FigureCard: CardProtocol {
     let figure: Figure
 }
 
-extension FigureCard: Equatable {
-    static func ==(lhs: FigureCard, rhs: FigureCard) -> Bool {
-        return lhs.figure == rhs.figure
-    }
-}
-
 enum Figure {
     case trapezoid
     case semicircle

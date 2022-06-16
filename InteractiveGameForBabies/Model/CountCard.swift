@@ -12,12 +12,6 @@ struct CountCard: CardProtocol {
     let count: Count
 }
 
-extension CountCard: Equatable {
-    static func ==(lhs: CountCard, rhs: CountCard) -> Bool {
-        return lhs.count == rhs.count
-    }
-}
-
 enum Count  {
     case one
     case many

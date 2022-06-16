@@ -10,9 +10,3 @@ import Foundation
 struct AnimalCard: CardProtocol {
     var imageName: String
 }
-
-extension AnimalCard: Equatable {
-    static func ==(lhs: AnimalCard, rhs: AnimalCard) -> Bool {
-        return lhs.imageName == rhs.imageName
-    }
-}
