@@ -47,23 +47,22 @@ class CountGameViewController: UIViewController {
             
             headerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
             headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
-            headerLabel.rightAnchor.constraint(equalTo: view.rightAnchor,constant: -16),
+            headerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
             headerLabel.heightAnchor.constraint(equalToConstant: 20),
             
             questionLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
             questionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            questionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -96),
+            questionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -96),
             
             questionImage.topAnchor.constraint(equalTo: questionLabel.topAnchor),
-            questionImage.leftAnchor.constraint(equalTo: questionLabel.rightAnchor),
-            questionImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            questionImage.leadingAnchor.constraint(equalTo: questionLabel.trailingAnchor),
+            questionImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             questionImage.heightAnchor.constraint(equalToConstant: 80),
             
             questionStackView.topAnchor.constraint(equalTo: questionImage.bottomAnchor, constant: 120),
             questionStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            questionStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            questionStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             questionStackView.heightAnchor.constraint(equalToConstant: 320)
-//            questionStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32)
             
         ])
     }
@@ -135,7 +134,6 @@ class CountGameViewController: UIViewController {
     
     private func setupAnswerButton(tag: Int, imageName: String?) -> UIButton {
         let button = UIButton()
-//        button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = tag
         var image: UIImage?
         if let imageName = imageName {
