@@ -9,13 +9,13 @@ import UIKit
 
 public class Observable<Type> {
     
-    fileprivate class Callback {
+     class Callback {
         
-        fileprivate weak var observer: AnyObject?
-        fileprivate let options: [ObservableOptions]
-        fileprivate let closure: (Type, ObservableOptions) -> Void
+         weak var observer: AnyObject?
+         let options: [ObservableOptions]
+         let closure: (Type, ObservableOptions) -> Void
         
-        fileprivate init (observer: AnyObject,
+         init (observer: AnyObject,
                           options: [ObservableOptions],
                           closure: @escaping (Type, ObservableOptions) -> Void) {
             
