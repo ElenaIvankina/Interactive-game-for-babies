@@ -16,7 +16,7 @@ func ==(lhs: CardProtocol, rhs: CardProtocol) -> Bool {
     guard type(of: lhs) == type(of: rhs) else { return false }
 
     if let lhs = lhs as? AnimalCard, let rhs = rhs as? AnimalCard {
-        return lhs.imageName == rhs.imageName
+        return lhs.animal == rhs.animal
     }
 
     if let lhs = lhs as? ColorCard, let rhs = rhs as? ColorCard {
@@ -32,4 +32,8 @@ func ==(lhs: CardProtocol, rhs: CardProtocol) -> Bool {
     }
 
     return false
+}
+
+func !=(lhs: CardProtocol, rhs: CardProtocol) -> Bool {
+    return !(lhs == rhs)
 }
