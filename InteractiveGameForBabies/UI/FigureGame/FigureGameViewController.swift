@@ -8,14 +8,13 @@
 import UIKit
 
 class FigureGameViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
     //Наверху экрана UILabel с заданием протянуть фигуру к ее тени, справа фигуры, слева поле с тенями и лягушками, в readme есть картинка
-
-
+    
+    
 }
-
