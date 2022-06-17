@@ -65,19 +65,19 @@ class SpeakAnimalGameViewController: UIViewController {
             stackView
                 .topAnchor
                 .constraint(equalTo: questionLabel.bottomAnchor,
-                            constant: 5),
+                            constant: 4),
             stackView
                 .leftAnchor
                 .constraint(equalTo: self.view.leftAnchor,
-                            constant: 5),
+                            constant: 4),
             stackView
                 .rightAnchor
                 .constraint(equalTo: self.view.rightAnchor,
-                            constant: -5),
+                            constant: -4),
             stackView
                 .bottomAnchor
                 .constraint(equalTo: self.view.bottomAnchor,
-                            constant: -5)
+                            constant: -4)
         ])
     }
     
@@ -92,7 +92,7 @@ class SpeakAnimalGameViewController: UIViewController {
     }()
     
     
-    lazy var soundButton: UIButton = {
+    var soundButton: UIButton = {
         let button: UIButton = UIButton(type: .system)
         button.setImage(UIImage(systemName: "speaker.wave.3.fill"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
