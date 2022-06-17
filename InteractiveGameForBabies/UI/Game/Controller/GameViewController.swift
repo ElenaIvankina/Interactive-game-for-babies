@@ -9,8 +9,10 @@ import UIKit
 
 class GameViewController: UIViewController {
     
+    private var mediaType: MediaType = .none
+    
     //MARK: - Views
-    lazy var questionViewController = GameQuestionViewController()
+    lazy var questionViewController = GameQuestionViewController(type: mediaType)
     lazy var answersViewController = GameAnswersViewController()
     
     let scrollView: UIScrollView = {
@@ -18,6 +20,16 @@ class GameViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
+    
+    init(type: MediaType)
+    {
+        mediaType = type
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -35,8 +47,12 @@ class GameViewController: UIViewController {
     }
     
     private func configureNavigationController() {
-        navigationController?.navigationBar.tintColor = UIColor.white
         navigationItem.largeTitleDisplayMode = .never
+
+        let homeImage = UIImage(systemName: "house.fill")
+        navigationController?.navigationBar.backIndicatorImage = homeImage
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = homeImage
+        navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal
     }
     
     private func configureScrollView() {

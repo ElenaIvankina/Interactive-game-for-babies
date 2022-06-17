@@ -33,7 +33,14 @@ class GameAnswersViewController: UIViewController {
     // MARK: - Private
     
     private func setAnswers() {
-        gameAnswersView.screenshots = Array(repeating: UIImage(systemName: "person"), count: 6)
+        gameAnswersView.cardImages = [
+            UIImage(named: "animal1"),
+            UIImage(named: "animal2"),
+            UIImage(named: "animal3"),
+            UIImage(named: "animal4"),
+            UIImage(named: "animal5"),
+            UIImage(named: "animal6")
+        ]
         gameAnswersView.collectionView.reloadData()
     }
 }

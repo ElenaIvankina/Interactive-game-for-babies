@@ -173,18 +173,13 @@ class GameMenuViewController: UIViewController {
     @objc func gameAnimalsButtonTapped() {
         //TODO убрать принт
         print("Переход к игре КАК ГОВОРЯТ ЖИВОТНЫЕ")
-        self.navigationController?.pushViewController(SpeakAnimalGameViewController(), animated: true)
+        self.navigationController?.pushViewController(GameViewController(type: .sound), animated: true)
     }
     
     @objc func gameAmountButtonTapped() {
         //TODO убрать принт
         print("Переход к игре ОДИН - МНОГО")
-        self.navigationController?.pushViewController(
-            CountGameViewController(countQuestion:
-                                        CountQuestion(
-                                            countCard: CountCard(imageName: "one0", count: .one),
-                                            questionText: "Нажми на все картинки, где предмет один")),
-            animated: true)
+        self.navigationController?.pushViewController(GameViewController(type: .image), animated: true)
     }
     
     @objc func gameColorsButtonTapped() {

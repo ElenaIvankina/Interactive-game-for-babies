@@ -6,27 +6,29 @@
 //
 
 import SwiftUI
+import AVKit
 
 class GameQuestionView: UIView {
     
-    var iconImageView: UIView = {
-        /*let imageView = UIImageView()
+    private(set) var mediaView: UIImageView = {
+        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor.secondarySystemFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 12
         imageView.contentMode = .scaleToFill
         imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.systemGray2.cgColor*/
-        return UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        imageView.layer.borderColor = UIColor.systemGray2.cgColor
+        imageView.isUserInteractionEnabled = true
+        return imageView
     }()
     
     private(set) var questionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .title2)
         label.numberOfLines = 0
         label.textColor = .label
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -43,8 +45,8 @@ class GameQuestionView: UIView {
     
     private func setupView() {
         addSubview(questionLabel)
-        addSubview(iconImageView)
-        
+        addSubview(mediaView)
+                
         NSLayoutConstraint.activate([
             questionLabel
                 .topAnchor
@@ -56,27 +58,27 @@ class GameQuestionView: UIView {
                             constant: 16),
             questionLabel
                 .trailingAnchor
-                .constraint(equalTo: iconImageView.trailingAnchor,
-                            constant: -16),
+                .constraint(equalTo: mediaView.leadingAnchor,
+                            constant: 16),
             questionLabel
                 .centerYAnchor
-                .constraint(equalTo: iconImageView.centerYAnchor),
+                .constraint(equalTo: mediaView.centerYAnchor),
 
-            iconImageView
+            mediaView
                 .heightAnchor
                 .constraint(equalToConstant: 64),
-            iconImageView
+            mediaView
                 .widthAnchor
                 .constraint(equalToConstant: 64),
-            iconImageView
+            mediaView
                 .trailingAnchor
                 .constraint(equalTo: trailingAnchor,
                             constant: -16),
-            iconImageView
+            mediaView
                 .bottomAnchor
                 .constraint(lessThanOrEqualTo: bottomAnchor,
                             constant: 16),
-            iconImageView
+            mediaView
                 .topAnchor
                 .constraint(equalTo: topAnchor, constant: 16),
         ])
@@ -85,7 +87,15 @@ class GameQuestionView: UIView {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
-        iconImageView.layer.borderColor = UIColor.systemGray2.cgColor
+        mediaView.layer.borderColor = UIColor.systemGray2.cgColor
+    }
+    
+    func setupMedia(type: MediaType) {
+
+    }
+    
+    @objc private func handleMediaViewTap(_ sender: UIControl) {
+
     }
 }
 

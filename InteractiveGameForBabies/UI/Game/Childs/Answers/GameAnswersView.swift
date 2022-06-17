@@ -26,7 +26,7 @@ class GameAnswersView: UIView {
         return collectionView
     }()
     
-    var screenshots = [UIImage?]()
+    var cardImages = [UIImage?]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,7 +57,7 @@ class GameAnswersView: UIView {
 extension GameAnswersView : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return screenshots.count
+        return cardImages.count
     }
 }
 
@@ -67,8 +67,12 @@ extension GameAnswersView : UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnswerCell.reuseId, for: indexPath) as! AnswerCell
         
-        let screenshot = self.screenshots[indexPath.row]
-        cell.configure(with: screenshot)
+        let image = self.cardImages[indexPath.row]
+        cell.configure(with: image)
+        
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor.blue.cgColor
+        cell.layer.cornerRadius = 10
         
         return cell
     }
@@ -84,7 +88,7 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
         var height = collectionView.bounds.height - (insets.top + insets.bottom)
 
         width /= 2
-        height /= ceil(CGFloat(screenshots.count) / 2)
+        height /= ceil(CGFloat(cardImages.count) / 2)
         
         return .init(width: width - 4, height: height - 4)
     }
@@ -98,7 +102,14 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
 struct GameAnswersView_Preview : PreviewProvider {
     static var previews: some View {
         let view = GameAnswersView()
-        view.screenshots = Array(repeating: UIImage(systemName: "person"), count: 3)
+        view.cardImages = [
+            UIImage(named: "animal1"),
+            UIImage(named: "animal2"),
+            UIImage(named: "animal3"),
+            UIImage(named: "animal4"),
+            UIImage(named: "animal5"),
+            UIImage(named: "animal6")
+        ]
         view.collectionView.reloadData()
         return UIPreviewView(view)
             .preferredColorScheme(.dark)
