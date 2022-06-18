@@ -21,8 +21,7 @@ class GameViewController: UIViewController {
         return scrollView
     }()
     
-    init(type: MediaType)
-    {
+    init(type: MediaType) {
         mediaType = type
         super.init(nibName: nil, bundle: nil)
     }
@@ -48,7 +47,7 @@ class GameViewController: UIViewController {
     
     private func configureNavigationController() {
         navigationItem.largeTitleDisplayMode = .never
-
+        
         let homeImage = UIImage(systemName: "house.fill")
         navigationController?.navigationBar.backIndicatorImage = homeImage
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = homeImage
@@ -57,7 +56,7 @@ class GameViewController: UIViewController {
     
     private func configureScrollView() {
         view.addSubview(scrollView)
-  
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -77,7 +76,8 @@ class GameViewController: UIViewController {
         NSLayoutConstraint.activate([
             questionView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             questionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            questionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            questionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            questionView.heightAnchor.constraint(equalToConstant: 80)
         ])
     }
     

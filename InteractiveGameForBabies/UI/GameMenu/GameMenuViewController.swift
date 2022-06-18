@@ -184,9 +184,11 @@ class GameMenuViewController: UIViewController {
     
     @objc func gameColorsButtonTapped() {
         print("Переход к игре ИЗУЧАЕМ ЦВЕТА")
+        self.navigationController?.pushViewController(GameViewController(type: .text), animated: true)
     }
     
     @objc func gameFiguresButtonTapped() {
         print("Переход к игре ЛЯГУШКИ И ФИГУРЫ")
+        self.navigationController?.pushViewController(GameViewController(type: .text), animated: true)
     }
 }

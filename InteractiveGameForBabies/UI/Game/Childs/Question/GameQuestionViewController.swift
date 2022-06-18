@@ -30,12 +30,6 @@ class GameQuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setQuestionData()
-    }
-    
-    // MARK: - Private
-    private func setQuestionData() {
-        gameQuestionView.questionLabel.text = "Какое животное так говорит?"
-        gameQuestionView.setupMedia(type: mediaType)
+        gameQuestionView.setMediaView(type: mediaType)
     }
 }

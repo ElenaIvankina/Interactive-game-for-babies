@@ -10,5 +10,6 @@ import Foundation
 enum MediaType {
     case sound
     case image
+    case text
     case none
 }

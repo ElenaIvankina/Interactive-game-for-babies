@@ -10,27 +10,25 @@ import AVKit
 
 class GameQuestionView: UIView {
     
-    private(set) var mediaView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = UIColor.secondarySystemFill
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 12
-        imageView.contentMode = .scaleToFill
-        imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.systemGray2.cgColor
-        imageView.isUserInteractionEnabled = true
-        return imageView
+    private(set) var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.backgroundColor = .white
+        tableView.isUserInteractionEnabled = true
+        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
+        tableView.alwaysBounceVertical = false
+        
+        tableView.register(TextOnlyCell.self, forCellReuseIdentifier: TextOnlyCell.reuseId)
+        tableView.register(SoundCell.self, forCellReuseIdentifier: SoundCell.reuseId)
+        tableView.register(ImageCell.self, forCellReuseIdentifier: ImageCell.reuseId)
+        
+        return tableView
     }()
     
-    private(set) var questionLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.textColor = .label
-        label.adjustsFontSizeToFitWidth = true
-        return label
-    }()
+    private var mediaType: MediaType  = .none
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,65 +42,77 @@ class GameQuestionView: UIView {
     // MARK: - Private
     
     private func setupView() {
-        addSubview(questionLabel)
-        addSubview(mediaView)
-                
+        addSubview(tableView)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         NSLayoutConstraint.activate([
-            questionLabel
-                .topAnchor
-                .constraint(equalTo: topAnchor,
-                            constant: 16),
-            questionLabel
-                .leadingAnchor
-                .constraint(equalTo: leadingAnchor,
-                            constant: 16),
-            questionLabel
-                .trailingAnchor
-                .constraint(equalTo: mediaView.leadingAnchor,
-                            constant: 16),
-            questionLabel
-                .centerYAnchor
-                .constraint(equalTo: mediaView.centerYAnchor),
-
-            mediaView
-                .heightAnchor
-                .constraint(equalToConstant: 64),
-            mediaView
-                .widthAnchor
-                .constraint(equalToConstant: 64),
-            mediaView
-                .trailingAnchor
-                .constraint(equalTo: trailingAnchor,
-                            constant: -16),
-            mediaView
-                .bottomAnchor
-                .constraint(lessThanOrEqualTo: bottomAnchor,
-                            constant: 16),
-            mediaView
-                .topAnchor
-                .constraint(equalTo: topAnchor, constant: 16),
+            tableView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
         ])
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        mediaView.layer.borderColor = UIColor.systemGray2.cgColor
+    func setMediaView(type: MediaType) {
+        mediaType = type
+        tableView.reloadData()
+    }
+}
+
+extension GameQuestionView : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension GameQuestionView : UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch(mediaType) {
+        case .none:
+            return 0
+        default:
+            return 1
+        }
     }
     
-    func setupMedia(type: MediaType) {
-
-    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    @objc private func handleMediaViewTap(_ sender: UIControl) {
-
+        switch(mediaType) {
+        case .sound:
+            if let soundCell = tableView.dequeueReusableCell(withIdentifier: SoundCell.reuseId, for: indexPath) as? SoundCell {
+                soundCell.configure(with: "meow")
+                return soundCell
+            } else {
+                return UITableViewCell()
+            }
+        case .image:
+            if let imageCell = tableView.dequeueReusableCell(withIdentifier: ImageCell.reuseId, for: indexPath) as? ImageCell {
+                imageCell.configure(with: "123", image: "colors")
+                return imageCell
+            } else {
+                return UITableViewCell()
+            }
+        case .text:
+            if let textCell = tableView.dequeueReusableCell(withIdentifier: TextOnlyCell.reuseId, for: indexPath) as? TextOnlyCell {
+                textCell.configure(with: "123")
+                return textCell
+            } else {
+                return UITableViewCell()
+            }
+        case .none:
+            return UITableViewCell()
+        }
     }
 }
 
 struct GameQuestionView_Preview: PreviewProvider {
     static var previews: some View {
         let view = GameQuestionView()
-        view.questionLabel.text = "ВКонтакте. Ваша социальная сеть"
+        view.tableView.reloadData()
         return UIPreviewView(view)
             .preferredColorScheme(.dark)
             .previewLayout(.fixed(width: 375, height: 200))
