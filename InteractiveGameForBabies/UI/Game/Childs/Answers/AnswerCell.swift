@@ -13,10 +13,10 @@ class AnswerCell: UICollectionViewCell {
     
     private let cardImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -29,6 +29,10 @@ class AnswerCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(with image: UIImage?) {
+        cardImageView.image = image
+    }
+    
     private func setupView() {
         addSubview(cardImageView)
         
@@ -38,9 +42,14 @@ class AnswerCell: UICollectionViewCell {
             cardImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             cardImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
+        
+        layer.borderWidth = 1.0
+        layer.borderColor = UIColor.blue.cgColor
+        layer.cornerRadius = 10
     }
     
-    func configure(with image: UIImage?) {
-        cardImageView.image = image
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cardImageView.image = nil
     }
 }

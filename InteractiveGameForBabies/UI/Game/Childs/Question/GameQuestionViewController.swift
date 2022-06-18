@@ -8,8 +8,8 @@
 import UIKit
 
 class GameQuestionViewController: UIViewController {
-
-    private var mediaType: MediaType = .none
+    
+    private var mediaType: MediaType
     
     private var gameQuestionView: GameQuestionView {
         return self.view as! GameQuestionView

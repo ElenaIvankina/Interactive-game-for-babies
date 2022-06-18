@@ -10,7 +10,7 @@ import AVKit
 
 class GameQuestionView: UIView {
     
-    private(set) var tableView: UITableView = {
+    private var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.showsVerticalScrollIndicator = false
@@ -20,10 +20,11 @@ class GameQuestionView: UIView {
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.alwaysBounceVertical = false
+        tableView.rowHeight = UITableView.automaticDimension
         
-        tableView.register(TextOnlyCell.self, forCellReuseIdentifier: TextOnlyCell.reuseId)
-        tableView.register(SoundCell.self, forCellReuseIdentifier: SoundCell.reuseId)
-        tableView.register(ImageCell.self, forCellReuseIdentifier: ImageCell.reuseId)
+        tableView.register(QuestionTextOnlyCell.self, forCellReuseIdentifier: QuestionTextOnlyCell.reuseId)
+        tableView.register(QuestionSoundCell.self, forCellReuseIdentifier: QuestionSoundCell.reuseId)
+        tableView.register(QuestionImageCell.self, forCellReuseIdentifier: QuestionImageCell.reuseId)
         
         return tableView
     }()
@@ -39,7 +40,10 @@ class GameQuestionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Private
+    func setMediaView(type: MediaType) {
+        mediaType = type
+        tableView.reloadData()
+    }
     
     private func setupView() {
         addSubview(tableView)
@@ -48,16 +52,23 @@ class GameQuestionView: UIView {
         tableView.dataSource = self
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            tableView
+                .topAnchor
+                .constraint(equalTo: topAnchor,
+                            constant: 4),
+            tableView
+                .bottomAnchor
+                .constraint(equalTo: bottomAnchor,
+                            constant: -4),
+            tableView
+                .trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: -4),
+            tableView
+                .leadingAnchor
+                .constraint(equalTo: leadingAnchor,
+                            constant: 4),
         ])
-    }
-    
-    func setMediaView(type: MediaType) {
-        mediaType = type
-        tableView.reloadData()
     }
 }
 
@@ -80,39 +91,34 @@ extension GameQuestionView : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
+        
         switch(mediaType) {
         case .sound:
-            if let soundCell = tableView.dequeueReusableCell(withIdentifier: SoundCell.reuseId, for: indexPath) as? SoundCell {
-                soundCell.configure(with: "meow")
-                return soundCell
-            } else {
-                return UITableViewCell()
+            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionSoundCell.reuseId, for: indexPath) as? QuestionSoundCell {
+                cell.configure(with: "Кто так говорит?")
+                return cell
             }
         case .image:
-            if let imageCell = tableView.dequeueReusableCell(withIdentifier: ImageCell.reuseId, for: indexPath) as? ImageCell {
-                imageCell.configure(with: "123", image: "colors")
-                return imageCell
-            } else {
-                return UITableViewCell()
+            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionImageCell.reuseId, for: indexPath) as? QuestionImageCell {
+                cell.configure(with: "Нажми на все карточки, где ты видишь только один предмет", image: "colors")
+                return cell
             }
         case .text:
-            if let textCell = tableView.dequeueReusableCell(withIdentifier: TextOnlyCell.reuseId, for: indexPath) as? TextOnlyCell {
-                textCell.configure(with: "123")
-                return textCell
-            } else {
-                return UITableViewCell()
+            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTextOnlyCell.reuseId, for: indexPath) as? QuestionTextOnlyCell {
+                cell.configure(with: "Нажми на все карточки, где ты видишь синий предмет")
+                return cell
             }
         case .none:
             return UITableViewCell()
         }
+        
+        fatalError("Cell for item at \(indexPath) has not been implemented")
     }
 }
 
 struct GameQuestionView_Preview: PreviewProvider {
     static var previews: some View {
         let view = GameQuestionView()
-        view.tableView.reloadData()
         return UIPreviewView(view)
             .preferredColorScheme(.dark)
             .previewLayout(.fixed(width: 375, height: 200))

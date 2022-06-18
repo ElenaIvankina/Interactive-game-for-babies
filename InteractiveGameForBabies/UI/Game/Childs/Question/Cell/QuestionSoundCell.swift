@@ -1,5 +1,5 @@
 //
-//  ImageCell.swift
+//  QuestionSoundCell.swift
 //  InteractiveGameForBabies
 //
 //  Created by Дмитрий Дуденин on 18.06.2022.
@@ -7,23 +7,24 @@
 
 import UIKit
 
-class ImageCell: UITableViewCell {
+class QuestionSoundCell: UITableViewCell {
     
-    static let reuseId = "ImageCell"
+    static let reuseId = "SoundCell"
     
     private let questionLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.numberOfLines = 0
         return label
     }()
     
-    private let infoImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
+    private let playSoundButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "person"), for: .normal)
+        return button
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -37,59 +38,57 @@ class ImageCell: UITableViewCell {
     
     private func setupView() {
         addSubview(questionLabel)
-        addSubview(infoImage)
+        addSubview(playSoundButton)
+        
+        playSoundButton.addTarget(self,
+                                  action: #selector(handlePlaySoundButton),
+                                  for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             questionLabel
-                .topAnchor
-                .constraint(equalTo: topAnchor,
-                            constant: 4),
-            questionLabel
-                .bottomAnchor
-                .constraint(equalTo: bottomAnchor,
-                            constant: -4),
-            questionLabel
                 .trailingAnchor
-                .constraint(equalTo: infoImage.leadingAnchor,
+                .constraint(equalTo: playSoundButton.leadingAnchor,
                             constant: 4),
             questionLabel
                 .leadingAnchor
                 .constraint(equalTo: leadingAnchor,
-                            constant: -4),
+                            constant: 4),
             questionLabel
                 .centerYAnchor
-                .constraint(equalTo: infoImage.centerYAnchor),
+                .constraint(equalTo: playSoundButton.centerYAnchor),
             
-            infoImage
+            playSoundButton
                 .widthAnchor
-                .constraint(equalToConstant: 64),
-            infoImage
+                .constraint(equalToConstant: 20),
+            playSoundButton
                 .heightAnchor
-                .constraint(equalToConstant: 64),
-            infoImage
+                .constraint(equalToConstant: 20),
+            playSoundButton
                 .trailingAnchor
                 .constraint(equalTo: trailingAnchor,
                             constant: -4),
-            infoImage
+            playSoundButton
                 .topAnchor
                 .constraint(equalTo: topAnchor,
                             constant: 4),
-            infoImage
+            playSoundButton
                 .bottomAnchor
                 .constraint(equalTo: bottomAnchor,
                             constant: -4)
         ])
     }
     
-    func configure(with text: String, image name: String) {
+    func configure(with text: String) {
         questionLabel.text = text
-        infoImage.image = UIImage(named: name)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         questionLabel.text = nil
-        infoImage.image = nil
+    }
+    
+    @objc func handlePlaySoundButton() {
+        //TODO проигрывать звук
+        print("la la la")
     }
 }

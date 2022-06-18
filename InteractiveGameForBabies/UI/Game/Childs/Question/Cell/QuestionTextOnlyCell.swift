@@ -1,5 +1,5 @@
 //
-//  TextOnlyCell.swift
+//  QuestionTextOnlyCell.swift
 //  InteractiveGameForBabies
 //
 //  Created by Дмитрий Дуденин on 18.06.2022.
@@ -7,21 +7,21 @@
 
 import UIKit
 
-class TextOnlyCell: UITableViewCell {
+class QuestionTextOnlyCell: UITableViewCell {
     
     static let reuseId = "TextOnlyCell"
     
     private let questionLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.numberOfLines = 0
         return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-           super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
     
@@ -40,11 +40,11 @@ class TextOnlyCell: UITableViewCell {
             questionLabel
                 .trailingAnchor
                 .constraint(equalTo: trailingAnchor,
-                            constant: 4),
+                            constant: -4),
             questionLabel
                 .leadingAnchor
                 .constraint(equalTo: leadingAnchor,
-                            constant: -4),
+                            constant: 4),
             questionLabel
                 .bottomAnchor
                 .constraint(equalTo: bottomAnchor,
@@ -58,7 +58,6 @@ class TextOnlyCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-
         questionLabel.text = nil
     }
 }

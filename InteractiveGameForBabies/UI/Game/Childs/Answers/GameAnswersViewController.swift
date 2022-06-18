@@ -30,8 +30,6 @@ class GameAnswersViewController: UIViewController {
         setAnswers()
     }
     
-    // MARK: - Private
-    
     private func setAnswers() {
         gameAnswersView.cardImages = [
             UIImage(named: "animal1"),
@@ -41,6 +39,5 @@ class GameAnswersViewController: UIViewController {
             UIImage(named: "animal5"),
             UIImage(named: "animal6")
         ]
-        gameAnswersView.collectionView.reloadData()
     }
 }

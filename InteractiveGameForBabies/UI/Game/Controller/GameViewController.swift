@@ -9,7 +9,7 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-    private var mediaType: MediaType = .none
+    private var mediaType: MediaType
     
     //MARK: - Views
     lazy var questionViewController = GameQuestionViewController(type: mediaType)
@@ -36,9 +36,11 @@ class GameViewController: UIViewController {
         configureView()
     }
     
+    
     // MARK: - Private
     func configureView() {
         view.backgroundColor = .systemBackground
+        
         configureNavigationController()
         configureScrollView()
         addQuestionViewController()
