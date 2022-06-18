@@ -40,7 +40,7 @@ class GameItemView: UIView {
         super.init(frame: frame)
         setupView()
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
@@ -55,7 +55,6 @@ class GameItemView: UIView {
         startGameButton.addTarget(target,
                                   action: action,
                                   for: .touchUpInside)
-        
     }
     
     // MARK: - Private methods
@@ -72,23 +71,23 @@ class GameItemView: UIView {
                 .constraint(equalToConstant: 100),
             startGameButton
                 .centerXAnchor
-                .constraint(equalTo: self.centerXAnchor),
+                .constraint(equalTo: centerXAnchor),
             startGameButton
                 .topAnchor
-                .constraint(equalTo: self.topAnchor,
+                .constraint(equalTo: topAnchor,
                             constant: 10),
             startGameButton
                 .bottomAnchor
-                .constraint(equalTo: self.nameLabel.topAnchor,
+                .constraint(equalTo: nameLabel.topAnchor,
                             constant: -10),
             
             nameLabel
                 .leadingAnchor
-                .constraint(equalTo: self.leadingAnchor,
+                .constraint(equalTo: leadingAnchor,
                             constant: 15),
             nameLabel
                 .trailingAnchor
-                .constraint(equalTo: self.trailingAnchor,
+                .constraint(equalTo: trailingAnchor,
                             constant: -15)
         ])
     }
@@ -103,6 +102,6 @@ struct GameView_Preview: PreviewProvider {
         return UIPreviewView(view)
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.dark)
-            
+        
     }
 }

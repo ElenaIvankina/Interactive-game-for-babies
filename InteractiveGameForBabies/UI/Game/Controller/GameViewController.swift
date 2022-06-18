@@ -90,13 +90,13 @@ class GameViewController: UIViewController {
         answersViewController.didMove(toParent: self)
         
         answersView.translatesAutoresizingMaskIntoConstraints = false
-        
+                
         NSLayoutConstraint.activate([
             answersView.topAnchor.constraint(equalTo: questionViewController.view.bottomAnchor, constant: 32),
             answersView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             answersView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             answersView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            answersView.heightAnchor.constraint(equalToConstant: 350)
+            answersView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
 }

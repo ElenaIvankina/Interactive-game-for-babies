@@ -61,12 +61,12 @@ class GameMenuViewController: UIViewController {
         ]
         
         let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.spacing = 5
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let rows = 2
         let columns = 2
         
@@ -171,24 +171,18 @@ class GameMenuViewController: UIViewController {
     }
     
     @objc func gameAnimalsButtonTapped() {
-        //TODO убрать принт
-        print("Переход к игре КАК ГОВОРЯТ ЖИВОТНЫЕ")
-        self.navigationController?.pushViewController(GameViewController(type: .sound), animated: true)
+        navigationController?.pushViewController(GameViewController(type: .sound), animated: true)
     }
     
     @objc func gameAmountButtonTapped() {
-        //TODO убрать принт
-        print("Переход к игре ОДИН - МНОГО")
-        self.navigationController?.pushViewController(GameViewController(type: .image), animated: true)
+        navigationController?.pushViewController(GameViewController(type: .image), animated: true)
     }
     
     @objc func gameColorsButtonTapped() {
-        print("Переход к игре ИЗУЧАЕМ ЦВЕТА")
-        self.navigationController?.pushViewController(GameViewController(type: .text), animated: true)
+        navigationController?.pushViewController(GameViewController(type: .text), animated: true)
     }
     
     @objc func gameFiguresButtonTapped() {
-        print("Переход к игре ЛЯГУШКИ И ФИГУРЫ")
-        self.navigationController?.pushViewController(GameViewController(type: .text), animated: true)
+        navigationController?.pushViewController(GameViewController(type: .text), animated: true)
     }
 }
