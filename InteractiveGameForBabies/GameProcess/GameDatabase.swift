@@ -9,7 +9,14 @@ import Foundation
 
 class GameDatabase {
     
+    static let shared = GameDatabase()
+    
+    private init() {
+    }
+    
     var animalCards: [AnimalCard] = []
+    
+    var animalQuestions: [AnimalQuestion] = []
     
     var colorCards: [ColorCard] = []
     
@@ -42,7 +49,9 @@ class GameDatabase {
                       questionText: "Нажми на все картинки, где предметов много")
     ]
     
-    var figuresCards: [FigureCard] = []
+    var figureCards: [FigureCard] = []
+    
+    var figureQuestions: [FigureQuestion] = []
     
     
 }
