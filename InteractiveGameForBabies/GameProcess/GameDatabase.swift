@@ -9,11 +9,18 @@ import Foundation
 
 class GameDatabase {
     
+    static let shared = GameDatabase()
+    
+    private init() {
+    }
+    
     var animalCards: [AnimalCard] = []
+    
+    var animalQuestions: [AnimalQuestion] = []
     
     var colorCards: [ColorCard] = []
     
-    var colorTextQuestion: [ColorQuestion] = [
+    var colorQuestions: [ColorQuestion] = [
         ColorQuestion(colorCard: ColorCard(imageName: "", color: .green),
                       questionText: "Нажми на все предметы зеленого цвета"),
         ColorQuestion(colorCard: ColorCard(imageName: "", color: .yellow),
@@ -35,14 +42,17 @@ class GameDatabase {
     ]
     
     var countCards: [CountCard] = []
-    var countTextQuestion: [CountQuestion] = [
+    
+    var countQuestions: [CountQuestion] = [
         CountQuestion(countCard: CountCard(imageName: "", count: .one),
                       questionText: "Нажми на все картинки, где предмет один"),
         CountQuestion(countCard: CountCard(imageName: "", count: .many),
                       questionText: "Нажми на все картинки, где предметов много")
     ]
     
-    var figuresCards: [FigureCard] = []
+    var figureCards: [FigureCard] = []
+    
+    var figureQuestions: [FigureQuestion] = []
     
     
 }
