@@ -7,18 +7,12 @@
 
 import Foundation
 
-class CountCard: CardProtocol {
+struct CountCard: CardProtocol {
     var imageName: String
     let count: Count
-    
-    init (imageName : String, count: Count) {
-        self.imageName = imageName
-        self.count = count
-    }
-    
-    enum Count  {
-        case one
-        case many
-    }
-    
+}
+
+enum Count  {
+    case one
+    case many
 }

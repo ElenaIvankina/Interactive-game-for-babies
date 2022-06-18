@@ -7,10 +7,32 @@
 
 import Foundation
 
-class AnimalCard: CardProtocol {
+struct AnimalCard: CardProtocol {
     var imageName: String
-    
-    init (imageName : String) {
-        self.imageName = imageName
-    }
+    let animal: Animal
+    let sound: String
+}
+
+enum Animal {
+    case cock
+    case cat
+    case elephant
+    case fish
+    case monkey
+    case goat
+    case mouse
+    case dog
+    case cuckoo
+    case hedgehog
+    case frog
+    case cow
+    case wolf
+    case woodpecker
+    case owl
+    case bear
+    case snake
+    case parrot
+    case camel
+    case horse
+    case donkey
 }

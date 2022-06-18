@@ -182,7 +182,7 @@ class GameMenuViewController: UIViewController {
         self.navigationController?.pushViewController(
             CountGameViewController(countQuestion:
                                         CountQuestion(
-                                            countCard: CountCard(imageName: "one0", count: .one),
+                                            card: CountCard(imageName: "one0", count: .one),
                                             questionText: "Нажми на все картинки, где предмет один")),
             animated: true)
     }
