@@ -7,12 +7,7 @@
 
 import Foundation
 
-class ColorQuestion: QuestionProtocol {
+struct ColorQuestion: QuestionProtocol {
     var card: CardProtocol
-    var questionText: String
-    
-    init (colorCard: ColorCard, questionText: String ) {
-        self.card = colorCard
-        self.questionText = questionText
-    }
+    var questionText: String    
 }

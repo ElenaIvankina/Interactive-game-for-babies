@@ -32,21 +32,23 @@
 		B33428ED28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428EC28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift */; };
 		B334290F2857603C008600DB /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334290E2857603C008600DB /* Observable.swift */; };
 		B334291128576050008600DB /* ObservableOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291028576050008600DB /* ObservableOptions.swift */; };
-		B3342913285760B5008600DB /* Randomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3342912285760B5008600DB /* Randomizer.swift */; };
 		B33429152857614E008600DB /* GameDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429142857614E008600DB /* GameDatabase.swift */; };
-		B334291728576198008600DB /* ColorGameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291628576198008600DB /* ColorGameSession.swift */; };
 		B3342919285761F5008600DB /* AnimalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3342918285761F5008600DB /* AnimalCard.swift */; };
 		B334291B28576210008600DB /* ColorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291A28576210008600DB /* ColorCard.swift */; };
 		B334291D28576224008600DB /* CountCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291C28576224008600DB /* CountCard.swift */; };
 		B334291F28576234008600DB /* FigureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291E28576234008600DB /* FigureCard.swift */; };
-		B33429212857677F008600DB /* CountGameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429202857677F008600DB /* CountGameSession.swift */; };
-		B33429232857678F008600DB /* FigureGameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429222857678F008600DB /* FigureGameSession.swift */; };
+		B33429212857677F008600DB /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429202857677F008600DB /* GameSession.swift */; };
 		B334292528576EB0008600DB /* CardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292428576EB0008600DB /* CardProtocol.swift */; };
-		B334292728576F51008600DB /* GameSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292628576F51008600DB /* GameSessionProtocol.swift */; };
 		B334292928577278008600DB /* ColorQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292828577278008600DB /* ColorQuestion.swift */; };
 		B334292B28577441008600DB /* CountQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292A28577441008600DB /* CountQuestion.swift */; };
 		B334292D2857748B008600DB /* QuestionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292C2857748B008600DB /* QuestionProtocol.swift */; };
 		B334292F285778E7008600DB /* FigureQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292E285778E7008600DB /* FigureQuestion.swift */; };
+		B33429312859A5F4008600DB /* AnimalCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429302859A5F4008600DB /* AnimalCardButton.swift */; };
+		B646B6E4285C3946001AB323 /* Ext+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646B6E3285C3946001AB323 /* Ext+Array.swift */; };
+		B3342935285CB060008600DB /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3342934285CB060008600DB /* GameDelegate.swift */; };
+		B3342938285CD87B008600DB /* GameViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3342937285CD87B008600DB /* GameViewControllerBuilder.swift */; };
+		B334293B285DD670008600DB /* GameStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334293A285DD670008600DB /* GameStrategy.swift */; };
+		B334293D285DD8EA008600DB /* AnimalQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334293C285DD8EA008600DB /* AnimalQuestion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,21 +98,23 @@
 		B33428EC28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveGameForBabiesUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B334290E2857603C008600DB /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		B334291028576050008600DB /* ObservableOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableOptions.swift; sourceTree = "<group>"; };
-		B3342912285760B5008600DB /* Randomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Randomizer.swift; sourceTree = "<group>"; };
 		B33429142857614E008600DB /* GameDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDatabase.swift; sourceTree = "<group>"; };
-		B334291628576198008600DB /* ColorGameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGameSession.swift; sourceTree = "<group>"; };
 		B3342918285761F5008600DB /* AnimalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCard.swift; sourceTree = "<group>"; };
 		B334291A28576210008600DB /* ColorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCard.swift; sourceTree = "<group>"; };
 		B334291C28576224008600DB /* CountCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountCard.swift; sourceTree = "<group>"; };
 		B334291E28576234008600DB /* FigureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureCard.swift; sourceTree = "<group>"; };
-		B33429202857677F008600DB /* CountGameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountGameSession.swift; sourceTree = "<group>"; };
-		B33429222857678F008600DB /* FigureGameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureGameSession.swift; sourceTree = "<group>"; };
+		B33429202857677F008600DB /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		B334292428576EB0008600DB /* CardProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardProtocol.swift; sourceTree = "<group>"; };
-		B334292628576F51008600DB /* GameSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSessionProtocol.swift; sourceTree = "<group>"; };
 		B334292828577278008600DB /* ColorQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorQuestion.swift; sourceTree = "<group>"; };
 		B334292A28577441008600DB /* CountQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountQuestion.swift; sourceTree = "<group>"; };
 		B334292C2857748B008600DB /* QuestionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProtocol.swift; sourceTree = "<group>"; };
 		B334292E285778E7008600DB /* FigureQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureQuestion.swift; sourceTree = "<group>"; };
+		B33429302859A5F4008600DB /* AnimalCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCardButton.swift; sourceTree = "<group>"; };
+		B646B6E3285C3946001AB323 /* Ext+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Array.swift"; sourceTree = "<group>"; };
+		B3342934285CB060008600DB /* GameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDelegate.swift; sourceTree = "<group>"; };
+		B3342937285CD87B008600DB /* GameViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewControllerBuilder.swift; sourceTree = "<group>"; };
+		B334293A285DD670008600DB /* GameStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStrategy.swift; sourceTree = "<group>"; };
+		B334293C285DD8EA008600DB /* AnimalQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalQuestion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 		0A0D27A42858F8BE004995CB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B646B6E2285C3929001AB323 /* Extensions */,
 				0A0D27A52858F8E2004995CB /* UIPreviewView.swift */,
 			);
 			path = Core;
@@ -303,8 +308,9 @@
 		B334290928575F7F008600DB /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0A4AF20B2859CAAB002F8ABF /* Extensions */,
 				B334290D28575FF9008600DB /* Randomizer */,
+				B3342936285CD85A008600DB /* Builders */,
+				0A4AF20B2859CAAB002F8ABF /* Extensions */,
 				B334290C28575FE9008600DB /* Observe */,
 			);
 			path = Services;
@@ -313,6 +319,7 @@
 		B334290A28575F9D008600DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B334293C285DD8EA008600DB /* AnimalQuestion.swift */,
 				B334292E285778E7008600DB /* FigureQuestion.swift */,
 				B334292A28577441008600DB /* CountQuestion.swift */,
 				B334292828577278008600DB /* ColorQuestion.swift */,
@@ -330,11 +337,9 @@
 		B334290B28575FA7008600DB /* GameProcess */ = {
 			isa = PBXGroup;
 			children = (
-				B334291628576198008600DB /* ColorGameSession.swift */,
-				B33429202857677F008600DB /* CountGameSession.swift */,
-				B33429222857678F008600DB /* FigureGameSession.swift */,
+				B33429202857677F008600DB /* GameSession.swift */,
 				B33429142857614E008600DB /* GameDatabase.swift */,
-				B334292628576F51008600DB /* GameSessionProtocol.swift */,
+				B3342934285CB060008600DB /* GameDelegate.swift */,
 			);
 			path = GameProcess;
 			sourceTree = "<group>";
@@ -348,12 +353,22 @@
 			path = Observe;
 			sourceTree = "<group>";
 		};
-		B334290D28575FF9008600DB /* Randomizer */ = {
+		B3342936285CD85A008600DB /* Builders */ = {
 			isa = PBXGroup;
 			children = (
-				B3342912285760B5008600DB /* Randomizer.swift */,
+				B334293A285DD670008600DB /* GameStrategy.swift */,
+				B3342937285CD87B008600DB /* GameViewControllerBuilder.swift */,
 			);
-			path = Randomizer;
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		B646B6E2285C3929001AB323 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0A4AF20C2859CACC002F8ABF /* Ext+UIColor.swift */,
+				B646B6E3285C3946001AB323 /* Ext+Array.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -492,13 +507,14 @@
 				B334292F285778E7008600DB /* FigureQuestion.swift in Sources */,
 				0A7A85B8285BC75A00D23883 /* AnswerCell.swift in Sources */,
 				B334291D28576224008600DB /* CountCard.swift in Sources */,
-				B33429212857677F008600DB /* CountGameSession.swift in Sources */,
+				B33429212857677F008600DB /* GameSession.swift in Sources */,
 				B334291B28576210008600DB /* ColorCard.swift in Sources */,
 				B334291128576050008600DB /* ObservableOptions.swift in Sources */,
 				B334292528576EB0008600DB /* CardProtocol.swift in Sources */,
 				0A7A85AC285BBFB500D23883 /* GameViewController.swift in Sources */,
 				B33428CE28575CD4008600DB /* GameMenuViewController.swift in Sources */,
 				B334291F28576234008600DB /* FigureCard.swift in Sources */,
+				B3342935285CB060008600DB /* GameDelegate.swift in Sources */,
 				0A7A85BB285BC83F00D23883 /* GameAnswersView.swift in Sources */,
 				B3342919285761F5008600DB /* AnimalCard.swift in Sources */,
 				B334292928577278008600DB /* ColorQuestion.swift in Sources */,
@@ -507,17 +523,19 @@
 				0A8F1E1F285D0F9900DD643D /* MediaType.swift in Sources */,
 				B3342913285760B5008600DB /* Randomizer.swift in Sources */,
 				B33428CA28575CD4008600DB /* AppDelegate.swift in Sources */,
+				B334293B285DD670008600DB /* GameStrategy.swift in Sources */,
 				0A0D27A62858F8E2004995CB /* UIPreviewView.swift in Sources */,
 				0A52DB79285DEF0A00F79AE7 /* QuestionTextOnlyCell.swift in Sources */,
 				B334292D2857748B008600DB /* QuestionProtocol.swift in Sources */,
+				B646B6E4285C3946001AB323 /* Ext+Array.swift in Sources */,
 				0A52DB7E285E065C00F79AE7 /* QuestionImageCell.swift in Sources */,
 				B33428CC28575CD4008600DB /* SceneDelegate.swift in Sources */,
 				0A4AF20D2859CACC002F8ABF /* Ext+UIColor.swift in Sources */,
 				0A7A85B5285BC12500D23883 /* GameQuestionViewController.swift in Sources */,
 				0A0D27AA28590D48004995CB /* StartGameButton.swift in Sources */,
-				B334291728576198008600DB /* ColorGameSession.swift in Sources */,
+				B334293D285DD8EA008600DB /* AnimalQuestion.swift in Sources */,
+				B3342938285CD87B008600DB /* GameViewControllerBuilder.swift in Sources */,
 				B334292B28577441008600DB /* CountQuestion.swift in Sources */,
-				B33429232857678F008600DB /* FigureGameSession.swift in Sources */,
 				0A0D27A82858FF00004995CB /* GameItemView.swift in Sources */,
 				B33429152857614E008600DB /* GameDatabase.swift in Sources */,
 				0A7A85B3285BC0AA00D23883 /* GameQuestionView.swift in Sources */,
