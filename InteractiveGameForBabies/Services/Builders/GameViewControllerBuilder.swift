@@ -9,8 +9,8 @@ import UIKit
 
 class GameViewControllerBuilder {
     
-    static func buildAnimalGame() -> SpeakAnimalGameViewController {
-        let vc = SpeakAnimalGameViewController()
+    static func buildAnimalGame() -> GameViewController {
+        let vc = GameViewController(type: .sound)
         let gameDelegate = GameDelegate()
         let gameSession = GameSession()
         GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .speakAnimalGame)
@@ -23,8 +23,8 @@ class GameViewControllerBuilder {
         
     }
     
-    static func buildColorGame() -> ColorGameViewController {
-        let vc = ColorGameViewController()
+    static func buildColorGame() -> GameViewController {
+        let vc = GameViewController(type: .image)
         let gameDelegate = GameDelegate()
         let gameSession = GameSession()
         GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .colorGame)
@@ -37,8 +37,8 @@ class GameViewControllerBuilder {
         
     }
     
-    static func buildCountGame() -> CountGameViewController {
-        let vc = CountGameViewController(countQuestion: GameDatabase.shared.countQuestions[0])
+    static func buildCountGame() -> GameViewController {
+        let vc = GameViewController(type: .image)
         //countQuestion уйдет, инициализация единая будет у контроллеров игры
         let gameDelegate = GameDelegate()
         let gameSession = GameSession()
@@ -52,8 +52,8 @@ class GameViewControllerBuilder {
         
     }
     
-    static func buildFigureGame() -> FigureGameViewController {
-        let vc = FigureGameViewController()
+    static func buildFigureGame() -> GameViewController {
+        let vc = GameViewController(type: .text)
         let gameDelegate = GameDelegate()
         let gameSession = GameSession()
         GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .figureGame)
