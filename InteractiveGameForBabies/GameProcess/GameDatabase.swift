@@ -20,7 +20,7 @@ class GameDatabase {
     
     var colorCards: [ColorCard] = []
     
-    var colorTextQuestion: [ColorQuestion] = [
+    var colorQuestions: [ColorQuestion] = [
         ColorQuestion(card: ColorCard(imageName: "", color: .green),
                       questionText: "Нажми на все предметы зеленого цвета"),
         ColorQuestion(card: ColorCard(imageName: "", color: .yellow),
@@ -42,7 +42,8 @@ class GameDatabase {
     ]
     
     var countCards: [CountCard] = []
-    var countTextQuestion: [CountQuestion] = [
+    
+    var countQuestions: [CountQuestion] = [
         CountQuestion(card: CountCard(imageName: "", count: .one),
                       questionText: "Нажми на все картинки, где предмет один"),
         CountQuestion(card: CountCard(imageName: "", count: .many),

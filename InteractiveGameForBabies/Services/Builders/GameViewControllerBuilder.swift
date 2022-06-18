@@ -38,7 +38,7 @@ class GameViewControllerBuilder {
     }
     
     static func buildCountGame() -> CountGameViewController {
-        let vc = CountGameViewController(countQuestion: GameDatabase.shared.countTextQuestion[0])
+        let vc = CountGameViewController(countQuestion: GameDatabase.shared.countQuestions[0])
         //countQuestion уйдет, инициализация единая будет у контроллеров игры
         let gameDelegate = GameDelegate()
         let gameSession = GameSession()
