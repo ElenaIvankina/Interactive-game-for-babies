@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol QuestionSoundCellDelegate: AnyObject {
+    func didTapPlayButtonInCell()
+}
+
 class QuestionSoundCell: UITableViewCell {
     
     static let reuseId = "SoundCell"
+    weak var delegate: QuestionSoundCellDelegate?
     
     private let questionLabel: UILabel = {
         let label = UILabel()
@@ -23,7 +28,11 @@ class QuestionSoundCell: UITableViewCell {
     private let playSoundButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "person"), for: .normal)
+        button.isUserInteractionEnabled = true
+        button.setImage(UIImage(systemName: "play.circle"), for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.systemGray2.cgColor
+        button.layer.cornerRadius = 12
         return button
     }()
     
@@ -42,13 +51,13 @@ class QuestionSoundCell: UITableViewCell {
         
         playSoundButton.addTarget(self,
                                   action: #selector(handlePlaySoundButton),
-                                  for: .touchUpInside)
+                                  for: .allEvents)
         
         NSLayoutConstraint.activate([
             questionLabel
                 .trailingAnchor
                 .constraint(equalTo: playSoundButton.leadingAnchor,
-                            constant: 4),
+                            constant: -4),
             questionLabel
                 .leadingAnchor
                 .constraint(equalTo: leadingAnchor,
@@ -59,10 +68,10 @@ class QuestionSoundCell: UITableViewCell {
             
             playSoundButton
                 .widthAnchor
-                .constraint(equalToConstant: 20),
+                .constraint(equalToConstant: 32),
             playSoundButton
                 .heightAnchor
-                .constraint(equalToConstant: 20),
+                .constraint(equalToConstant: 32),
             playSoundButton
                 .trailingAnchor
                 .constraint(equalTo: trailingAnchor,
@@ -88,7 +97,16 @@ class QuestionSoundCell: UITableViewCell {
     }
     
     @objc func handlePlaySoundButton() {
-        //TODO проигрывать звук
-        print("la la la")
+        delegate?.didTapPlayButtonInCell()
+    }
+    
+    override func hitTest(_ point: CGPoint,
+                          with event: UIEvent?) -> UIView? {
+        
+        if let view = playSoundButton.hitTest(playSoundButton.convert(point, from: self), with: event) {
+            return view
+        } else {
+            return super.hitTest(point, with: event)
+        }
     }
 }

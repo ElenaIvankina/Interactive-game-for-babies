@@ -33,7 +33,10 @@ class QuestionImageCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        
     }
+    
+    
     
     private func setupView() {
         addSubview(questionLabel)

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import AVKit
+import AVFoundation
 
 class GameQuestionView: UIView {
     
@@ -30,6 +30,7 @@ class GameQuestionView: UIView {
     }()
     
     private var mediaType: MediaType  = .none
+    private var player: AVAudioPlayer?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,9 +75,6 @@ class GameQuestionView: UIView {
 
 extension GameQuestionView : UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
-    }
 }
 
 extension GameQuestionView : UITableViewDataSource {
@@ -96,6 +94,7 @@ extension GameQuestionView : UITableViewDataSource {
         case .sound:
             if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionSoundCell.reuseId, for: indexPath) as? QuestionSoundCell {
                 cell.configure(with: "Кто так говорит?")
+                cell.delegate = self
                 return cell
             }
         case .image:
@@ -113,6 +112,31 @@ extension GameQuestionView : UITableViewDataSource {
         }
         
         fatalError("Cell for item at \(indexPath) has not been implemented")
+    }
+}
+
+extension GameQuestionView : QuestionSoundCellDelegate {
+    
+    func didTapPlayButtonInCell() {
+        guard let url = Bundle
+                .main
+                .url(forResource: "wolf",
+                     withExtension: "mp3")
+        else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            
+            guard let player = player else { return }
+            
+            player.play()
+            
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
     }
 }
 
