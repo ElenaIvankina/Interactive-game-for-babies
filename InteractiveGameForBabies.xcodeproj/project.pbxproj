@@ -41,7 +41,7 @@
 		B334292D2857748B008600DB /* QuestionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292C2857748B008600DB /* QuestionProtocol.swift */; };
 		B334292F285778E7008600DB /* FigureQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292E285778E7008600DB /* FigureQuestion.swift */; };
 		B33429312859A5F4008600DB /* AnimalCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429302859A5F4008600DB /* AnimalCardButton.swift */; };
-		B646B6E4285C3946001AB323 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646B6E3285C3946001AB323 /* Array.swift */; };
+		B646B6E4285C3946001AB323 /* Ext+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646B6E3285C3946001AB323 /* Ext+Array.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,7 +100,7 @@
 		B334292C2857748B008600DB /* QuestionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProtocol.swift; sourceTree = "<group>"; };
 		B334292E285778E7008600DB /* FigureQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureQuestion.swift; sourceTree = "<group>"; };
 		B33429302859A5F4008600DB /* AnimalCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCardButton.swift; sourceTree = "<group>"; };
-		B646B6E3285C3946001AB323 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		B646B6E3285C3946001AB323 /* Ext+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Array.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,18 +131,10 @@
 		0A0D27A42858F8BE004995CB /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B646B6E2285C3929001AB323 /* Extension */,
+				B646B6E2285C3929001AB323 /* Extensions */,
 				0A0D27A52858F8E2004995CB /* UIPreviewView.swift */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		0A4AF20B2859CAAB002F8ABF /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				0A4AF20C2859CACC002F8ABF /* Ext+UIColor.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B33428BD28575CD4008600DB = {
@@ -273,7 +265,6 @@
 		B334290928575F7F008600DB /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0A4AF20B2859CAAB002F8ABF /* Extensions */,
 				B334290D28575FF9008600DB /* Randomizer */,
 				B334290C28575FE9008600DB /* Observe */,
 			);
@@ -325,12 +316,13 @@
 			path = Randomizer;
 			sourceTree = "<group>";
 		};
-		B646B6E2285C3929001AB323 /* Extension */ = {
+		B646B6E2285C3929001AB323 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B646B6E3285C3946001AB323 /* Array.swift */,
+				0A4AF20C2859CACC002F8ABF /* Ext+UIColor.swift */,
+				B646B6E3285C3946001AB323 /* Ext+Array.swift */,
 			);
-			path = Extension;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -484,7 +476,7 @@
 				0A0D27A62858F8E2004995CB /* UIPreviewView.swift in Sources */,
 				B334290728575F11008600DB /* FigureGameViewController.swift in Sources */,
 				B334292D2857748B008600DB /* QuestionProtocol.swift in Sources */,
-				B646B6E4285C3946001AB323 /* Array.swift in Sources */,
+				B646B6E4285C3946001AB323 /* Ext+Array.swift in Sources */,
 				B33428CC28575CD4008600DB /* SceneDelegate.swift in Sources */,
 				0A4AF20D2859CACC002F8ABF /* Ext+UIColor.swift in Sources */,
 				0A0D27AA28590D48004995CB /* StartGameButton.swift in Sources */,

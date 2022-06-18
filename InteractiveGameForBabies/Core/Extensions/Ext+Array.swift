@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Array where Element: CardProtocol {
+extension Array where Element == CardProtocol {
     
     func randomElements(sample: CardProtocol, countElemens: Int) -> [Element] {
 
