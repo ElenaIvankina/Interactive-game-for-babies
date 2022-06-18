@@ -31,10 +31,10 @@ class GameStrategy: GameStrategyProtocol {
             gameSession.questionsArray = GameDatabase.shared.animalQuestions
             gameSession.cardsArray = GameDatabase.shared.animalCards
         case .colorGame:
-            gameSession.questionsArray = GameDatabase.shared.colorQuestions
+            gameSession.questionsArray = GameDatabase.shared.colorTextQuestion
             gameSession.cardsArray = GameDatabase.shared.colorCards
         case .countGame:
-            gameSession.questionsArray = GameDatabase.shared.countQuestions
+            gameSession.questionsArray = GameDatabase.shared.countTextQuestion
             gameSession.cardsArray = GameDatabase.shared.countCards
         case .figureGame:
             gameSession.questionsArray = GameDatabase.shared.figureQuestions
