@@ -36,8 +36,6 @@ class QuestionImageCell: UITableViewCell {
         
     }
     
-    
-    
     private func setupView() {
         contentView.addSubview(questionLabel)
         contentView.addSubview(infoImage)

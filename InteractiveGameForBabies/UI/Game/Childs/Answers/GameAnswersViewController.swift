@@ -11,8 +11,8 @@ class GameAnswersViewController: UIViewController {
     
     private lazy var gameAnswersView = GameAnswersView()
     
-    var cards: [CardProtocol]
-    var delegate: GameDelegate
+    private var cards: [CardProtocol]
+    private var delegate: GameDelegate
     
     init(cards: [CardProtocol], delegate: GameDelegate) {
         self.cards = cards

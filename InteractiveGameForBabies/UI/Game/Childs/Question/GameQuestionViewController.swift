@@ -12,7 +12,7 @@ class GameQuestionViewController: UIViewController {
     private lazy var gameQuestionView = GameQuestionView()
     
     private var mediaType: MediaType
-    var question: QuestionProtocol
+    private var question: QuestionProtocol
     
     init(question: QuestionProtocol, type: MediaType) {
         self.question = question

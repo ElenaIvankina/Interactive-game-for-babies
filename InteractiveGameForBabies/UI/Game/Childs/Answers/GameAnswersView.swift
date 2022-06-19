@@ -23,8 +23,8 @@ class GameAnswersView: UIView {
         return collectionView
     }()
     
-    var cards = [CardProtocol]()
-    var delegate: GameDelegate?
+    private var cards = [CardProtocol]()
+    private var delegate: GameDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
