@@ -13,10 +13,8 @@ class GameDelegate {
     var gameViewcontroller: GameViewControllerProtocol?
         
     func checkingAnswer(answerCard: CardProtocol) {
-        let questionCard = gameViewcontroller?.gameSession.currentQuestion?.card
-        if true {
-        //questionCard == answerCard
-        //не понимаю как обработать сравнение, CardProtocol должен быть Equtable
+        if let questionCard = gameViewcontroller?.gameSession.currentQuestion?.card,
+           questionCard.isEqualTo(answerCard) {
             handlingRightAnswer()
         } else {
             handlingWrongAnswer()

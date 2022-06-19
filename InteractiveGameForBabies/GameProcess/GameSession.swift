@@ -54,7 +54,7 @@ class GameSession: GameSessionProtocol {
         var counter = 0
         
         for i in 0...cards.count-1 {
-           if cards[i] == sample {
+           if cards[i].isEqualTo(sample) {
                 counter += 1
             }
         }

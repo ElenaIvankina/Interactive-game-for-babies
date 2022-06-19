@@ -18,14 +18,14 @@ extension Array where Element == CardProtocol {
         let countCorrectElements = Int.random(in: 1..<countElemens)
         
         arr = self
-            .filter({ $0 == sample })
+            .filter({ $0.isEqualTo(sample) })
             .shuffled()
             .suffix(countCorrectElements)
         
         let countOtherElements = countElemens - arr.count
         
         arr = (arr + self
-            .filter({ $0 != sample })
+            .filter({ !$0.isEqualTo(sample) })
             .shuffled()
             .suffix(countOtherElements))
             .shuffled()
