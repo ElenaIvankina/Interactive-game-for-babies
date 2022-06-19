@@ -54,7 +54,7 @@ class StartGameButton: UIButton {
     }
 
     private func setupButton() {
-        self.layer.cornerRadius = 20.0
-        self.layer.borderWidth = 0.25
+        layer.cornerRadius = 20
+        layer.borderWidth = 0.25
     }
 }

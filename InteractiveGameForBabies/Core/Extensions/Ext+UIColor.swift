@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIColor {
+    
     private static var colorsCache: [String: UIColor] = [:]
     
     public static func rgba(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, alpha: CGFloat) -> UIColor {
