@@ -10,6 +10,11 @@ import Foundation
 struct FigureCard: CardProtocol {
     var imageName: String
     let figure: Figure
+    
+    func isEqualTo(_ object: Any) -> Bool {
+        guard let other = object as? Self else { return false }
+        return figure == other.figure
+    }
 }
 
 enum Figure {

@@ -12,8 +12,14 @@ class GameQuestionViewController: UIViewController {
     private lazy var gameQuestionView = GameQuestionView()
     
     private var mediaType: MediaType
+    var question: QuestionProtocol
     
-    init(type: MediaType) {
+    private var gameQuestionView: GameQuestionView {
+        return self.view as! GameQuestionView
+    }
+    
+    init(question: QuestionProtocol, type: MediaType) {
+        self.question = question
         mediaType = type
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,5 +35,6 @@ class GameQuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         gameQuestionView.setMediaView(type: mediaType)
+        gameQuestionView.setQuestion(question: question)
     }
 }

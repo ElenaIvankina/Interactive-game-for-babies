@@ -24,6 +24,8 @@ class GameAnswersView: UIView {
     }()
     
     var cardImages = [UIImage?]()
+    var cards = [CardProtocol]()
+    var delegate: GameDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,6 +34,15 @@ class GameAnswersView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setCards(cards: [CardProtocol]) {
+        self.cards = cards
+        collectionView.reloadData()
+    }
+    
+    func setDelegate(delegate: GameDelegate) {
+        self.delegate = delegate
     }
     
     private func setupView() {
@@ -52,7 +63,7 @@ class GameAnswersView: UIView {
 extension GameAnswersView : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cardImages.count
+        return cards.count
     }
 }
 
@@ -64,8 +75,9 @@ extension GameAnswersView : UICollectionViewDataSource {
             fatalError("Cell for item at \(indexPath) has not been implemented")
         }
         
-        cell.configure(with: cardImages[indexPath.row])
-        
+        if let image: UIImage = UIImage (named: cards[indexPath.row].imageName) {
+            cell.configure(with: image)
+        }
         return cell
     }
 }
@@ -74,6 +86,8 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //TODO check card
+        let selectCard = cards[indexPath.row]
+        delegate?.checkingAnswer(answerCard: selectCard)
         print("cell clicked at \(indexPath)")
     }
 }

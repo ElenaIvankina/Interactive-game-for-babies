@@ -30,6 +30,7 @@ class GameQuestionView: UIView {
     }()
     
     private var mediaType: MediaType  = .none
+    var question: QuestionProtocol?
     
     private var player: AVPlayer = {
         return AVPlayer()
@@ -46,6 +47,11 @@ class GameQuestionView: UIView {
     
     func setMediaView(type: MediaType) {
         mediaType = type
+        tableView.reloadData()
+    }
+    
+    func setQuestion(question: QuestionProtocol) {
+        self.question = question
         tableView.reloadData()
     }
     
@@ -93,6 +99,11 @@ class GameQuestionView: UIView {
 
 extension GameQuestionView : UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        //TODO когда строка в tableView выбирается, сразу убирается выбор, просто обратить внимание пока
+    }
 }
 
 extension GameQuestionView : UITableViewDataSource {
@@ -111,18 +122,26 @@ extension GameQuestionView : UITableViewDataSource {
         switch(mediaType) {
         case .sound:
             if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionSoundCell.reuseId, for: indexPath) as? QuestionSoundCell {
-                cell.configure(with: "Кто так говорит?")
-                cell.delegate = self
+                if let question = question {
+                    cell.configure(with: question.questionText)
+                } else {
+                    cell.configure(with: "") }
                 return cell
             }
         case .image:
             if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionImageCell.reuseId, for: indexPath) as? QuestionImageCell {
-                cell.configure(with: "Нажми на все карточки, где ты видишь только один предмет", image: "colors")
+                if let question = question {
+                    cell.configure(with: question.questionText, image: question.card.imageName)
+                } else {
+                    cell.configure(with: "", image: "") }
                 return cell
             }
         case .text:
             if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTextOnlyCell.reuseId, for: indexPath) as? QuestionTextOnlyCell {
-                cell.configure(with: "Нажми на все карточки, где ты видишь синий предмет")
+                if let question = question {
+                    cell.configure(with: question.questionText)
+                } else {
+                    cell.configure(with: "") }
                 return cell
             }
         case .none:
