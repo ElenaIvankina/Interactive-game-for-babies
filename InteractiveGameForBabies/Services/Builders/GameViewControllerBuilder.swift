@@ -8,7 +8,7 @@
 import UIKit
 
 class GameViewControllerBuilder {
-    
+
     static func buildGameSession(typeOfGame: TypeOfGame) -> GameSessionProtocol {
         let gameSession = GameSession()
         GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: typeOfGame)
@@ -19,7 +19,7 @@ class GameViewControllerBuilder {
             cards: gameSession.currentRandomCards)
         return gameSession
     }
-    
+
     static func buildAnimalGame() -> GameViewController {
         let gameSession = buildGameSession(typeOfGame: .speakAnimalGame)
         let gameDelegate = GameDelegate()
@@ -27,7 +27,7 @@ class GameViewControllerBuilder {
         gameDelegate.gameViewController = viewController
         return viewController
     }
-    
+
     static func buildColorGame() -> GameViewController {
         let gameSession = buildGameSession(typeOfGame: .colorGame)
         let gameDelegate = GameDelegate()
@@ -35,16 +35,16 @@ class GameViewControllerBuilder {
         gameDelegate.gameViewController = viewController
         return viewController
     }
-    
+
     static func buildCountGame() -> GameViewController {
-        
+
         let gameSession = buildGameSession(typeOfGame: .countGame)
         let gameDelegate = GameDelegate()
         let viewController = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .countGame, type: .image)
         gameDelegate.gameViewController = viewController
         return viewController
     }
-    
+
     static func buildFigureGame() -> GameViewController {
         let gameSession = buildGameSession(typeOfGame: .figureGame)
         let gameDelegate = GameDelegate()

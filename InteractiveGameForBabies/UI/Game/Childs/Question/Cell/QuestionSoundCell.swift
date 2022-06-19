@@ -12,10 +12,10 @@ protocol QuestionSoundCellDelegate: AnyObject {
 }
 
 class QuestionSoundCell: UITableViewCell {
-    
+
     static let reuseId = "SoundCell"
     weak var delegate: QuestionSoundCellDelegate?
-    
+
     private let questionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +24,7 @@ class QuestionSoundCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-    
+
     private let playSoundButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -36,24 +36,24 @@ class QuestionSoundCell: UITableViewCell {
         button.layer.cornerRadius = 12
         return button
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupView() {
         contentView.addSubview(questionLabel)
         contentView.addSubview(playSoundButton)
-        
+
         playSoundButton.addTarget(self,
                                   action: #selector(handlePlaySoundButton),
                                   for: .allEvents)
-        
+
         NSLayoutConstraint.activate([
             questionLabel
                 .trailingAnchor
@@ -66,7 +66,7 @@ class QuestionSoundCell: UITableViewCell {
             questionLabel
                 .centerYAnchor
                 .constraint(equalTo: playSoundButton.centerYAnchor),
-            
+
             playSoundButton
                 .widthAnchor
                 .constraint(equalToConstant: 32),
@@ -87,20 +87,20 @@ class QuestionSoundCell: UITableViewCell {
                             constant: -4)
         ])
     }
-    
+
     func configure(with question: QuestionProtocol) {
         questionLabel.text = question.questionText
     }
-    
+
     func resetState() {
         playSoundButton.isSelected = false
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         questionLabel.text = nil
     }
-    
+
     @objc func handlePlaySoundButton() {
         let curState = playSoundButton.isSelected
         playSoundButton.isSelected = !curState

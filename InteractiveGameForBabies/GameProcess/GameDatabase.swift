@@ -8,12 +8,12 @@
 import Foundation
 
 class GameDatabase {
-    
+
     static let shared = GameDatabase()
-    
+
     private init() {
     }
-    
+
     var animalCards: [AnimalCard] = [
         AnimalCard(imageName: "animal1", animal: .camel, sound: ""),
         AnimalCard(imageName: "animal2", animal: .mouse, sound: ""),
@@ -40,7 +40,7 @@ class GameDatabase {
         AnimalCard(imageName: "animal23", animal: .donkey, sound: ""),
         AnimalCard(imageName: "animal24", animal: .bear, sound: "")
     ]
-    
+
     var animalQuestions: [AnimalQuestion] = [
         AnimalQuestion(card: AnimalCard(imageName: "animal1", animal: .camel, sound: "camel")),
         AnimalQuestion(card: AnimalCard(imageName: "animal2", animal: .mouse, sound: "mouse")),
@@ -67,7 +67,7 @@ class GameDatabase {
         AnimalQuestion(card: AnimalCard(imageName: "animal23", animal: .donkey, sound: "donkey")),
         AnimalQuestion(card: AnimalCard(imageName: "animal24", animal: .bear, sound: "bear"))
     ]
-    
+
     var colorCards: [ColorCard] = [
         ColorCard(imageName: "green1", color: .green),
         ColorCard(imageName: "green2", color: .green),
@@ -106,7 +106,7 @@ class GameDatabase {
         ColorCard(imageName: "pink3", color: .pink),
         ColorCard(imageName: "pink4", color: .pink)
     ]
-    
+
     var colorQuestions: [ColorQuestion] = [
         ColorQuestion(card: ColorCard(imageName: "green0", color: .green),
                       questionText: "Нажми на все предметы зеленого цвета"),
@@ -127,7 +127,7 @@ class GameDatabase {
         ColorQuestion(card: ColorCard(imageName: "pink0", color: .pink),
                       questionText: "Нажми на все предметы розового цвета")
     ]
-    
+
     var countCards: [CountCard] = [
         CountCard(imageName: "one1", count: .one),
         CountCard(imageName: "one2", count: .one),
@@ -162,19 +162,18 @@ class GameDatabase {
         CountCard(imageName: "many14", count: .many),
         CountCard(imageName: "many15", count: .many),
         CountCard(imageName: "many16", count: .many),
-        CountCard(imageName: "many17", count: .many),
+        CountCard(imageName: "many17", count: .many)
     ]
-    
+
     var countQuestions: [CountQuestion] = [
         CountQuestion(card: CountCard(imageName: "one0", count: .one),
                       questionText: "Нажми на все картинки, где предмет один"),
         CountQuestion(card: CountCard(imageName: "many0", count: .many),
                       questionText: "Нажми на все картинки, где предметов много")
     ]
-    
+
     var figureCards: [FigureCard] = []
-    
+
     var figureQuestions: [FigureQuestion] = []
-    
-    
+
 }

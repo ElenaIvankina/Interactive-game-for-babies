@@ -19,10 +19,10 @@ protocol GameStrategyProtocol {
 }
 
 class GameStrategy: GameStrategyProtocol {
-    
+
     static func setUpGameSession (gameSession: GameSessionProtocol, typeOfGame: TypeOfGame) {
         let gameSession = gameSession
-        
+
         switch typeOfGame {
         case .speakAnimalGame:
             gameSession.questionsArray = GameDatabase.shared.animalQuestions
