@@ -11,6 +11,7 @@ protocol GameSessionProtocol: AnyObject {
     
     var questionsArray: [QuestionProtocol] {get set}
     var cardsArray: [CardProtocol] {get set}
+    var numberOfCardsInSession: Int {get set}
     var currentQuestion: QuestionProtocol? {get}
     var currentRandomCards: [CardProtocol] {get}
     var numberOfRightAnswers: Int {get}
@@ -23,37 +24,42 @@ class GameSession: GameSessionProtocol {
     var questionsArray: [QuestionProtocol] = []
     var cardsArray: [CardProtocol] = []
     
+    var numberOfCardsInSession: Int = 6
+    
     var currentQuestion: QuestionProtocol? {
         return questionsArray.randomElement()
-        //надо обрабатывать опционал
     }
     
     var currentRandomCards: [CardProtocol] {
-        return []
-        //cardsArray.randomElements(sample: currentQuestion.card, countElements: 6)
-        //надо забрать расширение для массива
+        if let currentQuestion: QuestionProtocol = currentQuestion {
+            return cardsArray.randomElements(sample: currentQuestion.card,
+                                             countElemens: numberOfCardsInSession)
+        } else {
+            return []
+        }
     }
 
     var numberOfRightAnswers: Int {
-        return 0
-        //countRightAnswers(sample: currentQuestion.card, cards: currentRandomCards)
+        if let currentQuestion: QuestionProtocol = currentQuestion {
+            return countRightAnswers(sample: currentQuestion.card, cards: currentRandomCards)
+        } else {
+            return 0
+        }
     }
     
     var counterOfRightAnswers: Observable<Int> = Observable(0)
     
     private func countRightAnswers(sample: CardProtocol, cards: [CardProtocol]) -> Int {
         
-//        var counter = 0
+        var counter = 0
         
-//        for i in 0...cards.count-1 {
-//           if cards[i] == sample {
-//                //нужно забрать сравнение элементов CardProtocol
-//                counter += 1
-//            }
-//        }
-        
-        return 2
-        
+        for i in 0...cards.count-1 {
+           if cards[i] == sample {
+                counter += 1
+            }
+        }
+        //неправильно считает, надо сравнение нормальное сделать
+        return counter
     }
 
 }

@@ -10,58 +10,44 @@ import UIKit
 class GameViewControllerBuilder {
     
     static func buildAnimalGame() -> GameViewController {
-        let vc = GameViewController(type: .sound)
-        let gameDelegate = GameDelegate()
-        let gameSession = GameSession()
-        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .speakAnimalGame)
-        gameDelegate.controller = vc
-//        vc.gameSession = gameSession
-//        vc.gameDelegate = gameDelegate
-//        надо в экранах эти свойства прописать
         
+        let gameSession = GameSession()
+        let gameDelegate = GameDelegate()
+        let vc = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .speakAnimalGame, type: .sound)
+        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .speakAnimalGame)
+        gameDelegate.gameViewcontroller = vc
         return vc
         
     }
     
     static func buildColorGame() -> GameViewController {
-        let vc = GameViewController(type: .image)
-        let gameDelegate = GameDelegate()
-        let gameSession = GameSession()
-        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .colorGame)
-        gameDelegate.controller = vc
-//        vc.gameSession = gameSession
-//        vc.gameDelegate = gameDelegate
-//        надо в экранах эти свойства прописать
         
+        let gameSession = GameSession()
+        let gameDelegate = GameDelegate()
+        let vc = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .colorGame, type: .image)
+        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .colorGame)
+        gameDelegate.gameViewcontroller = vc
         return vc
         
     }
     
     static func buildCountGame() -> GameViewController {
-        let vc = GameViewController(type: .image)
-        //countQuestion уйдет, инициализация единая будет у контроллеров игры
-        let gameDelegate = GameDelegate()
-        let gameSession = GameSession()
-        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .countGame)
-        gameDelegate.controller = vc
-//        vc.gameSession = gameSession
-//        vc.gameDelegate = gameDelegate
-//        надо в экранах эти свойства прописать
         
+        let gameSession = GameSession()
+        let gameDelegate = GameDelegate()
+        let vc = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .countGame, type: .image)
+        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .countGame)
+        gameDelegate.gameViewcontroller = vc
         return vc
         
     }
     
     static func buildFigureGame() -> GameViewController {
-        let vc = GameViewController(type: .text)
-        let gameDelegate = GameDelegate()
         let gameSession = GameSession()
+        let gameDelegate = GameDelegate()
+        let vc = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .figureGame, type: .text)
         GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .figureGame)
-        gameDelegate.controller = vc
-//        vc.gameSession = gameSession
-//        vc.gameDelegate = gameDelegate
-//        надо в экранах эти свойства прописать
-        
+        gameDelegate.gameViewcontroller = vc
         return vc
         
     }

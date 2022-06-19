@@ -7,12 +7,13 @@
 
 import Foundation
 
-class AnimalQuestion: QuestionProtocol {
+struct AnimalQuestion: QuestionProtocol {
     var card: CardProtocol
-    var questionText: String
+    var questionText: String = "Какое животное так говорит?"
     
-    init (card: AnimalCard, questionText: String ) {
+    init (card: AnimalCard) {
         self.card = card
-        self.questionText = questionText
     }
 }
+
+

@@ -51,7 +51,7 @@ class GameMenuViewController: UIViewController {
                      action: #selector(gameAnimalsButtonTapped)),
             gameInfo(name: "Один - много",
                      image: UIImage(named: "many"),
-                     action: #selector(gameAmountButtonTapped)),
+                     action: #selector(gameCountButtonTapped)),
             gameInfo(name: "Изучаем цвета",
                      image: UIImage(named: "colors"),
                      action: #selector(gameColorsButtonTapped)),
@@ -171,18 +171,18 @@ class GameMenuViewController: UIViewController {
     }
     
     @objc func gameAnimalsButtonTapped() {
-        navigationController?.pushViewController(GameViewController(type: .sound), animated: true)
+        navigationController?.pushViewController(GameViewControllerBuilder.buildAnimalGame(), animated: true)
     }
     
-    @objc func gameAmountButtonTapped() {
-        navigationController?.pushViewController(GameViewController(type: .image), animated: true)
+    @objc func gameCountButtonTapped() {
+        navigationController?.pushViewController(GameViewControllerBuilder.buildCountGame(), animated: true)
     }
     
     @objc func gameColorsButtonTapped() {
-        navigationController?.pushViewController(GameViewController(type: .text), animated: true)
+        navigationController?.pushViewController(GameViewControllerBuilder.buildColorGame(), animated: true)
     }
     
     @objc func gameFiguresButtonTapped() {
-        navigationController?.pushViewController(GameViewController(type: .text), animated: true)
+        navigationController?.pushViewController(GameViewControllerBuilder.buildFigureGame(), animated: true)
     }
 }
