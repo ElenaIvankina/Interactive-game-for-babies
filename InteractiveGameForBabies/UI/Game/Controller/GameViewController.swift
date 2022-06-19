@@ -149,9 +149,7 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
             questionView.topAnchor.constraint(equalTo: scrollContentView.topAnchor),
             questionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             questionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            questionView.heightAnchor.constraint(equalToConstant: 80)
-            
-            //TODO менять константу по высоте на адаптивную верстку
+            questionView.heightAnchor.constraint(equalToConstant: questionViewController.contentHeight)
         ])
     }
     
@@ -163,15 +161,17 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         
         answersView.translatesAutoresizingMaskIntoConstraints = false
         
+        let topInset: CGFloat = 4
+        let contentHeight = topInset + questionViewController.contentHeight + barsHeight
+        let collectionHeight = UIScreen.main.bounds.height - contentHeight
+        
         NSLayoutConstraint.activate([
-            answersView.topAnchor.constraint(equalTo: questionViewController.view.bottomAnchor, constant: 32),
+            answersView.topAnchor.constraint(equalTo: questionViewController.view.bottomAnchor, constant: topInset),
             answersView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             answersView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             answersView.bottomAnchor.constraint(equalTo: scrollContentView.bottomAnchor),
-            answersView.heightAnchor.constraint(equalToConstant: 300)
-            
-            //TODO менять константу по высоте на адаптивную верстку
+            answersView.heightAnchor.constraint(equalToConstant: collectionHeight)
         ])
+    
     }
 }
-

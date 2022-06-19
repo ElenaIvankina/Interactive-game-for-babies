@@ -64,6 +64,7 @@
 		0A8D54B9285F714D0054B9B0 /* dog.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D548F285F70EF0054B9B0 /* dog.mp3 */; };
 		0A8D54BA285F714D0054B9B0 /* elephant.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5490285F70EF0054B9B0 /* elephant.mp3 */; };
 		0A8D54BB285F714D0054B9B0 /* woodpecker.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5491285F70EF0054B9B0 /* woodpecker.mp3 */; };
+		0A8D54BD285FA2F00054B9B0 /* Ext+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D54BC285FA2F00054B9B0 /* Ext+UIViewController.swift */; };
 		B33428D328575CD7008600DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33428D228575CD7008600DB /* Assets.xcassets */; };
 		B33428D628575CD7008600DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B33428D428575CD7008600DB /* LaunchScreen.storyboard */; };
 		B33428E128575CD7008600DB /* InteractiveGameForBabiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428E028575CD7008600DB /* InteractiveGameForBabiesTests.swift */; };
@@ -145,6 +146,7 @@
 		0A8D548F285F70EF0054B9B0 /* dog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dog.mp3; sourceTree = "<group>"; };
 		0A8D5490285F70EF0054B9B0 /* elephant.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = elephant.mp3; sourceTree = "<group>"; };
 		0A8D5491285F70EF0054B9B0 /* woodpecker.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = woodpecker.mp3; sourceTree = "<group>"; };
+		0A8D54BC285FA2F00054B9B0 /* Ext+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIViewController.swift"; sourceTree = "<group>"; };
 		0A8F1E1E285D0F9900DD643D /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
 		B33428C628575CD4008600DB /* InteractiveGameForBabies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InteractiveGameForBabies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33428C928575CD4008600DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 			children = (
 				B646B6E3285C3946001AB323 /* Ext+Array.swift */,
 				0A52DBBB285E547600F79AE7 /* Ext+UIColor.swift */,
+				0A8D54BC285FA2F00054B9B0 /* Ext+UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				0A52DBA8285E531B00F79AE7 /* GameAnswersViewController.swift in Sources */,
 				0A52DBA9285E531B00F79AE7 /* AnswersCollectionViewLayout.swift in Sources */,
 				0A52DBAA285E531B00F79AE7 /* QuestionTextOnlyCell.swift in Sources */,
+				0A8D54BD285FA2F00054B9B0 /* Ext+UIViewController.swift in Sources */,
 				0A52DBAB285E531B00F79AE7 /* QuestionSoundCell.swift in Sources */,
 				0A52DBAC285E531B00F79AE7 /* QuestionImageCell.swift in Sources */,
 				0A52DBAD285E531B00F79AE7 /* GameQuestionViewController.swift in Sources */,

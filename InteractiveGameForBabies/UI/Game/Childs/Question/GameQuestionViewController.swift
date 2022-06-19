@@ -14,6 +14,10 @@ class GameQuestionViewController: UIViewController {
     private var mediaType: MediaType
     private var question: QuestionProtocol
     
+    var contentHeight: CGFloat {
+        return gameQuestionView.viewHeight
+    }
+    
     init(question: QuestionProtocol, type: MediaType) {
         self.question = question
         mediaType = type

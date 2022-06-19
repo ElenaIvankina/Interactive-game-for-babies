@@ -34,7 +34,15 @@ class GameQuestionView: UIView {
     }()
     
     private var mediaType: MediaType  = .none
-    var question: QuestionProtocol?
+    private var question: QuestionProtocol?
+    
+    private enum Constants {
+        static let inset: CGFloat = 4
+    }
+    
+    var viewHeight: CGFloat {
+        return tableView.contentSize.height + 2 * Constants.inset
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,19 +73,19 @@ class GameQuestionView: UIView {
             tableView
                 .topAnchor
                 .constraint(equalTo: topAnchor,
-                            constant: 4),
+                            constant: Constants.inset),
             tableView
                 .bottomAnchor
                 .constraint(equalTo: bottomAnchor,
-                            constant: -4),
+                            constant: -Constants.inset),
             tableView
                 .trailingAnchor
                 .constraint(equalTo: trailingAnchor,
-                            constant: -4),
+                            constant: -Constants.inset),
             tableView
                 .leadingAnchor
                 .constraint(equalTo: leadingAnchor,
-                            constant: 4),
+                            constant: Constants.inset),
         ])
         
         NotificationCenter

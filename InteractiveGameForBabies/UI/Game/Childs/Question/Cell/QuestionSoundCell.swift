@@ -91,7 +91,7 @@ class QuestionSoundCell: UITableViewCell {
     func configure(with text: String) {
         questionLabel.text = text
     }
-    
+ 
     func resetState() {
         playSoundButton.isSelected = false
     }
