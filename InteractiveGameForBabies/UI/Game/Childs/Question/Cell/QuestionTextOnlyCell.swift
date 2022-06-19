@@ -52,8 +52,8 @@ class QuestionTextOnlyCell: UITableViewCell {
         ])
     }
     
-    func configure(with text: String) {
-        questionLabel.text = text
+    func configure(with question: QuestionProtocol) {
+        questionLabel.text = question.questionText
     }
     
     override func prepareForReuse() {

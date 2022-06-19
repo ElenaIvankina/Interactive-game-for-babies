@@ -116,7 +116,7 @@ extension GameQuestionView : UITableViewDelegate {
 extension GameQuestionView : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch(mediaType) {
+        switch mediaType {
         case .none:
             return 0
         default:
@@ -126,24 +126,24 @@ extension GameQuestionView : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch(mediaType) {
+        switch mediaType {
         case .sound:
             if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionSoundCell.reuseId, for: indexPath) as? QuestionSoundCell,
                let question = question {
-                cell.configure(with: question.questionText)
+                cell.configure(with: question)
                 cell.delegate = self
                 return cell
             }
         case .image:
             if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionImageCell.reuseId, for: indexPath) as? QuestionImageCell,
                let question = question {
-                cell.configure(with: question.questionText, image: question.card.imageName)
+                cell.configure(with: question)
                 return cell
             }
         case .text:
             if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTextOnlyCell.reuseId, for: indexPath) as? QuestionTextOnlyCell,
                let question = question {
-                cell.configure(with: question.questionText)
+                cell.configure(with: question)
                 return cell
             }
         case .none:
@@ -174,14 +174,5 @@ extension GameQuestionView : QuestionSoundCellDelegate {
             }
         }
         
-    }
-}
-
-struct GameQuestionView_Preview: PreviewProvider {
-    static var previews: some View {
-        let view = GameQuestionView()
-        return UIPreviewView(view)
-            .preferredColorScheme(.dark)
-            .previewLayout(.fixed(width: 375, height: 200))
     }
 }

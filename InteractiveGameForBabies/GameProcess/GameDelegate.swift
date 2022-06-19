@@ -5,15 +5,14 @@
 //  Created by Елена Иванкина on 17.06.2022.
 //
 
-import Foundation
 import UIKit
 
 class GameDelegate {
     
-    var gameViewcontroller: GameViewControllerProtocol?
-        
+    var gameViewController: GameViewControllerProtocol?
+    
     func checkingAnswer(answerCard: CardProtocol) {
-        if let questionCard = gameViewcontroller?.gameSession.currentQuestion.card,
+        if let questionCard = gameViewController?.gameSession.currentQuestion.card,
            questionCard.isEqualTo(answerCard) {
             handlingRightAnswer()
         } else {
@@ -22,27 +21,22 @@ class GameDelegate {
     }
     
     func handlingRightAnswer() {
-        
-        if let vc = gameViewcontroller {
-            vc.gameSession.counterOfRightAnswers.value += 1
+        if let viewController = gameViewController {
+            viewController.gameSession.counterOfRightAnswers.value += 1
         }
         
         print ("Right Answer")
         //Анимация зеленым, ячейка уже неактивна для нажатия
-        
     }
     
     func handlingWrongAnswer() {
-        
         print ("Wrong Answer")
         //Анимация красным, ячейка активна для нажатия
-        
     }
     
     func newGame() {
-        
-        let navigationVC = gameViewcontroller?.navigationController
-        let typeOfGame = gameViewcontroller?.typeOfGame
+        let navigationVC = gameViewController?.navigationController
+        let typeOfGame = gameViewController?.typeOfGame
         var newGameVC: GameViewControllerProtocol?
         
         switch typeOfGame {
@@ -61,16 +55,9 @@ class GameDelegate {
         if let newGameVC = newGameVC {
             navigationVC?.pushViewController(newGameVC, animated: true)
         }
-        
     }
     
     func endGame() {
-        
-        gameViewcontroller?.navigationController?.popToRootViewController(animated: true)
-        
+        gameViewController?.navigationController?.popToRootViewController(animated: true)
     }
-    
-
-    
-    
 }

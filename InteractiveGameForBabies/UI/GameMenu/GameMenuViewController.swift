@@ -66,7 +66,7 @@ class GameMenuViewController: UIViewController {
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.spacing = 5
-
+        
         let rows = 2
         let columns = 2
         

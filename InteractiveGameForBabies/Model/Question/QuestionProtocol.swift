@@ -8,8 +8,6 @@
 import Foundation
 
 protocol QuestionProtocol {
-    
-    var card: CardProtocol {get set}
-    var questionText: String {get set}
-
+    var card: CardProtocol { get set }
+    var questionText: String { get set }
 }

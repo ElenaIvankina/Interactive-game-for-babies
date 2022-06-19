@@ -9,27 +9,26 @@ import Foundation
 
 extension Array where Element == CardProtocol {
     
-    func randomElements(sample: CardProtocol, countElemens: Int) -> [Element] {
-
+    func randomElements(sample: CardProtocol, countElements: Int) -> [Element] {
         var arr = [Element]()
         
-        if (countElemens < 1 || self.isEmpty) { return arr }
+        if (countElements < 1 || self.isEmpty) { return arr }
         
-        //let countCorrectElements = Int.random(in: 1..<countElemens)
+        //let countCorrectElements = Int.random(in: 1..<countElements)
         let countCorrectElements = Int.random(in: 1...3)
         arr = self
             .filter({ $0.isEqualTo(sample) })
             .shuffled()
             .suffix(countCorrectElements)
         
-        let countOtherElements = countElemens - arr.count
+        let countOtherElements = countElements - arr.count
         
         arr = (arr + self
-            .filter({ !$0.isEqualTo(sample) })
+                .filter({ !$0.isEqualTo(sample) })
+                .shuffled()
+                .suffix(countOtherElements))
             .shuffled()
-            .suffix(countOtherElements))
-            .shuffled()
-
+        
         return arr
     }
 }

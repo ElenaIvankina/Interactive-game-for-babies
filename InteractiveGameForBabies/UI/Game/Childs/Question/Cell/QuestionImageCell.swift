@@ -74,9 +74,9 @@ class QuestionImageCell: UITableViewCell {
         ])
     }
     
-    func configure(with text: String, image name: String) {
-        questionLabel.text = text
-        infoImage.image = UIImage(named: name)
+    func configure(with question: QuestionProtocol) {
+        questionLabel.text = question.questionText
+        infoImage.image = UIImage(named: question.card.imageName)
     }
     
     override func prepareForReuse() {

@@ -69,7 +69,6 @@ extension GameAnswersView : UICollectionViewDelegate {
 extension GameAnswersView : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnswerCell.reuseId, for: indexPath) as? AnswerCell else {
             fatalError("Cell for item at \(indexPath) has not been implemented")
         }
@@ -77,6 +76,7 @@ extension GameAnswersView : UICollectionViewDataSource {
         if let image: UIImage = UIImage (named: cards[indexPath.row].imageName) {
             cell.configure(with: image)
         }
+        
         return cell
     }
 }
@@ -87,14 +87,5 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
         let selectCard = cards[indexPath.row]
         delegate?.checkingAnswer(answerCard: selectCard)
         print("cell clicked at \(indexPath)")
-    }
-}
-
-struct GameAnswersView_Preview : PreviewProvider {
-    static var previews: some View {
-        let view = GameAnswersView()
-        return UIPreviewView(view)
-            .preferredColorScheme(.dark)
-            .previewLayout(.fixed(width: 375, height: 300.0))
     }
 }

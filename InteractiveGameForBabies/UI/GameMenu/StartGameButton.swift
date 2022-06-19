@@ -14,7 +14,7 @@ class StartGameButton: UIButton {
             setImage(image, for: .normal)
         }
     }
-
+    
     var bgColor: UIColor = .lightGray {
         didSet {
             var r: CGFloat = 0
@@ -24,11 +24,11 @@ class StartGameButton: UIButton {
             self.bgColor
                 .getRed(&r, green: &g, blue: &b, alpha: &a)
             let color = UIColor.rgba(r, g, b, alpha: a)
-
+            
             backgroundColor = color
         }
     }
-
+    
     var borderColor: UIColor = UIColor.lightGray {
         didSet {
             var r: CGFloat = 0
@@ -38,21 +38,21 @@ class StartGameButton: UIButton {
             borderColor
                 .getRed(&r, green: &g, blue: &b, alpha: &a)
             let color = UIColor.rgba(r, g, b, alpha: a)
-
+            
             layer.borderColor = color.cgColor
         }
     }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButton()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupButton()
     }
-
+    
     private func setupButton() {
         layer.cornerRadius = 20
         layer.borderWidth = 0.25

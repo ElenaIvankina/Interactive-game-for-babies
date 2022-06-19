@@ -9,19 +9,18 @@ import UIKit
 
 protocol GameViewControllerProtocol: UIViewController {
     
-    var mediaType: MediaType {get set}
-    var gameSession: GameSessionProtocol {get set}
-    var gameDelegate: GameDelegate {get set}
-    var typeOfGame: TypeOfGame {get set}
-    
+    var mediaType: MediaType { get set }
+    var gameSession: GameSessionProtocol { get set }
+    var gameDelegate: GameDelegate { get set }
+    var typeOfGame: TypeOfGame { get set }
 }
 
 class GameViewController: UIViewController, GameViewControllerProtocol {
     
-    var mediaType: MediaType
-    var gameSession: GameSessionProtocol
-    var gameDelegate: GameDelegate
-    var typeOfGame: TypeOfGame
+    internal var mediaType: MediaType
+    internal var gameSession: GameSessionProtocol
+    internal var gameDelegate: GameDelegate
+    internal var typeOfGame: TypeOfGame
     
     //MARK: - Views
     lazy var questionViewController = GameQuestionViewController(question: gameSession.currentQuestion, type: mediaType)
@@ -68,24 +67,24 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
     }
     
     private func makeGameEndAlert() {
-            let alert = UIAlertController(title: "Молодец, малыш!",
-                                          message: "Сыграем еще?",
-                                          preferredStyle: .alert)
-    
-            alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: { [weak self] _ in
-                guard let self = self else {return}
-                self.gameDelegate.endGame()
-            }))
-    
-            alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { [weak self] _ in
-                guard let self = self else {return}
-                self.gameDelegate.newGame()
-            }))
-    
-            self.present(alert, animated: true)
-        }
-
+        let alert = UIAlertController(title: "Молодец, малыш!",
+                                      message: "Сыграем еще?",
+                                      preferredStyle: .alert)
         
+        alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: { [weak self] _ in
+            guard let self = self else {return}
+            self.gameDelegate.endGame()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { [weak self] _ in
+            guard let self = self else {return}
+            self.gameDelegate.newGame()
+        }))
+        
+        self.present(alert, animated: true)
+    }
+    
+    
     // MARK: - Private
     func configureView() {
         view.backgroundColor = .systemBackground
@@ -109,7 +108,7 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         let newBackButton = UIBarButtonItem(image: UIImage(systemName: "house.fill"), style: .plain, target: self, action: #selector(homeButtonTapped))
         
         navigationItem.leftBarButtonItem = newBackButton
-
+        
     }
     
     @objc func homeButtonTapped() {
@@ -172,6 +171,5 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
             answersView.bottomAnchor.constraint(equalTo: scrollContentView.bottomAnchor),
             answersView.heightAnchor.constraint(equalToConstant: collectionHeight)
         ])
-    
     }
 }

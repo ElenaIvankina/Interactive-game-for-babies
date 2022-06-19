@@ -88,10 +88,10 @@ class QuestionSoundCell: UITableViewCell {
         ])
     }
     
-    func configure(with text: String) {
-        questionLabel.text = text
+    func configure(with question: QuestionProtocol) {
+        questionLabel.text = question.questionText
     }
- 
+    
     func resetState() {
         playSoundButton.isSelected = false
     }
