@@ -106,7 +106,7 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         
         navigationItem.hidesBackButton = true
         
-        let newBackButton = UIBarButtonItem(image: UIImage(systemName: "house.fill"), style: .bordered, target: self, action: #selector(homeButtonTapped))
+        let newBackButton = UIBarButtonItem(image: UIImage(systemName: "house.fill"), style: .plain, target: self, action: #selector(homeButtonTapped))
         
         navigationItem.leftBarButtonItem = newBackButton
 

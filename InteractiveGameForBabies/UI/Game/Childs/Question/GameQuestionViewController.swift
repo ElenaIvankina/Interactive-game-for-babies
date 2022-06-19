@@ -14,10 +14,6 @@ class GameQuestionViewController: UIViewController {
     private var mediaType: MediaType
     var question: QuestionProtocol
     
-    private var gameQuestionView: GameQuestionView {
-        return self.view as! GameQuestionView
-    }
-    
     init(question: QuestionProtocol, type: MediaType) {
         self.question = question
         mediaType = type

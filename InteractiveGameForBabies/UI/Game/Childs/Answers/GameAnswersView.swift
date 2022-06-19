@@ -23,7 +23,6 @@ class GameAnswersView: UIView {
         return collectionView
     }()
     
-    var cardImages = [UIImage?]()
     var cards = [CardProtocol]()
     var delegate: GameDelegate?
     
@@ -85,7 +84,6 @@ extension GameAnswersView : UICollectionViewDataSource {
 extension GameAnswersView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO check card
         let selectCard = cards[indexPath.row]
         delegate?.checkingAnswer(answerCard: selectCard)
         print("cell clicked at \(indexPath)")
@@ -95,14 +93,6 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
 struct GameAnswersView_Preview : PreviewProvider {
     static var previews: some View {
         let view = GameAnswersView()
-        view.cardImages = [
-            UIImage(named: "animal1"),
-            UIImage(named: "animal2"),
-            UIImage(named: "animal3"),
-            UIImage(named: "animal4"),
-            UIImage(named: "animal5"),
-            UIImage(named: "animal6")
-        ]
         return UIPreviewView(view)
             .preferredColorScheme(.dark)
             .previewLayout(.fixed(width: 375, height: 300.0))

@@ -126,6 +126,7 @@ extension GameQuestionView : UITableViewDataSource {
                     cell.configure(with: question.questionText)
                 } else {
                     cell.configure(with: "") }
+                cell.delegate = self
                 return cell
             }
         case .image:
@@ -155,13 +156,13 @@ extension GameQuestionView : UITableViewDataSource {
 extension GameQuestionView : QuestionSoundCellDelegate {
     
     func didTapPlayButtonInCell(isPlaying: Bool) {
-        
         if isPlaying {
             player.replaceCurrentItem(with: nil)
         } else {
-            guard let url = Bundle
+            guard let animalCard = question?.card as? AnimalCard,
+                let url = Bundle
                     .main
-                    .url(forResource: "wolf",
+                    .url(forResource: animalCard.sound,
                          withExtension: "mp3")
             else { return }
             
