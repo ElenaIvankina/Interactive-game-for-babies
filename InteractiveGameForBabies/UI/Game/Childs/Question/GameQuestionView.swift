@@ -30,7 +30,10 @@ class GameQuestionView: UIView {
     }()
     
     private var mediaType: MediaType  = .none
-    private var player: AVAudioPlayer?
+    
+    private var player: AVPlayer = {
+        return AVPlayer()
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,6 +73,21 @@ class GameQuestionView: UIView {
                 .constraint(equalTo: leadingAnchor,
                             constant: 4),
         ])
+        
+        NotificationCenter
+            .default
+            .addObserver(self,
+                         selector: #selector(playerEndPlay),
+                         name: .AVPlayerItemDidPlayToEndTime,
+                         object: nil)
+    }
+    
+    @objc func playerEndPlay() {
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? QuestionSoundCell {
+            cell.resetState()
+        }
+        
+        print("ended")
     }
 }
 
@@ -124,18 +142,15 @@ extension GameQuestionView : QuestionSoundCellDelegate {
                      withExtension: "mp3")
         else { return }
         
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-            
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            
-            guard let player = player else { return }
-            
+        player.replaceCurrentItem(with: AVPlayerItem(url: url))
+        
+        switch player.timeControlStatus {
+        case .playing:
+            player.pause()
+        case .paused:
             player.play()
-            
-        } catch let error {
-            fatalError(error.localizedDescription)
+        default:
+            return
         }
     }
 }

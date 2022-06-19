@@ -30,6 +30,7 @@ class QuestionSoundCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isUserInteractionEnabled = true
         button.setImage(UIImage(systemName: "play.circle"), for: .normal)
+        button.setImage(UIImage(systemName: "music.quarternote.3"), for: .selected)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.systemGray2.cgColor
         button.layer.cornerRadius = 12
@@ -91,22 +92,37 @@ class QuestionSoundCell: UITableViewCell {
         questionLabel.text = text
     }
     
+    func resetState() {
+        playSoundButton.isSelected = false
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         questionLabel.text = nil
     }
     
     @objc func handlePlaySoundButton() {
+        guard !playSoundButton.isSelected else { return }
+        
+        playSoundButton.isSelected = true
         delegate?.didTapPlayButtonInCell()
     }
     
-    override func hitTest(_ point: CGPoint,
-                          with event: UIEvent?) -> UIView? {
-        
-        if let view = playSoundButton.hitTest(playSoundButton.convert(point, from: self), with: event) {
-            return view
-        } else {
-            return super.hitTest(point, with: event)
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard isUserInteractionEnabled,
+              !isHidden,
+              alpha > 0
+        else {
+            return nil
         }
+        
+        for subview in subviews.reversed() {
+            let convertedPoint = subview.convert(point, from: self)
+            if let buttonView = subview.hitTest(convertedPoint, with: event) as? UIButton {
+                return buttonView
+            }
+        }
+        
+        return nil
     }
 }
