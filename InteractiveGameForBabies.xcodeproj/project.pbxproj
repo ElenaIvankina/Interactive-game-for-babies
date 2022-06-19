@@ -386,9 +386,9 @@
 		B33428F928575D35008600DB /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				0A7A85AA285BBF8B00D23883 /* Game */,
 				B33428FF28575D90008600DB /* LoadingScreen */,
 				B33428FA28575D45008600DB /* GameMenu */,
+				0A7A85AA285BBF8B00D23883 /* Game */,
 			);
 			path = UI;
 			sourceTree = "<group>";

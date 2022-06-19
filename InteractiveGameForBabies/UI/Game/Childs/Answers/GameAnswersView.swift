@@ -25,6 +25,10 @@ class GameAnswersView: UIView {
 
     private var cards = [CardProtocol]()
     private weak var delegate: GameDelegate?
+    
+    private enum Constants {
+        static let inset: CGFloat = 4
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,10 +55,22 @@ class GameAnswersView: UIView {
         collectionView.dataSource = self
 
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4)
+            collectionView
+                .topAnchor
+                .constraint(equalTo: topAnchor,
+                            constant: Constants.inset),
+            collectionView
+                .bottomAnchor
+                .constraint(equalTo: bottomAnchor,
+                            constant: -Constants.inset),
+            collectionView
+                .trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: -Constants.inset),
+            collectionView
+                .leadingAnchor
+                .constraint(equalTo: leadingAnchor,
+                       constant: Constants.inset)
         ])
     }
 }

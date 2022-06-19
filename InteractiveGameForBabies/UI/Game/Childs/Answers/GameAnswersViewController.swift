@@ -12,7 +12,7 @@ class GameAnswersViewController: UIViewController {
     private lazy var gameAnswersView = GameAnswersView()
 
     private var cards: [CardProtocol]
-    private weak var delegate: GameDelegate
+    private var delegate: GameDelegate
 
     init(cards: [CardProtocol], delegate: GameDelegate) {
         self.cards = cards

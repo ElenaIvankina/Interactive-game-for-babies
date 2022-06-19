@@ -14,7 +14,6 @@ class AnswerCell: UICollectionViewCell {
     private let cardImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -37,10 +36,18 @@ class AnswerCell: UICollectionViewCell {
         contentView.addSubview(cardImageView)
 
         NSLayoutConstraint.activate([
-            cardImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            cardImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            cardImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            cardImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            cardImageView
+                .topAnchor
+                .constraint(equalTo: contentView.topAnchor),
+            cardImageView
+                .trailingAnchor
+                .constraint(equalTo: contentView.trailingAnchor),
+            cardImageView
+                .leadingAnchor
+                .constraint(equalTo: contentView.leadingAnchor),
+            cardImageView
+                .bottomAnchor
+                .constraint(equalTo: contentView.bottomAnchor)
         ])
 
         layer.borderWidth = 1.0
