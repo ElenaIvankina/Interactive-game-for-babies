@@ -97,7 +97,16 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         navigationController?.navigationBar.backIndicatorImage = homeImage
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = homeImage
         navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal
+//        TODO нужно переопределить действие кнопки домой, чтобы она вызывала popToRootViewController, сейчас просто popViewController
+//        let barButton = UIBarButtonItem(image: UIImage(systemName: "house.fill"), style: .bordered, target: self, action: #selector(homeButtonTapped))
+//
+//        navigationItem.backBarButtonItem = barButton
+//        navigationController?.navigationBar.topItem?.backBarButtonItem = barButton
     }
+    
+//    @objc func homeButtonTapped() {
+//        self.navigationController?.popToRootViewController(animated: true)
+//    }
     
     private func configureScrollView() {
         view.addSubview(scrollView)

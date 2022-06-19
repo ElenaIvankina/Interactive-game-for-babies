@@ -43,8 +43,6 @@ class GameDelegate {
         
         let navigationVC = gameViewcontroller?.navigationController
         let typeOfGame = gameViewcontroller?.typeOfGame
-        //gameViewcontroller?.gameSession = nil
-        navigationVC?.dismiss(animated: true)
         var newGameVC: GameViewControllerProtocol?
         
         switch typeOfGame {
@@ -68,8 +66,7 @@ class GameDelegate {
     
     func endGame() {
         
-        //gameViewcontroller?.gameSession = nil
-        gameViewcontroller?.navigationController?.dismiss(animated: true)
+        gameViewcontroller?.navigationController?.popToRootViewController(animated: true)
         
     }
     
