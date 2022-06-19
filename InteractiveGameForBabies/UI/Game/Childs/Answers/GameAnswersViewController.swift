@@ -9,16 +9,14 @@ import UIKit
 
 class GameAnswersViewController: UIViewController {
     
-    private var gameAnswersView: GameAnswersView {
-        return self.view as! GameAnswersView
-    }
+    private lazy var gameAnswersView = GameAnswersView()
     
     init() {
         super.init(nibName: nil, bundle: nil)
     }
     
     override func loadView() {
-        view = GameAnswersView()
+        view = gameAnswersView
     }
     
     required init?(coder: NSCoder) {

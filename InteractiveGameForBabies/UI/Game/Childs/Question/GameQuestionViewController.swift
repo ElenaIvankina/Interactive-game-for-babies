@@ -9,11 +9,9 @@ import UIKit
 
 class GameQuestionViewController: UIViewController {
     
-    private var mediaType: MediaType
+    private lazy var gameQuestionView = GameQuestionView()
     
-    private var gameQuestionView: GameQuestionView {
-        return self.view as! GameQuestionView
-    }
+    private var mediaType: MediaType
     
     init(type: MediaType) {
         mediaType = type
@@ -21,7 +19,7 @@ class GameQuestionViewController: UIViewController {
     }
     
     override func loadView() {
-        self.view = GameQuestionView()
+        self.view = gameQuestionView
     }
     
     required init?(coder: NSCoder) {

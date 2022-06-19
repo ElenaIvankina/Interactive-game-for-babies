@@ -135,23 +135,24 @@ extension GameQuestionView : UITableViewDataSource {
 
 extension GameQuestionView : QuestionSoundCellDelegate {
     
-    func didTapPlayButtonInCell() {
-        guard let url = Bundle
-                .main
-                .url(forResource: "wolf",
-                     withExtension: "mp3")
-        else { return }
+    func didTapPlayButtonInCell(isPlaying: Bool) {
         
-        player.replaceCurrentItem(with: AVPlayerItem(url: url))
-        
-        switch player.timeControlStatus {
-        case .playing:
-            player.pause()
-        case .paused:
-            player.play()
-        default:
-            return
+        if isPlaying {
+            player.replaceCurrentItem(with: nil)
+        } else {
+            guard let url = Bundle
+                    .main
+                    .url(forResource: "wolf",
+                         withExtension: "mp3")
+            else { return }
+            
+            player.replaceCurrentItem(with: AVPlayerItem(url: url))
+            
+            if player.timeControlStatus != .playing {
+                player.play()
+            }
         }
+        
     }
 }
 

@@ -30,24 +30,24 @@ class QuestionTextOnlyCell: UITableViewCell {
     }
     
     private func setupView() {
-        addSubview(questionLabel)
+        contentView.addSubview(questionLabel)
         
         NSLayoutConstraint.activate([
             questionLabel
                 .topAnchor
-                .constraint(equalTo: topAnchor,
+                .constraint(equalTo: contentView.topAnchor,
                             constant: 4),
             questionLabel
                 .trailingAnchor
-                .constraint(equalTo: trailingAnchor,
+                .constraint(equalTo: contentView.trailingAnchor,
                             constant: -4),
             questionLabel
                 .leadingAnchor
-                .constraint(equalTo: leadingAnchor,
+                .constraint(equalTo: contentView.leadingAnchor,
                             constant: 4),
             questionLabel
                 .bottomAnchor
-                .constraint(equalTo: bottomAnchor,
+                .constraint(equalTo: contentView.bottomAnchor,
                             constant: -4),
         ])
     }

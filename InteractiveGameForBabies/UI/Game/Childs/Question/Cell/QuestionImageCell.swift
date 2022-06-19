@@ -39,13 +39,13 @@ class QuestionImageCell: UITableViewCell {
     
     
     private func setupView() {
-        addSubview(questionLabel)
-        addSubview(infoImage)
+        contentView.addSubview(questionLabel)
+        contentView.addSubview(infoImage)
         
         NSLayoutConstraint.activate([
             questionLabel
                 .leadingAnchor
-                .constraint(equalTo: leadingAnchor,
+                .constraint(equalTo: contentView.leadingAnchor,
                             constant: -4),
             questionLabel
                 .centerYAnchor
@@ -63,15 +63,15 @@ class QuestionImageCell: UITableViewCell {
                 .constraint(equalToConstant: 64),
             infoImage
                 .trailingAnchor
-                .constraint(equalTo: trailingAnchor,
+                .constraint(equalTo: contentView.trailingAnchor,
                             constant: -4),
             infoImage
                 .topAnchor
-                .constraint(equalTo: topAnchor,
+                .constraint(equalTo: contentView.topAnchor,
                             constant: 4),
             infoImage
                 .bottomAnchor
-                .constraint(equalTo: bottomAnchor,
+                .constraint(equalTo: contentView.bottomAnchor,
                             constant: -4)
         ])
     }

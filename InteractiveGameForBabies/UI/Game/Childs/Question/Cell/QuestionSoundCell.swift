@@ -8,7 +8,7 @@
 import UIKit
 
 protocol QuestionSoundCellDelegate: AnyObject {
-    func didTapPlayButtonInCell()
+    func didTapPlayButtonInCell(isPlaying: Bool)
 }
 
 class QuestionSoundCell: UITableViewCell {
@@ -47,8 +47,8 @@ class QuestionSoundCell: UITableViewCell {
     }
     
     private func setupView() {
-        addSubview(questionLabel)
-        addSubview(playSoundButton)
+        contentView.addSubview(questionLabel)
+        contentView.addSubview(playSoundButton)
         
         playSoundButton.addTarget(self,
                                   action: #selector(handlePlaySoundButton),
@@ -61,8 +61,8 @@ class QuestionSoundCell: UITableViewCell {
                             constant: -4),
             questionLabel
                 .leadingAnchor
-                .constraint(equalTo: leadingAnchor,
-                            constant: 4),
+                .constraint(equalTo: contentView.leadingAnchor,
+                            constant: -4),
             questionLabel
                 .centerYAnchor
                 .constraint(equalTo: playSoundButton.centerYAnchor),
@@ -75,15 +75,15 @@ class QuestionSoundCell: UITableViewCell {
                 .constraint(equalToConstant: 32),
             playSoundButton
                 .trailingAnchor
-                .constraint(equalTo: trailingAnchor,
+                .constraint(equalTo: contentView.trailingAnchor,
                             constant: -4),
             playSoundButton
                 .topAnchor
-                .constraint(equalTo: topAnchor,
+                .constraint(equalTo: contentView.topAnchor,
                             constant: 4),
             playSoundButton
                 .bottomAnchor
-                .constraint(equalTo: bottomAnchor,
+                .constraint(equalTo: contentView.bottomAnchor,
                             constant: -4)
         ])
     }
@@ -102,27 +102,8 @@ class QuestionSoundCell: UITableViewCell {
     }
     
     @objc func handlePlaySoundButton() {
-        guard !playSoundButton.isSelected else { return }
-        
-        playSoundButton.isSelected = true
-        delegate?.didTapPlayButtonInCell()
-    }
-    
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        guard isUserInteractionEnabled,
-              !isHidden,
-              alpha > 0
-        else {
-            return nil
-        }
-        
-        for subview in subviews.reversed() {
-            let convertedPoint = subview.convert(point, from: self)
-            if let buttonView = subview.hitTest(convertedPoint, with: event) as? UIButton {
-                return buttonView
-            }
-        }
-        
-        return nil
+        let curState = playSoundButton.isSelected
+        playSoundButton.isSelected = !curState
+        delegate?.didTapPlayButtonInCell(isPlaying: curState)
     }
 }

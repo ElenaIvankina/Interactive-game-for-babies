@@ -34,13 +34,13 @@ class AnswerCell: UICollectionViewCell {
     }
     
     private func setupView() {
-        addSubview(cardImageView)
+        contentView.addSubview(cardImageView)
         
         NSLayoutConstraint.activate([
-            cardImageView.topAnchor.constraint(equalTo: topAnchor),
-            cardImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            cardImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            cardImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            cardImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            cardImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            cardImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            cardImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
         
         layer.borderWidth = 1.0
