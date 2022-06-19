@@ -15,13 +15,13 @@ class GameViewController: UIViewController {
     lazy var questionViewController = GameQuestionViewController(type: mediaType)
     lazy var answersViewController = GameAnswersViewController()
     
-    let scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
-    let scrollContentView: UIView = {
+    private let scrollContentView: UIView = {
         let scrollView = UIView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
@@ -68,7 +68,7 @@ class GameViewController: UIViewController {
         
         let heightConstraint = scrollContentView.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor)
         heightConstraint.priority = UILayoutPriority(250)
-
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -106,7 +106,7 @@ class GameViewController: UIViewController {
         answersViewController.didMove(toParent: self)
         
         answersView.translatesAutoresizingMaskIntoConstraints = false
-                
+        
         NSLayoutConstraint.activate([
             answersView.topAnchor.constraint(equalTo: questionViewController.view.bottomAnchor, constant: 32),
             answersView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
