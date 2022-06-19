@@ -15,8 +15,8 @@ extension Array where Element == CardProtocol {
         
         if (countElemens < 1 || self.isEmpty) { return arr }
         
-        let countCorrectElements = Int.random(in: 1..<countElemens)
-        
+        //let countCorrectElements = Int.random(in: 1..<countElemens)
+        let countCorrectElements = Int.random(in: 1...3)
         arr = self
             .filter({ $0.isEqualTo(sample) })
             .shuffled()

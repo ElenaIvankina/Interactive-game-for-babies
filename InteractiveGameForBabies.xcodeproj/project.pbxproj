@@ -307,16 +307,8 @@
 		B334290A28575F9D008600DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B334293C285DD8EA008600DB /* AnimalQuestion.swift */,
-				B334292E285778E7008600DB /* FigureQuestion.swift */,
-				B334292A28577441008600DB /* CountQuestion.swift */,
-				B334292828577278008600DB /* ColorQuestion.swift */,
-				B3342918285761F5008600DB /* AnimalCard.swift */,
-				B334291A28576210008600DB /* ColorCard.swift */,
-				B334291C28576224008600DB /* CountCard.swift */,
-				B334291E28576234008600DB /* FigureCard.swift */,
-				B334292428576EB0008600DB /* CardProtocol.swift */,
-				B334292C2857748B008600DB /* QuestionProtocol.swift */,
+				B334293F285F4E28008600DB /* Question */,
+				B334293E285F4E12008600DB /* Cards */,
 				0A8F1E1E285D0F9900DD643D /* MediaType.swift */,
 			);
 			path = Model;
@@ -348,6 +340,30 @@
 				B3342937285CD87B008600DB /* GameViewControllerBuilder.swift */,
 			);
 			path = Builders;
+			sourceTree = "<group>";
+		};
+		B334293E285F4E12008600DB /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				B334292428576EB0008600DB /* CardProtocol.swift */,
+				B334291E28576234008600DB /* FigureCard.swift */,
+				B334291C28576224008600DB /* CountCard.swift */,
+				B334291A28576210008600DB /* ColorCard.swift */,
+				B3342918285761F5008600DB /* AnimalCard.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		B334293F285F4E28008600DB /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				B334292E285778E7008600DB /* FigureQuestion.swift */,
+				B334292A28577441008600DB /* CountQuestion.swift */,
+				B334292828577278008600DB /* ColorQuestion.swift */,
+				B334293C285DD8EA008600DB /* AnimalQuestion.swift */,
+				B334292C2857748B008600DB /* QuestionProtocol.swift */,
+			);
+			path = Question;
 			sourceTree = "<group>";
 		};
 		B646B6E2285C3929001AB323 /* Extensions */ = {

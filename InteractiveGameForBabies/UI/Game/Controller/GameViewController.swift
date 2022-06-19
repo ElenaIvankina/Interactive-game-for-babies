@@ -24,7 +24,7 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
     var typeOfGame: TypeOfGame
     
     //MARK: - Views
-    lazy var questionViewController = GameQuestionViewController(question: gameSession.currentQuestion!, type: mediaType)
+    lazy var questionViewController = GameQuestionViewController(question: gameSession.currentQuestion, type: mediaType)
     lazy var answersViewController = GameAnswersViewController(cards: gameSession.currentRandomCards, delegate: gameDelegate)
     
     let scrollView: UIScrollView = {

@@ -9,12 +9,22 @@ import UIKit
 
 class GameViewControllerBuilder {
     
+    static func buildGameSession(typeOfGame: TypeOfGame) -> GameSessionProtocol {
+        let gameSession = GameSession()
+        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: typeOfGame)
+        gameSession.currentQuestion = gameSession.getRandomQuestion(questionsArray: gameSession.questionsArray)
+        gameSession.currentRandomCards = gameSession.getRandomCards(cardsArray: gameSession.cardsArray)
+        gameSession.numberOfRightAnswers = gameSession.countRightAnswers(
+            sample: gameSession.currentQuestion.card,
+            cards: gameSession.currentRandomCards)
+        return gameSession
+    }
+    
     static func buildAnimalGame() -> GameViewController {
         
-        let gameSession = GameSession()
+        let gameSession = buildGameSession(typeOfGame: .speakAnimalGame)
         let gameDelegate = GameDelegate()
         let vc = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .speakAnimalGame, type: .sound)
-        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .speakAnimalGame)
         gameDelegate.gameViewcontroller = vc
         return vc
         
@@ -22,10 +32,9 @@ class GameViewControllerBuilder {
     
     static func buildColorGame() -> GameViewController {
         
-        let gameSession = GameSession()
+        let gameSession = buildGameSession(typeOfGame: .colorGame)
         let gameDelegate = GameDelegate()
         let vc = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .colorGame, type: .image)
-        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .colorGame)
         gameDelegate.gameViewcontroller = vc
         return vc
         
@@ -33,20 +42,18 @@ class GameViewControllerBuilder {
     
     static func buildCountGame() -> GameViewController {
         
-        let gameSession = GameSession()
+        let gameSession = buildGameSession(typeOfGame: .countGame)
         let gameDelegate = GameDelegate()
         let vc = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .countGame, type: .image)
-        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .countGame)
         gameDelegate.gameViewcontroller = vc
         return vc
         
     }
     
     static func buildFigureGame() -> GameViewController {
-        let gameSession = GameSession()
+        let gameSession = buildGameSession(typeOfGame: .figureGame)
         let gameDelegate = GameDelegate()
         let vc = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .figureGame, type: .text)
-        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: .figureGame)
         gameDelegate.gameViewcontroller = vc
         return vc
         
