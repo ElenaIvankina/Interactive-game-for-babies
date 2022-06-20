@@ -8,16 +8,16 @@
 import UIKit
 
 class GameMenuViewController: UIViewController {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+
         setupUI()
     }
-    
-    //MARK: - Views
-    
+
+    // MARK: - Views
+
     let headerLabel: UILabel = {
         let label = UILabel()
         label.text = "Привет, малыш! 👋"
@@ -26,7 +26,7 @@ class GameMenuViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     let subLabel: UILabel = {
         let label = UILabel()
         label.text = "Выбери игру"
@@ -35,23 +35,22 @@ class GameMenuViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    
+
     let stackView: UIStackView = {
-        
+
         struct gameInfo {
             let name: String
             let image: UIImage?
             let action: Selector
         }
-        
+
         let gamesData = [
             gameInfo(name: "Как говорят животные",
                      image: UIImage(named: "notes"),
                      action: #selector(gameAnimalsButtonTapped)),
             gameInfo(name: "Один - много",
                      image: UIImage(named: "many"),
-                     action: #selector(gameAmountButtonTapped)),
+                     action: #selector(gameCountButtonTapped)),
             gameInfo(name: "Изучаем цвета",
                      image: UIImage(named: "colors"),
                      action: #selector(gameColorsButtonTapped)),
@@ -59,41 +58,41 @@ class GameMenuViewController: UIViewController {
                      image: UIImage(named: "figures"),
                      action: #selector(gameFiguresButtonTapped))
         ]
-        
+
         let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.spacing = 5
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let rows = 2
         let columns = 2
-        
+
         for row in 0 ..< rows {
             let stackViewH = UIStackView()
             stackViewH.axis = .horizontal
             stackViewH.alignment = .fill
             stackViewH.distribution = .fillEqually
             stackViewH.spacing = 5
-            
+
             for col in 0 ..< columns {
                 let index = row * columns + col
                 let gameInfo = gamesData[index]
-                
+
                 let view = GameItemView()
                 view.configure(name: gameInfo.name, image: gameInfo.image)
                 view.addButtonTarget(target: self, action: gameInfo.action)
-                
+
                 stackViewH.addArrangedSubview(view)
             }
-            
+
             stackView.addArrangedSubview(stackViewH)
         }
-        
+
         return stackView
     }()
-    
+
     private func setBackgroundView() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
@@ -102,7 +101,7 @@ class GameMenuViewController: UIViewController {
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         view.layer.addSublayer(gradientLayer)
-        
+
         let imageView = UIImageView(frame: view.bounds)
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -111,14 +110,14 @@ class GameMenuViewController: UIViewController {
         view.addSubview(imageView)
         view.bringSubviewToFront(imageView)
     }
-    
+
     private func setupUI() {
         setBackgroundView()
-        
+
         view.addSubview(headerLabel)
         view.addSubview(subLabel)
         view.addSubview(stackView)
-        
+
         NSLayoutConstraint.activate([
             headerLabel
                 .leadingAnchor
@@ -135,7 +134,7 @@ class GameMenuViewController: UIViewController {
                 .heightAnchor
                 .constraint(equalTo: view.heightAnchor,
                             multiplier: 0.1),
-            
+
             subLabel
                 .leadingAnchor
                 .constraint(equalTo: view.leadingAnchor),
@@ -147,7 +146,7 @@ class GameMenuViewController: UIViewController {
                 .widthAnchor
                 .constraint(equalTo: view.widthAnchor,
                             multiplier: 1),
-            
+
             stackView
                 .topAnchor
                 .constraint(greaterThanOrEqualTo: subLabel.bottomAnchor,
@@ -169,29 +168,20 @@ class GameMenuViewController: UIViewController {
                 .constraint(equalToConstant: 320)
         ])
     }
-    
+
     @objc func gameAnimalsButtonTapped() {
-        //TODO убрать принт
-        print("Переход к игре КАК ГОВОРЯТ ЖИВОТНЫЕ")
-        self.navigationController?.pushViewController(SpeakAnimalGameViewController(), animated: true)
+        navigationController?.pushViewController(GameViewControllerBuilder.buildAnimalGame(), animated: true)
     }
-    
-    @objc func gameAmountButtonTapped() {
-        //TODO убрать принт
-        print("Переход к игре ОДИН - МНОГО")
-        self.navigationController?.pushViewController(
-            CountGameViewController(countQuestion:
-                                        CountQuestion(
-                                            countCard: CountCard(imageName: "one0", count: .one),
-                                            questionText: "Нажми на все картинки, где предмет один")),
-            animated: true)
+
+    @objc func gameCountButtonTapped() {
+        navigationController?.pushViewController(GameViewControllerBuilder.buildCountGame(), animated: true)
     }
-    
+
     @objc func gameColorsButtonTapped() {
-        print("Переход к игре ИЗУЧАЕМ ЦВЕТА")
+        navigationController?.pushViewController(GameViewControllerBuilder.buildColorGame(), animated: true)
     }
-    
+
     @objc func gameFiguresButtonTapped() {
-        print("Переход к игре ЛЯГУШКИ И ФИГУРЫ")
+        navigationController?.pushViewController(GameViewControllerBuilder.buildFigureGame(), animated: true)
     }
 }

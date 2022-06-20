@@ -8,7 +8,7 @@
 import SwiftUI
 
 class GameItemView: UIView {
-    
+
     // MARK: - Subviews
     private var startGameButton: StartGameButton = {
         let button = StartGameButton()
@@ -24,7 +24,7 @@ class GameItemView: UIView {
         button.layer.borderWidth = 2
         return button
     }()
-    
+
     private var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +34,7 @@ class GameItemView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
+
     // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,24 +45,23 @@ class GameItemView: UIView {
         super.init(coder: coder)
         setupView()
     }
-    
+
     func configure(name: String, image: UIImage?) {
         nameLabel.text = name
         startGameButton.image = image
     }
-    
+
     func addButtonTarget(target: Any?, action: Selector) {
         startGameButton.addTarget(target,
                                   action: action,
                                   for: .touchUpInside)
-        
     }
-    
+
     // MARK: - Private methods
     private func setupView() {
         addSubview(startGameButton)
         addSubview(nameLabel)
-        
+
         NSLayoutConstraint.activate([
             startGameButton
                 .heightAnchor
@@ -72,23 +71,23 @@ class GameItemView: UIView {
                 .constraint(equalToConstant: 100),
             startGameButton
                 .centerXAnchor
-                .constraint(equalTo: self.centerXAnchor),
+                .constraint(equalTo: centerXAnchor),
             startGameButton
                 .topAnchor
-                .constraint(equalTo: self.topAnchor,
+                .constraint(equalTo: topAnchor,
                             constant: 10),
             startGameButton
                 .bottomAnchor
-                .constraint(equalTo: self.nameLabel.topAnchor,
+                .constraint(equalTo: nameLabel.topAnchor,
                             constant: -10),
-            
+
             nameLabel
                 .leadingAnchor
-                .constraint(equalTo: self.leadingAnchor,
+                .constraint(equalTo: leadingAnchor,
                             constant: 15),
             nameLabel
                 .trailingAnchor
-                .constraint(equalTo: self.trailingAnchor,
+                .constraint(equalTo: trailingAnchor,
                             constant: -15)
         ])
     }
@@ -99,10 +98,10 @@ struct GameView_Preview: PreviewProvider {
         let view = GameItemView()
         view.configure(name: "Как говорят животные",
                        image: UIImage(named: "notes"))
-        
+
         return UIPreviewView(view)
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.dark)
-            
+
     }
 }
