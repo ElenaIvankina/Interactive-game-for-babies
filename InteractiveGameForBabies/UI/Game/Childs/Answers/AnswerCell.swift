@@ -30,12 +30,8 @@ class AnswerCell: UICollectionViewCell {
     }
 
     func configure(with indexPath: IndexPath) {
-        
-        let index = indexPath.row
-        
-        let imageName = GameSession.shared.currentRandomCards[index].imageName
-        
-        if let image: UIImage = UIImage(named: imageName) {
+
+        if let image: UIImage = UIImage(named: GameSession.shared.currentRandomCards[indexPath.row].imageName) {
             cardImageView.image = image
         }
         

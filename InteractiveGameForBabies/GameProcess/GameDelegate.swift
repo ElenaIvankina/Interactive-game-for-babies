@@ -12,8 +12,8 @@ class GameDelegate {
     var gameViewController: GameViewControllerProtocol?
 
     func checkingAnswer(answerCard: CardProtocol) -> Bool {
-        if let questionCard = gameViewController?.gameSession.currentQuestion.card,
-           questionCard.isEqualTo(answerCard) {
+        
+        if GameSession.shared.currentQuestion.card.isEqualTo(answerCard) {
             handlingRightAnswer()
             return true
         } else {
@@ -23,10 +23,8 @@ class GameDelegate {
     }
 
     func handlingRightAnswer() {
-        if let viewController = gameViewController {
-            viewController.gameSession.counterOfRightAnswers.value += 1
-        }
-
+        
+        GameSession.shared.counterOfRightAnswers.value += 1
         print("Right Answer")
         // Анимация зеленым, ячейка уже неактивна для нажатия
     }

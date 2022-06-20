@@ -81,9 +81,8 @@ class QuestionImageCell: UITableViewCell {
     
     func configure() {
         questionLabel.text = GameSession.shared.currentQuestion.questionText
-        let imageName = GameSession.shared.currentQuestion.card.imageName
         
-        if let image: UIImage = UIImage(named: imageName) {
+        if let image: UIImage = UIImage(named: GameSession.shared.currentQuestion.card.imageName) {
             infoImage.image = image
         }
     }

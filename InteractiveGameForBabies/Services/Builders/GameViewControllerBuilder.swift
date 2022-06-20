@@ -21,7 +21,7 @@ class GameViewControllerBuilder {
     static func buildAnimalGame() -> GameViewController {
         buildGameSession(typeOfGame: .speakAnimalGame)
         let gameDelegate = GameDelegate()
-        let viewController = GameViewController(gameSession: GameSession.shared, gameDelegate: gameDelegate, typeOfGame: .speakAnimalGame)
+        let viewController = GameViewController(gameDelegate: gameDelegate, typeOfGame: .speakAnimalGame)
         gameDelegate.gameViewController = viewController
         return viewController
     }
@@ -29,7 +29,7 @@ class GameViewControllerBuilder {
     static func buildColorGame() -> GameViewController {
         buildGameSession(typeOfGame: .colorGame)
         let gameDelegate = GameDelegate()
-        let viewController = GameViewController(gameSession: GameSession.shared, gameDelegate: gameDelegate, typeOfGame: .colorGame)
+        let viewController = GameViewController(gameDelegate: gameDelegate, typeOfGame: .colorGame)
         gameDelegate.gameViewController = viewController
         return viewController
     }
@@ -37,7 +37,7 @@ class GameViewControllerBuilder {
     static func buildCountGame() -> GameViewController {
         buildGameSession(typeOfGame: .countGame)
         let gameDelegate = GameDelegate()
-        let viewController = GameViewController(gameSession: GameSession.shared, gameDelegate: gameDelegate, typeOfGame: .countGame)
+        let viewController = GameViewController(gameDelegate: gameDelegate, typeOfGame: .countGame)
         gameDelegate.gameViewController = viewController
         return viewController
     }
@@ -45,7 +45,7 @@ class GameViewControllerBuilder {
     static func buildFigureGame() -> GameViewController {
         buildGameSession(typeOfGame: .figureGame)
         let gameDelegate = GameDelegate()
-        let viewController = GameViewController(gameSession: GameSession.shared, gameDelegate: gameDelegate, typeOfGame: .figureGame)
+        let viewController = GameViewController(gameDelegate: gameDelegate, typeOfGame: .figureGame)
         gameDelegate.gameViewController = viewController
         return viewController
     }
