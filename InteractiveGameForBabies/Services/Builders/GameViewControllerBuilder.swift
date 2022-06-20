@@ -9,46 +9,43 @@ import UIKit
 
 class GameViewControllerBuilder {
 
-    static func buildGameSession(typeOfGame: TypeOfGame) -> GameSessionProtocol {
-        let gameSession = GameSession()
-        GameStrategy.setUpGameSession(gameSession: gameSession, typeOfGame: typeOfGame)
-        gameSession.currentQuestion = gameSession.getRandomQuestion(questionsArray: gameSession.questionsArray)
-        gameSession.currentRandomCards = gameSession.getRandomCards(cardsArray: gameSession.cardsArray)
-        gameSession.numberOfRightAnswers = gameSession.countRightAnswers(
-            sample: gameSession.currentQuestion.card,
-            cards: gameSession.currentRandomCards)
-        return gameSession
+    static func buildGameSession(typeOfGame: TypeOfGame) {
+        GameStrategy.setUpGameSession(typeOfGame: typeOfGame)
+        GameSession.shared.currentQuestion = GameSession.shared.getRandomQuestion(questionsArray: GameSession.shared.questionsArray)
+        GameSession.shared.currentRandomCards = GameSession.shared.getRandomCards(cardsArray: GameSession.shared.cardsArray)
+        GameSession.shared.numberOfRightAnswers = GameSession.shared.countRightAnswers(
+            sample: GameSession.shared.currentQuestion.card,
+            cards: GameSession.shared.currentRandomCards)
     }
 
     static func buildAnimalGame() -> GameViewController {
-        let gameSession = buildGameSession(typeOfGame: .speakAnimalGame)
+        buildGameSession(typeOfGame: .speakAnimalGame)
         let gameDelegate = GameDelegate()
-        let viewController = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .speakAnimalGame, type: .sound)
+        let viewController = GameViewController(gameSession: GameSession.shared, gameDelegate: gameDelegate, typeOfGame: .speakAnimalGame)
         gameDelegate.gameViewController = viewController
         return viewController
     }
 
     static func buildColorGame() -> GameViewController {
-        let gameSession = buildGameSession(typeOfGame: .colorGame)
+        buildGameSession(typeOfGame: .colorGame)
         let gameDelegate = GameDelegate()
-        let viewController = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .colorGame, type: .image)
+        let viewController = GameViewController(gameSession: GameSession.shared, gameDelegate: gameDelegate, typeOfGame: .colorGame)
         gameDelegate.gameViewController = viewController
         return viewController
     }
 
     static func buildCountGame() -> GameViewController {
-
-        let gameSession = buildGameSession(typeOfGame: .countGame)
+        buildGameSession(typeOfGame: .countGame)
         let gameDelegate = GameDelegate()
-        let viewController = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .countGame, type: .image)
+        let viewController = GameViewController(gameSession: GameSession.shared, gameDelegate: gameDelegate, typeOfGame: .countGame)
         gameDelegate.gameViewController = viewController
         return viewController
     }
 
     static func buildFigureGame() -> GameViewController {
-        let gameSession = buildGameSession(typeOfGame: .figureGame)
+        buildGameSession(typeOfGame: .figureGame)
         let gameDelegate = GameDelegate()
-        let viewController = GameViewController(gameSession: gameSession, gameDelegate: gameDelegate, typeOfGame: .figureGame, type: .text)
+        let viewController = GameViewController(gameSession: GameSession.shared, gameDelegate: gameDelegate, typeOfGame: .figureGame)
         gameDelegate.gameViewController = viewController
         return viewController
     }

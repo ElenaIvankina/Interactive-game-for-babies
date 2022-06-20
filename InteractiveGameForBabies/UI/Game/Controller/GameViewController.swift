@@ -23,8 +23,8 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
     internal var typeOfGame: TypeOfGame
     
     // MARK: - Views
-    lazy var questionViewController = GameQuestionViewController(question: gameSession.currentQuestion, type: mediaType)
-    lazy var answersViewController = GameAnswersViewController(cards: gameSession.currentRandomCards, delegate: gameDelegate)
+    lazy var questionViewController = GameQuestionViewController(type: mediaType)
+    lazy var answersViewController = GameAnswersViewController(delegate: gameDelegate)
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -38,11 +38,22 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         return scrollView
     }()
     
-    init(gameSession: GameSessionProtocol, gameDelegate: GameDelegate, typeOfGame: TypeOfGame, type: MediaType) {
+    init(gameSession: GameSessionProtocol, gameDelegate: GameDelegate, typeOfGame: TypeOfGame) {
         self.gameSession = gameSession
         self.gameDelegate = gameDelegate
         self.typeOfGame = typeOfGame
-        mediaType = type
+        
+        switch typeOfGame {
+        case .speakAnimalGame:
+            mediaType = .sound
+        case .colorGame:
+            mediaType = .image
+        case .countGame:
+            mediaType = .image
+        case .figureGame:
+            mediaType = .text
+        }
+        
         super.init(nibName: nil, bundle: nil)
     }
     
