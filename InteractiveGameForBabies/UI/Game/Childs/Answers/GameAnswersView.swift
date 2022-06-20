@@ -87,7 +87,13 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //TODO check card
         let selectCard = cards[indexPath.row]
-        delegate?.checkingAnswer(answerCard: selectCard)
+        guard let resultCheck = delegate?.checkingAnswer(answerCard: selectCard) else { return }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? AnswerCell else { return }
+        if resultCheck {
+            cell.animateRightAnswer()
+        } else {
+            cell.animateWrongAnswer()
+        }
         print("cell clicked at \(indexPath)")
     }
 }

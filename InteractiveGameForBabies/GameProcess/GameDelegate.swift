@@ -12,12 +12,14 @@ class GameDelegate {
     
     var gameViewcontroller: GameViewControllerProtocol?
         
-    func checkingAnswer(answerCard: CardProtocol) {
+    func checkingAnswer(answerCard: CardProtocol) -> Bool {
         if let questionCard = gameViewcontroller?.gameSession.currentQuestion.card,
            questionCard.isEqualTo(answerCard) {
             handlingRightAnswer()
+            return true
         } else {
             handlingWrongAnswer()
+            return false
         }
     }
     
@@ -25,6 +27,7 @@ class GameDelegate {
         
         if let vc = gameViewcontroller {
             vc.gameSession.counterOfRightAnswers.value += 1
+            
         }
         
         print ("Right Answer")
