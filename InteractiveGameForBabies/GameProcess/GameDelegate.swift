@@ -11,7 +11,7 @@ class GameDelegate {
 
     var gameViewController: GameViewControllerProtocol?
 
-    func checkingAnswer(answerCard: CardProtocol) {
+    func checkingAnswer(answerCard: CardProtocol) -> Bool {
         if let questionCard = gameViewController?.gameSession.currentQuestion.card,
            questionCard.isEqualTo(answerCard) {
             handlingRightAnswer()
