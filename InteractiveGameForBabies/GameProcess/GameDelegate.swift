@@ -36,21 +36,10 @@ class GameDelegate {
 
     func newGame() {
         let navigationVC = gameViewController?.navigationController
-        let typeOfGame = gameViewController?.typeOfGame
+        guard let typeOfGame = gameViewController?.typeOfGame else { return }
         var newGameVC: GameViewControllerProtocol?
-
-        switch typeOfGame {
-        case .speakAnimalGame:
-            newGameVC = GameViewControllerBuilder.buildAnimalGame()
-        case .colorGame:
-            newGameVC = GameViewControllerBuilder.buildColorGame()
-        case .countGame:
-            newGameVC = GameViewControllerBuilder.buildCountGame()
-        case .figureGame:
-            newGameVC = GameViewControllerBuilder.buildFigureGame()
-        case .none:
-            print("Не выбран тип игры")
-        }
+        let gameVCBuilder = GameViewControllerBuilder()
+        newGameVC = gameVCBuilder.buildGame(typeOfGame: typeOfGame)
 
         if let newGameVC = newGameVC {
             navigationVC?.pushViewController(newGameVC, animated: true)

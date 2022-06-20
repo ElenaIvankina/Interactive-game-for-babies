@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TypeOfGame {
+enum TypeOfGame: Int {
     case speakAnimalGame
     case colorGame
     case countGame
