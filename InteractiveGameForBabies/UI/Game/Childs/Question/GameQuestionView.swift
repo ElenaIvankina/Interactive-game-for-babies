@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import AVKit
+import AVFoundation
 
 class GameQuestionView: UIView {
     
@@ -22,15 +22,30 @@ class GameQuestionView: UIView {
         tableView.alwaysBounceVertical = false
         tableView.rowHeight = UITableView.automaticDimension
         
-        tableView.register(QuestionTextOnlyCell.self, forCellReuseIdentifier: QuestionTextOnlyCell.reuseId)
-        tableView.register(QuestionSoundCell.self, forCellReuseIdentifier: QuestionSoundCell.reuseId)
-        tableView.register(QuestionImageCell.self, forCellReuseIdentifier: QuestionImageCell.reuseId)
+        tableView.register(QuestionTextOnlyCell.self,
+                           forCellReuseIdentifier: QuestionTextOnlyCell.reuseId)
+        tableView.register(QuestionSoundCell.self,
+                           forCellReuseIdentifier: QuestionSoundCell.reuseId)
+        tableView.register(QuestionImageCell.self,
+                           forCellReuseIdentifier: QuestionImageCell.reuseId)
         
         return tableView
     }()
     
+    private var player: AVPlayer = {
+        return AVPlayer()
+    }()
+    
     private var mediaType: MediaType  = .none
-    var question: QuestionProtocol?
+    private var question: QuestionProtocol?
+    
+    private enum Constants {
+        static let inset: CGFloat = 4
+    }
+    
+    var viewHeight: CGFloat {
+        return tableView.contentSize.height + 2 * Constants.inset
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -61,36 +76,50 @@ class GameQuestionView: UIView {
             tableView
                 .topAnchor
                 .constraint(equalTo: topAnchor,
-                            constant: 4),
+                            constant: Constants.inset),
             tableView
                 .bottomAnchor
                 .constraint(equalTo: bottomAnchor,
-                            constant: -4),
+                            constant: -Constants.inset),
             tableView
                 .trailingAnchor
                 .constraint(equalTo: trailingAnchor,
-                            constant: -4),
+                            constant: -Constants.inset),
             tableView
                 .leadingAnchor
                 .constraint(equalTo: leadingAnchor,
-                            constant: 4),
+                            constant: Constants.inset)
         ])
+        
+        NotificationCenter
+            .default
+            .addObserver(self,
+                         selector: #selector(playerEndPlay),
+                         name: .AVPlayerItemDidPlayToEndTime,
+                         object: nil)
+    }
+    
+    @objc private func playerEndPlay() {
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? QuestionSoundCell
+        else { return }
+        
+        cell.resetState()
     }
 }
 
-extension GameQuestionView : UITableViewDelegate {
+extension GameQuestionView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         
-        //TODO когда строка в tableView выбирается, сразу убирается выбор, просто обратить внимание пока
+        // TODO когда строка в tableView выбирается, сразу убирается выбор, просто обратить внимание пока
     }
 }
 
-extension GameQuestionView : UITableViewDataSource {
+extension GameQuestionView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch(mediaType) {
+        switch mediaType {
         case .none:
             return 0
         default:
@@ -100,29 +129,24 @@ extension GameQuestionView : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch(mediaType) {
+        switch mediaType {
         case .sound:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionSoundCell.reuseId, for: indexPath) as? QuestionSoundCell {
-                if let question = question {
-                    cell.configure(with: question.questionText)
-                } else {
-                    cell.configure(with: "") }
+            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionSoundCell.reuseId, for: indexPath) as? QuestionSoundCell,
+               let question = question {
+                cell.configure(with: question)
+                cell.delegate = self
                 return cell
             }
         case .image:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionImageCell.reuseId, for: indexPath) as? QuestionImageCell {
-                if let question = question {
-                    cell.configure(with: question.questionText, image: question.card.imageName)
-                } else {
-                    cell.configure(with: "", image: "") }
+            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionImageCell.reuseId, for: indexPath) as? QuestionImageCell,
+               let question = question {
+                cell.configure(with: question)
                 return cell
             }
         case .text:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTextOnlyCell.reuseId, for: indexPath) as? QuestionTextOnlyCell {
-                if let question = question {
-                    cell.configure(with: question.questionText)
-                } else {
-                    cell.configure(with: "") }
+            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTextOnlyCell.reuseId, for: indexPath) as? QuestionTextOnlyCell,
+               let question = question {
+                cell.configure(with: question)
                 return cell
             }
         case .none:
@@ -133,11 +157,25 @@ extension GameQuestionView : UITableViewDataSource {
     }
 }
 
-struct GameQuestionView_Preview: PreviewProvider {
-    static var previews: some View {
-        let view = GameQuestionView()
-        return UIPreviewView(view)
-            .preferredColorScheme(.dark)
-            .previewLayout(.fixed(width: 375, height: 200))
+extension GameQuestionView: QuestionSoundCellDelegate {
+    
+    func didTapPlayButtonInCell(isPlaying: Bool) {
+        if isPlaying {
+            player.replaceCurrentItem(with: nil)
+        } else {
+            guard let animalCard = question?.card as? AnimalCard,
+                  let url = Bundle
+                    .main
+                    .url(forResource: animalCard.sound,
+                         withExtension: "mp3")
+            else { return }
+            
+            player.replaceCurrentItem(with: AVPlayerItem(url: url))
+            
+            if player.timeControlStatus != .playing {
+                player.play()
+            }
+        }
+        
     }
 }

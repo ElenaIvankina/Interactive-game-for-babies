@@ -11,7 +11,7 @@ struct AnimalCard: CardProtocol {
     var imageName: String
     let animal: Animal
     let sound: String
-    
+
     func isEqualTo(_ object: Any) -> Bool {
         guard let other = object as? Self else { return false }
         return animal == other.animal

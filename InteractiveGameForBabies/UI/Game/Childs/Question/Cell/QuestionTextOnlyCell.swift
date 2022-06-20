@@ -11,6 +11,10 @@ class QuestionTextOnlyCell: UITableViewCell {
     
     static let reuseId = "TextOnlyCell"
     
+    private enum Constants {
+        static let inset: CGFloat = 4
+    }
+    
     private let questionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -30,30 +34,30 @@ class QuestionTextOnlyCell: UITableViewCell {
     }
     
     private func setupView() {
-        addSubview(questionLabel)
+        contentView.addSubview(questionLabel)
         
         NSLayoutConstraint.activate([
             questionLabel
                 .topAnchor
-                .constraint(equalTo: topAnchor,
-                            constant: 4),
+                .constraint(equalTo: contentView.topAnchor,
+                            constant: Constants.inset),
             questionLabel
                 .trailingAnchor
-                .constraint(equalTo: trailingAnchor,
-                            constant: -4),
+                .constraint(equalTo: contentView.trailingAnchor,
+                            constant: -Constants.inset),
             questionLabel
                 .leadingAnchor
-                .constraint(equalTo: leadingAnchor,
-                            constant: 4),
+                .constraint(equalTo: contentView.leadingAnchor,
+                            constant: Constants.inset),
             questionLabel
                 .bottomAnchor
-                .constraint(equalTo: bottomAnchor,
-                            constant: -4),
+                .constraint(equalTo: contentView.bottomAnchor,
+                            constant: -Constants.inset)
         ])
     }
     
-    func configure(with text: String) {
-        questionLabel.text = text
+    func configure(with question: QuestionProtocol) {
+        questionLabel.text = question.questionText
     }
     
     override func prepareForReuse() {

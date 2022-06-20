@@ -10,10 +10,8 @@ import Foundation
 struct AnimalQuestion: QuestionProtocol {
     var card: CardProtocol
     var questionText: String = "Какое животное так говорит?"
-    
+
     init (card: AnimalCard) {
         self.card = card
     }
 }
-
-
