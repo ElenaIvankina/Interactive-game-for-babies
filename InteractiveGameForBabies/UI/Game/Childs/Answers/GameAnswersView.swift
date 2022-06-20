@@ -85,10 +85,16 @@ extension GameAnswersView : UICollectionViewDataSource {
 extension GameAnswersView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO check card
         let selectCard = cards[indexPath.row]
-        delegate?.checkingAnswer(answerCard: selectCard)
-        print("cell clicked at \(indexPath)")
+        guard let gelegateToCheck = delegate else {return}
+        if gelegateToCheck.checkingAnswer(answerCard: selectCard) {
+            //TODO обводки, анимации, все что хотите
+            print("right cell clicked at \(indexPath)")
+        } else {
+            //TODO обводки, анимации, все что хотите
+            print("wrong cell clicked at \(indexPath)")
+        }
+        
     }
 }
 
