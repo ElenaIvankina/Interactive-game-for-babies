@@ -44,7 +44,15 @@ class GameQuestionView: UIView {
     }
     
     var viewHeight: CGFloat {
-        return tableView.contentSize.height + 2 * Constants.inset
+        var height = 2 * Constants.inset
+        
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
+            height += cell.frame.height
+        } else {
+            height += tableView.contentSize.height
+        }
+        
+        return height
     }
     
     override init(frame: CGRect) {
