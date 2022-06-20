@@ -15,8 +15,10 @@ class GameDelegate {
         if let questionCard = gameViewController?.gameSession.currentQuestion.card,
            questionCard.isEqualTo(answerCard) {
             handlingRightAnswer()
+            return true
         } else {
             handlingWrongAnswer()
+            return false
         }
     }
 
