@@ -9,5 +9,5 @@ import Foundation
 
 struct ColorQuestion: QuestionProtocol {
     var card: CardProtocol
-    var questionText: String    
+    var questionText: String
 }

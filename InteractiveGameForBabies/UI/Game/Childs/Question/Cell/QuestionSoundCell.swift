@@ -7,9 +7,19 @@
 
 import UIKit
 
+protocol QuestionSoundCellDelegate: AnyObject {
+    func didTapPlayButtonInCell(isPlaying: Bool)
+}
+
 class QuestionSoundCell: UITableViewCell {
     
     static let reuseId = "SoundCell"
+    weak var delegate: QuestionSoundCellDelegate?
+    
+    private enum Constants {
+        static let inset: CGFloat = 4
+        static let buttonSize: CGSize = CGSize(width: 32, height: 32)
+    }
     
     private let questionLabel: UILabel = {
         let label = UILabel()
@@ -23,7 +33,12 @@ class QuestionSoundCell: UITableViewCell {
     private let playSoundButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "person"), for: .normal)
+        button.isUserInteractionEnabled = true
+        button.setImage(UIImage(systemName: "play.circle"), for: .normal)
+        button.setImage(UIImage(systemName: "music.quarternote.3"), for: .selected)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.systemGray2.cgColor
+        button.layer.cornerRadius = 12
         return button
     }()
     
@@ -37,49 +52,53 @@ class QuestionSoundCell: UITableViewCell {
     }
     
     private func setupView() {
-        addSubview(questionLabel)
-        addSubview(playSoundButton)
+        contentView.addSubview(questionLabel)
+        contentView.addSubview(playSoundButton)
         
         playSoundButton.addTarget(self,
                                   action: #selector(handlePlaySoundButton),
-                                  for: .touchUpInside)
+                                  for: .allEvents)
         
         NSLayoutConstraint.activate([
             questionLabel
                 .trailingAnchor
                 .constraint(equalTo: playSoundButton.leadingAnchor,
-                            constant: 4),
+                            constant: -Constants.inset),
             questionLabel
                 .leadingAnchor
-                .constraint(equalTo: leadingAnchor,
-                            constant: 4),
+                .constraint(equalTo: contentView.leadingAnchor,
+                            constant: -Constants.inset),
             questionLabel
                 .centerYAnchor
                 .constraint(equalTo: playSoundButton.centerYAnchor),
             
             playSoundButton
                 .widthAnchor
-                .constraint(equalToConstant: 20),
+                .constraint(equalToConstant: Constants.buttonSize.width),
             playSoundButton
                 .heightAnchor
-                .constraint(equalToConstant: 20),
+                .constraint(equalToConstant: Constants.buttonSize.height),
             playSoundButton
                 .trailingAnchor
-                .constraint(equalTo: trailingAnchor,
-                            constant: -4),
+                .constraint(equalTo: contentView.trailingAnchor,
+                            constant: -Constants.inset),
             playSoundButton
                 .topAnchor
-                .constraint(equalTo: topAnchor,
-                            constant: 4),
+                .constraint(equalTo: contentView.topAnchor,
+                            constant: Constants.inset),
             playSoundButton
                 .bottomAnchor
-                .constraint(equalTo: bottomAnchor,
-                            constant: -4)
+                .constraint(equalTo: contentView.bottomAnchor,
+                            constant: -Constants.inset)
         ])
     }
     
-    func configure(with text: String) {
-        questionLabel.text = text
+    func configure(with question: QuestionProtocol) {
+        questionLabel.text = question.questionText
+    }
+    
+    func resetState() {
+        playSoundButton.isSelected = false
     }
     
     override func prepareForReuse() {
@@ -88,7 +107,8 @@ class QuestionSoundCell: UITableViewCell {
     }
     
     @objc func handlePlaySoundButton() {
-        //TODO проигрывать звук
-        print("la la la")
+        let curState = playSoundButton.isSelected
+        playSoundButton.isSelected = !curState
+        delegate?.didTapPlayButtonInCell(isPlaying: curState)
     }
 }

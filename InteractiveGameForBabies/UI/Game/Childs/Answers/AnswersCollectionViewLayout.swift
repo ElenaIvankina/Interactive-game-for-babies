@@ -9,9 +9,10 @@ import UIKit
 
 class AnswersCollectionViewLayout: UICollectionViewLayout {
     
-    private let numberOfColumns = 2
-    private let cellInset: CGFloat = 4
-    private var cache: [UICollectionViewLayoutAttributes] = []
+    private enum Constants {
+        static let numberOfColumns = 2
+        static let cellInset: CGFloat = 4
+    }
     
     private var contentHeight: CGFloat {
         guard let collectionView = collectionView else {
@@ -29,6 +30,9 @@ class AnswersCollectionViewLayout: UICollectionViewLayout {
         return collectionView.bounds.width - (insets.left + insets.right)
     }
     
+    private var cache: [UICollectionViewLayoutAttributes] = []
+    
+    
     override var collectionViewContentSize: CGSize {
         return CGSize(width: contentWidth, height: contentHeight)
     }
@@ -40,13 +44,13 @@ class AnswersCollectionViewLayout: UICollectionViewLayout {
             return
         }
         
-        let columnWidth = contentWidth / CGFloat(numberOfColumns)
+        let columnWidth = contentWidth / CGFloat(Constants.numberOfColumns)
         var xOffset: [CGFloat] = []
-        for column in 0..<numberOfColumns {
+        for column in 0..<Constants.numberOfColumns {
             xOffset.append(CGFloat(column) * columnWidth)
         }
         var column = 0
-        var yOffset: [CGFloat] = .init(repeating: 0, count: numberOfColumns)
+        var yOffset: [CGFloat] = .init(repeating: 0, count: Constants.numberOfColumns)
         
         let numberOfItems = collectionView.numberOfItems(inSection: 0)
         let rowHeight = collectionView.bounds.height / ceil(CGFloat(numberOfItems) / 2)
@@ -56,14 +60,14 @@ class AnswersCollectionViewLayout: UICollectionViewLayout {
                                y: yOffset[column],
                                width: columnWidth,
                                height: rowHeight)
-            let insetFrame = frame.insetBy(dx: cellInset,
-                                           dy: cellInset)
+            let insetFrame = frame.insetBy(dx: Constants.cellInset,
+                                           dy: Constants.cellInset)
             
             let attributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: item, section: 0))
             attributes.frame = insetFrame
             cache.append(attributes)
             yOffset[column] = yOffset[column] + rowHeight
-            column = column < (numberOfColumns - 1) ? (column + 1) : 0
+            column = column < (Constants.numberOfColumns - 1) ? (column + 1) : 0
         }
     }
     

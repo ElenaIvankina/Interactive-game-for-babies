@@ -10,14 +10,14 @@ import Foundation
 struct ColorCard: CardProtocol {
     var imageName: String
     let color: Color
-    
+
     func isEqualTo(_ object: Any) -> Bool {
         guard let other = object as? Self else { return false }
         return color == other.color
     }
 }
 
-enum Color  {
+enum Color {
     case green
     case red
     case yellow

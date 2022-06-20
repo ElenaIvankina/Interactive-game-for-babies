@@ -8,12 +8,10 @@
 import Foundation
 
 enum TypeOfGame {
-    
     case speakAnimalGame
     case colorGame
     case countGame
     case figureGame
-    
 }
 
 protocol GameStrategyProtocol {
@@ -21,11 +19,10 @@ protocol GameStrategyProtocol {
 }
 
 class GameStrategy: GameStrategyProtocol {
-    
+
     static func setUpGameSession (gameSession: GameSessionProtocol, typeOfGame: TypeOfGame) {
-    
         let gameSession = gameSession
-        
+
         switch typeOfGame {
         case .speakAnimalGame:
             gameSession.questionsArray = GameDatabase.shared.animalQuestions
@@ -40,7 +37,5 @@ class GameStrategy: GameStrategyProtocol {
             gameSession.questionsArray = GameDatabase.shared.figureQuestions
             gameSession.cardsArray = GameDatabase.shared.figureCards
         }
-        
     }
-    
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 class GameAnswersView: UIView {
-    
+
     private var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: AnswersCollectionViewLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -17,100 +17,97 @@ class GameAnswersView: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .white
         collectionView.isUserInteractionEnabled = true
-        
+
         collectionView.register(AnswerCell.self, forCellWithReuseIdentifier: AnswerCell.reuseId)
-        
+
         return collectionView
     }()
+
+    private var cards = [CardProtocol]()
+    private weak var delegate: GameDelegate?
     
-    var cardImages = [UIImage?]()
-    var cards = [CardProtocol]()
-    var delegate: GameDelegate?
-    
+    private enum Constants {
+        static let inset: CGFloat = 4
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setCards(cards: [CardProtocol]) {
         self.cards = cards
         collectionView.reloadData()
     }
-    
+
     func setDelegate(delegate: GameDelegate) {
         self.delegate = delegate
     }
-    
+
     private func setupView() {
         addSubview(collectionView)
-        
+
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
+            collectionView
+                .topAnchor
+                .constraint(equalTo: topAnchor,
+                            constant: Constants.inset),
+            collectionView
+                .bottomAnchor
+                .constraint(equalTo: bottomAnchor,
+                            constant: -Constants.inset),
+            collectionView
+                .trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: -Constants.inset),
+            collectionView
+                .leadingAnchor
+                .constraint(equalTo: leadingAnchor,
+                       constant: Constants.inset)
         ])
     }
 }
 
-extension GameAnswersView : UICollectionViewDelegate {
-    
+extension GameAnswersView: UICollectionViewDelegate {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cards.count
     }
 }
 
-extension GameAnswersView : UICollectionViewDataSource {
-    
+extension GameAnswersView: UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnswerCell.reuseId, for: indexPath) as? AnswerCell else {
             fatalError("Cell for item at \(indexPath) has not been implemented")
         }
-        
-        if let image: UIImage = UIImage (named: cards[indexPath.row].imageName) {
+
+        if let image: UIImage = UIImage(named: cards[indexPath.row].imageName) {
             cell.configure(with: image)
         }
+
         return cell
     }
 }
 
 extension GameAnswersView: UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectCard = cards[indexPath.row]
-        guard let gelegateToCheck = delegate else {return}
-        if gelegateToCheck.checkingAnswer(answerCard: selectCard) {
-            //TODO обводки, анимации, все что хотите
-            print("right cell clicked at \(indexPath)")
+        guard let resultCheck = delegate?.checkingAnswer(answerCard: selectCard) else { return }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? AnswerCell else { return }
+        if resultCheck {
+            cell.animateRightAnswer()
         } else {
-            //TODO обводки, анимации, все что хотите
-            print("wrong cell clicked at \(indexPath)")
+            cell.animateWrongAnswer()
         }
-        
-    }
-}
-
-struct GameAnswersView_Preview : PreviewProvider {
-    static var previews: some View {
-        let view = GameAnswersView()
-        view.cardImages = [
-            UIImage(named: "animal1"),
-            UIImage(named: "animal2"),
-            UIImage(named: "animal3"),
-            UIImage(named: "animal4"),
-            UIImage(named: "animal5"),
-            UIImage(named: "animal6")
-        ]
-        return UIPreviewView(view)
-            .preferredColorScheme(.dark)
-            .previewLayout(.fixed(width: 375, height: 300.0))
+        print("cell clicked at \(indexPath)")
     }
 }

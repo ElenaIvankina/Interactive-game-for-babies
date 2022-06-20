@@ -8,12 +8,12 @@
 import Foundation
 
 class GameDatabase {
-    
+
     static let shared = GameDatabase()
-    
+
     private init() {
     }
-    
+
     var animalCards: [AnimalCard] = [
         AnimalCard(imageName: "animal1", animal: .camel, sound: ""),
         AnimalCard(imageName: "animal2", animal: .mouse, sound: ""),
@@ -40,34 +40,34 @@ class GameDatabase {
         AnimalCard(imageName: "animal23", animal: .donkey, sound: ""),
         AnimalCard(imageName: "animal24", animal: .bear, sound: "")
     ]
-    
+
     var animalQuestions: [AnimalQuestion] = [
-        AnimalQuestion(card: AnimalCard(imageName: "animal1", animal: .camel, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal2", animal: .mouse, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal3", animal: .snake, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal4", animal: .woodpecker, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal5", animal: .cock, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal6", animal: .cat, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal7", animal: .elephant, sound: "")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal1", animal: .camel, sound: "camel")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal2", animal: .mouse, sound: "mouse")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal3", animal: .snake, sound: "snake")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal4", animal: .woodpecker, sound: "woodpecker")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal5", animal: .cock, sound: "chicken")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal6", animal: .cat, sound: "cat")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal7", animal: .elephant, sound: "elephant")),
         AnimalQuestion(card: AnimalCard(imageName: "animal8", animal: .fish, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal9", animal: .monkey, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal10", animal: .goat, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal11", animal: .mouse, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal12", animal: .dog, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal13", animal: .cuckoo, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal14", animal: .hedgehog, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal15", animal: .mouse, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal16", animal: .frog, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal17", animal: .cow, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal18", animal: .wolf, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal19", animal: .owl, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal20", animal: .bear, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal21", animal: .parrot, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal22", animal: .horse, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal23", animal: .donkey, sound: "")),
-        AnimalQuestion(card: AnimalCard(imageName: "animal24", animal: .bear, sound: ""))
+        AnimalQuestion(card: AnimalCard(imageName: "animal9", animal: .monkey, sound: "monkey")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal10", animal: .goat, sound: "goat")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal11", animal: .mouse, sound: "mouse")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal12", animal: .dog, sound: "dog")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal13", animal: .cuckoo, sound: "cuckoo")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal14", animal: .hedgehog, sound: "hedgehog")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal15", animal: .mouse, sound: "rodent")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal16", animal: .frog, sound: "frog")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal17", animal: .cow, sound: "cow")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal18", animal: .wolf, sound: "wolf")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal19", animal: .owl, sound: "owl")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal20", animal: .bear, sound: "bear")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal21", animal: .parrot, sound: "parrot")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal22", animal: .horse, sound: "horse")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal23", animal: .donkey, sound: "donkey")),
+        AnimalQuestion(card: AnimalCard(imageName: "animal24", animal: .bear, sound: "bear"))
     ]
-    
+
     var colorCards: [ColorCard] = [
         ColorCard(imageName: "green1", color: .green),
         ColorCard(imageName: "green2", color: .green),
@@ -106,7 +106,7 @@ class GameDatabase {
         ColorCard(imageName: "pink3", color: .pink),
         ColorCard(imageName: "pink4", color: .pink)
     ]
-    
+
     var colorQuestions: [ColorQuestion] = [
         ColorQuestion(card: ColorCard(imageName: "green0", color: .green),
                       questionText: "Нажми на все предметы зеленого цвета"),
@@ -127,7 +127,7 @@ class GameDatabase {
         ColorQuestion(card: ColorCard(imageName: "pink0", color: .pink),
                       questionText: "Нажми на все предметы розового цвета")
     ]
-    
+
     var countCards: [CountCard] = [
         CountCard(imageName: "one1", count: .one),
         CountCard(imageName: "one2", count: .one),
@@ -162,19 +162,18 @@ class GameDatabase {
         CountCard(imageName: "many14", count: .many),
         CountCard(imageName: "many15", count: .many),
         CountCard(imageName: "many16", count: .many),
-        CountCard(imageName: "many17", count: .many),
+        CountCard(imageName: "many17", count: .many)
     ]
-    
+
     var countQuestions: [CountQuestion] = [
         CountQuestion(card: CountCard(imageName: "one0", count: .one),
                       questionText: "Нажми на все картинки, где предмет один"),
         CountQuestion(card: CountCard(imageName: "many0", count: .many),
                       questionText: "Нажми на все картинки, где предметов много")
     ]
-    
+
     var figureCards: [FigureCard] = []
-    
+
     var figureQuestions: [FigureQuestion] = []
-    
-    
+
 }

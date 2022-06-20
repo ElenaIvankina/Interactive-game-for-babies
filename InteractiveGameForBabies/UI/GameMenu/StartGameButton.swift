@@ -8,7 +8,7 @@
 import UIKit
 
 class StartGameButton: UIButton {
-    
+
     var image: UIImage? = UIImage(named: "notes") {
         didSet {
             setImage(image, for: .normal)
