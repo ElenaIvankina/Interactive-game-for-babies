@@ -79,9 +79,12 @@ class QuestionImageCell: UITableViewCell {
         ])
     }
     
-    func configure(with question: QuestionProtocol) {
-        questionLabel.text = question.questionText
-        infoImage.image = UIImage(named: question.card.imageName)
+    func configure() {
+        questionLabel.text = GameSession.shared.currentQuestion.questionText
+        
+        if let image: UIImage = UIImage(named: GameSession.shared.currentQuestion.card.imageName) {
+            infoImage.image = image
+        }
     }
     
     override func prepareForReuse() {

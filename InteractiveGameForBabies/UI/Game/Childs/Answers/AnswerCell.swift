@@ -29,8 +29,12 @@ class AnswerCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with image: UIImage?) {
-        cardImageView.image = image
+    func configure(with indexPath: IndexPath) {
+
+        if let image: UIImage = UIImage(named: GameSession.shared.currentRandomCards[indexPath.row].imageName) {
+            cardImageView.image = image
+        }
+        
     }
 
     private func setupView() {

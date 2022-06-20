@@ -11,11 +11,11 @@ class GameAnswersViewController: UIViewController {
 
     private lazy var gameAnswersView = GameAnswersView()
 
-    private var cards: [CardProtocol]
+//    private var cards: [CardProtocol]
     private var delegate: GameDelegate
 
-    init(cards: [CardProtocol], delegate: GameDelegate) {
-        self.cards = cards
+    init(delegate: GameDelegate) {
+//        self.cards = cards
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
@@ -30,13 +30,13 @@ class GameAnswersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setCards()
+//        setCards()
         setDelegate()
     }
 
-    private func setCards() {
-        gameAnswersView.setCards(cards: cards)
-    }
+//    private func setCards() {
+//        gameAnswersView.setCards(cards: cards)
+//    }
 
     private func setDelegate() {
         gameAnswersView.setDelegate(delegate: delegate)

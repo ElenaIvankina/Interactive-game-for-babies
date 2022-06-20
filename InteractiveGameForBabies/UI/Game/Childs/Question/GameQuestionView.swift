@@ -37,7 +37,7 @@ class GameQuestionView: UIView {
     }()
     
     private var mediaType: MediaType  = .none
-    private var question: QuestionProtocol?
+//    private var question: QuestionProtocol?
     
     private enum Constants {
         static let inset: CGFloat = 4
@@ -69,10 +69,10 @@ class GameQuestionView: UIView {
         tableView.reloadData()
     }
     
-    func setQuestion(question: QuestionProtocol) {
-        self.question = question
-        tableView.reloadData()
-    }
+//    func setQuestion(question: QuestionProtocol) {
+//        self.question = question
+//        tableView.reloadData()
+//    }
     
     private func setupView() {
         addSubview(tableView)
@@ -119,8 +119,7 @@ extension GameQuestionView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        
-        // TODO когда строка в tableView выбирается, сразу убирается выбор, просто обратить внимание пока
+
     }
 }
 
@@ -139,22 +138,19 @@ extension GameQuestionView: UITableViewDataSource {
         
         switch mediaType {
         case .sound:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionSoundCell.reuseId, for: indexPath) as? QuestionSoundCell,
-               let question = question {
-                cell.configure(with: question)
+            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionSoundCell.reuseId, for: indexPath) as? QuestionSoundCell {
+                cell.configure()
                 cell.delegate = self
                 return cell
             }
         case .image:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionImageCell.reuseId, for: indexPath) as? QuestionImageCell,
-               let question = question {
-                cell.configure(with: question)
+            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionImageCell.reuseId, for: indexPath) as? QuestionImageCell {
+                cell.configure()
                 return cell
             }
         case .text:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTextOnlyCell.reuseId, for: indexPath) as? QuestionTextOnlyCell,
-               let question = question {
-                cell.configure(with: question)
+            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTextOnlyCell.reuseId, for: indexPath) as? QuestionTextOnlyCell {
+                cell.configure()
                 return cell
             }
         case .none:
@@ -171,7 +167,7 @@ extension GameQuestionView: QuestionSoundCellDelegate {
         if isPlaying {
             player.replaceCurrentItem(with: nil)
         } else {
-            guard let animalCard = question?.card as? AnimalCard,
+            guard let animalCard = GameSession.shared.currentQuestion.card as? AnimalCard,
                   let url = Bundle
                     .main
                     .url(forResource: animalCard.sound,
