@@ -12,14 +12,14 @@ class GameQuestionViewController: UIViewController {
     private lazy var gameQuestionView = GameQuestionView()
 
     private var mediaType: MediaType
-    private var question: QuestionProtocol
+//    private var question: QuestionProtocol
 
     var contentHeight: CGFloat {
         return gameQuestionView.viewHeight
     }
 
-    init(question: QuestionProtocol, type: MediaType) {
-        self.question = question
+    init(type: MediaType) {
+//        self.question = question
         mediaType = type
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,6 +35,6 @@ class GameQuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         gameQuestionView.setMediaView(type: mediaType)
-        gameQuestionView.setQuestion(question: question)
+//        gameQuestionView.setQuestion(question: question)
     }
 }

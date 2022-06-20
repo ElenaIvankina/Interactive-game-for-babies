@@ -56,8 +56,8 @@ class QuestionTextOnlyCell: UITableViewCell {
         ])
     }
     
-    func configure(with question: QuestionProtocol) {
-        questionLabel.text = question.questionText
+    func configure() {
+        questionLabel.text = GameSession.shared.currentQuestion.questionText
     }
     
     override func prepareForReuse() {

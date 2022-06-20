@@ -22,7 +22,6 @@
 		0A52DB9D285E531B00F79AE7 /* FigureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291E28576234008600DB /* FigureCard.swift */; };
 		0A52DB9E285E531B00F79AE7 /* CardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292428576EB0008600DB /* CardProtocol.swift */; };
 		0A52DB9F285E531B00F79AE7 /* QuestionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292C2857748B008600DB /* QuestionProtocol.swift */; };
-		0A52DBA0285E531B00F79AE7 /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8F1E1E285D0F9900DD643D /* MediaType.swift */; };
 		0A52DBA1285E531B00F79AE7 /* GameStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334293A285DD670008600DB /* GameStrategy.swift */; };
 		0A52DBA2285E531B00F79AE7 /* GameViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3342937285CD87B008600DB /* GameViewControllerBuilder.swift */; };
 		0A52DBA4285E531B00F79AE7 /* ObservableOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291028576050008600DB /* ObservableOptions.swift */; };
@@ -147,7 +146,6 @@
 		0A8D5490285F70EF0054B9B0 /* elephant.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = elephant.mp3; sourceTree = "<group>"; };
 		0A8D5491285F70EF0054B9B0 /* woodpecker.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = woodpecker.mp3; sourceTree = "<group>"; };
 		0A8D54BC285FA2F00054B9B0 /* Ext+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIViewController.swift"; sourceTree = "<group>"; };
-		0A8F1E1E285D0F9900DD643D /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
 		B33428C628575CD4008600DB /* InteractiveGameForBabies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InteractiveGameForBabies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33428C928575CD4008600DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B33428CB28575CD4008600DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -432,7 +430,6 @@
 				0A8D547C285F70EF0054B9B0 /* Sounds */,
 				B334293F285F4E28008600DB /* Question */,
 				B334293E285F4E12008600DB /* Cards */,
-				0A8F1E1E285D0F9900DD643D /* MediaType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -666,7 +663,6 @@
 				0A52DB9D285E531B00F79AE7 /* FigureCard.swift in Sources */,
 				0A52DB9E285E531B00F79AE7 /* CardProtocol.swift in Sources */,
 				0A52DB9F285E531B00F79AE7 /* QuestionProtocol.swift in Sources */,
-				0A52DBA0285E531B00F79AE7 /* MediaType.swift in Sources */,
 				0A52DBA1285E531B00F79AE7 /* GameStrategy.swift in Sources */,
 				0A52DBA2285E531B00F79AE7 /* GameViewControllerBuilder.swift in Sources */,
 				0A52DBA4285E531B00F79AE7 /* ObservableOptions.swift in Sources */,

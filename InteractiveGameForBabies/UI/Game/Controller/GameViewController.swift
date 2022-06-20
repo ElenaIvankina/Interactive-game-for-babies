@@ -10,7 +10,6 @@ import UIKit
 protocol GameViewControllerProtocol: UIViewController {
     
     var mediaType: MediaType { get set }
-    var gameSession: GameSessionProtocol { get set }
     var gameDelegate: GameDelegate { get set }
     var typeOfGame: TypeOfGame { get set }
 }
@@ -18,13 +17,12 @@ protocol GameViewControllerProtocol: UIViewController {
 class GameViewController: UIViewController, GameViewControllerProtocol {
     
     internal var mediaType: MediaType
-    internal var gameSession: GameSessionProtocol
     internal var gameDelegate: GameDelegate
     internal var typeOfGame: TypeOfGame
     
     // MARK: - Views
-    lazy var questionViewController = GameQuestionViewController(question: gameSession.currentQuestion, type: mediaType)
-    lazy var answersViewController = GameAnswersViewController(cards: gameSession.currentRandomCards, delegate: gameDelegate)
+    lazy var questionViewController = GameQuestionViewController(type: mediaType)
+    lazy var answersViewController = GameAnswersViewController(delegate: gameDelegate)
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -38,11 +36,21 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         return scrollView
     }()
     
-    init(gameSession: GameSessionProtocol, gameDelegate: GameDelegate, typeOfGame: TypeOfGame, type: MediaType) {
-        self.gameSession = gameSession
+    init(gameDelegate: GameDelegate, typeOfGame: TypeOfGame) {
         self.gameDelegate = gameDelegate
         self.typeOfGame = typeOfGame
-        mediaType = type
+        
+        switch typeOfGame {
+        case .speakAnimalGame:
+            mediaType = .sound
+        case .colorGame:
+            mediaType = .image
+        case .countGame:
+            mediaType = .image
+        case .figureGame:
+            mediaType = .text
+        }
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,7 +66,7 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
     }
     
     private func addObserverToGameSession() {
-        gameSession
+        GameSession.shared
             .counterOfRightAnswers
             .addObserver(self, closure: { [weak self] number, _ in
                 guard let self = self else {return}
