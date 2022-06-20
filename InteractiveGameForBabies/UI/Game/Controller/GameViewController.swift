@@ -71,7 +71,10 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
             .addObserver(self, closure: { [weak self] number, _ in
                 guard let self = self else {return}
                 if number == GameSession.shared.numberOfRightAnswers {
-                    self.makeGameEndAlert()
+                    // TODO: Change to completion handler
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.makeGameEndAlert()
+                    }
                 }
             })
     }
