@@ -62,18 +62,31 @@ class AnswerCell: UICollectionViewCell {
     }
     
     func animateRightAnswer() {
-        UIView.animate(
-            withDuration: 0.3,
-            delay: 0,
-            options: [.curveEaseIn]) {
-                self.backgroundColor = .green
-                self.layer.borderColor = UIColor.green.cgColor
-            }
+        let checkmark = UIImage(systemName: "checkmark")
+        
+        let checkmarkUIImageView = UIImageView(image: checkmark)
+        checkmarkUIImageView.translatesAutoresizingMaskIntoConstraints = false
+        checkmarkUIImageView.tintColor = .green
+        addSubview(checkmarkUIImageView)
+        
+        NSLayoutConstraint.activate([
+            checkmarkUIImageView.topAnchor.constraint(equalTo: topAnchor),
+            checkmarkUIImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            checkmarkUIImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            checkmarkUIImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.duration = 0.6
+        animation.autoreverses = false
+        checkmarkUIImageView.layer.add(animation, forKey: "alpha")
     }
     
     func animateWrongAnswer() {
         UIView.animate(
-            withDuration: 0.3,
+            withDuration: 0.2,
             delay: 0,
             options: [.autoreverse, .repeat, .curveEaseIn]) {
                 self.backgroundColor = .red
