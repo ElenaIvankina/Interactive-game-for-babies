@@ -66,7 +66,7 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
                 guard let self = self else {return}
                 if number == GameSession.shared.numberOfRightAnswers {
                     // TODO: Change to completion handler
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                         self.gameDelegate.newGame()
                     }
                 }
@@ -206,7 +206,7 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         
         let topInset: CGFloat = 4
 //        let contentHeight = topInset + questionViewController.contentHeight + barsHeight
-        let contentHeight = topInset + 16 + barsHeight
+        let contentHeight = topInset + 64 + barsHeight
         let collectionHeight = UIScreen.main.bounds.height - contentHeight
         
         NSLayoutConstraint.activate([

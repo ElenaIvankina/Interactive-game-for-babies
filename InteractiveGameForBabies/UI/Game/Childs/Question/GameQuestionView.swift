@@ -1,186 +1,126 @@
-////
-////  GameQuestionView.swift
-////  InteractiveGameForBabies
-////
-////  Created by Дмитрий Дуденин on 16.06.2022.
-////
 //
-//import SwiftUI
-//import AVFoundation
+//  GameQuestionViewNoTable.swift
+//  InteractiveGameForBabies
 //
-//class GameQuestionView: UIView {
+//  Created by Павел Черняев on 21.06.2022.
 //
-//    private var tableView: UITableView = {
-//        let tableView = UITableView()
-//        tableView.translatesAutoresizingMaskIntoConstraints = false
-//        tableView.showsVerticalScrollIndicator = false
-//        tableView.showsHorizontalScrollIndicator = false
-//        tableView.backgroundColor = .white
-//        tableView.isUserInteractionEnabled = true
-//        tableView.allowsSelection = false
-//        tableView.separatorStyle = .none
-//        tableView.alwaysBounceVertical = false
-//        tableView.rowHeight = UITableView.automaticDimension
-//
-//        tableView.register(QuestionTextOnlyCell.self,
-//                           forCellReuseIdentifier: QuestionTextOnlyCell.reuseId)
-//        tableView.register(QuestionSoundCell.self,
-//                           forCellReuseIdentifier: QuestionSoundCell.reuseId)
-//        tableView.register(QuestionImageCell.self,
-//                           forCellReuseIdentifier: QuestionImageCell.reuseId)
-//
-//        return tableView
-//    }()
-//
-//    private var player: AVPlayer = {
-//        return AVPlayer()
-//    }()
-//
-//    private var mediaType: MediaType  = .none
-////    private var question: QuestionProtocol?
-//
-//    private enum Constants {
-//        static let inset: CGFloat = 4
-//    }
-//
-//    var viewHeight: CGFloat {
-//        var height = 2 * Constants.inset
-//        let contentSize = tableView.contentSize.height
-//
-//        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
-//            height += max(cell.frame.height, contentSize)
-//        } else {
-//            height += contentSize
-//        }
-//
-//        return height
-//    }
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        setupView()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    func setMediaView(type: MediaType) {
-//        mediaType = type
-//        tableView.reloadData()
-//    }
-//
-////    func setQuestion(question: QuestionProtocol) {
-////        self.question = question
-////        tableView.reloadData()
-////    }
-//
-//    private func setupView() {
-//        addSubview(tableView)
-//
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//
-//        NSLayoutConstraint.activate([
-//            tableView
-//                .topAnchor
-//                .constraint(equalTo: topAnchor,
-//                            constant: Constants.inset),
-//            tableView
-//                .bottomAnchor
-//                .constraint(equalTo: bottomAnchor,
-//                            constant: -Constants.inset),
-//            tableView
-//                .trailingAnchor
-//                .constraint(equalTo: trailingAnchor,
-//                            constant: -Constants.inset),
-//            tableView
-//                .leadingAnchor
-//                .constraint(equalTo: leadingAnchor,
-//                            constant: Constants.inset)
-//        ])
-//
-//        NotificationCenter
-//            .default
-//            .addObserver(self,
-//                         selector: #selector(playerEndPlay),
-//                         name: .AVPlayerItemDidPlayToEndTime,
-//                         object: nil)
-//    }
-//
-//    @objc private func playerEndPlay() {
-//        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? QuestionSoundCell
-//        else { return }
-//
-//        cell.resetState()
-//    }
-//}
-//
-//extension GameQuestionView: UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.tableView.deselectRow(at: indexPath, animated: true)
-//
-//    }
-//}
-//
-//extension GameQuestionView: UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        switch mediaType {
-//        case .none:
-//            return 0
-//        default:
-//            return 1
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        switch mediaType {
-//        case .sound:
-//            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionSoundCell.reuseId, for: indexPath) as? QuestionSoundCell {
-//                cell.configure()
-//                cell.delegate = self
-//                return cell
-//            }
-//        case .image:
-//            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionImageCell.reuseId, for: indexPath) as? QuestionImageCell {
-//                cell.configure()
-//                return cell
-//            }
-//        case .text:
-//            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTextOnlyCell.reuseId, for: indexPath) as? QuestionTextOnlyCell {
-//                cell.configure()
-//                return cell
-//            }
-//        case .none:
-//            return UITableViewCell()
-//        }
-//
-//        fatalError("Cell for item at \(indexPath) has not been implemented")
-//    }
-//}
-//
-//extension GameQuestionView: QuestionSoundCellDelegate {
-//
-//    func didTapPlayButtonInCell(isPlaying: Bool) {
-//        if isPlaying {
-//            player.replaceCurrentItem(with: nil)
-//        } else {
-//            guard let animalCard = GameSession.shared.currentQuestion.card as? AnimalCard,
-//                  let url = Bundle
-//                    .main
-//                    .url(forResource: animalCard.sound,
-//                         withExtension: "mp3")
-//            else { return }
-//
-//            player.replaceCurrentItem(with: AVPlayerItem(url: url))
-//
-//            if player.timeControlStatus != .playing {
-//                player.play()
-//            }
-//        }
-//
-//    }
-//}
+
+import Foundation
+import UIKit
+
+
+class PlayButton: UIButton {}
+
+class GameQuestionView: UIView {
+    private let typeOfGame: TypeOfGame
+    private var playButton: PlayButton?
+    weak var delegate: GameQuestionVCDelegate?
+    
+    init?(typeOfGame: TypeOfGame) {
+        self.typeOfGame = typeOfGame
+        super.init(frame: CGRect.zero)
+        setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func addUILabel(text: String) {
+        let label = UILabel()
+        addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = text
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 20)
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 0
+        
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: topAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -72),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    private func addUIImageView(named: String) {
+        let image = UIImage(named: named)
+        let imageView = UIImageView(image: image)
+        addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            imageView.leadingAnchor.constraint(equalTo: trailingAnchor, constant: -64),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    private func addPlaySoundButton() {
+        let buttonSize: CGSize = CGSize(width: 64, height: 64)
+        self.playButton = PlayButton()
+        guard let playButton = self.playButton else { return }
+        addSubview(playButton)
+        playButton.translatesAutoresizingMaskIntoConstraints = false
+        playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
+        playButton.setImage(UIImage(systemName: "music.quarternote.3"), for: .selected)
+        playButton.contentHorizontalAlignment = .fill
+        playButton.contentVerticalAlignment = .fill
+        playButton.layer.borderWidth = 1
+        playButton.layer.borderColor = UIColor.systemGray2.cgColor
+        playButton.layer.cornerRadius = 12
+        playButton.addTarget(self, action: #selector(handlePlaySoundButton), for: .allEvents)
+        
+        
+        NSLayoutConstraint.activate([
+            playButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
+            playButton.widthAnchor.constraint(equalToConstant: buttonSize.width),
+            playButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant:  -8),
+            playButton.centerYAnchor.constraint(equalTo: centerYAnchor)
+            
+        ])
+    }
+    
+    private func setupViews() {
+        let question = GameSession.shared.currentQuestion
+        var isAddImage = false
+        var isAddPlayBtn = false
+        var imageName = ""
+        
+        if let colorCard = question.card as? ColorCard {
+            imageName = colorCard.imageName
+            isAddImage = true
+        }
+        
+        if let countCard = question.card as? CountCard {
+            imageName = countCard.imageName
+            isAddImage = true
+        }
+        
+        if let _ = question.card as? AnimalCard {
+            isAddPlayBtn = true
+        }
+        
+        addUILabel(text: question.questionText)
+        if isAddImage { addUIImageView(named: imageName) }
+        if isAddPlayBtn { addPlaySoundButton()}
+    }
+    
+    @objc
+    func handlePlaySoundButton(sender: AnyObject) {
+        if let playSoundButton = sender as? UIButton {
+            delegate?.registerPlayer()
+            let curState = playSoundButton.isSelected
+            playSoundButton.isSelected = !curState
+            delegate?.didTapPlayButtonInCell(isPlaying: curState)
+        }
+    }
+    
+    func changePlayButtonState() {
+        guard let playButton = self.playButton else { return }
+        let curState = playButton.isSelected
+        playButton.isSelected = !(curState)
+    }
+}
