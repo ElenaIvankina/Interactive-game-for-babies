@@ -14,12 +14,12 @@ enum TypeOfGame: Int {
     case figureGame
 }
 
-enum MediaType {
-    case sound
-    case image
-    case text
-    case none
-}
+//enum MediaType {
+//    case sound
+//    case image
+//    case text
+//    case none
+//}
 
 
 protocol GameStrategyProtocol {

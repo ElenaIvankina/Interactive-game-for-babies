@@ -9,32 +9,26 @@ import UIKit
 
 class GameQuestionViewController: UIViewController {
 
-    private lazy var gameQuestionView = GameQuestionView()
+//    private var gameQuestionView = GameQuestionView()
 
-    private var mediaType: MediaType
-//    private var question: QuestionProtocol
+    private let typeOfGame: TypeOfGame
 
-    var contentHeight: CGFloat {
-        return gameQuestionView.viewHeight
-    }
+//    var contentHeight: CGFloat {
+//        return gameQuestionView.viewHeight
+//    }
 
-    init(type: MediaType) {
-//        self.question = question
-        mediaType = type
+    //MARK: - Lifecycle
+    init(typeOfGame: TypeOfGame) {
+        self.typeOfGame = typeOfGame
         super.init(nibName: nil, bundle: nil)
-    }
-
-    override func loadView() {
-        self.view = gameQuestionView
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        gameQuestionView.setMediaView(type: mediaType)
-//        gameQuestionView.setQuestion(question: question)
+    
+    override func loadView() {
+        let gameQuestionView = GameQuestionView(typeOfGame: self.typeOfGame)
+        self.view = gameQuestionView
     }
 }

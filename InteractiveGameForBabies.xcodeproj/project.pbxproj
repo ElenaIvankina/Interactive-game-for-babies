@@ -69,6 +69,7 @@
 		B33428E128575CD7008600DB /* InteractiveGameForBabiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428E028575CD7008600DB /* InteractiveGameForBabiesTests.swift */; };
 		B33428EB28575CD7008600DB /* InteractiveGameForBabiesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428EA28575CD7008600DB /* InteractiveGameForBabiesUITests.swift */; };
 		B33428ED28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428EC28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift */; };
+		B652AC2A2862089700B621CF /* GameQuestionViewNoTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B652AC292862089700B621CF /* GameQuestionViewNoTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +177,7 @@
 		B334293A285DD670008600DB /* GameStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStrategy.swift; sourceTree = "<group>"; };
 		B334293C285DD8EA008600DB /* AnimalQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalQuestion.swift; sourceTree = "<group>"; };
 		B646B6E3285C3946001AB323 /* Ext+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Array.swift"; sourceTree = "<group>"; };
+		B652AC292862089700B621CF /* GameQuestionViewNoTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuestionViewNoTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +256,7 @@
 				0A52DB77285DE6FA00F79AE7 /* Cell */,
 				0A7A85B4285BC12500D23883 /* GameQuestionViewController.swift */,
 				0A7A85B2285BC0AA00D23883 /* GameQuestionView.swift */,
+				B652AC292862089700B621CF /* GameQuestionViewNoTable.swift */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A52DB91285E531B00F79AE7 /* Ext+Array.swift in Sources */,
+				B652AC2A2862089700B621CF /* GameQuestionViewNoTable.swift in Sources */,
 				0A52DB92285E531B00F79AE7 /* UIPreviewView.swift in Sources */,
 				0A52DB93285E531B00F79AE7 /* GameSession.swift in Sources */,
 				0A52DB94285E531B00F79AE7 /* GameDatabase.swift in Sources */,

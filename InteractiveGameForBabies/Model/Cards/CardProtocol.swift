@@ -10,5 +10,5 @@ import Foundation
 protocol CardProtocol {
     var imageName: String {get set}
 
-    func isEqualTo(_ object: Any) -> Bool
+    func isEqualTo(_ object: CardProtocol) -> Bool
 }

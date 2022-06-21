@@ -17,7 +17,6 @@ class GameDelegate {
             handlingRightAnswer()
             return true
         } else {
-            handlingWrongAnswer()
             return false
         }
     }
@@ -25,13 +24,6 @@ class GameDelegate {
     func handlingRightAnswer() {
         
         GameSession.shared.counterOfRightAnswers.value += 1
-        print("Right Answer")
-        // Анимация зеленым, ячейка уже неактивна для нажатия
-    }
-
-    func handlingWrongAnswer() {
-        print("Wrong Answer")
-        // Анимация красным, ячейка активна для нажатия
     }
 
     func newGame() {
