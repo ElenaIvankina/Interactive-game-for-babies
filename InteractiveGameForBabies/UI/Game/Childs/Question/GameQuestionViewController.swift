@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 
 protocol GameQuestionViewControllerDelegate: AnyObject {
-    func didTapPlayButtonInCell(isPlaying: Bool)
+    func didTapPlayButton(isPlaying: Bool)
     func registerPlayer()
 }
 
@@ -37,13 +37,13 @@ class GameQuestionViewController: UIViewController {
     override func loadView() {
         let gameQuestionView = GameQuestionView(typeOfGame: self.typeOfGame)
         gameQuestionView?.delegate = self
-        self.view = gameQuestionView
-        self.view.layoutIfNeeded()
+        view = gameQuestionView
+        view.layoutIfNeeded()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        didTapPlayButtonInCell(isPlaying: true)
-        if self.player != nil {
+        didTapPlayButton(isPlaying: true)
+        if player != nil {
             NotificationCenter.default.removeObserver(self)
         }
         super.viewDidDisappear(animated)
@@ -51,7 +51,7 @@ class GameQuestionViewController: UIViewController {
 }
 
 extension GameQuestionViewController: GameQuestionViewControllerDelegate {
-    func didTapPlayButtonInCell(isPlaying: Bool) {
+    func didTapPlayButton(isPlaying: Bool) {
         guard let player = self.player else { return }
         if isPlaying {
             player.replaceCurrentItem(with: nil)
@@ -72,17 +72,17 @@ extension GameQuestionViewController: GameQuestionViewControllerDelegate {
     }
     
     func registerPlayer() {
-        if self.player == nil {
-            self.player = AVPlayer()
+        if player == nil {
+            player = AVPlayer()
             NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(endPlayeng),
+                                                   selector: #selector(endPlaying),
                                                    name: .AVPlayerItemDidPlayToEndTime,
                                                    object: player?.currentItem)
         }
     }
     
     @objc
-    func endPlayeng() {
+    func endPlaying() {
         if let viewGameQuestionView = self.view as? GameQuestionView {
             viewGameQuestionView.changePlayButtonState()
         }

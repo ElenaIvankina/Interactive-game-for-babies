@@ -9,10 +9,9 @@ import Foundation
 import UIKit
 
 class GameQuestionView: UIView {
+    
     private let typeOfGame: TypeOfGame
     weak var delegate: GameQuestionViewControllerDelegate?
-    private let buttonSize: CGSize = CGSize(width: 64, height: 64)
-    private let imageSize: CGSize = CGSize(width: 64, height: 64)
     
     private let questionLabel: UILabel = {
         let label = UILabel()
@@ -25,9 +24,9 @@ class GameQuestionView: UIView {
     }()
     
     private let questionImage: UIImageView? = {
-        let uiImageView = UIImageView()
-        uiImageView.translatesAutoresizingMaskIntoConstraints = false
-        return uiImageView
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     private let playButton: UIButton? = {
@@ -40,9 +39,15 @@ class GameQuestionView: UIView {
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.systemGray2.cgColor
         button.layer.cornerRadius = 12
-        button.addTarget(self, action: #selector(handlePlaySoundButton), for: .allEvents)
         return button
     }()
+    
+    private enum Constants {
+        static let leading: CGFloat = 8
+        static let trailing: CGFloat = -8
+        static let buttonSize: CGSize = CGSize(width: 64, height: 64)
+        static let imageSize: CGSize = CGSize(width: 64, height: 64)
+    }
     
     init?(typeOfGame: TypeOfGame) {
         self.typeOfGame = typeOfGame
@@ -58,37 +63,70 @@ class GameQuestionView: UIView {
         questionLabel.text = text
         addSubview(questionLabel)
         NSLayoutConstraint.activate([
-            questionLabel.topAnchor.constraint(equalTo: topAnchor),
-            questionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constant.leading.rawValue),
-            questionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+            questionLabel
+                .topAnchor
+                .constraint(equalTo: topAnchor),
+            questionLabel
+                .leadingAnchor
+                .constraint(equalTo: leadingAnchor,
+                            constant: Constants.leading),
+            questionLabel
+                .bottomAnchor
+                .constraint(equalTo: bottomAnchor)
         ])
     }
     
     private func addQuestionUIImageView(named: String) {
         guard let imageView = questionImage else { return }
-        let image = UIImage(named: named)
-        imageView.image = image
+        imageView.image = UIImage(named: named)
+        
         addSubview(imageView)
-                
+        
         NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: imageSize.height),
-            imageView.widthAnchor.constraint(equalToConstant: imageSize.width),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constant.trailing.rawValue),
-            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            questionLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor)
+            imageView
+                .heightAnchor
+                .constraint(equalToConstant: Constants.imageSize.height),
+            imageView
+                .widthAnchor
+                .constraint(equalToConstant: Constants.imageSize.width),
+            imageView
+                .trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: Constants.trailing),
+            imageView
+                .centerYAnchor
+                .constraint(equalTo: centerYAnchor),
+            questionLabel
+                .trailingAnchor
+                .constraint(equalTo: imageView.leadingAnchor)
         ])
     }
     
     private func addPlaySoundButton() {
         guard let playButton = self.playButton else { return }
         addSubview(playButton)
-                
+        
+        playButton.addTarget(self,
+                             action: #selector(handlePlaySoundButton),
+                             for: .allEvents)
+        
         NSLayoutConstraint.activate([
-            playButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
-            playButton.widthAnchor.constraint(equalToConstant: buttonSize.width),
-            playButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constant.trailing.rawValue),
-            playButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            questionLabel.trailingAnchor.constraint(equalTo: playButton.leadingAnchor)
+            playButton
+                .heightAnchor
+                .constraint(equalToConstant: Constants.buttonSize.height),
+            playButton
+                .widthAnchor
+                .constraint(equalToConstant: Constants.buttonSize.width),
+            playButton
+                .trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: Constants.trailing),
+            playButton
+                .centerYAnchor
+                .constraint(equalTo: centerYAnchor),
+            questionLabel
+                .trailingAnchor
+                .constraint(equalTo: playButton.leadingAnchor)
         ])
     }
     
@@ -111,14 +149,14 @@ class GameQuestionView: UIView {
             addPlaySoundButton()
         }
     }
-        
+    
     @objc
     func handlePlaySoundButton(sender: AnyObject) {
         if let playSoundButton = sender as? UIButton {
             delegate?.registerPlayer()
             let curState = playSoundButton.isSelected
             playSoundButton.isSelected = !curState
-            delegate?.didTapPlayButtonInCell(isPlaying: curState)
+            delegate?.didTapPlayButton(isPlaying: curState)
         }
     }
     
@@ -126,10 +164,5 @@ class GameQuestionView: UIView {
         guard let playButton = self.playButton else { return }
         let curState = playButton.isSelected
         playButton.isSelected = !(curState)
-    }
-    
-    enum Constant: CGFloat {
-        case leading = 8
-        case trailing = -8
     }
 }
