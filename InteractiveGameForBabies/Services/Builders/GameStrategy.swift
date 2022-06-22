@@ -7,35 +7,50 @@
 
 import Foundation
 
-enum TypeOfGame {
+enum TypeOfGame: Int {
     case speakAnimalGame
     case colorGame
     case countGame
     case figureGame
 }
 
+//enum MediaType {
+//    case sound
+//    case image
+//    case text
+//    case none
+//}
+
+
 protocol GameStrategyProtocol {
-    static func setUpGameSession(gameSession: GameSessionProtocol, typeOfGame: TypeOfGame)
+    static func setUpGameSession(typeOfGame: TypeOfGame)
 }
 
 class GameStrategy: GameStrategyProtocol {
+    
+    static func clearGameSession () {
 
-    static func setUpGameSession (gameSession: GameSessionProtocol, typeOfGame: TypeOfGame) {
-        let gameSession = gameSession
+        GameSession.shared.counterOfRightAnswers.value = 0
+        
+    }
+
+    static func setUpGameSession (typeOfGame: TypeOfGame) {
+        
+        clearGameSession()
 
         switch typeOfGame {
         case .speakAnimalGame:
-            gameSession.questionsArray = GameDatabase.shared.animalQuestions
-            gameSession.cardsArray = GameDatabase.shared.animalCards
+            GameSession.shared.questionsArray = GameDatabase.shared.animalQuestions
+            GameSession.shared.cardsArray = GameDatabase.shared.animalCards
         case .colorGame:
-            gameSession.questionsArray = GameDatabase.shared.colorQuestions
-            gameSession.cardsArray = GameDatabase.shared.colorCards
+            GameSession.shared.questionsArray = GameDatabase.shared.colorQuestions
+            GameSession.shared.cardsArray = GameDatabase.shared.colorCards
         case .countGame:
-            gameSession.questionsArray = GameDatabase.shared.countQuestions
-            gameSession.cardsArray = GameDatabase.shared.countCards
+            GameSession.shared.questionsArray = GameDatabase.shared.countQuestions
+            GameSession.shared.cardsArray = GameDatabase.shared.countCards
         case .figureGame:
-            gameSession.questionsArray = GameDatabase.shared.figureQuestions
-            gameSession.cardsArray = GameDatabase.shared.figureCards
+            GameSession.shared.questionsArray = GameDatabase.shared.figureQuestions
+            GameSession.shared.cardsArray = GameDatabase.shared.figureCards
         }
     }
 }

@@ -2,188 +2,167 @@
 //  GameQuestionView.swift
 //  InteractiveGameForBabies
 //
-//  Created by Дмитрий Дуденин on 16.06.2022.
+//  Created by Павел Черняев on 21.06.2022.
 //
 
-import SwiftUI
-import AVFoundation
+import Foundation
+import UIKit
 
 class GameQuestionView: UIView {
     
-    private var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.showsVerticalScrollIndicator = false
-        tableView.showsHorizontalScrollIndicator = false
-        tableView.backgroundColor = .white
-        tableView.isUserInteractionEnabled = true
-        tableView.allowsSelection = false
-        tableView.separatorStyle = .none
-        tableView.alwaysBounceVertical = false
-        tableView.rowHeight = UITableView.automaticDimension
-        
-        tableView.register(QuestionTextOnlyCell.self,
-                           forCellReuseIdentifier: QuestionTextOnlyCell.reuseId)
-        tableView.register(QuestionSoundCell.self,
-                           forCellReuseIdentifier: QuestionSoundCell.reuseId)
-        tableView.register(QuestionImageCell.self,
-                           forCellReuseIdentifier: QuestionImageCell.reuseId)
-        
-        return tableView
+    private let typeOfGame: TypeOfGame
+    weak var delegate: GameQuestionViewControllerDelegate?
+    
+    private let questionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 20)
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 0
+        return label
     }()
     
-    private var player: AVPlayer = {
-        return AVPlayer()
+    private let questionImage: UIImageView? = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
-    private var mediaType: MediaType  = .none
-    private var question: QuestionProtocol?
+    private let playButton: UIButton? = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "play.circle"), for: .normal)
+        button.setImage(UIImage(systemName: "music.quarternote.3"), for: .selected)
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.systemGray2.cgColor
+        button.layer.cornerRadius = 12
+        return button
+    }()
     
     private enum Constants {
-        static let inset: CGFloat = 4
+        static let leading: CGFloat = 8
+        static let trailing: CGFloat = -8
+        static let buttonSize: CGSize = CGSize(width: 64, height: 64)
+        static let imageSize: CGSize = CGSize(width: 64, height: 64)
     }
     
-    var viewHeight: CGFloat {
-        var height = 2 * Constants.inset
-        
-        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
-            height += cell.frame.height
-        } else {
-            height += tableView.contentSize.height
-        }
-        
-        return height
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
+    init?(typeOfGame: TypeOfGame) {
+        self.typeOfGame = typeOfGame
+        super.init(frame: CGRect.zero)
+        setupViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setMediaView(type: MediaType) {
-        mediaType = type
-        tableView.reloadData()
-    }
-    
-    func setQuestion(question: QuestionProtocol) {
-        self.question = question
-        tableView.reloadData()
-    }
-    
-    private func setupView() {
-        addSubview(tableView)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
+    private func addQuestionUILabel(text: String) {
+        questionLabel.text = text
+        addSubview(questionLabel)
         NSLayoutConstraint.activate([
-            tableView
+            questionLabel
                 .topAnchor
-                .constraint(equalTo: topAnchor,
-                            constant: Constants.inset),
-            tableView
-                .bottomAnchor
-                .constraint(equalTo: bottomAnchor,
-                            constant: -Constants.inset),
-            tableView
-                .trailingAnchor
-                .constraint(equalTo: trailingAnchor,
-                            constant: -Constants.inset),
-            tableView
+                .constraint(equalTo: topAnchor),
+            questionLabel
                 .leadingAnchor
                 .constraint(equalTo: leadingAnchor,
-                            constant: Constants.inset)
+                            constant: Constants.leading),
+            questionLabel
+                .bottomAnchor
+                .constraint(equalTo: bottomAnchor)
         ])
-        
-        NotificationCenter
-            .default
-            .addObserver(self,
-                         selector: #selector(playerEndPlay),
-                         name: .AVPlayerItemDidPlayToEndTime,
-                         object: nil)
     }
     
-    @objc private func playerEndPlay() {
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? QuestionSoundCell
-        else { return }
+    private func addQuestionUIImageView(named: String) {
+        guard let imageView = questionImage else { return }
+        imageView.image = UIImage(named: named)
         
-        cell.resetState()
-    }
-}
-
-extension GameQuestionView: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
+        addSubview(imageView)
         
-        // TODO когда строка в tableView выбирается, сразу убирается выбор, просто обратить внимание пока
+        NSLayoutConstraint.activate([
+            imageView
+                .heightAnchor
+                .constraint(equalToConstant: Constants.imageSize.height),
+            imageView
+                .widthAnchor
+                .constraint(equalToConstant: Constants.imageSize.width),
+            imageView
+                .trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: Constants.trailing),
+            imageView
+                .centerYAnchor
+                .constraint(equalTo: centerYAnchor),
+            questionLabel
+                .trailingAnchor
+                .constraint(equalTo: imageView.leadingAnchor)
+        ])
     }
-}
-
-extension GameQuestionView: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch mediaType {
-        case .none:
-            return 0
-        default:
-            return 1
+    private func addPlaySoundButton() {
+        guard let playButton = self.playButton else { return }
+        addSubview(playButton)
+        
+        playButton.addTarget(self,
+                             action: #selector(handlePlaySoundButton),
+                             for: .allEvents)
+        
+        NSLayoutConstraint.activate([
+            playButton
+                .heightAnchor
+                .constraint(equalToConstant: Constants.buttonSize.height),
+            playButton
+                .widthAnchor
+                .constraint(equalToConstant: Constants.buttonSize.width),
+            playButton
+                .trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: Constants.trailing),
+            playButton
+                .centerYAnchor
+                .constraint(equalTo: centerYAnchor),
+            questionLabel
+                .trailingAnchor
+                .constraint(equalTo: playButton.leadingAnchor)
+        ])
+    }
+    
+    private func setupViews() {
+        let question = GameSession.shared.currentQuestion
+        
+        addQuestionUILabel(text: question.questionText)
+        
+        if let colorCard = question.card as? ColorCard {
+            let imageName = colorCard.imageName
+            addQuestionUIImageView(named: imageName)
+        }
+        
+        if let countCard = question.card as? CountCard {
+            let imageName = countCard.imageName
+            addQuestionUIImageView(named: imageName)
+        }
+        
+        if let _ = question.card as? AnimalCard {
+            addPlaySoundButton()
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        switch mediaType {
-        case .sound:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionSoundCell.reuseId, for: indexPath) as? QuestionSoundCell,
-               let question = question {
-                cell.configure(with: question)
-                cell.delegate = self
-                return cell
-            }
-        case .image:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionImageCell.reuseId, for: indexPath) as? QuestionImageCell,
-               let question = question {
-                cell.configure(with: question)
-                return cell
-            }
-        case .text:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTextOnlyCell.reuseId, for: indexPath) as? QuestionTextOnlyCell,
-               let question = question {
-                cell.configure(with: question)
-                return cell
-            }
-        case .none:
-            return UITableViewCell()
+    @objc
+    func handlePlaySoundButton(sender: AnyObject) {
+        if let playSoundButton = sender as? UIButton {
+            delegate?.registerPlayer()
+            let curState = playSoundButton.isSelected
+            playSoundButton.isSelected = !curState
+            delegate?.didTapPlayButton(isPlaying: curState)
         }
-        
-        fatalError("Cell for item at \(indexPath) has not been implemented")
     }
-}
-
-extension GameQuestionView: QuestionSoundCellDelegate {
     
-    func didTapPlayButtonInCell(isPlaying: Bool) {
-        if isPlaying {
-            player.replaceCurrentItem(with: nil)
-        } else {
-            guard let animalCard = question?.card as? AnimalCard,
-                  let url = Bundle
-                    .main
-                    .url(forResource: animalCard.sound,
-                         withExtension: "mp3")
-            else { return }
-            
-            player.replaceCurrentItem(with: AVPlayerItem(url: url))
-            
-            if player.timeControlStatus != .playing {
-                player.play()
-            }
-        }
-        
+    func changePlayButtonState() {
+        guard let playButton = self.playButton else { return }
+        let curState = playButton.isSelected
+        playButton.isSelected = !(curState)
     }
 }

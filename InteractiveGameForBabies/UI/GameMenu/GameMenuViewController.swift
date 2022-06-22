@@ -8,7 +8,8 @@
 import UIKit
 
 class GameMenuViewController: UIViewController {
-
+    let gameVCBuilder = GameViewControllerBuilder()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -41,22 +42,22 @@ class GameMenuViewController: UIViewController {
         struct gameInfo {
             let name: String
             let image: UIImage?
-            let action: Selector
+            let typeOfGame: TypeOfGame
         }
 
         let gamesData = [
             gameInfo(name: "Как говорят животные",
                      image: UIImage(named: "notes"),
-                     action: #selector(gameAnimalsButtonTapped)),
+                     typeOfGame: .speakAnimalGame),
             gameInfo(name: "Один - много",
                      image: UIImage(named: "many"),
-                     action: #selector(gameCountButtonTapped)),
+                     typeOfGame: .countGame),
             gameInfo(name: "Изучаем цвета",
                      image: UIImage(named: "colors"),
-                     action: #selector(gameColorsButtonTapped)),
+                     typeOfGame: .colorGame),
             gameInfo(name: "Лягушки и фигуры",
                      image: UIImage(named: "figures"),
-                     action: #selector(gameFiguresButtonTapped))
+                     typeOfGame: .figureGame)
         ]
 
         let stackView = UIStackView()
@@ -82,7 +83,7 @@ class GameMenuViewController: UIViewController {
 
                 let view = GameItemView()
                 view.configure(name: gameInfo.name, image: gameInfo.image)
-                view.addButtonTarget(target: self, action: gameInfo.action)
+                view.addButtonTarget(target: self, action: #selector(selectGameButton), typeOfGame: gameInfo.typeOfGame)
 
                 stackViewH.addArrangedSubview(view)
             }
@@ -169,19 +170,11 @@ class GameMenuViewController: UIViewController {
         ])
     }
 
-    @objc func gameAnimalsButtonTapped() {
-        navigationController?.pushViewController(GameViewControllerBuilder.buildAnimalGame(), animated: true)
-    }
-
-    @objc func gameCountButtonTapped() {
-        navigationController?.pushViewController(GameViewControllerBuilder.buildCountGame(), animated: true)
-    }
-
-    @objc func gameColorsButtonTapped() {
-        navigationController?.pushViewController(GameViewControllerBuilder.buildColorGame(), animated: true)
-    }
-
-    @objc func gameFiguresButtonTapped() {
-        navigationController?.pushViewController(GameViewControllerBuilder.buildFigureGame(), animated: true)
+    @objc
+    func selectGameButton(sender: AnyObject) {
+        guard let btn = sender as? UIButton else { return }
+        let tag = btn.tag
+        guard let typeOfGame = TypeOfGame.init(rawValue: tag) else { return }
+        navigationController?.pushViewController(gameVCBuilder.buildGame(typeOfGame: typeOfGame), animated: true)
     }
 }

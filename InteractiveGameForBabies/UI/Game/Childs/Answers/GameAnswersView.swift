@@ -23,7 +23,7 @@ class GameAnswersView: UIView {
         return collectionView
     }()
 
-    private var cards = [CardProtocol]()
+//    private var cards = [CardProtocol]()
     private weak var delegate: GameDelegate?
     
     private enum Constants {
@@ -39,10 +39,10 @@ class GameAnswersView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setCards(cards: [CardProtocol]) {
-        self.cards = cards
-        collectionView.reloadData()
-    }
+//    func setCards(cards: [CardProtocol]) {
+//        self.cards = cards
+//        collectionView.reloadData()
+//    }
 
     func setDelegate(delegate: GameDelegate) {
         self.delegate = delegate
@@ -78,7 +78,7 @@ class GameAnswersView: UIView {
 extension GameAnswersView: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cards.count
+        return GameSession.shared.currentRandomCards.count
     }
 }
 
@@ -88,10 +88,8 @@ extension GameAnswersView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnswerCell.reuseId, for: indexPath) as? AnswerCell else {
             fatalError("Cell for item at \(indexPath) has not been implemented")
         }
-
-        if let image: UIImage = UIImage(named: cards[indexPath.row].imageName) {
-            cell.configure(with: image)
-        }
+        
+        cell.configure(with: indexPath)
 
         return cell
     }
@@ -100,14 +98,14 @@ extension GameAnswersView: UICollectionViewDataSource {
 extension GameAnswersView: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectCard = cards[indexPath.row]
+        let selectCard = GameSession.shared.currentRandomCards[indexPath.row]
         guard let resultCheck = delegate?.checkingAnswer(answerCard: selectCard) else { return }
         guard let cell = collectionView.cellForItem(at: indexPath) as? AnswerCell else { return }
         if resultCheck {
             cell.animateRightAnswer()
+            cell.isUserInteractionEnabled = false
         } else {
             cell.animateWrongAnswer()
         }
-        print("cell clicked at \(indexPath)")
     }
 }

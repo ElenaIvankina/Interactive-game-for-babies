@@ -8,23 +8,17 @@
 import UIKit
 
 protocol GameViewControllerProtocol: UIViewController {
-    
-    var mediaType: MediaType { get set }
-    var gameSession: GameSessionProtocol { get set }
+     
     var gameDelegate: GameDelegate { get set }
     var typeOfGame: TypeOfGame { get set }
 }
 
 class GameViewController: UIViewController, GameViewControllerProtocol {
     
-    internal var mediaType: MediaType
-    internal var gameSession: GameSessionProtocol
-    internal var gameDelegate: GameDelegate
-    internal var typeOfGame: TypeOfGame
-    
-    // MARK: - Views
-    lazy var questionViewController = GameQuestionViewController(question: gameSession.currentQuestion, type: mediaType)
-    lazy var answersViewController = GameAnswersViewController(cards: gameSession.currentRandomCards, delegate: gameDelegate)
+    var gameDelegate: GameDelegate
+    var typeOfGame: TypeOfGame
+    let questionViewController: GameQuestionViewController
+    let answersViewController: GameAnswersViewController
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -38,11 +32,14 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         return scrollView
     }()
     
-    init(gameSession: GameSessionProtocol, gameDelegate: GameDelegate, typeOfGame: TypeOfGame, type: MediaType) {
-        self.gameSession = gameSession
+    //MARK: - Lyfecycle
+    init(gameDelegate: GameDelegate, typeOfGame: TypeOfGame) {
         self.gameDelegate = gameDelegate
         self.typeOfGame = typeOfGame
-        mediaType = type
+        
+        self.questionViewController = GameQuestionViewController(typeOfGame: typeOfGame)
+        self.answersViewController = GameAnswersViewController(delegate: gameDelegate)
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -50,20 +47,28 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         addObserverToGameSession()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        GameSession.shared
+            .counterOfRightAnswers
+            .removeObserver(self)
+    }
+    
     private func addObserverToGameSession() {
-        gameSession
+        GameSession.shared
             .counterOfRightAnswers
             .addObserver(self, closure: { [weak self] number, _ in
                 guard let self = self else {return}
-                if number == self.gameSession.numberOfRightAnswers {
-                    self.makeGameEndAlert()
+                if number == GameSession.shared.numberOfRightAnswers {
+                    // TODO: Change to completion handler
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                        self.gameDelegate.newGame()
+                    }
                 }
             })
     }
@@ -120,7 +125,8 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         navigationItem.leftBarButtonItem = newBackButton
     }
     
-    @objc func homeButtonTapped() {
+    @objc
+    func homeButtonTapped() {
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -186,6 +192,7 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
             questionView
                 .heightAnchor
                 .constraint(equalToConstant: questionViewController.contentHeight)
+                
         ])
     }
     

@@ -11,7 +11,7 @@ struct ColorCard: CardProtocol {
     var imageName: String
     let color: Color
 
-    func isEqualTo(_ object: Any) -> Bool {
+    func isEqualTo(_ object: CardProtocol) -> Bool {
         guard let other = object as? Self else { return false }
         return color == other.color
     }

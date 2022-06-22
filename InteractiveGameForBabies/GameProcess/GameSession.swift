@@ -19,6 +19,11 @@ protocol GameSessionProtocol: AnyObject {
 }
 
 class GameSession: GameSessionProtocol {
+    
+    static let shared = GameSession()
+
+    private init() {
+    }
 
     var questionsArray: [QuestionProtocol] = []
     var cardsArray: [CardProtocol] = []
@@ -32,8 +37,6 @@ class GameSession: GameSessionProtocol {
     var currentRandomCards: [CardProtocol] = []
 
     var numberOfRightAnswers = 0
-    // countRightAnswers(sample: currentQuestion.card, cards: currentRandomCards)
-
     var counterOfRightAnswers: Observable<Int> = Observable(0)
 
     func getRandomQuestion(questionsArray: [QuestionProtocol]) -> QuestionProtocol {
