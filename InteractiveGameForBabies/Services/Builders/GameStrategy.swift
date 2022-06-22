@@ -7,19 +7,19 @@
 
 import Foundation
 
-enum TypeOfGame {
+enum TypeOfGame: Int {
     case speakAnimalGame
     case colorGame
     case countGame
     case figureGame
 }
 
-enum MediaType {
-    case sound
-    case image
-    case text
-    case none
-}
+//enum MediaType {
+//    case sound
+//    case image
+//    case text
+//    case none
+//}
 
 
 protocol GameStrategyProtocol {
