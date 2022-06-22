@@ -1,5 +1,5 @@
 //
-//  GameQuestionViewNoTable.swift
+//  GameQuestionView.swift
 //  InteractiveGameForBabies
 //
 //  Created by Павел Черняев on 21.06.2022.
@@ -12,6 +12,7 @@ class GameQuestionView: UIView {
     private let typeOfGame: TypeOfGame
     weak var delegate: GameQuestionViewControllerDelegate?
     private let buttonSize: CGSize = CGSize(width: 64, height: 64)
+    private let imageSize: CGSize = CGSize(width: 64, height: 64)
     
     private let questionLabel: UILabel = {
         let label = UILabel()
@@ -25,6 +26,7 @@ class GameQuestionView: UIView {
     
     private let questionImage: UIImageView? = {
         let uiImageView = UIImageView()
+        uiImageView.translatesAutoresizingMaskIntoConstraints = false
         return uiImageView
     }()
     
@@ -57,8 +59,7 @@ class GameQuestionView: UIView {
         addSubview(questionLabel)
         NSLayoutConstraint.activate([
             questionLabel.topAnchor.constraint(equalTo: topAnchor),
-            questionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -72),
+            questionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constant.leading.rawValue),
             questionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
@@ -68,25 +69,26 @@ class GameQuestionView: UIView {
         let image = UIImage(named: named)
         imageView.image = image
         addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
+                
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            imageView.leadingAnchor.constraint(equalTo: trailingAnchor, constant: -64),
-            imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            imageView.heightAnchor.constraint(equalToConstant: imageSize.height),
+            imageView.widthAnchor.constraint(equalToConstant: imageSize.width),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constant.trailing.rawValue),
+            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            questionLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor)
         ])
     }
     
     private func addPlaySoundButton() {
         guard let playButton = self.playButton else { return }
         addSubview(playButton)
+                
         NSLayoutConstraint.activate([
             playButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
             playButton.widthAnchor.constraint(equalToConstant: buttonSize.width),
-            playButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant:  -8),
-            playButton.centerYAnchor.constraint(equalTo: centerYAnchor)
-            
+            playButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constant.trailing.rawValue),
+            playButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            questionLabel.trailingAnchor.constraint(equalTo: playButton.leadingAnchor)
         ])
     }
     
@@ -109,7 +111,7 @@ class GameQuestionView: UIView {
             addPlaySoundButton()
         }
     }
-    
+        
     @objc
     func handlePlaySoundButton(sender: AnyObject) {
         if let playSoundButton = sender as? UIButton {
@@ -124,5 +126,10 @@ class GameQuestionView: UIView {
         guard let playButton = self.playButton else { return }
         let curState = playButton.isSelected
         playButton.isSelected = !(curState)
+    }
+    
+    enum Constant: CGFloat {
+        case leading = 8
+        case trailing = -8
     }
 }

@@ -191,8 +191,8 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
                 .constraint(equalTo: view.trailingAnchor),
             questionView
                 .heightAnchor
-                .constraint(equalToConstant: 64)
-//                .constraint(equalToConstant: questionViewController.contentHeight)
+                .constraint(equalToConstant: questionViewController.contentHeight)
+                
         ])
     }
     
@@ -205,8 +205,7 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         answersView.translatesAutoresizingMaskIntoConstraints = false
         
         let topInset: CGFloat = 4
-//        let contentHeight = topInset + questionViewController.contentHeight + barsHeight
-        let contentHeight = topInset + 64 + barsHeight
+        let contentHeight = topInset + questionViewController.contentHeight + barsHeight
         let collectionHeight = UIScreen.main.bounds.height - contentHeight
         
         NSLayoutConstraint.activate([

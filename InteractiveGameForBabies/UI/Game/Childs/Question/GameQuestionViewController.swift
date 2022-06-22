@@ -14,17 +14,22 @@ protocol GameQuestionViewControllerDelegate: AnyObject {
 }
 
 class GameQuestionViewController: UIViewController {
- 
+    
+    private var gameQuestionView: GameQuestionView?
     private let typeOfGame: TypeOfGame
     
     private var player: AVPlayer?
-
+    
+    var contentHeight: CGFloat {
+        return 64
+    }
+    
     //MARK: - Lifecycle
     init(typeOfGame: TypeOfGame) {
         self.typeOfGame = typeOfGame
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -33,6 +38,7 @@ class GameQuestionViewController: UIViewController {
         let gameQuestionView = GameQuestionView(typeOfGame: self.typeOfGame)
         gameQuestionView?.delegate = self
         self.view = gameQuestionView
+        self.view.layoutIfNeeded()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
