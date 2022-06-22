@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-protocol GameQuestionVCDelegate: AnyObject {
+protocol GameQuestionViewControllerDelegate: AnyObject {
     func didTapPlayButtonInCell(isPlaying: Bool)
     func registerPlayer()
 }
@@ -44,7 +44,7 @@ class GameQuestionViewController: UIViewController {
     }
 }
 
-extension GameQuestionViewController: GameQuestionVCDelegate {
+extension GameQuestionViewController: GameQuestionViewControllerDelegate {
     func didTapPlayButtonInCell(isPlaying: Bool) {
         guard let player = self.player else { return }
         if isPlaying {

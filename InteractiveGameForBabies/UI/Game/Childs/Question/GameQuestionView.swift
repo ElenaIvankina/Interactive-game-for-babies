@@ -8,13 +8,39 @@
 import Foundation
 import UIKit
 
-
-class PlayButton: UIButton {}
-
 class GameQuestionView: UIView {
     private let typeOfGame: TypeOfGame
-    private var playButton: PlayButton?
-    weak var delegate: GameQuestionVCDelegate?
+    weak var delegate: GameQuestionViewControllerDelegate?
+    private let buttonSize: CGSize = CGSize(width: 64, height: 64)
+    
+    private let questionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 20)
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let questionImage: UIImageView? = {
+        let uiImageView = UIImageView()
+        return uiImageView
+    }()
+    
+    private let playButton: UIButton? = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "play.circle"), for: .normal)
+        button.setImage(UIImage(systemName: "music.quarternote.3"), for: .selected)
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.systemGray2.cgColor
+        button.layer.cornerRadius = 12
+        button.addTarget(self, action: #selector(handlePlaySoundButton), for: .allEvents)
+        return button
+    }()
     
     init?(typeOfGame: TypeOfGame) {
         self.typeOfGame = typeOfGame
@@ -26,27 +52,21 @@ class GameQuestionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func addUILabel(text: String) {
-        let label = UILabel()
-        addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = text
-        label.textAlignment = .left
-        label.font = .systemFont(ofSize: 20)
-        label.adjustsFontSizeToFitWidth = true
-        label.numberOfLines = 0
-        
+    private func addQuestionUILabel(text: String) {
+        questionLabel.text = text
+        addSubview(questionLabel)
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -72),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor)
+            questionLabel.topAnchor.constraint(equalTo: topAnchor),
+            questionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -72),
+            questionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
-    private func addUIImageView(named: String) {
+    private func addQuestionUIImageView(named: String) {
+        guard let imageView = questionImage else { return }
         let image = UIImage(named: named)
-        let imageView = UIImageView(image: image)
+        imageView.image = image
         addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -59,21 +79,8 @@ class GameQuestionView: UIView {
     }
     
     private func addPlaySoundButton() {
-        let buttonSize: CGSize = CGSize(width: 64, height: 64)
-        self.playButton = PlayButton()
         guard let playButton = self.playButton else { return }
         addSubview(playButton)
-        playButton.translatesAutoresizingMaskIntoConstraints = false
-        playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
-        playButton.setImage(UIImage(systemName: "music.quarternote.3"), for: .selected)
-        playButton.contentHorizontalAlignment = .fill
-        playButton.contentVerticalAlignment = .fill
-        playButton.layer.borderWidth = 1
-        playButton.layer.borderColor = UIColor.systemGray2.cgColor
-        playButton.layer.cornerRadius = 12
-        playButton.addTarget(self, action: #selector(handlePlaySoundButton), for: .allEvents)
-        
-        
         NSLayoutConstraint.activate([
             playButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
             playButton.widthAnchor.constraint(equalToConstant: buttonSize.width),
@@ -85,27 +92,22 @@ class GameQuestionView: UIView {
     
     private func setupViews() {
         let question = GameSession.shared.currentQuestion
-        var isAddImage = false
-        var isAddPlayBtn = false
-        var imageName = ""
+        
+        addQuestionUILabel(text: question.questionText)
         
         if let colorCard = question.card as? ColorCard {
-            imageName = colorCard.imageName
-            isAddImage = true
+            let imageName = colorCard.imageName
+            addQuestionUIImageView(named: imageName)
         }
         
         if let countCard = question.card as? CountCard {
-            imageName = countCard.imageName
-            isAddImage = true
+            let imageName = countCard.imageName
+            addQuestionUIImageView(named: imageName)
         }
         
         if let _ = question.card as? AnimalCard {
-            isAddPlayBtn = true
+            addPlaySoundButton()
         }
-        
-        addUILabel(text: question.questionText)
-        if isAddImage { addUIImageView(named: imageName) }
-        if isAddPlayBtn { addPlaySoundButton()}
     }
     
     @objc
