@@ -22,8 +22,6 @@ class GameDelegate {
     }
 
     func handlingRightAnswer() {
-        
-//        GameSession.shared.counterOfRightAnswers.value += 1
         GameSession.shared.counterOfRightAnswers += 1
     }
 
@@ -34,16 +32,6 @@ class GameDelegate {
         gameVCBuilder.buildNewGameSession(typeOfGame: vc.typeOfGame)
         vc.reloadData(gameSession: GameSession.shared)
 
-        
-//        let navigationVC = gameViewController?.navigationController
-//        guard let typeOfGame = gameViewController?.typeOfGame else { return }
-//        var newGameVC: GameViewControllerProtocol?
-//        let gameVCBuilder = GameViewControllerBuilder()
-//        newGameVC = gameVCBuilder.buildGame(typeOfGame: typeOfGame)
-//
-//        if let newGameVC = newGameVC {
-//            navigationVC?.pushViewController(newGameVC, animated: true)
-//        }
     }
 
     func endGame() {

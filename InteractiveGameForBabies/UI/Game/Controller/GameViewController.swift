@@ -50,7 +50,6 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-//        addObserverToGameSession()
     }
     
     func reloadData (gameSession: GameSessionProtocol) {
@@ -58,25 +57,6 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         questionViewController.reloadData(question: gameSession.currentQuestion)
     }
     
-//    override func viewDidDisappear(_ animated: Bool) {
-//        GameSession.shared
-//            .counterOfRightAnswers
-//            .removeObserver(self)
-//    }
-    
-//    private func addObserverToGameSession() {
-//        GameSession.shared
-//            .counterOfRightAnswers
-//            .addObserver(self, closure: { [weak self] number, _ in
-//                guard let self = self else {return}
-//                if number == GameSession.shared.numberOfRightAnswers {
-//                    // TODO: Change to completion handler
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-//                        self.gameDelegate.newGame()
-//                    }
-//                }
-//            })
-//    }
     
     private func makeGameEndAlert() {
         let alert = UIAlertController(title: "Молодец, малыш!",

@@ -32,7 +32,6 @@ class GameAnswersViewController: UIViewController {
     }
     
     func reloadCollectionView () {
-        guard let gameAnswersView = self.view as? GameAnswersView else {return}
         gameAnswersView.reloadCollectionView()
     }
 

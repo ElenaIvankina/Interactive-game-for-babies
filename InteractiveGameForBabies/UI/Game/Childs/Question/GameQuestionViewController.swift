@@ -38,7 +38,6 @@ class GameQuestionViewController: UIViewController {
         let gameQuestionView = GameQuestionView(typeOfGame: self.typeOfGame)
         gameQuestionView?.delegate = self
         view = gameQuestionView
-        view.layoutIfNeeded()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

@@ -14,13 +14,6 @@ enum TypeOfGame: Int {
     case figureGame
 }
 
-//enum MediaType {
-//    case sound
-//    case image
-//    case text
-//    case none
-//}
-
 
 protocol GameStrategyProtocol {
     static func setUpGameSession(typeOfGame: TypeOfGame)
@@ -29,8 +22,6 @@ protocol GameStrategyProtocol {
 class GameStrategy: GameStrategyProtocol {
     
     static func clearGameSession () {
-
-//        GameSession.shared.counterOfRightAnswers.value = 0
         GameSession.shared.counterOfRightAnswers = 0
         
     }
