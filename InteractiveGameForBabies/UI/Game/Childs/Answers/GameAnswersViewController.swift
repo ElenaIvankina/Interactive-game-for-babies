@@ -9,7 +9,7 @@ import UIKit
 
 class GameAnswersViewController: UIViewController {
 
-    lazy private var gameAnswersView = GameAnswersView()
+    lazy var gameAnswersView = GameAnswersView()
 
     private var delegate: GameDelegate
 
