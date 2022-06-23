@@ -42,7 +42,7 @@ class GameSession: GameSessionProtocol {
     
     var counterOfRightAnswers: Int = 0 {
         didSet {
-            if counterOfRightAnswers == numberOfRightAnswers {
+            if counterOfRightAnswers == numberOfRightAnswers && counterOfRightAnswers != 0 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                     guard let vc = self.gameViewController as? GameViewController else {return}
                     vc.gameDelegate.newGame()
