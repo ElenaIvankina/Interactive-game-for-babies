@@ -9,7 +9,7 @@ import UIKit
 
 class GameAnswersViewController: UIViewController {
 
-    lazy private var gameAnswersView = GameAnswersView()
+    lazy var gameAnswersView = GameAnswersView()
 
     private var delegate: GameDelegate
 
@@ -30,11 +30,10 @@ class GameAnswersViewController: UIViewController {
         super.viewDidLoad()
         setDelegate()
     }
-    
+
     func reloadCollectionView () {
         gameAnswersView.reloadCollectionView()
     }
-
 
     private func setDelegate() {
         gameAnswersView.setDelegate(delegate: delegate)

@@ -14,20 +14,19 @@ enum TypeOfGame: Int {
     case figureGame
 }
 
-
 protocol GameStrategyProtocol {
     static func setUpGameSession(typeOfGame: TypeOfGame)
 }
 
 class GameStrategy: GameStrategyProtocol {
-    
+
     static func clearGameSession () {
         GameSession.shared.counterOfRightAnswers = 0
-        
+
     }
 
     static func setUpGameSession (typeOfGame: TypeOfGame) {
-        
+
         clearGameSession()
 
         switch typeOfGame {

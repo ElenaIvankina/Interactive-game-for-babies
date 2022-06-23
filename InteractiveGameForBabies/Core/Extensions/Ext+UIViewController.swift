@@ -21,4 +21,14 @@ extension UIViewController {
 
         return totalHeight
     }
+
+    func setGradientBackground() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor.gradientStart.cgColor, UIColor.gradientEnd.cgColor]
+        gradientLayer.shouldRasterize = true
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        view.layer.addSublayer(gradientLayer)
+    }
 }
