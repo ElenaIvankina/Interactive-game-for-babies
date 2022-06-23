@@ -9,7 +9,7 @@ import UIKit
 
 class GameViewControllerBuilder {
 
-    func buildGameSession(typeOfGame: TypeOfGame) {
+    func buildNewGameSession(typeOfGame: TypeOfGame) {
         GameStrategy.setUpGameSession(typeOfGame: typeOfGame)
         GameSession.shared.currentQuestion = GameSession.shared.getRandomQuestion(questionsArray: GameSession.shared.questionsArray)
         GameSession.shared.currentRandomCards = GameSession.shared.getRandomCards(cardsArray: GameSession.shared.cardsArray)
@@ -19,9 +19,10 @@ class GameViewControllerBuilder {
     }
 
     func buildGame(typeOfGame: TypeOfGame) -> GameViewController {
-        buildGameSession(typeOfGame: typeOfGame)
+        buildNewGameSession(typeOfGame: typeOfGame)
         let gameDelegate = GameDelegate()
         let viewController = GameViewController(gameDelegate: gameDelegate, typeOfGame: typeOfGame)
+        GameSession.shared.gameViewController = viewController
         gameDelegate.gameViewController = viewController
         return viewController
     }

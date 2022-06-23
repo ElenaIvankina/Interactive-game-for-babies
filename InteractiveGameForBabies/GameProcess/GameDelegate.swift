@@ -22,20 +22,16 @@ class GameDelegate {
     }
 
     func handlingRightAnswer() {
-        
-        GameSession.shared.counterOfRightAnswers.value += 1
+        GameSession.shared.counterOfRightAnswers += 1
     }
 
     func newGame() {
-        let navigationVC = gameViewController?.navigationController
-        guard let typeOfGame = gameViewController?.typeOfGame else { return }
-        var newGameVC: GameViewControllerProtocol?
+        
+        guard let vc = gameViewController as? GameViewController else {return}
         let gameVCBuilder = GameViewControllerBuilder()
-        newGameVC = gameVCBuilder.buildGame(typeOfGame: typeOfGame)
+        gameVCBuilder.buildNewGameSession(typeOfGame: vc.typeOfGame)
+        vc.reloadData(gameSession: GameSession.shared)
 
-        if let newGameVC = newGameVC {
-            navigationVC?.pushViewController(newGameVC, animated: true)
-        }
     }
 
     func endGame() {

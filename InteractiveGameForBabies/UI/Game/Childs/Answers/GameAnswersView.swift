@@ -23,7 +23,6 @@ class GameAnswersView: UIView {
         return collectionView
     }()
 
-//    private var cards = [CardProtocol]()
     private weak var delegate: GameDelegate?
     
     private enum Constants {
@@ -39,13 +38,13 @@ class GameAnswersView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-//    func setCards(cards: [CardProtocol]) {
-//        self.cards = cards
-//        collectionView.reloadData()
-//    }
 
     func setDelegate(delegate: GameDelegate) {
         self.delegate = delegate
+    }
+    
+    func reloadCollectionView () {
+        self.collectionView.reloadData()
     }
 
     private func setupView() {
@@ -89,7 +88,7 @@ extension GameAnswersView: UICollectionViewDataSource {
             fatalError("Cell for item at \(indexPath) has not been implemented")
         }
         
-        cell.configure(with: indexPath)
+        cell.configure(with: GameSession.shared.currentRandomCards[indexPath.row])
 
         return cell
     }

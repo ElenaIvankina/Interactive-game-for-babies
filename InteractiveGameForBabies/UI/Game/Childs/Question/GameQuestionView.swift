@@ -13,6 +13,8 @@ class GameQuestionView: UIView {
     private let typeOfGame: TypeOfGame
     weak var delegate: GameQuestionViewControllerDelegate?
     
+   
+    
     private let questionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +59,15 @@ class GameQuestionView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setQuestion(text: String) {
+        questionLabel.text = text
+    }
+    
+    func setQuestionImage(imageName: String) {
+        guard let imageView = questionImage else { return }
+        imageView.image = UIImage(named: imageName)
     }
     
     private func addQuestionUILabel(text: String) {
@@ -149,6 +160,7 @@ class GameQuestionView: UIView {
             addPlaySoundButton()
         }
     }
+
     
     @objc
     func handlePlaySoundButton(sender: AnyObject) {

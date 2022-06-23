@@ -15,7 +15,7 @@ protocol GameQuestionViewControllerDelegate: AnyObject {
 
 class GameQuestionViewController: UIViewController {
     
-    private var gameQuestionView: GameQuestionView?
+    private lazy var gameQuestionView = GameQuestionView(typeOfGame: self.typeOfGame)
     private let typeOfGame: TypeOfGame
     
     private var player: AVPlayer?
@@ -35,18 +35,32 @@ class GameQuestionViewController: UIViewController {
     }
     
     override func loadView() {
-        let gameQuestionView = GameQuestionView(typeOfGame: self.typeOfGame)
+        //        let gameQuestionView = GameQuestionView(typeOfGame: self.typeOfGame)
         gameQuestionView?.delegate = self
         view = gameQuestionView
-        view.layoutIfNeeded()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        didTapPlayButton(isPlaying: true)
-        if player != nil {
-            NotificationCenter.default.removeObserver(self)
-        }
         super.viewDidDisappear(animated)
+        stopPlayer()
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func reloadData(question: QuestionProtocol) {
+        guard let questionView = self.view as? GameQuestionView else {return}
+        
+        questionView.setQuestion(text: question.questionText)
+        questionView.setQuestionImage(imageName: question.card.imageName)
+        stopPlayer()
+    }
+    
+    private func stopPlayer() {
+        guard let player = self.player else { return }
+        
+        if player.timeControlStatus == .playing {
+            gameQuestionView?.changePlayButtonState()
+        }
+        didTapPlayButton(isPlaying: true)
     }
 }
 
