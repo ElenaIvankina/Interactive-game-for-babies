@@ -107,6 +107,5 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
         } else {
             cell.animateWrongAnswer()
         }
-        print("cell clicked at \(indexPath)")
     }
 }

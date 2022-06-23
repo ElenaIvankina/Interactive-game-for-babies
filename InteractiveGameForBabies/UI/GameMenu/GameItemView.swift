@@ -51,7 +51,8 @@ class GameItemView: UIView {
         startGameButton.image = image
     }
 
-    func addButtonTarget(target: Any?, action: Selector) {
+    func addButtonTarget(target: Any?, action: Selector, typeOfGame: TypeOfGame) {
+        startGameButton.tag = typeOfGame.rawValue
         startGameButton.addTarget(target,
                                   action: action,
                                   for: .touchUpInside)
