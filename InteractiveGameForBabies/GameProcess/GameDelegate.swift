@@ -23,7 +23,8 @@ class GameDelegate {
 
     func handlingRightAnswer() {
         
-        GameSession.shared.counterOfRightAnswers.value += 1
+//        GameSession.shared.counterOfRightAnswers.value += 1
+        GameSession.shared.counterOfRightAnswers += 1
     }
 
     func newGame() {

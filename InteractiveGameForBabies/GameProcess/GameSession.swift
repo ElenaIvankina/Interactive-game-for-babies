@@ -15,7 +15,8 @@ protocol GameSessionProtocol: AnyObject {
     var currentQuestion: QuestionProtocol { get set }
     var currentRandomCards: [CardProtocol] { get }
     var numberOfRightAnswers: Int { get }
-    var counterOfRightAnswers: Observable<Int> { get set }
+//    var counterOfRightAnswers: Observable<Int> { get set }
+    var counterOfRightAnswers: Int { get set }
 }
 
 class GameSession: GameSessionProtocol {
@@ -35,9 +36,23 @@ class GameSession: GameSessionProtocol {
                                                                             sound: ""))
 
     var currentRandomCards: [CardProtocol] = []
+    
+    var gameViewController: GameViewControllerProtocol?
 
     var numberOfRightAnswers = 0
-    var counterOfRightAnswers: Observable<Int> = Observable(0)
+//    var counterOfRightAnswers: Observable<Int> = Observable(0)
+    var counterOfRightAnswers: Int = 0 {
+        didSet {
+            if counterOfRightAnswers == numberOfRightAnswers {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [weak self] in
+                    guard let self = self else {return}
+                    guard let vc = self.gameViewController as? GameViewController else {return}
+                    vc.gameDelegate.newGame()
+                }
+            
+        }
+    }
+    }
 
     func getRandomQuestion(questionsArray: [QuestionProtocol]) -> QuestionProtocol {
         if let randomQuestion = questionsArray.randomElement() {

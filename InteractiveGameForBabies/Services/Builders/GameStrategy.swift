@@ -30,7 +30,8 @@ class GameStrategy: GameStrategyProtocol {
     
     static func clearGameSession () {
 
-        GameSession.shared.counterOfRightAnswers.value = 0
+//        GameSession.shared.counterOfRightAnswers.value = 0
+        GameSession.shared.counterOfRightAnswers = 0
         
     }
 
