@@ -14,7 +14,6 @@ extension Array where Element == CardProtocol {
 
         if countElements < 1 || self.isEmpty { return arr }
 
-        // let countCorrectElements = Int.random(in: 1..<countElements)
         let countCorrectElements = Int.random(in: 1...3)
         arr = self
             .filter({ $0.isEqualTo(sample) })

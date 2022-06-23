@@ -13,15 +13,10 @@ class GameItemView: UIView {
     private var startGameButton: StartGameButton = {
         let button = StartGameButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.bgColor = UIColor.rgba(1.0,
-                                      0.533,
-                                      0.153,
-                                      alpha: 1.0)
-        button.borderColor = UIColor.rgba(0.741,
-                                          0.031,
-                                          0.106,
-                                          alpha: 1.0)
-        button.layer.borderWidth = 2
+        button.bgColor = .gameButton
+        button.layer.cornerRadius = 20
+        // button.layer.borderWidth = 1
+        button.borderColor = .gameButtonBorder
         return button
     }()
 
@@ -30,7 +25,7 @@ class GameItemView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
         label.numberOfLines = 0
-        label.textColor = .label
+        label.textColor = .gameNameText
         label.textAlignment = .center
         return label
     }()

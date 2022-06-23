@@ -9,7 +9,7 @@ import UIKit
 
 class GameMenuViewController: UIViewController {
     let gameVCBuilder = GameViewControllerBuilder()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -23,6 +23,7 @@ class GameMenuViewController: UIViewController {
         let label = UILabel()
         label.text = "Привет, малыш! 👋"
         label.textAlignment = .center
+        label.textColor = .mainText
         label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -32,6 +33,7 @@ class GameMenuViewController: UIViewController {
         let label = UILabel()
         label.text = "Выбери игру"
         label.textAlignment = .center
+        label.textColor = .mainText
         label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -95,13 +97,7 @@ class GameMenuViewController: UIViewController {
     }()
 
     private func setBackgroundView() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = view.bounds
-        gradientLayer.colors = [#colorLiteral(red: 0.5790637732, green: 0.6192606091, blue: 0.9909513593, alpha: 1).cgColor, #colorLiteral(red: 0.2345913351, green: 0.7455343008, blue: 0.9952169061, alpha: 1).cgColor]
-        gradientLayer.shouldRasterize = true
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-        view.layer.addSublayer(gradientLayer)
+        setGradientBackground()
 
         let imageView = UIImageView(frame: view.bounds)
         imageView.contentMode = .scaleAspectFit
