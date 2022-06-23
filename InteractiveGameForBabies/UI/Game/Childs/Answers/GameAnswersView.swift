@@ -9,7 +9,7 @@ import SwiftUI
 
 class GameAnswersView: UIView {
 
-    private var collectionView: UICollectionView = {
+    var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: AnswersCollectionViewLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInsetAdjustmentBehavior = .always
@@ -23,7 +23,6 @@ class GameAnswersView: UIView {
         return collectionView
     }()
 
-//    private var cards = [CardProtocol]()
     private weak var delegate: GameDelegate?
     
     private enum Constants {
@@ -39,10 +38,6 @@ class GameAnswersView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-//    func setCards(cards: [CardProtocol]) {
-//        self.cards = cards
-//        collectionView.reloadData()
-//    }
 
     func setDelegate(delegate: GameDelegate) {
         self.delegate = delegate
@@ -89,7 +84,7 @@ extension GameAnswersView: UICollectionViewDataSource {
             fatalError("Cell for item at \(indexPath) has not been implemented")
         }
         
-        cell.configure(with: indexPath)
+        cell.configure(with: GameSession.shared.currentRandomCards[indexPath.row])
 
         return cell
     }

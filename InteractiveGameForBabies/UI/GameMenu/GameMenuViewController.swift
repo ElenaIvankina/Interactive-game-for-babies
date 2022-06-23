@@ -87,6 +87,7 @@ class GameMenuViewController: UIViewController {
 
                 stackViewH.addArrangedSubview(view)
             }
+            
 
             stackView.addArrangedSubview(stackViewH)
         }

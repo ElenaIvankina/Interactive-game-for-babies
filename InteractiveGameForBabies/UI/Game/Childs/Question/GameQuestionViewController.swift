@@ -15,7 +15,7 @@ protocol GameQuestionViewControllerDelegate: AnyObject {
 
 class GameQuestionViewController: UIViewController {
     
-    private var gameQuestionView: GameQuestionView?
+    var gameQuestionView: GameQuestionView?
     private let typeOfGame: TypeOfGame
     
     private var player: AVPlayer?
@@ -47,6 +47,12 @@ class GameQuestionViewController: UIViewController {
             NotificationCenter.default.removeObserver(self)
         }
         super.viewDidDisappear(animated)
+    }
+    
+    func reloadData() {
+        guard let questionView = gameQuestionView else {return}
+        questionView.setQuestion(text: GameSession.shared.currentQuestion.questionText)
+        questionView.setQuestionImage(imageName: GameSession.shared.currentQuestion.card.imageName)
     }
 }
 

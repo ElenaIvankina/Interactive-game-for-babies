@@ -29,9 +29,9 @@ class AnswerCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with indexPath: IndexPath) {
+    func configure(with card: CardProtocol) {
 
-        if let image: UIImage = UIImage(named: GameSession.shared.currentRandomCards[indexPath.row].imageName) {
+        if let image: UIImage = UIImage(named: card.imageName) {
             cardImageView.image = image
         }
         
@@ -63,6 +63,7 @@ class AnswerCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         cardImageView.image = nil
+        self.isUserInteractionEnabled = true
     }
     
     func animateRightAnswer() {

@@ -9,17 +9,19 @@ import UIKit
 
 class GameViewControllerBuilder {
 
-    func buildGameSession(typeOfGame: TypeOfGame) {
+    func buildNewGameSession(typeOfGame: TypeOfGame) {
         GameStrategy.setUpGameSession(typeOfGame: typeOfGame)
         GameSession.shared.currentQuestion = GameSession.shared.getRandomQuestion(questionsArray: GameSession.shared.questionsArray)
+        print(GameSession.shared.currentQuestion)
         GameSession.shared.currentRandomCards = GameSession.shared.getRandomCards(cardsArray: GameSession.shared.cardsArray)
+        print(GameSession.shared.currentRandomCards)
         GameSession.shared.numberOfRightAnswers = GameSession.shared.countRightAnswers(
             sample: GameSession.shared.currentQuestion.card,
             cards: GameSession.shared.currentRandomCards)
     }
 
     func buildGame(typeOfGame: TypeOfGame) -> GameViewController {
-        buildGameSession(typeOfGame: typeOfGame)
+        buildNewGameSession(typeOfGame: typeOfGame)
         let gameDelegate = GameDelegate()
         let viewController = GameViewController(gameDelegate: gameDelegate, typeOfGame: typeOfGame)
         gameDelegate.gameViewController = viewController

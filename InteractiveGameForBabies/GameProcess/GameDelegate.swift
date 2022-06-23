@@ -27,15 +27,24 @@ class GameDelegate {
     }
 
     func newGame() {
-        let navigationVC = gameViewController?.navigationController
-        guard let typeOfGame = gameViewController?.typeOfGame else { return }
-        var newGameVC: GameViewControllerProtocol?
+        
+        guard let vc = gameViewController as? GameViewController else {return}
         let gameVCBuilder = GameViewControllerBuilder()
-        newGameVC = gameVCBuilder.buildGame(typeOfGame: typeOfGame)
-
-        if let newGameVC = newGameVC {
-            navigationVC?.pushViewController(newGameVC, animated: true)
-        }
+        gameVCBuilder.buildNewGameSession(typeOfGame: vc.typeOfGame)
+        vc.answersViewController.gameAnswersView.collectionView.reloadData()
+        vc.questionViewController.reloadData()
+        
+        
+        
+//        let navigationVC = gameViewController?.navigationController
+//        guard let typeOfGame = gameViewController?.typeOfGame else { return }
+//        var newGameVC: GameViewControllerProtocol?
+//        let gameVCBuilder = GameViewControllerBuilder()
+//        newGameVC = gameVCBuilder.buildGame(typeOfGame: typeOfGame)
+//
+//        if let newGameVC = newGameVC {
+//            navigationVC?.pushViewController(newGameVC, animated: true)
+//        }
     }
 
     func endGame() {
