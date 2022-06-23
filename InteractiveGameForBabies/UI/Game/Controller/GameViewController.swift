@@ -53,6 +53,11 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         addObserverToGameSession()
     }
     
+    func reloadData (gameSession: GameSessionProtocol) {
+        answersViewController.reloadCollectionView()
+        questionViewController.reloadData(question: gameSession.currentQuestion)
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         GameSession.shared
             .counterOfRightAnswers

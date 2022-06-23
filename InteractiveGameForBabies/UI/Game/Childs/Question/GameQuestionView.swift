@@ -15,7 +15,7 @@ class GameQuestionView: UIView {
     
    
     
-    private var questionLabel: UILabel = {
+    private let questionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -25,7 +25,7 @@ class GameQuestionView: UIView {
         return label
     }()
     
-    private var questionImage: UIImageView? = {
+    private let questionImage: UIImageView? = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView

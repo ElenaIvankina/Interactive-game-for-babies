@@ -9,7 +9,7 @@ import SwiftUI
 
 class GameAnswersView: UIView {
 
-    var collectionView: UICollectionView = {
+    private var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: AnswersCollectionViewLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInsetAdjustmentBehavior = .always
@@ -41,6 +41,10 @@ class GameAnswersView: UIView {
 
     func setDelegate(delegate: GameDelegate) {
         self.delegate = delegate
+    }
+    
+    func reloadCollectionView () {
+        self.collectionView.reloadData()
     }
 
     private func setupView() {

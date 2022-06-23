@@ -31,10 +31,8 @@ class GameDelegate {
         guard let vc = gameViewController as? GameViewController else {return}
         let gameVCBuilder = GameViewControllerBuilder()
         gameVCBuilder.buildNewGameSession(typeOfGame: vc.typeOfGame)
-        vc.answersViewController.gameAnswersView.collectionView.reloadData()
-        vc.questionViewController.reloadData()
-        
-        
+        vc.reloadData(gameSession: GameSession.shared)
+
         
 //        let navigationVC = gameViewController?.navigationController
 //        guard let typeOfGame = gameViewController?.typeOfGame else { return }
