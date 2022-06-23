@@ -19,7 +19,7 @@ protocol GameSessionProtocol: AnyObject {
 }
 
 class GameSession: GameSessionProtocol {
-    
+
     static let shared = GameSession()
     
     private init() {
@@ -35,11 +35,11 @@ class GameSession: GameSessionProtocol {
                                                                             sound: ""))
     
     var currentRandomCards: [CardProtocol] = []
-    
+
     var gameViewController: GameViewControllerProtocol?
     
     var numberOfRightAnswers = 0
-    
+
     var counterOfRightAnswers: Int = 0 {
         didSet {
             if counterOfRightAnswers == numberOfRightAnswers && counterOfRightAnswers != 0 {
@@ -50,7 +50,7 @@ class GameSession: GameSessionProtocol {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                     vc.gameDelegate.newGame()
                 }
-            }
+
         }
     }
     

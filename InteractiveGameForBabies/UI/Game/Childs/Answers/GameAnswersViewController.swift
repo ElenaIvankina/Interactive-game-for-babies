@@ -30,11 +30,10 @@ class GameAnswersViewController: UIViewController {
         super.viewDidLoad()
         setDelegate()
     }
-    
+
     func reloadCollectionView () {
         gameAnswersView.reloadCollectionView()
     }
-
 
     private func setDelegate() {
         gameAnswersView.setDelegate(delegate: delegate)

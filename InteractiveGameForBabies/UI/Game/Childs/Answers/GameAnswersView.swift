@@ -15,7 +15,7 @@ class GameAnswersView: UIView {
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         collectionView.isUserInteractionEnabled = true
         
         collectionView.register(AnswerCell.self, forCellWithReuseIdentifier: AnswerCell.reuseId)
@@ -24,7 +24,7 @@ class GameAnswersView: UIView {
     }()
     
     private weak var delegate: GameDelegate?
-    
+
     private enum Constants {
         static let inset: CGFloat = 4
     }
@@ -39,12 +39,11 @@ class GameAnswersView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
+
     func setDelegate(delegate: GameDelegate) {
         self.delegate = delegate
     }
-    
+
     func reloadCollectionView () {
         self.collectionView.reloadData()
         self.collectionView.performBatchUpdates(nil) { result in
@@ -102,7 +101,7 @@ extension GameAnswersView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnswerCell.reuseId, for: indexPath) as? AnswerCell else {
             fatalError("Cell for item at \(indexPath) has not been implemented")
         }
-        
+
         cell.configure(with: GameSession.shared.currentRandomCards[indexPath.row])
         
         return cell
