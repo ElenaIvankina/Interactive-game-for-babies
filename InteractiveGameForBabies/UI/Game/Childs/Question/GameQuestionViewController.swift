@@ -50,7 +50,8 @@ class GameQuestionViewController: UIViewController {
     }
     
     func reloadData() {
-        guard let questionView = gameQuestionView else {return}
+        guard let questionView = self.view as? GameQuestionView else {return}
+        
         questionView.setQuestion(text: GameSession.shared.currentQuestion.questionText)
         questionView.setQuestionImage(imageName: GameSession.shared.currentQuestion.card.imageName)
     }
