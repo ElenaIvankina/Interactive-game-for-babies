@@ -43,6 +43,7 @@ class GameQuestionViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         stopPlayer()
+        NotificationCenter.default.removeObserver(self)
     }
     
     func reloadData(question: QuestionProtocol) {
@@ -60,7 +61,6 @@ class GameQuestionViewController: UIViewController {
             gameQuestionView?.changePlayButtonState()
         }
         didTapPlayButton(isPlaying: true)
-        NotificationCenter.default.removeObserver(self)
     }
 }
 
