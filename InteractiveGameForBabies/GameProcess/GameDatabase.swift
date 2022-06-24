@@ -172,8 +172,42 @@ class GameDatabase {
                       questionText: "Нажми на все картинки, где предметов много")
     ]
 
-    var figureCards: [FigureCard] = []
+    var figureCards: [FigureCard] = [
+        FigureCard(imageName: "circleA", figure: .circle),
+        FigureCard(imageName: "diamondA", figure: .diamond),
+        FigureCard(imageName: "eightangleA", figure: .eightangle),
+        FigureCard(imageName: "fiveangleA", figure: .fiveangle),
+        FigureCard(imageName: "heartA", figure: .heart),
+        FigureCard(imageName: "nineangleA", figure: .nineangle),
+        FigureCard(imageName: "ovalA", figure: .oval),
+        FigureCard(imageName: "parallelogramA", figure: .parallelogram),
+        FigureCard(imageName: "rectangleA", figure: .rectangle),
+        FigureCard(imageName: "semicircleA", figure: .semicircle),
+        FigureCard(imageName: "sevenangleA", figure: .sevenangle),
+        FigureCard(imageName: "sixangleA", figure: .sixangle),
+        FigureCard(imageName: "squareA", figure: .square),
+        FigureCard(imageName: "starA", figure: .star),
+        FigureCard(imageName: "trapezoidA", figure: .trapezoid),
+        FigureCard(imageName: "triangleA", figure: .triangle)
+    ]
 
-    var figureQuestions: [FigureQuestion] = []
+    var figureQuestions: [FigureQuestion] = [
+        FigureQuestion(card: FigureCard(imageName: "circleQ", figure: .circle)),
+        FigureQuestion(card: FigureCard(imageName: "diamondQ", figure: .diamond)),
+        FigureQuestion(card: FigureCard(imageName: "eightangleQ", figure: .eightangle)),
+        FigureQuestion(card: FigureCard(imageName: "fiveangleQ", figure: .fiveangle)),
+        FigureQuestion(card: FigureCard(imageName: "heartQ", figure: .heart)),
+        FigureQuestion(card: FigureCard(imageName: "nineangleQ", figure: .nineangle)),
+        FigureQuestion(card: FigureCard(imageName: "ovalQ", figure: .oval)),
+        FigureQuestion(card: FigureCard(imageName: "parallelogramQ", figure: .parallelogram)),
+        FigureQuestion(card: FigureCard(imageName: "rectangleQ", figure: .rectangle)),
+        FigureQuestion(card: FigureCard(imageName: "semicircleQ", figure: .semicircle)),
+        FigureQuestion(card: FigureCard(imageName: "sevenangleQ", figure: .sevenangle)),
+        FigureQuestion(card: FigureCard(imageName: "sixangleQ", figure: .sixangle)),
+        FigureQuestion(card: FigureCard(imageName: "squareQ", figure: .square)),
+        FigureQuestion(card: FigureCard(imageName: "starQ", figure: .star)),
+        FigureQuestion(card: FigureCard(imageName: "trapezoidQ", figure: .trapezoid)),
+        FigureQuestion(card: FigureCard(imageName: "triangleQ", figure: .triangle))
+    ]
 
 }
