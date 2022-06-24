@@ -47,7 +47,7 @@
 		0A8D54AD285F714D0054B9B0 /* cat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5483285F70EF0054B9B0 /* cat.mp3 */; };
 		0A8D54AE285F714D0054B9B0 /* wolf.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5484285F70EF0054B9B0 /* wolf.mp3 */; };
 		0A8D54AF285F714D0054B9B0 /* mouse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5485285F70EF0054B9B0 /* mouse.mp3 */; };
-		0A8D54B0285F714D0054B9B0 /* hourse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5486285F70EF0054B9B0 /* hourse.mp3 */; };
+		0A8D54B0285F714D0054B9B0 /* horse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5486285F70EF0054B9B0 /* horse.mp3 */; };
 		0A8D54B1285F714D0054B9B0 /* frog.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5487285F70EF0054B9B0 /* frog.mp3 */; };
 		0A8D54B2285F714D0054B9B0 /* chicken.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5488285F70EF0054B9B0 /* chicken.mp3 */; };
 		0A8D54B3285F714D0054B9B0 /* cow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5489285F70EF0054B9B0 /* cow.mp3 */; };
@@ -127,7 +127,7 @@
 		0A8D5483285F70EF0054B9B0 /* cat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat.mp3; sourceTree = "<group>"; };
 		0A8D5484285F70EF0054B9B0 /* wolf.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wolf.mp3; sourceTree = "<group>"; };
 		0A8D5485285F70EF0054B9B0 /* mouse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mouse.mp3; sourceTree = "<group>"; };
-		0A8D5486285F70EF0054B9B0 /* hourse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hourse.mp3; sourceTree = "<group>"; };
+		0A8D5486285F70EF0054B9B0 /* horse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = horse.mp3; sourceTree = "<group>"; };
 		0A8D5487285F70EF0054B9B0 /* frog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = frog.mp3; sourceTree = "<group>"; };
 		0A8D5488285F70EF0054B9B0 /* chicken.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chicken.mp3; sourceTree = "<group>"; };
 		0A8D5489285F70EF0054B9B0 /* cow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cow.mp3; sourceTree = "<group>"; };
@@ -294,7 +294,7 @@
 				0A8D5483285F70EF0054B9B0 /* cat.mp3 */,
 				0A8D5484285F70EF0054B9B0 /* wolf.mp3 */,
 				0A8D5485285F70EF0054B9B0 /* mouse.mp3 */,
-				0A8D5486285F70EF0054B9B0 /* hourse.mp3 */,
+				0A8D5486285F70EF0054B9B0 /* horse.mp3 */,
 				0A8D5487285F70EF0054B9B0 /* frog.mp3 */,
 				0A8D5488285F70EF0054B9B0 /* chicken.mp3 */,
 				0A8D5489285F70EF0054B9B0 /* cow.mp3 */,
@@ -595,7 +595,7 @@
 				0A8D54AD285F714D0054B9B0 /* cat.mp3 in Resources */,
 				0A8D54AE285F714D0054B9B0 /* wolf.mp3 in Resources */,
 				0A8D54AF285F714D0054B9B0 /* mouse.mp3 in Resources */,
-				0A8D54B0285F714D0054B9B0 /* hourse.mp3 in Resources */,
+				0A8D54B0285F714D0054B9B0 /* horse.mp3 in Resources */,
 				0A8D54B1285F714D0054B9B0 /* frog.mp3 in Resources */,
 				0A8D54B2285F714D0054B9B0 /* chicken.mp3 in Resources */,
 				0A8D54B3285F714D0054B9B0 /* cow.mp3 in Resources */,

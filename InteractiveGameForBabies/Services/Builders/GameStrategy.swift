@@ -29,6 +29,8 @@ class GameStrategy: GameStrategyProtocol {
 
         clearGameSession()
 
+        GameSession.shared.numberOfCardsInSession = 6
+        
         switch typeOfGame {
         case .speakAnimalGame:
             GameSession.shared.questionsArray = GameDatabase.shared.animalQuestions
@@ -42,6 +44,7 @@ class GameStrategy: GameStrategyProtocol {
         case .figureGame:
             GameSession.shared.questionsArray = GameDatabase.shared.figureQuestions
             GameSession.shared.cardsArray = GameDatabase.shared.figureCards
+            GameSession.shared.numberOfCardsInSession = 4
         }
     }
 }
