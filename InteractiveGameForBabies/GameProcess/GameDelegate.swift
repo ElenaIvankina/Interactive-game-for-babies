@@ -30,8 +30,7 @@ class GameDelegate {
         guard let vc = gameViewController as? GameViewController else {return}
         let gameVCBuilder = GameViewControllerBuilder()
         gameVCBuilder.buildNewGameSession(typeOfGame: vc.typeOfGame)
-        vc.reloadData(gameSession: GameSession.shared)
-
+        vc.reloadData(gameSession: GameSession.shared)        
     }
 
     func endGame() {

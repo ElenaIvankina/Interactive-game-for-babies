@@ -12,10 +12,18 @@ class GameViewControllerBuilder {
     func buildNewGameSession(typeOfGame: TypeOfGame) {
         GameStrategy.setUpGameSession(typeOfGame: typeOfGame)
         GameSession.shared.currentQuestion = GameSession.shared.getRandomQuestion(questionsArray: GameSession.shared.questionsArray)
-        GameSession.shared.currentRandomCards = GameSession.shared.getRandomCards(cardsArray: GameSession.shared.cardsArray)
-        GameSession.shared.numberOfRightAnswers = GameSession.shared.countRightAnswers(
-            sample: GameSession.shared.currentQuestion.card,
-            cards: GameSession.shared.currentRandomCards)
+        
+        switch typeOfGame {
+            case .colorGame,.countGame,.speakAnimalGame:
+                GameSession.shared.currentRandomCards = GameSession.shared.getRandomCards(cardsArray: GameSession.shared.cardsArray)
+                GameSession.shared.numberOfRightAnswers = GameSession.shared.countRightAnswers(
+                    sample: GameSession.shared.currentQuestion.card,
+                    cards: GameSession.shared.currentRandomCards)
+            case .figureGame:
+                GameSession.shared.currentRandomCards = GameSession.shared.findFigureAnswerToQuestion()
+                GameSession.shared.numberOfRightAnswers = GameSession.shared.numberOfCardsInSession
+        }
+        
     }
 
     func buildGame(typeOfGame: TypeOfGame) -> GameViewController {

@@ -140,6 +140,12 @@ class GameQuestionView: UIView {
                 .constraint(equalTo: playButton.leadingAnchor)
         ])
     }
+    
+    private func addFigureCards() {
+        NSLayoutConstraint.activate([
+            questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
 
     private func setupViews() {
         let question = GameSession.shared.currentQuestion
@@ -158,6 +164,10 @@ class GameQuestionView: UIView {
 
         if let _ = question.card as? AnimalCard {
             addPlaySoundButton()
+        }
+        
+        if let _ = question.card as? FigureCard {
+            addFigureCards()
         }
     }
 
