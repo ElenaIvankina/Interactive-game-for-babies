@@ -60,6 +60,7 @@
 		0A8D54BA285F714D0054B9B0 /* elephant.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5490285F70EF0054B9B0 /* elephant.mp3 */; };
 		0A8D54BB285F714D0054B9B0 /* woodpecker.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5491285F70EF0054B9B0 /* woodpecker.mp3 */; };
 		0A8D54BD285FA2F00054B9B0 /* Ext+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D54BC285FA2F00054B9B0 /* Ext+UIViewController.swift */; };
+		0ABF7BB6286647EE0006FA30 /* GameFiguresAnswersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF7BB5286647EE0006FA30 /* GameFiguresAnswersView.swift */; };
 		B33428D328575CD7008600DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33428D228575CD7008600DB /* Assets.xcassets */; };
 		B33428D628575CD7008600DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B33428D428575CD7008600DB /* LaunchScreen.storyboard */; };
 		B33428E128575CD7008600DB /* InteractiveGameForBabiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428E028575CD7008600DB /* InteractiveGameForBabiesTests.swift */; };
@@ -140,6 +141,7 @@
 		0A8D5490285F70EF0054B9B0 /* elephant.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = elephant.mp3; sourceTree = "<group>"; };
 		0A8D5491285F70EF0054B9B0 /* woodpecker.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = woodpecker.mp3; sourceTree = "<group>"; };
 		0A8D54BC285FA2F00054B9B0 /* Ext+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIViewController.swift"; sourceTree = "<group>"; };
+		0ABF7BB5286647EE0006FA30 /* GameFiguresAnswersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFiguresAnswersView.swift; sourceTree = "<group>"; };
 		B33428C628575CD4008600DB /* InteractiveGameForBabies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InteractiveGameForBabies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33428C928575CD4008600DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B33428CB28575CD4008600DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				0A7A85BA285BC83F00D23883 /* GameAnswersView.swift */,
 				0A7A85BC285BC9D000D23883 /* GameAnswersViewController.swift */,
 				0A52DB7F285E2EBF00F79AE7 /* AnswersCollectionViewLayout.swift */,
+				0ABF7BB5286647EE0006FA30 /* GameFiguresAnswersView.swift */,
 			);
 			path = Answers;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				0A52DBA1285E531B00F79AE7 /* GameStrategy.swift in Sources */,
 				0A52DBA2285E531B00F79AE7 /* GameViewControllerBuilder.swift in Sources */,
 				0A52DBA4285E531B00F79AE7 /* ObservableOptions.swift in Sources */,
+				0ABF7BB6286647EE0006FA30 /* GameFiguresAnswersView.swift in Sources */,
 				B621A9B5286502F80083DD6E /* Animation.swift in Sources */,
 				0A52DBA5285E531B00F79AE7 /* Observable.swift in Sources */,
 				0A52DBA6285E531B00F79AE7 /* AnswerCell.swift in Sources */,

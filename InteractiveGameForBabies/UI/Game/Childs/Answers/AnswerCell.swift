@@ -46,6 +46,10 @@ class AnswerCell: UICollectionViewCell {
         }
 
     }
+    
+    func configure(with image: UIImage?) {
+        cardImageView.image = image
+    }
 
     private func setupView() {
         contentView.addSubview(cardImageView)
