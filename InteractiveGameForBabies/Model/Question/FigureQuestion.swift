@@ -9,5 +9,9 @@ import Foundation
 
 struct FigureQuestion: QuestionProtocol {
     var card: CardProtocol
-    var questionText: String
+    var questionText: String = "Нажми на фигуру, а затем на лягушку, которая держит макет для нее"
+    
+    init (card: FigureCard) {
+        self.card = card
+    }
 }

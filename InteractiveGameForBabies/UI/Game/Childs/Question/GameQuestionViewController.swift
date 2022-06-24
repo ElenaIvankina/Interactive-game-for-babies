@@ -35,9 +35,12 @@ class GameQuestionViewController: UIViewController {
     }
 
     override func loadView() {
-        //        let gameQuestionView = GameQuestionView(typeOfGame: self.typeOfGame)
-        gameQuestionView?.delegate = self
         view = gameQuestionView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        gameQuestionView.delegate = self
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -47,10 +50,8 @@ class GameQuestionViewController: UIViewController {
     }
 
     func reloadData(question: QuestionProtocol) {
-        guard let questionView = self.view as? GameQuestionView else {return}
-
-        questionView.setQuestion(text: question.questionText)
-        questionView.setQuestionImage(imageName: question.card.imageName)
+        gameQuestionView.setQuestion(text: question.questionText)
+        gameQuestionView.setQuestionImage(imageName: question.card.imageName)
         stopPlayer()
     }
 
@@ -58,7 +59,7 @@ class GameQuestionViewController: UIViewController {
         guard let player = self.player else { return }
 
         if player.timeControlStatus == .playing {
-            gameQuestionView?.changePlayButtonState()
+            gameQuestionView.changePlayButtonState()
         }
         didTapPlayButton(isPlaying: true)
     }
@@ -97,8 +98,6 @@ extension GameQuestionViewController: GameQuestionViewControllerDelegate {
 
     @objc
     func endPlaying() {
-        if let viewGameQuestionView = self.view as? GameQuestionView {
-            viewGameQuestionView.changePlayButtonState()
-        }
+            gameQuestionView.changePlayButtonState()
     }
 }

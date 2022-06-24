@@ -30,6 +30,7 @@ class GameSession: GameSessionProtocol {
     
     var numberOfCardsInSession = 6
     
+    //TODO убрать здесь значение, сделать опционалом
     var currentQuestion: QuestionProtocol = AnimalQuestion(card: AnimalCard(imageName: "animal1",
                                                                             animal: .camel,
                                                                             sound: ""))
@@ -52,6 +53,7 @@ class GameSession: GameSessionProtocol {
                 }
 
         }
+    }
     }
     
     func getRandomQuestion(questionsArray: [QuestionProtocol]) -> QuestionProtocol {

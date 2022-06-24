@@ -50,7 +50,7 @@ class GameQuestionView: UIView {
         static let imageSize: CGSize = CGSize(width: 64, height: 64)
     }
 
-    init?(typeOfGame: TypeOfGame) {
+    init(typeOfGame: TypeOfGame) {
         self.typeOfGame = typeOfGame
         super.init(frame: CGRect.zero)
         setupViews()
