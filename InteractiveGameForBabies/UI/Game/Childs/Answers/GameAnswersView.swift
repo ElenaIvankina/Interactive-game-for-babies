@@ -113,7 +113,7 @@ class GameAnswersView: UIView {
                                        trailing: Constants.itemInset)
             
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .fractionalHeight(0.3))
+                                                   heightDimension: .fractionalHeight(1.0 / 3.0))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
             
             let section = NSCollectionLayoutSection(group: group)
@@ -124,19 +124,34 @@ class GameAnswersView: UIView {
             
             return section
         }
-        
-        sectionsCount = 2
+ 
+        collectionView.collectionViewLayout = layout
         
         collectionView.dragDelegate = self
         collectionView.dropDelegate = self
         
-        collectionView.collectionViewLayout = layout
+        sectionsCount = 2
     }
     
     private func configureSingleLayout() {
-        sectionsCount = 1
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: Constants.itemInset,
+                                   leading: Constants.itemInset,
+                                   bottom: Constants.itemInset,
+                                   trailing: Constants.itemInset)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .fractionalHeight(1.0 / 3.0))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+ 
+        collectionView.collectionViewLayout = layout
         
-        collectionView.collectionViewLayout = AnswersCollectionViewLayout()
+        sectionsCount = 1
     }
     
     private func setupView() {
