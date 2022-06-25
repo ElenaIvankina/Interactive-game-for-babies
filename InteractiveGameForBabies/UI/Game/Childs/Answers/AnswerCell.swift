@@ -9,7 +9,6 @@ import UIKit
 
 class AnswerCell: UICollectionViewCell {
 
-    static let reuseId = "AnswerCell"
     private let borderColor = UIColor.answerCellBorder.cgColor
 
     private let cardImageView: UIImageView = {
@@ -46,7 +45,7 @@ class AnswerCell: UICollectionViewCell {
         }
 
     }
-
+    
     private func setupView() {
         contentView.addSubview(cardImageView)
 

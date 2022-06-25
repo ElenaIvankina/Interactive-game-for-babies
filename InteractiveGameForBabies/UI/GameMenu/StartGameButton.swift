@@ -80,13 +80,6 @@ class StartGameButton: UIButton {
     }
 
     public func makeNeuromorphic(cornerRadius: CGFloat = 20.0, superView: UIView? = nil) {
-
-        // let colorLight = UIColor(red: 227/255, green: 230/255, blue: 234/255, alpha: 1.0)
-        // let colorDark = UIColor(red: 26/255, green: 26/255, blue: 26/255, alpha: 1.0)
-
-        // let darkShadow = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0).cgColor
-        // let lightShadow = UIColor(red: 209/255, green: 217/255, blue: 230/255, alpha: 1.0).cgColor
-
         let darkShadow = darkShadowColor(.gameButton)
         let lightShadow = lightShadowColor(.gameButton)
 

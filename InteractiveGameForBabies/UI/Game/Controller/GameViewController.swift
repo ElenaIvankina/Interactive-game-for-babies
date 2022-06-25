@@ -93,10 +93,6 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
     private func configureNavigationController() {
         navigationItem.largeTitleDisplayMode = .never
 
-        if Double(UIDevice.current.systemVersion) ?? 0 < 14 {
-            print(UIDevice.current.systemVersion)
-        }
-
         if let navigationBar = navigationController?.navigationBar {
             let homeImage = UIImage(systemName: "house.fill")
             navigationBar.backIndicatorImage = homeImage
@@ -112,6 +108,11 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
                                             action: #selector(homeButtonTapped))
 
         navigationItem.leftBarButtonItem = newBackButton
+        
+        guard #available(iOS 15, *) else {
+            navigationController?.isNavigationBarHidden = true
+            return
+        }
     }
 
     @objc

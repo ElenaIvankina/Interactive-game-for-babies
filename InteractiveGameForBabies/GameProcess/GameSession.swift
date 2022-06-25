@@ -82,4 +82,15 @@ class GameSession: GameSessionProtocol {
         
         return count
     }
+    
+    func findFigureAnswerToQuestion() -> [CardProtocol] {
+        var arr: [CardProtocol] = []
+        guard let figureQuestion = GameSession.shared.currentQuestion as? FigureQuestion else { return arr}
+        for card in figureQuestion.cardsFigure {
+            if let figureCard = GameSession.shared.cardsArray.first(where: { $0.isEqualTo(card) }) {
+                arr.append(figureCard)
+            }
+        }
+        return arr.shuffled()
+    }
 }

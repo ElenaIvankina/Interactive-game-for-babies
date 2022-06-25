@@ -65,7 +65,7 @@ class GameQuestionView: UIView {
     }
 
     func setQuestionImage(imageName: String) {
-        guard let imageView = questionImage else { return }
+        guard let imageView = questionImage, imageName != "" else { return }
         imageView.image = UIImage(named: imageName)
     }
 
@@ -89,6 +89,7 @@ class GameQuestionView: UIView {
 
     private func addQuestionUIImageView(named: String) {
         guard let imageView = questionImage else { return }
+        print("gqv add \(named)")
         imageView.image = UIImage(named: named)
 
         addSubview(imageView)
@@ -140,6 +141,13 @@ class GameQuestionView: UIView {
                 .constraint(equalTo: playButton.leadingAnchor)
         ])
     }
+    
+    private func addFigureCards() {
+        NSLayoutConstraint.activate([
+            questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                    constant: Constants.trailing)
+        ])
+    }
 
     private func setupViews() {
         let question = GameSession.shared.currentQuestion
@@ -158,6 +166,10 @@ class GameQuestionView: UIView {
 
         if let _ = question.card as? AnimalCard {
             addPlaySoundButton()
+        }
+        
+        if let _ = question.card as? FigureCard {
+            addFigureCards()
         }
     }
 
