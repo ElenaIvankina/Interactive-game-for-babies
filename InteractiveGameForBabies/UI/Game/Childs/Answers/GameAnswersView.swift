@@ -9,25 +9,52 @@ import SwiftUI
 
 class GameAnswersView: UIView {
     
+    enum Section: Int, CaseIterable {
+        case figures
+        case answers
+        
+        var columnCount: Int {
+            switch self {
+            case .figures:
+                return 4
+            case .answers:
+                return 2
+            }
+        }
+        
+        var rowCount: Int {
+            switch self {
+            case .figures:
+                return 1
+            case .answers:
+                return 2
+            }
+        }
+    }
+    
+    private enum Constants {
+        static let inset: CGFloat = 4
+        static let itemInset: CGFloat = 2
+        static let sectionInset: CGFloat = 10
+    }
+    
     private var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: AnswersCollectionViewLayout())
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
         collectionView.isUserInteractionEnabled = true
+        collectionView.dragInteractionEnabled = true
         
         collectionView.register(registerClass: AnswerCell.self)
-
+        
         return collectionView
     }()
     
+    
     private weak var delegate: GameDelegate?
-
-    private enum Constants {
-        static let inset: CGFloat = 4
-    }
     
     private let isAnimation = true
     
@@ -36,14 +63,23 @@ class GameAnswersView: UIView {
         setupView()
     }
     
+    private var sections = [[NSCollectionLayoutGroup]]()
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     func setDelegate(delegate: GameDelegate) {
         self.delegate = delegate
+        
+        switch delegate.gameViewController?.typeOfGame {
+        case .figureGame:
+            configureFigureLayout()
+        default:
+            configureSingleLayout()
+        }
     }
-
+    
     func reloadCollectionView () {
         self.collectionView.reloadData()
         self.collectionView.performBatchUpdates(nil) { result in
@@ -61,11 +97,56 @@ class GameAnswersView: UIView {
         }
     }
     
+    private func configureFigureLayout() {
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
+            let columns = sectionKind.columnCount
+            let rows = sectionKind.rowCount
+            
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0 / CGFloat(columns)),
+                                                  heightDimension: .fractionalHeight(1.0 / CGFloat(rows)))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = .init(top: Constants.itemInset,
+                                       leading: Constants.itemInset,
+                                       bottom: Constants.itemInset,
+                                       trailing: Constants.itemInset)
+            
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .fractionalHeight(0.3))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = .init(top: Constants.sectionInset,
+                                          leading: Constants.sectionInset,
+                                          bottom: Constants.sectionInset,
+                                          trailing: Constants.sectionInset)
+            
+            return section
+        }
+        
+        sections.append([])
+        sections.append([])
+        
+        
+        collectionView.dragDelegate = self
+        collectionView.dropDelegate = self
+        
+        collectionView.collectionViewLayout = layout
+    }
+    
+    private func configureSingleLayout() {
+        sections.append([])
+        
+        collectionView.collectionViewLayout = AnswersCollectionViewLayout()
+    }
+    
     private func setupView() {
         addSubview(collectionView)
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         
         NSLayoutConstraint.activate([
             collectionView
@@ -86,11 +167,44 @@ class GameAnswersView: UIView {
                             constant: Constants.inset)
         ])
     }
+    
+    private func compareItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView) {
+        guard let item = coordinator.items.first,
+              let sourceIndexPath = item.sourceIndexPath,
+              let figureQuestion = GameSession.shared.currentQuestion as? FigureQuestion
+        else {
+            return
+        }
+        
+        // TODO check answer
+        print("Compare figure at \(sourceIndexPath) with frog at \(destinationIndexPath)")
+        
+        let selectCard = figureQuestion.cardsFigure[sourceIndexPath.row]
+        guard let resultCheck = delegate?.checkingAnswer(answerCard: selectCard),
+              resultCheck
+        else { return }
+        
+        collectionView.performBatchUpdates({
+            collectionView.deleteItems(at: [sourceIndexPath])
+            delegate?.handlingRightAnswer()
+        },
+                                           completion: nil)
+    }
 }
 
 extension GameAnswersView: UICollectionViewDelegate {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        sections.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if section == 0,
+           let figureQuestion = GameSession.shared.currentQuestion as? FigureQuestion {
+            return figureQuestion.cardsFigure.count - GameSession.shared.counterOfRightAnswers
+        }
+        
         return GameSession.shared.currentRandomCards.count
     }
 }
@@ -99,14 +213,61 @@ extension GameAnswersView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AnswerCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(with: GameSession.shared.currentRandomCards[indexPath.row])
+        
+        var card: CardProtocol = GameSession.shared.currentRandomCards[indexPath.row]
+        
+        if indexPath.section == 0,
+           let figureQuestion = GameSession.shared.currentQuestion as? FigureQuestion {
+            card = figureQuestion.cardsFigure[indexPath.row]
+        }
+        
+        cell.configure(with: card)
+        
         return cell
+    }
+}
+
+extension GameAnswersView: UICollectionViewDragDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        guard indexPath.section == 0  else { return [] }
+        
+        let dragItem = UIDragItem(itemProvider: NSItemProvider(object: "\(indexPath.row)" as NSString))
+        return [dragItem]
+    }
+}
+
+extension GameAnswersView: UICollectionViewDropDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+        if collectionView.hasActiveDrag {
+            return UICollectionViewDropProposal(operation: .move, intent: .unspecified)
+        }
+        
+        return UICollectionViewDropProposal(operation: .forbidden)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        
+        guard let destinationIndexPath = coordinator.destinationIndexPath,
+              coordinator.proposal.operation == .move
+        else {
+            return
+        }
+        
+        compareItems(coordinator: coordinator,
+                     destinationIndexPath: destinationIndexPath,
+                     collectionView: collectionView)
     }
 }
 
 extension GameAnswersView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            return
+        }
+           
         let selectCard = GameSession.shared.currentRandomCards[indexPath.row]
         guard let resultCheck = delegate?.checkingAnswer(answerCard: selectCard) else { return }
         guard let cell = collectionView.cellForItem(at: indexPath) as? AnswerCell else { return }
@@ -118,3 +279,4 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
         }
     }
 }
+
