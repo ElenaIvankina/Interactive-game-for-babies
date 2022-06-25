@@ -12,7 +12,6 @@ class GameDelegate {
     var gameViewController: GameViewControllerProtocol?
 
     func checkingAnswer(answerCard: CardProtocol) -> Bool {
-
         if GameSession.shared.currentQuestion.card.isEqualTo(answerCard) {
             handlingRightAnswer()
             return true
@@ -26,11 +25,10 @@ class GameDelegate {
     }
 
     func newGame() {
-
-        guard let vc = gameViewController as? GameViewController else {return}
+        guard let viewController = gameViewController as? GameViewController else {return}
         let gameVCBuilder = GameViewControllerBuilder()
-        gameVCBuilder.buildNewGameSession(typeOfGame: vc.typeOfGame)
-        vc.reloadData(gameSession: GameSession.shared)        
+        gameVCBuilder.buildNewGameSession(typeOfGame: viewController.typeOfGame)
+        viewController.reloadData(gameSession: GameSession.shared)
     }
 
     func endGame() {
