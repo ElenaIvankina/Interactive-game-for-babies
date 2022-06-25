@@ -9,29 +9,6 @@ import SwiftUI
 
 class GameAnswersView: UIView {
     
-    enum Section: Int, CaseIterable {
-        case figures
-        case answers
-        
-        var columnCount: Int {
-            switch self {
-            case .figures:
-                return 4
-            case .answers:
-                return 2
-            }
-        }
-        
-        var rowCount: Int {
-            switch self {
-            case .figures:
-                return 1
-            case .answers:
-                return 2
-            }
-        }
-    }
-    
     private enum Constants {
         static let inset: CGFloat = 4
         static let itemInset: CGFloat = 2
@@ -63,7 +40,7 @@ class GameAnswersView: UIView {
         setupView()
     }
     
-    private var sections = [[NSCollectionLayoutGroup]]()
+    private var sectionsCount = 0
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -74,7 +51,7 @@ class GameAnswersView: UIView {
         
         switch delegate.gameViewController?.typeOfGame {
         case .figureGame:
-            configureFigureLayout()
+            configureGroupLayout()
         default:
             configureSingleLayout()
         }
@@ -97,7 +74,30 @@ class GameAnswersView: UIView {
         }
     }
     
-    private func configureFigureLayout() {
+    private func configureGroupLayout() {
+        enum Section: Int, CaseIterable {
+            case figures
+            case answers
+            
+            var columnCount: Int {
+                switch self {
+                case .figures:
+                    return 4
+                case .answers:
+                    return 2
+                }
+            }
+            
+            var rowCount: Int {
+                switch self {
+                case .figures:
+                    return 1
+                case .answers:
+                    return 2
+                }
+            }
+        }
+        
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             
             guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
@@ -125,9 +125,7 @@ class GameAnswersView: UIView {
             return section
         }
         
-        sections.append([])
-        sections.append([])
-        
+        sectionsCount = 2
         
         collectionView.dragDelegate = self
         collectionView.dropDelegate = self
@@ -136,7 +134,7 @@ class GameAnswersView: UIView {
     }
     
     private func configureSingleLayout() {
-        sections.append([])
+        sectionsCount = 1
         
         collectionView.collectionViewLayout = AnswersCollectionViewLayout()
     }
@@ -195,7 +193,7 @@ class GameAnswersView: UIView {
 extension GameAnswersView: UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        sections.count
+        sectionsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -267,7 +265,7 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
         if indexPath.section == 1 {
             return
         }
-           
+        
         let selectCard = GameSession.shared.currentRandomCards[indexPath.row]
         guard let resultCheck = delegate?.checkingAnswer(answerCard: selectCard) else { return }
         guard let cell = collectionView.cellForItem(at: indexPath) as? AnswerCell else { return }
