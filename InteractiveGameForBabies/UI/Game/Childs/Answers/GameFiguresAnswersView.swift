@@ -52,7 +52,7 @@ class GameFiguresAnswersView: UIView {
                                        leading: Constants.itemInset,
                                        bottom: Constants.itemInset,
                                        trailing: Constants.itemInset)
-    
+            
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: .fractionalHeight(0.3))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
@@ -82,7 +82,6 @@ class GameFiguresAnswersView: UIView {
     private weak var delegate: GameDelegate?
     
     private let isAnimation = true
-    private var dropped = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -144,15 +143,19 @@ class GameFiguresAnswersView: UIView {
     
     private func compareItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView) {
         if let item = coordinator.items.first,
-           let sourceIndexPath = item.sourceIndexPath {
+           let sourceIndexPath = item.sourceIndexPath,
+           let figureQuestion = GameSession.shared.currentQuestion as? FigureQuestion {
             // TODO check answer
             print("Compare figure at \(sourceIndexPath) with frog at \(destinationIndexPath)")
             
+            let selectCard = figureQuestion.cardsFigure[sourceIndexPath.row]
+            guard let resultCheck = delegate?.checkingAnswer(answerCard: selectCard),
+                  resultCheck
+            else { return }
             
-            // TODO if true
             collectionView.performBatchUpdates({
                 collectionView.deleteItems(at: [sourceIndexPath])
-                dropped += 1 // remove var <- drop item from answers
+                delegate?.handlingRightAnswer()
             }, completion: nil)
         }
     }
@@ -165,7 +168,12 @@ extension GameFiguresAnswersView: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        GameSession.shared.currentRandomCards.count - (section == 0 ? dropped : 0)
+        if section == 0 {
+            guard let figureQuestion = GameSession.shared.currentQuestion as? FigureQuestion  else { return 0 }
+            return figureQuestion.cardsFigure.count - GameSession.shared.counterOfRightAnswers
+        } else {
+            return GameSession.shared.currentRandomCards.count
+        }
     }
 }
 
@@ -183,26 +191,9 @@ extension GameFiguresAnswersView: UICollectionViewDataSource {
         } else {
             cell.configure(with: GameSession.shared.currentRandomCards[indexPath.row])
         }
-
+        
         
         return cell
-    }
-}
-
-extension GameFiguresAnswersView: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath.section == 1  else { return }
-        
-        let selectCard = GameSession.shared.currentRandomCards[indexPath.row]
-        guard let resultCheck = delegate?.checkingAnswer(answerCard: selectCard) else { return }
-        guard let cell = collectionView.cellForItem(at: indexPath) as? AnswerCell else { return }
-        if resultCheck {
-            cell.animateRightAnswer()
-            cell.isUserInteractionEnabled = false
-        } else {
-            cell.animateWrongAnswer()
-        }
     }
 }
 

@@ -250,9 +250,9 @@
 			children = (
 				0A7A85B7285BC75A00D23883 /* AnswerCell.swift */,
 				0A7A85BA285BC83F00D23883 /* GameAnswersView.swift */,
+				0ABF7BB5286647EE0006FA30 /* GameFiguresAnswersView.swift */,
 				0A7A85BC285BC9D000D23883 /* GameAnswersViewController.swift */,
 				0A52DB7F285E2EBF00F79AE7 /* AnswersCollectionViewLayout.swift */,
-				0ABF7BB5286647EE0006FA30 /* GameFiguresAnswersView.swift */,
 			);
 			path = Answers;
 			sourceTree = "<group>";
