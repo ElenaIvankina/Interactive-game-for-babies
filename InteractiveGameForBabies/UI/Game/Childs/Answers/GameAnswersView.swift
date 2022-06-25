@@ -34,6 +34,7 @@ class GameAnswersView: UIView {
     private weak var delegate: GameDelegate?
     
     private let isAnimation = true
+    private var indexes = Array(0...3)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,6 +63,7 @@ class GameAnswersView: UIView {
         self.collectionView.performBatchUpdates(nil) { result in
             self.animationCell(isAfterReload: true)
         }
+        indexes = Array(0...3)
     }
     
     func animationCell(isAfterReload: Bool) {
@@ -189,12 +191,14 @@ class GameAnswersView: UIView {
             return
         }
 
-        let sourceCard = figureQuestion.cardsFigure[sourceIndexPath.row]
+        let sourceId = indexes[sourceIndexPath.row]
+        let sourceCard = figureQuestion.cardsFigure[sourceId]
         let destinationCard = GameSession.shared.currentRandomCards[destinationIndexPath.row]
         
         if sourceCard.isEqualTo(destinationCard) {
             collectionView.performBatchUpdates({
                 collectionView.deleteItems(at: [sourceIndexPath])
+                indexes.remove(at: sourceIndexPath.row)
                 delegate?.handlingRightAnswer()
             },
                                                completion: nil)
