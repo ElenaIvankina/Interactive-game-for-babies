@@ -18,8 +18,8 @@ class GameAnswersView: UIView {
         collectionView.backgroundColor = .clear
         collectionView.isUserInteractionEnabled = true
         
-        collectionView.register(AnswerCell.self, forCellWithReuseIdentifier: AnswerCell.reuseId)
-        
+        collectionView.register(registerClass: AnswerCell.self)
+
         return collectionView
     }()
     
@@ -98,12 +98,8 @@ extension GameAnswersView: UICollectionViewDelegate {
 extension GameAnswersView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnswerCell.reuseId, for: indexPath) as? AnswerCell else {
-            fatalError("Cell for item at \(indexPath) has not been implemented")
-        }
-
+        let cell: AnswerCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         cell.configure(with: GameSession.shared.currentRandomCards[indexPath.row])
-        
         return cell
     }
 }

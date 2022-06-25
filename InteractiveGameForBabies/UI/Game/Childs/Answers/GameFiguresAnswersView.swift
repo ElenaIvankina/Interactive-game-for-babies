@@ -74,8 +74,8 @@ class GameFiguresAnswersView: UIView {
         collectionView.isUserInteractionEnabled = true
         collectionView.dragInteractionEnabled = true
         
-        collectionView.register(AnswerCell.self, forCellWithReuseIdentifier: AnswerCell.reuseId)
-        
+        collectionView.register(registerClass: AnswerCell.self)
+
         return collectionView
     }()
     
@@ -184,18 +184,17 @@ extension GameFiguresAnswersView: UICollectionViewDelegate {
 extension GameFiguresAnswersView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnswerCell.reuseId, for: indexPath) as? AnswerCell else {
-            fatalError("Cell for item at \(indexPath) has not been implemented")
-        }
+        let cell: AnswerCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        
+        var card: CardProtocol = GameSession.shared.currentRandomCards[indexPath.row]
         
         if indexPath.section == 0 {
             if let figureQuestion = GameSession.shared.currentQuestion as? FigureQuestion {
-                cell.configure(with: figureQuestion.cardsFigure[indexPath.row])
+                card = figureQuestion.cardsFigure[indexPath.row]
             }
-        } else {
-            cell.configure(with: GameSession.shared.currentRandomCards[indexPath.row])
         }
         
+        cell.configure(with: card)
         
         return cell
     }
