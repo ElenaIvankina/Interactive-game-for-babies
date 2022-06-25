@@ -28,7 +28,6 @@
 		0A52DBA5285E531B00F79AE7 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334290E2857603C008600DB /* Observable.swift */; };
 		0A52DBA6285E531B00F79AE7 /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85B7285BC75A00D23883 /* AnswerCell.swift */; };
 		0A52DBA8285E531B00F79AE7 /* GameAnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85BC285BC9D000D23883 /* GameAnswersViewController.swift */; };
-		0A52DBA9285E531B00F79AE7 /* AnswersCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52DB7F285E2EBF00F79AE7 /* AnswersCollectionViewLayout.swift */; };
 		0A52DBAD285E531B00F79AE7 /* GameQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85B4285BC12500D23883 /* GameQuestionViewController.swift */; };
 		0A52DBAF285E531B00F79AE7 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85AB285BBFB500D23883 /* GameViewController.swift */; };
 		0A52DBB0285E531B00F79AE7 /* GameMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CD28575CD4008600DB /* GameMenuViewController.swift */; };
@@ -91,7 +90,6 @@
 		0A0D27A52858F8E2004995CB /* UIPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreviewView.swift; sourceTree = "<group>"; };
 		0A0D27A72858FF00004995CB /* GameItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameItemView.swift; sourceTree = "<group>"; };
 		0A0D27A928590D48004995CB /* StartGameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameButton.swift; sourceTree = "<group>"; };
-		0A52DB7F285E2EBF00F79AE7 /* AnswersCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersCollectionViewLayout.swift; sourceTree = "<group>"; };
 		0A52DBBB285E547600F79AE7 /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
 		0A52DBBD285E811400F79AE7 /* cow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cow.mp3; sourceTree = "<group>"; };
 		0A52DBC0285E892000F79AE7 /* donkey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = donkey.mp3; sourceTree = "<group>"; };
@@ -251,7 +249,6 @@
 				0A7A85B7285BC75A00D23883 /* AnswerCell.swift */,
 				0ABF7BB5286647EE0006FA30 /* GameAnswersView.swift */,
 				0A7A85BC285BC9D000D23883 /* GameAnswersViewController.swift */,
-				0A52DB7F285E2EBF00F79AE7 /* AnswersCollectionViewLayout.swift */,
 			);
 			path = Answers;
 			sourceTree = "<group>";
@@ -662,7 +659,6 @@
 				0A52DBA5285E531B00F79AE7 /* Observable.swift in Sources */,
 				0A52DBA6285E531B00F79AE7 /* AnswerCell.swift in Sources */,
 				0A52DBA8285E531B00F79AE7 /* GameAnswersViewController.swift in Sources */,
-				0A52DBA9285E531B00F79AE7 /* AnswersCollectionViewLayout.swift in Sources */,
 				0A8D54BD285FA2F00054B9B0 /* Ext+UIViewController.swift in Sources */,
 				0A52DBAD285E531B00F79AE7 /* GameQuestionViewController.swift in Sources */,
 				0A52DBAF285E531B00F79AE7 /* GameViewController.swift in Sources */,
