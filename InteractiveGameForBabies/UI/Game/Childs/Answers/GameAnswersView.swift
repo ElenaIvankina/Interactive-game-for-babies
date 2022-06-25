@@ -188,20 +188,17 @@ class GameAnswersView: UIView {
         else {
             return
         }
+
+        let sourceCard = figureQuestion.cardsFigure[sourceIndexPath.row]
+        let destinationCard = GameSession.shared.currentRandomCards[destinationIndexPath.row]
         
-        // TODO check answer
-        print("Compare figure at \(sourceIndexPath) with frog at \(destinationIndexPath)")
-        
-        let selectCard = figureQuestion.cardsFigure[sourceIndexPath.row]
-        guard let resultCheck = delegate?.checkingAnswer(answerCard: selectCard),
-              resultCheck
-        else { return }
-        
-        collectionView.performBatchUpdates({
-            collectionView.deleteItems(at: [sourceIndexPath])
-            delegate?.handlingRightAnswer()
-        },
-                                           completion: nil)
+        if sourceCard.isEqualTo(destinationCard) {
+            collectionView.performBatchUpdates({
+                collectionView.deleteItems(at: [sourceIndexPath])
+                delegate?.handlingRightAnswer()
+            },
+                                               completion: nil)
+        }
     }
 }
 
