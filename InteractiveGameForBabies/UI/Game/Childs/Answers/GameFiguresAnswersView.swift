@@ -10,17 +10,32 @@ import SwiftUI
 class GameFiguresAnswersView: UIView {
     
     enum Section: Int, CaseIterable {
-        case questions
+        case figures
         case answers
         
         var columnCount: Int {
             switch self {
-            case .questions:
+            case .figures:
                 return 4
             case .answers:
                 return 2
             }
         }
+        
+        var rowCount: Int {
+            switch self {
+            case .figures:
+                return 1
+            case .answers:
+                return 2
+            }
+        }
+    }
+    
+    private enum Constants {
+        static let inset: CGFloat = 4
+        static let itemInset: CGFloat = 2
+        static let sectionInset: CGFloat = 10
     }
     
     private var collectionView: UICollectionView = {
@@ -28,24 +43,25 @@ class GameFiguresAnswersView: UIView {
             
             guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
             let columns = sectionKind.columnCount
+            let rows = sectionKind.rowCount
             
-            let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0))
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0 / CGFloat(columns)),
+                                                  heightDimension: .fractionalHeight(1.0 / CGFloat(rows)))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = .init(top: 2, leading: 2, bottom: 2, trailing: 2)
-            
-            let groupHeight = columns == 1 ?
-            NSCollectionLayoutDimension.absolute(44) :
-            NSCollectionLayoutDimension.fractionalWidth(0.5)
-            
-            let groupSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0 / 4.0))
+            item.contentInsets = .init(top: Constants.itemInset,
+                                       leading: Constants.itemInset,
+                                       bottom: Constants.itemInset,
+                                       trailing: Constants.itemInset)
+    
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .fractionalHeight(0.3))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
             
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
+            section.contentInsets = .init(top: Constants.sectionInset,
+                                          leading: Constants.sectionInset,
+                                          bottom: Constants.sectionInset,
+                                          trailing: Constants.sectionInset)
             return section
         }
         
@@ -65,11 +81,8 @@ class GameFiguresAnswersView: UIView {
     
     private weak var delegate: GameDelegate?
     
-    private enum Constants {
-        static let inset: CGFloat = 4
-    }
-    
     private let isAnimation = true
+    private var dropped = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -100,8 +113,6 @@ class GameFiguresAnswersView: UIView {
             Animation.changeAlphaAnimation(view: cell, fromValue: fromValue, toValue: toValue)
         }
     }
-    
-    let testData = [ Array(repeating: UIImage(named: "circleQ"), count: 4), Array(repeating: UIImage(named: "circleA"), count: 4) ]
     
     private func setupView() {
         addSubview(collectionView)
@@ -136,6 +147,13 @@ class GameFiguresAnswersView: UIView {
            let sourceIndexPath = item.sourceIndexPath {
             // TODO check answer
             print("Compare figure at \(sourceIndexPath) with frog at \(destinationIndexPath)")
+            
+            
+            // TODO if true
+            collectionView.performBatchUpdates({
+                collectionView.deleteItems(at: [sourceIndexPath])
+                dropped += 1 // remove var <- drop item from answers
+            }, completion: nil)
         }
     }
 }
@@ -143,11 +161,11 @@ class GameFiguresAnswersView: UIView {
 extension GameFiguresAnswersView: UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return testData[section].count
+        GameSession.shared.currentRandomCards.count - (section == 0 ? dropped : 0)
     }
 }
 
@@ -158,7 +176,14 @@ extension GameFiguresAnswersView: UICollectionViewDataSource {
             fatalError("Cell for item at \(indexPath) has not been implemented")
         }
         
-        cell.configure(with: testData[indexPath.section][indexPath.row])
+        if indexPath.section == 0 {
+            if let figureQuestion = GameSession.shared.currentQuestion as? FigureQuestion {
+                cell.configure(with: figureQuestion.cardsFigure[indexPath.row])
+            }
+        } else {
+            cell.configure(with: GameSession.shared.currentRandomCards[indexPath.row])
+        }
+
         
         return cell
     }

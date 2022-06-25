@@ -143,7 +143,8 @@ class GameQuestionView: UIView {
     
     private func addFigureCards() {
         NSLayoutConstraint.activate([
-            questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+            questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                    constant: Constants.trailing)
         ])
     }
 
