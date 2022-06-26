@@ -10,6 +10,7 @@ import Foundation
 struct FigureCard: CardProtocol {
     var imageName: String
     let figure: Figure
+    let imageNameFill: String
 
     func isEqualTo(_ object: CardProtocol) -> Bool {
         guard let other = object as? Self else { return false }

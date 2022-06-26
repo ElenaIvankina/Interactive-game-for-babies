@@ -171,22 +171,22 @@ class GameDatabase {
     ]
     
     var figureCards: [FigureCard] = [
-        FigureCard(imageName: "circleA", figure: .circle),
-        FigureCard(imageName: "diamondA", figure: .diamond),
-        FigureCard(imageName: "eightangleA", figure: .eightangle),
-        FigureCard(imageName: "fiveangleA", figure: .fiveangle),
-        FigureCard(imageName: "heartA", figure: .heart),
-        FigureCard(imageName: "nineangleA", figure: .nineangle),
-        FigureCard(imageName: "ovalA", figure: .oval),
-        FigureCard(imageName: "parallelogramA", figure: .parallelogram),
-        FigureCard(imageName: "rectangleA", figure: .rectangle),
-        FigureCard(imageName: "semicircleA", figure: .semicircle),
-        FigureCard(imageName: "sevenangleA", figure: .sevenangle),
-        FigureCard(imageName: "sixangleA", figure: .sixangle),
-        FigureCard(imageName: "squareA", figure: .square),
-        FigureCard(imageName: "starA", figure: .star),
-        FigureCard(imageName: "trapezoidA", figure: .trapezoid),
-        FigureCard(imageName: "triangleA", figure: .triangle)
+        FigureCard(imageName: "circleA", figure: .circle, imageNameFill: "circleAFill"),
+        FigureCard(imageName: "diamondA", figure: .diamond, imageNameFill: "diamondAFill"),
+        FigureCard(imageName: "eightangleA", figure: .eightangle, imageNameFill: "eightangleAFill"),
+        FigureCard(imageName: "fiveangleA", figure: .fiveangle, imageNameFill: "fiveangleAFill"),
+        FigureCard(imageName: "heartA", figure: .heart, imageNameFill: "heartAFill"),
+        FigureCard(imageName: "nineangleA", figure: .nineangle, imageNameFill: "nineangleAFill"),
+        FigureCard(imageName: "ovalA", figure: .oval, imageNameFill: "ovalAFill"),
+        FigureCard(imageName: "parallelogramA", figure: .parallelogram, imageNameFill: "parallelogramAFill"),
+        FigureCard(imageName: "rectangleA", figure: .rectangle, imageNameFill: "rectangleAFill"),
+        FigureCard(imageName: "semicircleA", figure: .semicircle, imageNameFill: "semicircleAFill"),
+        FigureCard(imageName: "sevenangleA", figure: .sevenangle, imageNameFill: "sevenangleAFill"),
+        FigureCard(imageName: "sixangleA", figure: .sixangle, imageNameFill: "sixangleAFill"),
+        FigureCard(imageName: "squareA", figure: .square, imageNameFill: "squareAFill"),
+        FigureCard(imageName: "starA", figure: .star, imageNameFill: "starAFill"),
+        FigureCard(imageName: "trapezoidA", figure: .trapezoid, imageNameFill: "trapezoidAFill"),
+        FigureCard(imageName: "triangleA", figure: .triangle, imageNameFill: "triangleAFill")
     ]
     
     
@@ -194,22 +194,22 @@ class GameDatabase {
     var figureQuestions: [FigureQuestion] = {
         
         var figureCardsQuestion = [
-            FigureCard(imageName: "circleQ", figure: .circle),
-            FigureCard(imageName: "diamondQ", figure: .diamond),
-            FigureCard(imageName: "eightangleQ", figure: .eightangle),
-            FigureCard(imageName: "fiveangleQ", figure: .fiveangle),
-            FigureCard(imageName: "heartQ", figure: .heart),
-            FigureCard(imageName: "nineangleQ", figure: .nineangle),
-            FigureCard(imageName: "ovalQ", figure: .oval),
-            FigureCard(imageName: "parallelogramQ", figure: .parallelogram),
-            FigureCard(imageName: "rectangleQ", figure: .rectangle),
-            FigureCard(imageName: "semicircleQ", figure: .semicircle),
-            FigureCard(imageName: "sevenangleQ", figure: .sevenangle),
-            FigureCard(imageName: "sixangleQ", figure: .sixangle),
-            FigureCard(imageName: "squareQ", figure: .square),
-            FigureCard(imageName: "starQ", figure: .star),
-            FigureCard(imageName: "trapezoidQ", figure: .trapezoid),
-            FigureCard(imageName: "triangleQ", figure: .triangle)
+            FigureCard(imageName: "circleQ", figure: .circle, imageNameFill: ""),
+            FigureCard(imageName: "diamondQ", figure: .diamond, imageNameFill: ""),
+            FigureCard(imageName: "eightangleQ", figure: .eightangle, imageNameFill: ""),
+            FigureCard(imageName: "fiveangleQ", figure: .fiveangle, imageNameFill: ""),
+            FigureCard(imageName: "heartQ", figure: .heart, imageNameFill: ""),
+            FigureCard(imageName: "nineangleQ", figure: .nineangle, imageNameFill: ""),
+            FigureCard(imageName: "ovalQ", figure: .oval, imageNameFill: ""),
+            FigureCard(imageName: "parallelogramQ", figure: .parallelogram, imageNameFill: ""),
+            FigureCard(imageName: "rectangleQ", figure: .rectangle, imageNameFill: ""),
+            FigureCard(imageName: "semicircleQ", figure: .semicircle, imageNameFill: ""),
+            FigureCard(imageName: "sevenangleQ", figure: .sevenangle, imageNameFill: ""),
+            FigureCard(imageName: "sixangleQ", figure: .sixangle, imageNameFill: ""),
+            FigureCard(imageName: "squareQ", figure: .square, imageNameFill: ""),
+            FigureCard(imageName: "starQ", figure: .star, imageNameFill: ""),
+            FigureCard(imageName: "trapezoidQ", figure: .trapezoid, imageNameFill: ""),
+            FigureCard(imageName: "triangleQ", figure: .triangle, imageNameFill: "")
         ]
         
         let lenghtArr = 4
