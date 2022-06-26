@@ -17,18 +17,7 @@ class GameCell: UICollectionViewCell {
         let name: String
         let image: UIImage?
     }
-    
-    private let gamesData = [
-        gameInfo(name: "Как говорят животные",
-                 image: UIImage(named: "notes")),
-        gameInfo(name: "Один - много",
-                 image: UIImage(named: "many")),
-        gameInfo(name: "Изучаем цвета",
-                 image: UIImage(named: "colors")),
-        gameInfo(name: "Лягушки и фигуры",
-                 image: UIImage(named: "figures"))
-    ]
-    
+        
     weak var delegate: GameCellDelegate?
     
     private var startGameButton: StartGameButton = {
@@ -63,15 +52,15 @@ class GameCell: UICollectionViewCell {
     }
 
     func configure(at indexPath: IndexPath) {
-        let data = gamesData[indexPath.row]
+        let typeOfGame = TypeOfGame.allCases[indexPath.row]
         
-        startGameButton.image = data.image
-        startGameButton.tag = indexPath.row
+        startGameButton.image = typeOfGame.image
+        startGameButton.tag = typeOfGame.rawValue
         startGameButton.addTarget(self,
                                   action: #selector(handleGameButton),
                                   for: .touchUpInside)
         
-        nameLabel.text = data.name
+        nameLabel.text = typeOfGame.name
     }
     
     private enum Constants {
