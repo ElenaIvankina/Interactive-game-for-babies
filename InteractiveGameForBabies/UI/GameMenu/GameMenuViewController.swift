@@ -8,18 +8,12 @@
 import UIKit
 
 class GameMenuViewController: UIViewController {
-    let gameVCBuilder = GameViewControllerBuilder()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        setupUI()
-    }
+    let gameVCBuilder = GameViewControllerBuilder()
     
     // MARK: - Views
     
-    let headerLabel: UILabel = {
+    private let headerLabel: UILabel = {
         let label = UILabel()
         label.text = "Привет, малыш! 👋"
         label.textAlignment = .center
@@ -29,7 +23,7 @@ class GameMenuViewController: UIViewController {
         return label
     }()
     
-    let subLabel: UILabel = {
+    private let subLabel: UILabel = {
         let label = UILabel()
         label.text = "Выбери игру"
         label.textAlignment = .center
@@ -55,6 +49,16 @@ class GameMenuViewController: UIViewController {
         return collectionView
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.reloadData()
+    }
+    
     private func setBackgroundView() {
         setGradientBackground()
         
@@ -74,7 +78,7 @@ class GameMenuViewController: UIViewController {
         static let collectionTopInset: CGFloat = 32
     }
     
-    private func setupUI() {
+    private func setupViews() {
         setBackgroundView()
         
         view.addSubview(headerLabel)
@@ -125,7 +129,7 @@ class GameMenuViewController: UIViewController {
             collectionView
                 .bottomAnchor
                 .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                            constant: Constants.minInset),
+                            constant: Constants.spaceInset),
             heightConstraint
         ])
         
@@ -134,11 +138,6 @@ class GameMenuViewController: UIViewController {
         
         let rowCount = lround(Double(TypeOfGame.allCases.count) / 2.0)
         collectionView.configureGridLayout(rowCount: rowCount)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        collectionView.reloadData()
     }
 }
 
