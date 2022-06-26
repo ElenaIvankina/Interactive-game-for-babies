@@ -10,7 +10,8 @@ import UIKit
 class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
 
     private let borderColor = UIColor.answerCellBorder.cgColor
-    private var markView: UIImageView?
+    private var markViewRight: UIImageView?
+    private var markViewWrong: UIImageView?
 
     private let cardImageView: UIImageView = {
         let imageView = UIImageView()
@@ -25,7 +26,6 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-
         backgroundColor = .white
     }
 
@@ -68,7 +68,7 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
         super.prepareForReuse()
         cardImageView.image = nil
         
-        if let animationView = markView {
+        if let animationView = markViewRight {
             animationView.removeFromSuperview()
         }
         self.isUserInteractionEnabled = true
@@ -77,8 +77,8 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
     func animateRightAnswer(duration: CFTimeInterval) {
         let result = animation.makeAnimationRightAnswer(view: self,duration: duration)
         if let rightAnimation = result.animation {
-            markView = result.markView
-            markView?.layer.add(rightAnimation, forKey: Animation.keyRightAnswer)
+            markViewRight = result.markView
+            markViewRight?.layer.add(rightAnimation, forKey: Animation.keyRightAnswer)
         }
     }
 
@@ -86,12 +86,12 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
         let result = animation.makeAnimationWrongAnswer(view: self, duration: duration)
         if let wrongAnimation = result.animation {
             wrongAnimation.delegate = self
-            markView = result.markView
-            markView?.layer.add(wrongAnimation, forKey: Animation.keyWrongAnswer)
+            markViewWrong = result.markView
+            markViewWrong?.layer.add(wrongAnimation, forKey: Animation.keyWrongAnswer)
         }
     }
     
-    func animationCahgeImageAndFlip(card: CardProtocol, duration: CFTimeInterval) {
+    func animationChangeImageAndFlip(card: CardProtocol, duration: CFTimeInterval) {
         guard let card = card as? FigureCard else { return }
         let transitionFlip = UIView.AnimationOptions.transitionFlipFromTop
         
@@ -110,7 +110,7 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         guard let value = anim.value(forKey: Animation.keyWrongAnswer) as? String else { return }
         if value == Animation.keyWrongAnswer {
-            markView?.removeFromSuperview()
+            markViewWrong?.removeFromSuperview()
         }
     }
 }

@@ -196,7 +196,7 @@ class GameAnswersView: UIView {
         if let cell = collectionView.cellForItem(at: destinationIndexPath) as? AnswerCell {
             switch isRightAnswer {
             case true:
-                cell.animationCahgeImageAndFlip(card: destinationCard, duration: durationRightAnswer)
+                cell.animationChangeImageAndFlip(card: destinationCard, duration: durationRightAnswer)
             case false:
                 cell.animateWrongAnswer(duration: durationWrongAnswer)
             }
