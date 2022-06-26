@@ -51,12 +51,13 @@ class GameAnswersView: UIView {
         
         switch delegate.gameViewController?.typeOfGame {
         case .figureGame:
-            configureSectionsLayout()
+            collectionView.configureSectionsLayout(columnCount: [4, 2])
             sectionsCount = 2
             collectionView.dragDelegate = self
             collectionView.dropDelegate = self
         default:
-            configureGridLayout()
+            let rowCount = lround(Double(GameSession.shared.currentRandomCards.count) / 2.0)
+            collectionView.configureGridLayout(rowCount: rowCount)
             sectionsCount = 1
         }
     }
@@ -104,72 +105,7 @@ class GameAnswersView: UIView {
                             constant: Constants.inset)
         ])
     }
-    
-    private func configureSectionsLayout() {
-        enum Section: Int, CaseIterable {
-            case figures
-            case answers
             
-            var columnCount: Int {
-                switch self {
-                case .figures:
-                    return 4
-                case .answers:
-                    return 2
-                }
-            }
-        }
-        
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
-            let columns = sectionKind.columnCount
-            
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0 / CGFloat(columns)),
-                                                  heightDimension: .fractionalHeight(1.0))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = .init(top: Constants.itemInset,
-                                       leading: Constants.itemInset,
-                                       bottom: Constants.itemInset,
-                                       trailing: Constants.itemInset)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .fractionalHeight(1.0 / 3.2)) // <--- crutch
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = .init(top: Constants.sectionInset,
-                                          leading: Constants.sectionInset,
-                                          bottom: Constants.sectionInset,
-                                          trailing: Constants.sectionInset)
-            
-            return section
-        }
-        
-        collectionView.collectionViewLayout = layout
-    }
-    
-    private func configureGridLayout() {
-        let columnCount:CGFloat = 2
-        
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0 / columnCount),
-                                              heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: Constants.itemInset,
-                                   leading: Constants.itemInset,
-                                   bottom: Constants.itemInset,
-                                   trailing: Constants.itemInset)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .fractionalHeight(1.0 / 3.0))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        
-        collectionView.collectionViewLayout = layout
-    }
-    
-    
     private func checkAnswer(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView) {
         guard let item = coordinator.items.first,
               let sourceIndexPath = item.sourceIndexPath,
