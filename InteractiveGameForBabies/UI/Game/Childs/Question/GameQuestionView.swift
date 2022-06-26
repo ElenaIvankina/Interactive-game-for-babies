@@ -67,7 +67,9 @@ class GameQuestionView: UIView {
     }
 
     func setQuestionImage(imageName: String) {
-        guard let imageView = questionImage, imageName != "" else { return }
+        guard let imageView = questionImage,
+                !imageName.isEmpty
+        else { return }
         imageView.image = UIImage(named: imageName)
     }
 

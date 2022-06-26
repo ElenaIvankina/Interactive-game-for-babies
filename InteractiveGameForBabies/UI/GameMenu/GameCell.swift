@@ -25,7 +25,6 @@ class GameCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.bgColor = .gameButton
         button.layer.cornerRadius = 20
-        // button.layer.borderWidth = 1
         button.borderColor = .gameButtonBorder
         return button
     }()
