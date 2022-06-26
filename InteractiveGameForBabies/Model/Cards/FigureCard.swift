@@ -34,4 +34,5 @@ enum Figure {
     case sixangle
     case sevenangle
     case eightangle
+    case emptyFigure
 }
