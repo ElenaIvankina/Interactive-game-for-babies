@@ -74,37 +74,44 @@ class GameCell: UICollectionViewCell {
         nameLabel.text = data.name
     }
     
+    private enum Constants {
+        static let buttonSize: CGSize = CGSize(width: 100, height: 100)
+        static let shortInset: CGFloat = 4
+        static let midInset: CGFloat = 8
+        static let longInset: CGFloat = 16
+    }
+    
     private func setupView() {
-        addSubview(startGameButton)
-        addSubview(nameLabel)
+        contentView.addSubview(startGameButton)
+        contentView.addSubview(nameLabel)
 
         NSLayoutConstraint.activate([
             startGameButton
                 .heightAnchor
-                .constraint(equalToConstant: 100),
+                .constraint(equalToConstant: Constants.buttonSize.height),
             startGameButton
                 .widthAnchor
-                .constraint(equalToConstant: 100),
+                .constraint(equalToConstant: Constants.buttonSize.width),
             startGameButton
                 .centerXAnchor
-                .constraint(equalTo: centerXAnchor),
+                .constraint(equalTo: contentView.centerXAnchor),
             startGameButton
                 .topAnchor
                 .constraint(equalTo: topAnchor,
-                            constant: 10),
+                            constant: Constants.shortInset),
             startGameButton
                 .bottomAnchor
                 .constraint(equalTo: nameLabel.topAnchor,
-                            constant: -10),
+                            constant: -Constants.midInset),
 
             nameLabel
                 .leadingAnchor
                 .constraint(equalTo: leadingAnchor,
-                            constant: 15),
+                            constant: Constants.longInset),
             nameLabel
                 .trailingAnchor
-                .constraint(equalTo: trailingAnchor,
-                            constant: -15)
+                .constraint(equalTo: contentView.trailingAnchor,
+                            constant: -Constants.longInset)
         ])
     }
 
