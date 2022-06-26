@@ -67,6 +67,13 @@ class GameMenuViewController: UIViewController {
         view.bringSubviewToFront(imageView)
     }
     
+    private enum Constants {
+        static let topInset: CGFloat = 64
+        static let minInset: CGFloat = 4
+        static let spaceInset: CGFloat = 8
+        static let collectionTopInset: CGFloat = 32
+    }
+    
     private func setupUI() {
         setBackgroundView()
         
@@ -74,11 +81,16 @@ class GameMenuViewController: UIViewController {
         view.addSubview(subLabel)
         view.addSubview(collectionView)
         
+        let heightConstraint = collectionView
+            .heightAnchor
+            .constraint(equalToConstant: 300)
+        heightConstraint.priority = UILayoutPriority(250)
+        
         NSLayoutConstraint.activate([
             headerLabel
                 .topAnchor
                 .constraint(equalTo: view.topAnchor,
-                            constant: 48),
+                            constant: Constants.topInset),
             headerLabel
                 .leadingAnchor
                 .constraint(equalTo: view.leadingAnchor),
@@ -90,7 +102,7 @@ class GameMenuViewController: UIViewController {
             subLabel
                 .topAnchor
                 .constraint(equalTo: headerLabel.bottomAnchor,
-                            constant: 16),
+                            constant: Constants.spaceInset),
             subLabel
                 .leadingAnchor
                 .constraint(equalTo: view.leadingAnchor),
@@ -100,20 +112,21 @@ class GameMenuViewController: UIViewController {
             
             collectionView
                 .topAnchor
-                .constraint(equalTo: subLabel.bottomAnchor,
-                            constant: 32),
+                .constraint(greaterThanOrEqualTo: subLabel.bottomAnchor,
+                            constant: Constants.collectionTopInset),
             collectionView
                 .leadingAnchor
                 .constraint(equalTo: view.leadingAnchor,
-                            constant: 4),
+                            constant: Constants.minInset),
             collectionView
                 .trailingAnchor
                 .constraint(equalTo: view.trailingAnchor,
-                            constant: -4),
+                            constant: -Constants.minInset),
             collectionView
                 .bottomAnchor
                 .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                            constant: 4),
+                            constant: Constants.minInset),
+            heightConstraint
         ])
         
         collectionView.delegate = self
