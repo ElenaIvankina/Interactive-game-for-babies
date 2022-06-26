@@ -1,15 +1,36 @@
 //
-//  GameItemView.swift
+//  GameCell.swift
 //  InteractiveGameForBabies
 //
-//  Created by Дмитрий Дуденин on 14.06.2022.
+//  Created by Дмитрий Дуденин on 26.06.2022.
 //
 
-import SwiftUI
+import UIKit
 
-class GameItemView: UIView {
+protocol GameCellDelegate: AnyObject {
+    func didTapButtonInCell(forGame index: Int)
+}
 
-    // MARK: - Subviews
+class GameCell: UICollectionViewCell {
+    
+    private struct gameInfo {
+        let name: String
+        let image: UIImage?
+    }
+    
+    private let gamesData = [
+        gameInfo(name: "Как говорят животные",
+                 image: UIImage(named: "notes")),
+        gameInfo(name: "Один - много",
+                 image: UIImage(named: "many")),
+        gameInfo(name: "Изучаем цвета",
+                 image: UIImage(named: "colors")),
+        gameInfo(name: "Лягушки и фигуры",
+                 image: UIImage(named: "figures"))
+    ]
+    
+    weak var delegate: GameCellDelegate?
+    
     private var startGameButton: StartGameButton = {
         let button = StartGameButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -29,31 +50,30 @@ class GameItemView: UIView {
         label.textAlignment = .center
         return label
     }()
-
-    // MARK: - Inits
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+
+        backgroundColor = .clear
     }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupView()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(name: String, image: UIImage?) {
-        nameLabel.text = name
-        startGameButton.image = image
-    }
-
-    func addButtonTarget(target: Any?, action: Selector, typeOfGame: TypeOfGame) {
-        startGameButton.tag = typeOfGame.rawValue
-        startGameButton.addTarget(target,
-                                  action: action,
+    func configure(at indexPath: IndexPath) {
+        let data = gamesData[indexPath.row]
+        
+        startGameButton.image = data.image
+        startGameButton.tag = indexPath.row
+        startGameButton.addTarget(self,
+                                  action: #selector(handleGameButton),
                                   for: .touchUpInside)
+        
+        nameLabel.text = data.name
     }
-
-    // MARK: - Private methods
+    
     private func setupView() {
         addSubview(startGameButton)
         addSubview(nameLabel)
@@ -87,17 +107,15 @@ class GameItemView: UIView {
                             constant: -15)
         ])
     }
-}
 
-struct GameView_Preview: PreviewProvider {
-    static var previews: some View {
-        let view = GameItemView()
-        view.configure(name: "Как говорят животные",
-                       image: UIImage(named: "notes"))
-
-        return UIPreviewView(view)
-            .previewLayout(.sizeThatFits)
-            .preferredColorScheme(.dark)
-
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        nameLabel.text = nil
+        startGameButton.image = nil
+    }
+    
+    @objc private func handleGameButton() {
+        delegate?.didTapButtonInCell(forGame: startGameButton.tag)
     }
 }

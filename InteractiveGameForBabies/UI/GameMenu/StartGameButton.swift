@@ -127,11 +127,11 @@ class StartGameButton: UIButton {
         layer.insertSublayer(shadowLayer, at: 0)
     }
 
-    func lightShadowColor(_ color: UIColor) -> UIColor {
+    private func lightShadowColor(_ color: UIColor) -> UIColor {
         return color.adjustSaturation(by: 0.5)
     }
 
-    func darkShadowColor(_ color: UIColor) -> UIColor {
+    private func darkShadowColor(_ color: UIColor) -> UIColor {
         return color.adjustBrightness(by: 0.5)
     }
 }

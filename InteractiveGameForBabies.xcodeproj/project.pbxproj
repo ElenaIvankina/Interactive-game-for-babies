@@ -31,11 +31,11 @@
 		0A52DBAD285E531B00F79AE7 /* GameQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85B4285BC12500D23883 /* GameQuestionViewController.swift */; };
 		0A52DBAF285E531B00F79AE7 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85AB285BBFB500D23883 /* GameViewController.swift */; };
 		0A52DBB0285E531B00F79AE7 /* GameMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CD28575CD4008600DB /* GameMenuViewController.swift */; };
-		0A52DBB1285E531B00F79AE7 /* GameItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D27A72858FF00004995CB /* GameItemView.swift */; };
 		0A52DBB2285E531B00F79AE7 /* StartGameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D27A928590D48004995CB /* StartGameButton.swift */; };
 		0A52DBB3285E531B00F79AE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428C928575CD4008600DB /* AppDelegate.swift */; };
 		0A52DBB4285E531B00F79AE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CB28575CD4008600DB /* SceneDelegate.swift */; };
 		0A52DBBC285E547600F79AE7 /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52DBBB285E547600F79AE7 /* Ext+UIColor.swift */; };
+		0A59259D286871F4008FB7AC /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59259C286871F4008FB7AC /* GameCell.swift */; };
 		0A75063B2867350B000F13E3 /* Ext+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A75063A2867350B000F13E3 /* Ext+UICollectionView.swift */; };
 		0A8D54A7285F714D0054B9B0 /* rodent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D547D285F70EF0054B9B0 /* rodent.mp3 */; };
 		0A8D54A8285F714D0054B9B0 /* monkey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D547E285F70EF0054B9B0 /* monkey.mp3 */; };
@@ -88,7 +88,6 @@
 
 /* Begin PBXFileReference section */
 		0A0D27A52858F8E2004995CB /* UIPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreviewView.swift; sourceTree = "<group>"; };
-		0A0D27A72858FF00004995CB /* GameItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameItemView.swift; sourceTree = "<group>"; };
 		0A0D27A928590D48004995CB /* StartGameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameButton.swift; sourceTree = "<group>"; };
 		0A52DBBB285E547600F79AE7 /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
 		0A52DBBD285E811400F79AE7 /* cow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cow.mp3; sourceTree = "<group>"; };
@@ -111,6 +110,7 @@
 		0A52DBD2285E892200F79AE7 /* frog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = frog.mp3; sourceTree = "<group>"; };
 		0A52DBD3285E892200F79AE7 /* hedgehog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hedgehog.mp3; sourceTree = "<group>"; };
 		0A52DBD4285E892200F79AE7 /* wolf.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wolf.mp3; sourceTree = "<group>"; };
+		0A59259C286871F4008FB7AC /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		0A75063A2867350B000F13E3 /* Ext+UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ext+UICollectionView.swift"; sourceTree = "<group>"; };
 		0A7A85AB285BBFB500D23883 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		0A7A85B4285BC12500D23883 /* GameQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuestionViewController.swift; sourceTree = "<group>"; };
@@ -379,8 +379,8 @@
 			isa = PBXGroup;
 			children = (
 				B33428CD28575CD4008600DB /* GameMenuViewController.swift */,
-				0A0D27A72858FF00004995CB /* GameItemView.swift */,
 				0A0D27A928590D48004995CB /* StartGameButton.swift */,
+				0A59259C286871F4008FB7AC /* GameCell.swift */,
 			);
 			path = GameMenu;
 			sourceTree = "<group>";
@@ -653,6 +653,7 @@
 				0A52DB9F285E531B00F79AE7 /* QuestionProtocol.swift in Sources */,
 				0A52DBA1285E531B00F79AE7 /* GameStrategy.swift in Sources */,
 				0A52DBA2285E531B00F79AE7 /* GameViewControllerBuilder.swift in Sources */,
+				0A59259D286871F4008FB7AC /* GameCell.swift in Sources */,
 				0A52DBA4285E531B00F79AE7 /* ObservableOptions.swift in Sources */,
 				0ABF7BB6286647EE0006FA30 /* GameAnswersView.swift in Sources */,
 				B621A9B5286502F80083DD6E /* Animation.swift in Sources */,
@@ -663,7 +664,6 @@
 				0A52DBAD285E531B00F79AE7 /* GameQuestionViewController.swift in Sources */,
 				0A52DBAF285E531B00F79AE7 /* GameViewController.swift in Sources */,
 				0A52DBB0285E531B00F79AE7 /* GameMenuViewController.swift in Sources */,
-				0A52DBB1285E531B00F79AE7 /* GameItemView.swift in Sources */,
 				0A52DBB2285E531B00F79AE7 /* StartGameButton.swift in Sources */,
 				0A52DBB3285E531B00F79AE7 /* AppDelegate.swift in Sources */,
 				0A52DBB4285E531B00F79AE7 /* SceneDelegate.swift in Sources */,

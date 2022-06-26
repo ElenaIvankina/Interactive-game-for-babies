@@ -9,16 +9,16 @@ import UIKit
 
 class GameMenuViewController: UIViewController {
     let gameVCBuilder = GameViewControllerBuilder()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
+        
         setupUI()
     }
-
+    
     // MARK: - Views
-
+    
     let headerLabel: UILabel = {
         let label = UILabel()
         label.text = "Привет, малыш! 👋"
@@ -28,7 +28,7 @@ class GameMenuViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     let subLabel: UILabel = {
         let label = UILabel()
         label.text = "Выбери игру"
@@ -38,67 +38,26 @@ class GameMenuViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
-    let stackView: UIStackView = {
-
-        struct gameInfo {
-            let name: String
-            let image: UIImage?
-            let typeOfGame: TypeOfGame
-        }
-
-        let gamesData = [
-            gameInfo(name: "Как говорят животные",
-                     image: UIImage(named: "notes"),
-                     typeOfGame: .speakAnimalGame),
-            gameInfo(name: "Один - много",
-                     image: UIImage(named: "many"),
-                     typeOfGame: .countGame),
-            gameInfo(name: "Изучаем цвета",
-                     image: UIImage(named: "colors"),
-                     typeOfGame: .colorGame),
-            gameInfo(name: "Лягушки и фигуры",
-                     image: UIImage(named: "figures"),
-                     typeOfGame: .figureGame)
-        ]
-
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        stackView.spacing = 5
-
-        let rows = 2
-        let columns = 2
-
-        for row in 0 ..< rows {
-            let stackViewH = UIStackView()
-            stackViewH.axis = .horizontal
-            stackViewH.alignment = .fill
-            stackViewH.distribution = .fillEqually
-            stackViewH.spacing = 5
-
-            for col in 0 ..< columns {
-                let index = row * columns + col
-                let gameInfo = gamesData[index]
-
-                let view = GameItemView()
-                view.configure(name: gameInfo.name, image: gameInfo.image)
-                view.addButtonTarget(target: self, action: #selector(selectGameButton), typeOfGame: gameInfo.typeOfGame)
-
-                stackViewH.addArrangedSubview(view)
-            }
-
-            stackView.addArrangedSubview(stackViewH)
-        }
-
-        return stackView
+    
+    private var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.contentInsetAdjustmentBehavior = .always
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isScrollEnabled = false
+        collectionView.backgroundColor = .clear
+        collectionView.isUserInteractionEnabled = true
+        collectionView.dragInteractionEnabled = true
+        
+        collectionView.register(registerClass: GameCell.self)
+        
+        return collectionView
     }()
-
+    
     private func setBackgroundView() {
         setGradientBackground()
-
+        
         let imageView = UIImageView(frame: view.bounds)
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -107,70 +66,103 @@ class GameMenuViewController: UIViewController {
         view.addSubview(imageView)
         view.bringSubviewToFront(imageView)
     }
-
+    
     private func setupUI() {
         setBackgroundView()
-
+        
         view.addSubview(headerLabel)
         view.addSubview(subLabel)
-        view.addSubview(stackView)
-
+        view.addSubview(collectionView)
+        
         NSLayoutConstraint.activate([
-            headerLabel
-                .leadingAnchor
-                .constraint(equalTo: view.leadingAnchor),
             headerLabel
                 .topAnchor
                 .constraint(equalTo: view.topAnchor,
-                            constant: 50),
+                            constant: 48),
             headerLabel
-                .widthAnchor
-                .constraint(equalTo: view.widthAnchor,
-                            multiplier: 1),
+                .leadingAnchor
+                .constraint(equalTo: view.leadingAnchor),
             headerLabel
-                .heightAnchor
-                .constraint(equalTo: view.heightAnchor,
-                            multiplier: 0.1),
-
+                .trailingAnchor
+                .constraint(equalTo: view.trailingAnchor),
+            
+            
+            subLabel
+                .topAnchor
+                .constraint(equalTo: headerLabel.bottomAnchor,
+                            constant: 16),
             subLabel
                 .leadingAnchor
                 .constraint(equalTo: view.leadingAnchor),
             subLabel
+                .trailingAnchor
+                .constraint(equalTo: view.trailingAnchor),
+            
+            collectionView
                 .topAnchor
-                .constraint(equalTo: headerLabel.bottomAnchor,
-                            constant: 10),
-            subLabel
-                .widthAnchor
-                .constraint(equalTo: view.widthAnchor,
-                            multiplier: 1),
-
-            stackView
-                .topAnchor
-                .constraint(greaterThanOrEqualTo: subLabel.bottomAnchor,
-                            constant: 5),
-            stackView
-                .leftAnchor
-                .constraint(equalTo: view.leftAnchor,
-                            constant: 5),
-            stackView
-                .rightAnchor
-                .constraint(equalTo: view.rightAnchor,
-                            constant: -5),
-            stackView
+                .constraint(equalTo: subLabel.bottomAnchor,
+                            constant: 32),
+            collectionView
+                .leadingAnchor
+                .constraint(equalTo: view.leadingAnchor,
+                            constant: 4),
+            collectionView
+                .trailingAnchor
+                .constraint(equalTo: view.trailingAnchor,
+                            constant: -4),
+            collectionView
                 .bottomAnchor
                 .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                            constant: 10),
-            stackView
-                .heightAnchor
-                .constraint(equalToConstant: 320)
+                            constant: 4),
         ])
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        let rowCount = lround(Double(TypeOfGame.allCases.count) / 2.0)
+        collectionView.configureGridLayout(rowCount: rowCount)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.reloadData()
+    }
+}
 
-    @objc
-    func selectGameButton(sender: AnyObject) {
-        guard let btn = sender as? UIButton else { return }
-        let tag = btn.tag
-        guard let typeOfGame = TypeOfGame.init(rawValue: tag) else { return }
+extension GameMenuViewController: UICollectionViewDelegate {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return TypeOfGame.allCases.count
+    }
+}
+
+extension GameMenuViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: GameCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        cell.configure(at: indexPath)
+        cell.delegate = self
+        return cell
+    }
+}
+
+extension GameMenuViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let typeOfGame = TypeOfGame.init(rawValue: indexPath.row) else { return }
         navigationController?.pushViewController(gameVCBuilder.buildGame(typeOfGame: typeOfGame), animated: true)
     }
 }
+
+extension GameMenuViewController: GameCellDelegate {
+    
+    func didTapButtonInCell(forGame index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
+        collectionView(collectionView, didSelectItemAt: indexPath)
+    }
+}
+

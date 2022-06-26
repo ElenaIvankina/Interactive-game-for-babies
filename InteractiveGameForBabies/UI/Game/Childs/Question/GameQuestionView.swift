@@ -89,7 +89,6 @@ class GameQuestionView: UIView {
 
     private func addQuestionUIImageView(named: String) {
         guard let imageView = questionImage else { return }
-        print("gqv add \(named)")
         imageView.image = UIImage(named: named)
 
         addSubview(imageView)
