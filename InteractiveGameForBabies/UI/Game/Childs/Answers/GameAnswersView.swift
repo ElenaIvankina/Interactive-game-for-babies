@@ -28,6 +28,9 @@ class GameAnswersView: UIView {
     
     private let isAnimation = true
     private var figureCardIndexes = Array(0...3)
+    private let animation = Animation()
+    private let durationRightAnswer: CFTimeInterval = 0.6
+    private let durationWrongAnswer: CFTimeInterval = 0.4
     
     private enum Constants {
         static let inset: CGFloat = 4
@@ -64,19 +67,16 @@ class GameAnswersView: UIView {
     func reloadCollectionView () {
         self.collectionView.reloadData()
         self.collectionView.performBatchUpdates(nil) { result in
-            self.animationCell(isAfterReload: true)
+            self.animationCollectionView(isAfterReload: true, duration: 0.6)
         }
         figureCardIndexes = Array(0...3)
     }
-    
-    func animationCell(isAfterReload: Bool) {
-        if !isAnimation { return }
-        for cell in collectionView.subviews {
-            Animation.transformAnimation(view: cell)
-            let fromValue = isAfterReload ? 0 : 1
-            let toValue = isAfterReload ? 1 : 0
-            Animation.changeAlphaAnimation(view: cell, fromValue: fromValue, toValue: toValue)
-        }
+        
+    func animationCollectionView(isAfterReload: Bool, duration: CFTimeInterval) {
+        let fromValue = isAfterReload ? 0 : 1
+        let toValue = isAfterReload ? 1 : 0
+        animation.transformAnimation(view: collectionView, duration: duration)
+        animation.changeAlphaAnimation(view: collectionView, fromValue: fromValue, toValue: toValue, duration: duration)
     }
     
     private func setupView() {
@@ -177,18 +177,29 @@ class GameAnswersView: UIView {
         else {
             return
         }
-        
+
         let sourceCardId = figureCardIndexes[sourceIndexPath.row]
         let sourceCard = figureQuestion.cardsFigure[sourceCardId]
         let destinationCard = GameSession.shared.currentRandomCards[destinationIndexPath.row]
+        var isRightAnswer = false
         
         if sourceCard.isEqualTo(destinationCard) {
+            isRightAnswer = true
             collectionView.performBatchUpdates({
                 collectionView.deleteItems(at: [sourceIndexPath])
                 figureCardIndexes.remove(at: sourceIndexPath.row)
                 delegate?.handlingRightAnswer()
             },
                                                completion: nil)
+        }
+        
+        if let cell = collectionView.cellForItem(at: destinationIndexPath) as? AnswerCell {
+            switch isRightAnswer {
+            case true:
+                cell.animationCahgeImageAndFlip(card: destinationCard, duration: durationRightAnswer)
+            case false:
+                cell.animateWrongAnswer(duration: durationWrongAnswer)
+            }
         }
     }
 }
@@ -269,10 +280,10 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
         guard let cell = collectionView.cellForItem(at: indexPath) as? AnswerCell else { return }
         
         if resultCheck {
-            cell.animateRightAnswer()
+            cell.animateRightAnswer(duration: durationRightAnswer)
             cell.isUserInteractionEnabled = false
         } else {
-            cell.animateWrongAnswer()
+            cell.animateWrongAnswer(duration: durationWrongAnswer)
         }
     }
 }

@@ -14,6 +14,6 @@ struct FigureQuestion: QuestionProtocol {
     
     init (cardsFigure: [FigureCard]) {
         self.cardsFigure = cardsFigure
-        self.card = FigureCard(imageName: "", figure: .emptyFigure)
+        self.card = FigureCard(imageName: "", figure: .emptyFigure, imageNameFill: "")
     }
 }

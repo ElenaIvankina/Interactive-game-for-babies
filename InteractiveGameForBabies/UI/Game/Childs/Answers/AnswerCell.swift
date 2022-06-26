@@ -7,9 +7,10 @@
 
 import UIKit
 
-class AnswerCell: UICollectionViewCell {
+class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
 
     private let borderColor = UIColor.answerCellBorder.cgColor
+    private var markView: UIImageView?
 
     private let cardImageView: UIImageView = {
         let imageView = UIImageView()
@@ -19,13 +20,7 @@ class AnswerCell: UICollectionViewCell {
         return imageView
     }()
 
-    private let checkImageView: UIImageView = {
-        let checkmark = UIImage(systemName: "checkmark")
-        let checkmarkUIImageView = UIImageView(image: checkmark)
-        checkmarkUIImageView.translatesAutoresizingMaskIntoConstraints = false
-        checkmarkUIImageView.tintColor = .correct
-        return checkmarkUIImageView
-    }()
+    private let animation = Animation()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -72,41 +67,50 @@ class AnswerCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         cardImageView.image = nil
-        checkImageView.removeFromSuperview()
+        
+        if let animationView = markView {
+            animationView.removeFromSuperview()
+        }
         self.isUserInteractionEnabled = true
     }
 
-    func animateRightAnswer() {
-
-        addSubview(checkImageView)
-
-        NSLayoutConstraint.activate([
-            checkImageView.topAnchor.constraint(equalTo: topAnchor),
-            checkImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            checkImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            checkImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-
-        let animation = CABasicAnimation(keyPath: "opacity")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = 0.6
-        animation.autoreverses = false
-        checkImageView.layer.add(animation, forKey: "alpha")
+    func animateRightAnswer(duration: CFTimeInterval) {
+        let result = animation.makeAnimationRightAnswer(view: self,duration: duration)
+        if let rightAnimation = result.animation {
+            markView = result.markView
+            markView?.layer.add(rightAnimation, forKey: Animation.keyRightAnswer)
+        }
     }
 
-    func animateWrongAnswer() {
-        UIView.animate(
-            withDuration: 0.2,
-            delay: 0,
-            options: [.autoreverse, .repeat, .curveEaseIn]) {
-                self.backgroundColor = .red
-                self.layer.borderColor = UIColor.error.cgColor
-            }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.layer.removeAllAnimations()
-            self.backgroundColor = .systemBackground
-            self.layer.borderColor = self.borderColor
+    func animateWrongAnswer(duration: CFTimeInterval) {
+        let result = animation.makeAnimationWrongAnswer(view: self, duration: duration)
+        if let wrongAnimation = result.animation {
+            wrongAnimation.delegate = self
+            markView = result.markView
+            markView?.layer.add(wrongAnimation, forKey: Animation.keyWrongAnswer)
+        }
+    }
+    
+    func animationCahgeImageAndFlip(card: CardProtocol, duration: CFTimeInterval) {
+        guard let card = card as? FigureCard else { return }
+        let transitionFlip = UIView.AnimationOptions.transitionFlipFromTop
+        
+        let duration = 0.6
+        UIView.transition(with: self, duration: duration, options: transitionFlip, animations: nil) { _ in
+            let imageName = card.imageNameFill
+            if imageName.isEmpty { return }
+            let image = UIImage(named: imageName)
+            self.cardImageView.image = image
+            self.animation.changeAlphaAnimation(view: self, fromValue: 0, toValue: 1, duration: duration)
+            self.animateRightAnswer(duration: duration)
+        }
+        animation.changeAlphaAnimation(view: self, fromValue: 1, toValue: 0, duration: duration)
+    }
+
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        guard let value = anim.value(forKey: Animation.keyWrongAnswer) as? String else { return }
+        if value == Animation.keyWrongAnswer {
+            markView?.removeFromSuperview()
         }
     }
 }
