@@ -6,12 +6,39 @@
 //
 
 import Foundation
+import UIKit
 
-enum TypeOfGame: Int {
+enum TypeOfGame: Int, CaseIterable {
     case speakAnimalGame
     case colorGame
     case countGame
     case figureGame
+    
+    var name: String {
+        switch self {
+        case .speakAnimalGame:
+            return "Как говорят животные"
+        case .countGame:
+            return "Один - много"
+        case .colorGame:
+            return "Изучаем цвета"
+        case .figureGame:
+            return "Лягушки и фигуры"
+        }
+    }
+    
+    var image: UIImage? {
+        switch self {
+        case .speakAnimalGame:
+            return UIImage(named: "notes")
+        case .countGame:
+            return UIImage(named: "many")
+        case .colorGame:
+            return UIImage(named: "colors")
+        case .figureGame:
+            return UIImage(named: "figures")
+        }
+    }
 }
 
 protocol GameStrategyProtocol {

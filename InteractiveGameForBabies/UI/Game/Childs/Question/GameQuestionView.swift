@@ -27,6 +27,8 @@ class GameQuestionView: UIView {
     private let questionImage: UIImageView? = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 5
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -65,7 +67,9 @@ class GameQuestionView: UIView {
     }
 
     func setQuestionImage(imageName: String) {
-        guard let imageView = questionImage, imageName != "" else { return }
+        guard let imageView = questionImage,
+                !imageName.isEmpty
+        else { return }
         imageView.image = UIImage(named: imageName)
     }
 
@@ -89,7 +93,6 @@ class GameQuestionView: UIView {
 
     private func addQuestionUIImageView(named: String) {
         guard let imageView = questionImage else { return }
-        print("gqv add \(named)")
         imageView.image = UIImage(named: named)
 
         addSubview(imageView)
