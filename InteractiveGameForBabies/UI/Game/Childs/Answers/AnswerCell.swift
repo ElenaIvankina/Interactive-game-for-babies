@@ -7,11 +7,12 @@
 
 import UIKit
 
-class AnswerCell: UICollectionViewCell {
+class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
 
-    static let reuseId = "AnswerCell"
-    private let borderColor = UIColor.blue.cgColor
-    
+    private let borderColor = UIColor.answerCellBorder.cgColor
+    private var markViewRight: UIImageView?
+    private var markViewWrong: UIImageView?
+
     private let cardImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -20,23 +21,26 @@ class AnswerCell: UICollectionViewCell {
         return imageView
     }()
 
+    private let animation = Animation()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        backgroundColor = .white
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with indexPath: IndexPath) {
+    func configure(with card: CardProtocol) {
 
-        if let image: UIImage = UIImage(named: GameSession.shared.currentRandomCards[indexPath.row].imageName) {
+        if let image: UIImage = UIImage(named: card.imageName) {
             cardImageView.image = image
         }
-        
-    }
 
+    }
+    
     private func setupView() {
         contentView.addSubview(cardImageView)
 
@@ -55,7 +59,7 @@ class AnswerCell: UICollectionViewCell {
                 .constraint(equalTo: contentView.bottomAnchor)
         ])
 
-        layer.borderWidth = 1.0
+        layer.borderWidth = 1.5
         layer.borderColor = self.borderColor
         layer.cornerRadius = 10
     }
@@ -63,43 +67,50 @@ class AnswerCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         cardImageView.image = nil
+        
+        if let animationView = markViewRight {
+            animationView.removeFromSuperview()
+        }
+        self.isUserInteractionEnabled = true
+    }
+
+    func animateRightAnswer(duration: CFTimeInterval) {
+        let result = animation.makeAnimationRightAnswer(view: self,duration: duration)
+        if let rightAnimation = result.animation {
+            markViewRight = result.markView
+            markViewRight?.layer.add(rightAnimation, forKey: Animation.keyRightAnswer)
+        }
+    }
+
+    func animateWrongAnswer(duration: CFTimeInterval) {
+        let result = animation.makeAnimationWrongAnswer(view: self, duration: duration)
+        if let wrongAnimation = result.animation {
+            wrongAnimation.delegate = self
+            markViewWrong = result.markView
+            markViewWrong?.layer.add(wrongAnimation, forKey: Animation.keyWrongAnswer)
+        }
     }
     
-    func animateRightAnswer() {
-        let checkmark = UIImage(systemName: "checkmark")
+    func animationChangeImageAndFlip(card: CardProtocol, duration: CFTimeInterval) {
+        guard let card = card as? FigureCard else { return }
+        let transitionFlip = UIView.AnimationOptions.transitionFlipFromTop
         
-        let checkmarkUIImageView = UIImageView(image: checkmark)
-        checkmarkUIImageView.translatesAutoresizingMaskIntoConstraints = false
-        checkmarkUIImageView.tintColor = .green
-        addSubview(checkmarkUIImageView)
-        
-        NSLayoutConstraint.activate([
-            checkmarkUIImageView.topAnchor.constraint(equalTo: topAnchor),
-            checkmarkUIImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            checkmarkUIImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            checkmarkUIImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-        
-        let animation = CABasicAnimation(keyPath: "opacity")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = 0.6
-        animation.autoreverses = false
-        checkmarkUIImageView.layer.add(animation, forKey: "alpha")
+        let duration = 0.6
+        UIView.transition(with: self, duration: duration, options: transitionFlip, animations: nil) { _ in
+            let imageName = card.imageNameFill
+            if imageName.isEmpty { return }
+            let image = UIImage(named: imageName)
+            self.cardImageView.image = image
+            self.animation.changeAlphaAnimation(view: self, fromValue: 0, toValue: 1, duration: duration)
+            self.animateRightAnswer(duration: duration)
+        }
+        animation.changeAlphaAnimation(view: self, fromValue: 1, toValue: 0, duration: duration)
     }
-    
-    func animateWrongAnswer() {
-        UIView.animate(
-            withDuration: 0.2,
-            delay: 0,
-            options: [.autoreverse, .repeat, .curveEaseIn]) {
-                self.backgroundColor = .red
-                self.layer.borderColor = UIColor.red.cgColor
-            }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.layer.removeAllAnimations()
-            self.backgroundColor = .systemBackground
-            self.layer.borderColor = self.borderColor
+
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        guard let value = anim.value(forKey: Animation.keyWrongAnswer) as? String else { return }
+        if value == Animation.keyWrongAnswer {
+            markViewWrong?.removeFromSuperview()
         }
     }
 }

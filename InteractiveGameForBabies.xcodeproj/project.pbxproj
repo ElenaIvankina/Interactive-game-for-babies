@@ -27,21 +27,16 @@
 		0A52DBA4285E531B00F79AE7 /* ObservableOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334291028576050008600DB /* ObservableOptions.swift */; };
 		0A52DBA5285E531B00F79AE7 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334290E2857603C008600DB /* Observable.swift */; };
 		0A52DBA6285E531B00F79AE7 /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85B7285BC75A00D23883 /* AnswerCell.swift */; };
-		0A52DBA7285E531B00F79AE7 /* GameAnswersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85BA285BC83F00D23883 /* GameAnswersView.swift */; };
 		0A52DBA8285E531B00F79AE7 /* GameAnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85BC285BC9D000D23883 /* GameAnswersViewController.swift */; };
-		0A52DBA9285E531B00F79AE7 /* AnswersCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52DB7F285E2EBF00F79AE7 /* AnswersCollectionViewLayout.swift */; };
-		0A52DBAA285E531B00F79AE7 /* QuestionTextOnlyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52DB78285DEF0A00F79AE7 /* QuestionTextOnlyCell.swift */; };
-		0A52DBAB285E531B00F79AE7 /* QuestionSoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52DB7B285E03C700F79AE7 /* QuestionSoundCell.swift */; };
-		0A52DBAC285E531B00F79AE7 /* QuestionImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52DB7D285E065C00F79AE7 /* QuestionImageCell.swift */; };
 		0A52DBAD285E531B00F79AE7 /* GameQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85B4285BC12500D23883 /* GameQuestionViewController.swift */; };
-		0A52DBAE285E531B00F79AE7 /* GameQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85B2285BC0AA00D23883 /* GameQuestionView.swift */; };
 		0A52DBAF285E531B00F79AE7 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A85AB285BBFB500D23883 /* GameViewController.swift */; };
 		0A52DBB0285E531B00F79AE7 /* GameMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CD28575CD4008600DB /* GameMenuViewController.swift */; };
-		0A52DBB1285E531B00F79AE7 /* GameItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D27A72858FF00004995CB /* GameItemView.swift */; };
 		0A52DBB2285E531B00F79AE7 /* StartGameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D27A928590D48004995CB /* StartGameButton.swift */; };
 		0A52DBB3285E531B00F79AE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428C928575CD4008600DB /* AppDelegate.swift */; };
 		0A52DBB4285E531B00F79AE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428CB28575CD4008600DB /* SceneDelegate.swift */; };
 		0A52DBBC285E547600F79AE7 /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52DBBB285E547600F79AE7 /* Ext+UIColor.swift */; };
+		0A59259D286871F4008FB7AC /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59259C286871F4008FB7AC /* GameCell.swift */; };
+		0A75063B2867350B000F13E3 /* Ext+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A75063A2867350B000F13E3 /* Ext+UICollectionView.swift */; };
 		0A8D54A7285F714D0054B9B0 /* rodent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D547D285F70EF0054B9B0 /* rodent.mp3 */; };
 		0A8D54A8285F714D0054B9B0 /* monkey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D547E285F70EF0054B9B0 /* monkey.mp3 */; };
 		0A8D54A9285F714D0054B9B0 /* bear.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D547F285F70EF0054B9B0 /* bear.mp3 */; };
@@ -51,7 +46,7 @@
 		0A8D54AD285F714D0054B9B0 /* cat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5483285F70EF0054B9B0 /* cat.mp3 */; };
 		0A8D54AE285F714D0054B9B0 /* wolf.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5484285F70EF0054B9B0 /* wolf.mp3 */; };
 		0A8D54AF285F714D0054B9B0 /* mouse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5485285F70EF0054B9B0 /* mouse.mp3 */; };
-		0A8D54B0285F714D0054B9B0 /* hourse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5486285F70EF0054B9B0 /* hourse.mp3 */; };
+		0A8D54B0285F714D0054B9B0 /* horse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5486285F70EF0054B9B0 /* horse.mp3 */; };
 		0A8D54B1285F714D0054B9B0 /* frog.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5487285F70EF0054B9B0 /* frog.mp3 */; };
 		0A8D54B2285F714D0054B9B0 /* chicken.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5488285F70EF0054B9B0 /* chicken.mp3 */; };
 		0A8D54B3285F714D0054B9B0 /* cow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5489285F70EF0054B9B0 /* cow.mp3 */; };
@@ -64,11 +59,14 @@
 		0A8D54BA285F714D0054B9B0 /* elephant.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5490285F70EF0054B9B0 /* elephant.mp3 */; };
 		0A8D54BB285F714D0054B9B0 /* woodpecker.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D5491285F70EF0054B9B0 /* woodpecker.mp3 */; };
 		0A8D54BD285FA2F00054B9B0 /* Ext+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D54BC285FA2F00054B9B0 /* Ext+UIViewController.swift */; };
+		0ABF7BB6286647EE0006FA30 /* GameAnswersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF7BB5286647EE0006FA30 /* GameAnswersView.swift */; };
 		B33428D328575CD7008600DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33428D228575CD7008600DB /* Assets.xcassets */; };
 		B33428D628575CD7008600DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B33428D428575CD7008600DB /* LaunchScreen.storyboard */; };
 		B33428E128575CD7008600DB /* InteractiveGameForBabiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428E028575CD7008600DB /* InteractiveGameForBabiesTests.swift */; };
 		B33428EB28575CD7008600DB /* InteractiveGameForBabiesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428EA28575CD7008600DB /* InteractiveGameForBabiesUITests.swift */; };
 		B33428ED28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33428EC28575CD7008600DB /* InteractiveGameForBabiesUITestsLaunchTests.swift */; };
+		B621A9B5286502F80083DD6E /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621A9B4286502F80083DD6E /* Animation.swift */; };
+		B652AC2A2862089700B621CF /* GameQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B652AC292862089700B621CF /* GameQuestionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,12 +88,7 @@
 
 /* Begin PBXFileReference section */
 		0A0D27A52858F8E2004995CB /* UIPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreviewView.swift; sourceTree = "<group>"; };
-		0A0D27A72858FF00004995CB /* GameItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameItemView.swift; sourceTree = "<group>"; };
 		0A0D27A928590D48004995CB /* StartGameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameButton.swift; sourceTree = "<group>"; };
-		0A52DB78285DEF0A00F79AE7 /* QuestionTextOnlyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTextOnlyCell.swift; sourceTree = "<group>"; };
-		0A52DB7B285E03C700F79AE7 /* QuestionSoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSoundCell.swift; sourceTree = "<group>"; };
-		0A52DB7D285E065C00F79AE7 /* QuestionImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionImageCell.swift; sourceTree = "<group>"; };
-		0A52DB7F285E2EBF00F79AE7 /* AnswersCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersCollectionViewLayout.swift; sourceTree = "<group>"; };
 		0A52DBBB285E547600F79AE7 /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
 		0A52DBBD285E811400F79AE7 /* cow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cow.mp3; sourceTree = "<group>"; };
 		0A52DBC0285E892000F79AE7 /* donkey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = donkey.mp3; sourceTree = "<group>"; };
@@ -117,11 +110,11 @@
 		0A52DBD2285E892200F79AE7 /* frog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = frog.mp3; sourceTree = "<group>"; };
 		0A52DBD3285E892200F79AE7 /* hedgehog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hedgehog.mp3; sourceTree = "<group>"; };
 		0A52DBD4285E892200F79AE7 /* wolf.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wolf.mp3; sourceTree = "<group>"; };
+		0A59259C286871F4008FB7AC /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		0A75063A2867350B000F13E3 /* Ext+UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ext+UICollectionView.swift"; sourceTree = "<group>"; };
 		0A7A85AB285BBFB500D23883 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		0A7A85B2285BC0AA00D23883 /* GameQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuestionView.swift; sourceTree = "<group>"; };
 		0A7A85B4285BC12500D23883 /* GameQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuestionViewController.swift; sourceTree = "<group>"; };
 		0A7A85B7285BC75A00D23883 /* AnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
-		0A7A85BA285BC83F00D23883 /* GameAnswersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAnswersView.swift; sourceTree = "<group>"; };
 		0A7A85BC285BC9D000D23883 /* GameAnswersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAnswersViewController.swift; sourceTree = "<group>"; };
 		0A8D5479285F27A70054B9B0 /* cuckoo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cuckoo.mp3; sourceTree = "<group>"; };
 		0A8D547D285F70EF0054B9B0 /* rodent.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rodent.mp3; sourceTree = "<group>"; };
@@ -133,7 +126,7 @@
 		0A8D5483285F70EF0054B9B0 /* cat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat.mp3; sourceTree = "<group>"; };
 		0A8D5484285F70EF0054B9B0 /* wolf.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wolf.mp3; sourceTree = "<group>"; };
 		0A8D5485285F70EF0054B9B0 /* mouse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mouse.mp3; sourceTree = "<group>"; };
-		0A8D5486285F70EF0054B9B0 /* hourse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hourse.mp3; sourceTree = "<group>"; };
+		0A8D5486285F70EF0054B9B0 /* horse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = horse.mp3; sourceTree = "<group>"; };
 		0A8D5487285F70EF0054B9B0 /* frog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = frog.mp3; sourceTree = "<group>"; };
 		0A8D5488285F70EF0054B9B0 /* chicken.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chicken.mp3; sourceTree = "<group>"; };
 		0A8D5489285F70EF0054B9B0 /* cow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cow.mp3; sourceTree = "<group>"; };
@@ -146,6 +139,7 @@
 		0A8D5490285F70EF0054B9B0 /* elephant.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = elephant.mp3; sourceTree = "<group>"; };
 		0A8D5491285F70EF0054B9B0 /* woodpecker.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = woodpecker.mp3; sourceTree = "<group>"; };
 		0A8D54BC285FA2F00054B9B0 /* Ext+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIViewController.swift"; sourceTree = "<group>"; };
+		0ABF7BB5286647EE0006FA30 /* GameAnswersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAnswersView.swift; sourceTree = "<group>"; };
 		B33428C628575CD4008600DB /* InteractiveGameForBabies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InteractiveGameForBabies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33428C928575CD4008600DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B33428CB28575CD4008600DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,7 +169,9 @@
 		B3342937285CD87B008600DB /* GameViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewControllerBuilder.swift; sourceTree = "<group>"; };
 		B334293A285DD670008600DB /* GameStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStrategy.swift; sourceTree = "<group>"; };
 		B334293C285DD8EA008600DB /* AnimalQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalQuestion.swift; sourceTree = "<group>"; };
+		B621A9B4286502F80083DD6E /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Animation.swift; path = InteractiveGameForBabies/UI/Game/Childs/Question/Animation.swift; sourceTree = SOURCE_ROOT; };
 		B646B6E3285C3946001AB323 /* Ext+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Array.swift"; sourceTree = "<group>"; };
+		B652AC292862089700B621CF /* GameQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuestionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,16 +208,6 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		0A52DB77285DE6FA00F79AE7 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				0A52DB78285DEF0A00F79AE7 /* QuestionTextOnlyCell.swift */,
-				0A52DB7B285E03C700F79AE7 /* QuestionSoundCell.swift */,
-				0A52DB7D285E065C00F79AE7 /* QuestionImageCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		0A7A85AA285BBF8B00D23883 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,9 +237,8 @@
 		0A7A85AF285BC01B00D23883 /* Question */ = {
 			isa = PBXGroup;
 			children = (
-				0A52DB77285DE6FA00F79AE7 /* Cell */,
 				0A7A85B4285BC12500D23883 /* GameQuestionViewController.swift */,
-				0A7A85B2285BC0AA00D23883 /* GameQuestionView.swift */,
+				B652AC292862089700B621CF /* GameQuestionView.swift */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -262,9 +247,8 @@
 			isa = PBXGroup;
 			children = (
 				0A7A85B7285BC75A00D23883 /* AnswerCell.swift */,
-				0A7A85BA285BC83F00D23883 /* GameAnswersView.swift */,
+				0ABF7BB5286647EE0006FA30 /* GameAnswersView.swift */,
 				0A7A85BC285BC9D000D23883 /* GameAnswersViewController.swift */,
-				0A52DB7F285E2EBF00F79AE7 /* AnswersCollectionViewLayout.swift */,
 			);
 			path = Answers;
 			sourceTree = "<group>";
@@ -309,7 +293,7 @@
 				0A8D5483285F70EF0054B9B0 /* cat.mp3 */,
 				0A8D5484285F70EF0054B9B0 /* wolf.mp3 */,
 				0A8D5485285F70EF0054B9B0 /* mouse.mp3 */,
-				0A8D5486285F70EF0054B9B0 /* hourse.mp3 */,
+				0A8D5486285F70EF0054B9B0 /* horse.mp3 */,
 				0A8D5487285F70EF0054B9B0 /* frog.mp3 */,
 				0A8D5488285F70EF0054B9B0 /* chicken.mp3 */,
 				0A8D5489285F70EF0054B9B0 /* cow.mp3 */,
@@ -395,8 +379,8 @@
 			isa = PBXGroup;
 			children = (
 				B33428CD28575CD4008600DB /* GameMenuViewController.swift */,
-				0A0D27A72858FF00004995CB /* GameItemView.swift */,
 				0A0D27A928590D48004995CB /* StartGameButton.swift */,
+				0A59259C286871F4008FB7AC /* GameCell.swift */,
 			);
 			path = GameMenu;
 			sourceTree = "<group>";
@@ -411,6 +395,7 @@
 		B334290828575F74008600DB /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				B621A9B4286502F80083DD6E /* Animation.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -489,6 +474,7 @@
 		B646B6E2285C3929001AB323 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0A75063A2867350B000F13E3 /* Ext+UICollectionView.swift */,
 				B646B6E3285C3946001AB323 /* Ext+Array.swift */,
 				0A52DBBB285E547600F79AE7 /* Ext+UIColor.swift */,
 				0A8D54BC285FA2F00054B9B0 /* Ext+UIViewController.swift */,
@@ -609,7 +595,7 @@
 				0A8D54AD285F714D0054B9B0 /* cat.mp3 in Resources */,
 				0A8D54AE285F714D0054B9B0 /* wolf.mp3 in Resources */,
 				0A8D54AF285F714D0054B9B0 /* mouse.mp3 in Resources */,
-				0A8D54B0285F714D0054B9B0 /* hourse.mp3 in Resources */,
+				0A8D54B0285F714D0054B9B0 /* horse.mp3 in Resources */,
 				0A8D54B1285F714D0054B9B0 /* frog.mp3 in Resources */,
 				0A8D54B2285F714D0054B9B0 /* chicken.mp3 in Resources */,
 				0A8D54B3285F714D0054B9B0 /* cow.mp3 in Resources */,
@@ -648,6 +634,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A52DB91285E531B00F79AE7 /* Ext+Array.swift in Sources */,
+				B652AC2A2862089700B621CF /* GameQuestionView.swift in Sources */,
 				0A52DB92285E531B00F79AE7 /* UIPreviewView.swift in Sources */,
 				0A52DB93285E531B00F79AE7 /* GameSession.swift in Sources */,
 				0A52DB94285E531B00F79AE7 /* GameDatabase.swift in Sources */,
@@ -662,24 +649,21 @@
 				0A52DB9C285E531B00F79AE7 /* CountCard.swift in Sources */,
 				0A52DB9D285E531B00F79AE7 /* FigureCard.swift in Sources */,
 				0A52DB9E285E531B00F79AE7 /* CardProtocol.swift in Sources */,
+				0A75063B2867350B000F13E3 /* Ext+UICollectionView.swift in Sources */,
 				0A52DB9F285E531B00F79AE7 /* QuestionProtocol.swift in Sources */,
 				0A52DBA1285E531B00F79AE7 /* GameStrategy.swift in Sources */,
 				0A52DBA2285E531B00F79AE7 /* GameViewControllerBuilder.swift in Sources */,
+				0A59259D286871F4008FB7AC /* GameCell.swift in Sources */,
 				0A52DBA4285E531B00F79AE7 /* ObservableOptions.swift in Sources */,
+				0ABF7BB6286647EE0006FA30 /* GameAnswersView.swift in Sources */,
+				B621A9B5286502F80083DD6E /* Animation.swift in Sources */,
 				0A52DBA5285E531B00F79AE7 /* Observable.swift in Sources */,
 				0A52DBA6285E531B00F79AE7 /* AnswerCell.swift in Sources */,
-				0A52DBA7285E531B00F79AE7 /* GameAnswersView.swift in Sources */,
 				0A52DBA8285E531B00F79AE7 /* GameAnswersViewController.swift in Sources */,
-				0A52DBA9285E531B00F79AE7 /* AnswersCollectionViewLayout.swift in Sources */,
-				0A52DBAA285E531B00F79AE7 /* QuestionTextOnlyCell.swift in Sources */,
 				0A8D54BD285FA2F00054B9B0 /* Ext+UIViewController.swift in Sources */,
-				0A52DBAB285E531B00F79AE7 /* QuestionSoundCell.swift in Sources */,
-				0A52DBAC285E531B00F79AE7 /* QuestionImageCell.swift in Sources */,
 				0A52DBAD285E531B00F79AE7 /* GameQuestionViewController.swift in Sources */,
-				0A52DBAE285E531B00F79AE7 /* GameQuestionView.swift in Sources */,
 				0A52DBAF285E531B00F79AE7 /* GameViewController.swift in Sources */,
 				0A52DBB0285E531B00F79AE7 /* GameMenuViewController.swift in Sources */,
-				0A52DBB1285E531B00F79AE7 /* GameItemView.swift in Sources */,
 				0A52DBB2285E531B00F79AE7 /* StartGameButton.swift in Sources */,
 				0A52DBB3285E531B00F79AE7 /* AppDelegate.swift in Sources */,
 				0A52DBB4285E531B00F79AE7 /* SceneDelegate.swift in Sources */,

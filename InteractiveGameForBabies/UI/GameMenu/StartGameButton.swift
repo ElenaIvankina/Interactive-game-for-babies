@@ -43,18 +43,95 @@ class StartGameButton: UIButton {
         }
     }
 
+    private var bevel = 3 // Button 'pop-out' effect amount
+
+    override open var isHighlighted: Bool {
+        didSet {
+            isHighlighted ? pressed() : released()
+        }
+    }
+
+    override open var isEnabled: Bool {
+        didSet {
+            isHighlighted ? released() : pressed()
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupButton()
+        makeNeuromorphic()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupButton()
+        makeNeuromorphic()
     }
 
-    private func setupButton() {
-        layer.cornerRadius = 20
-        layer.borderWidth = 0.25
+    private func pressed() {
+        layer.shadowOffset = CGSize(width: -2, height: -2)
+        layer.sublayers?[0].shadowOffset = CGSize(width: 2, height: 2)
+        contentEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 0, right: 0)
+    }
+
+    private func released() {
+        layer.shadowOffset = CGSize(width: bevel, height: bevel)
+        layer.sublayers?[0].shadowOffset = CGSize(width: -bevel, height: -bevel)
+        contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 2)
+    }
+
+    public func makeNeuromorphic(cornerRadius: CGFloat = 20.0, superView: UIView? = nil) {
+        let darkShadow = darkShadowColor(.gameButton)
+        let lightShadow = lightShadowColor(.gameButton)
+
+        if (layer.sublayers?[0] as? CAShapeLayer) != nil {
+            layer.sublayers?.remove(at: 0)
+        }
+
+        tintColor = .label
+
+        let shadowLayer = CAShapeLayer()
+
+        layer.cornerRadius = cornerRadius
+        layer.cornerCurve = .continuous
+        shadowLayer.cornerRadius = cornerRadius
+        shadowLayer.cornerCurve = .continuous
+
+        layer.shadowRadius = 2
+        shadowLayer.shadowRadius = 2
+
+        layer.shadowOpacity = 1
+        shadowLayer.shadowOpacity = 1
+
+        layer.shadowOffset = CGSize(width: bevel, height: bevel)
+        shadowLayer.shadowOffset = CGSize(width: -bevel, height: -bevel)
+
+        var activeColor = UIColor.gameButton
+        if traitCollection.userInterfaceStyle == .dark {
+            activeColor = UIColor.blue
+            layer.shadowColor = UIColor.black.cgColor
+            shadowLayer.shadowColor = darkShadow.cgColor
+        } else {
+            layer.shadowColor = lightShadow.cgColor
+            shadowLayer.shadowColor = UIColor.white.cgColor
+        }
+
+        layer.masksToBounds = false
+        shadowLayer.frame = bounds
+        layer.backgroundColor = activeColor.cgColor
+        shadowLayer.backgroundColor = activeColor.cgColor
+
+        if superView != nil {
+            superview?.backgroundColor = activeColor
+        }
+
+        layer.insertSublayer(shadowLayer, at: 0)
+    }
+
+    private func lightShadowColor(_ color: UIColor) -> UIColor {
+        return color.adjustSaturation(by: 0.5)
+    }
+
+    private func darkShadowColor(_ color: UIColor) -> UIColor {
+        return color.adjustBrightness(by: 0.5)
     }
 }

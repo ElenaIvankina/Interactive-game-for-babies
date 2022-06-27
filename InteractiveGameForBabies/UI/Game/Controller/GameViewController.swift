@@ -8,142 +8,127 @@
 import UIKit
 
 protocol GameViewControllerProtocol: UIViewController {
-    
-    var mediaType: MediaType { get set }
+
     var gameDelegate: GameDelegate { get set }
     var typeOfGame: TypeOfGame { get set }
 }
 
 class GameViewController: UIViewController, GameViewControllerProtocol {
-    
-    internal var mediaType: MediaType
-    internal var gameDelegate: GameDelegate
-    internal var typeOfGame: TypeOfGame
-    
-    // MARK: - Views
-    lazy var questionViewController = GameQuestionViewController(type: mediaType)
-    lazy var answersViewController = GameAnswersViewController(delegate: gameDelegate)
-    
+
+    var gameDelegate: GameDelegate
+    var typeOfGame: TypeOfGame
+    let questionViewController: GameQuestionViewController
+    let answersViewController: GameAnswersViewController
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
+
     private let scrollContentView: UIView = {
         let scrollView = UIView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
+
+    // MARK: - Lyfecycle
     init(gameDelegate: GameDelegate, typeOfGame: TypeOfGame) {
         self.gameDelegate = gameDelegate
         self.typeOfGame = typeOfGame
-        
-        switch typeOfGame {
-        case .speakAnimalGame:
-            mediaType = .sound
-        case .colorGame:
-            mediaType = .image
-        case .countGame:
-            mediaType = .image
-        case .figureGame:
-            mediaType = .text
-        }
-        
+
+        self.questionViewController = GameQuestionViewController(typeOfGame: typeOfGame)
+        self.answersViewController = GameAnswersViewController(delegate: gameDelegate)
+
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setGradientBackground()
         configureView()
-        addObserverToGameSession()
     }
-    
-    private func addObserverToGameSession() {
-        GameSession.shared
-            .counterOfRightAnswers
-            .addObserver(self, closure: { [weak self] number, _ in
-                guard let self = self else {return}
-                if number == GameSession.shared.numberOfRightAnswers {
-                    // TODO: Change to completion handler
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        self.makeGameEndAlert()
-                    }
-                }
-            })
+
+    func reloadData (gameSession: GameSessionProtocol) {
+        answersViewController.reloadCollectionView()
+        questionViewController.reloadData(question: gameSession.currentQuestion)
     }
-    
+
     private func makeGameEndAlert() {
         let alert = UIAlertController(title: "Молодец, малыш!",
                                       message: "Сыграем еще?",
                                       preferredStyle: .alert)
-        
+
         alert.addAction(UIAlertAction(title: "Нет",
                                       style: .default,
                                       handler: { [weak self] _ in
             guard let self = self else {return}
             self.gameDelegate.endGame()
         }))
-        
+
         alert.addAction(UIAlertAction(title: "Да",
                                       style: .default,
                                       handler: { [weak self] _ in
             guard let self = self else {return}
             self.gameDelegate.newGame()
         }))
-        
+
         self.present(alert, animated: true)
     }
-    
+
     // MARK: - Private
     func configureView() {
         view.backgroundColor = .systemBackground
-        
+
         configureNavigationController()
         configureScrollView()
         addQuestionViewController()
         addAnswersViewController()
     }
-    
+
     private func configureNavigationController() {
         navigationItem.largeTitleDisplayMode = .never
-        
+
         if let navigationBar = navigationController?.navigationBar {
             let homeImage = UIImage(systemName: "house.fill")
             navigationBar.backIndicatorImage = homeImage
             navigationBar.backIndicatorTransitionMaskImage = homeImage
             navigationBar.topItem?.backButtonDisplayMode = .minimal
         }
-        
+
         navigationItem.hidesBackButton = true
-        
+
         let newBackButton = UIBarButtonItem(image: UIImage(systemName: "house.fill"),
                                             style: .plain,
                                             target: self,
                                             action: #selector(homeButtonTapped))
-        
+
         navigationItem.leftBarButtonItem = newBackButton
+        
+        guard #available(iOS 15, *) else {
+            navigationController?.isNavigationBarHidden = true
+            return
+        }
     }
-    
-    @objc func homeButtonTapped() {
+
+    @objc
+    func homeButtonTapped() {
         navigationController?.popToRootViewController(animated: true)
     }
-    
+
     private func configureScrollView() {
         scrollView.addSubview(scrollContentView)
         view.addSubview(scrollView)
-        
+
         let heightConstraint = scrollContentView
             .heightAnchor
             .constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor)
         heightConstraint.priority = UILayoutPriority(250)
-        
+
         NSLayoutConstraint.activate([
             scrollView
                 .topAnchor
@@ -157,7 +142,7 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
             scrollView
                 .bottomAnchor
                 .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
+
             scrollContentView
                 .topAnchor
                 .constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
@@ -175,15 +160,15 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
                 .constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor)
         ])
     }
-    
+
     private func addQuestionViewController() {
         addChild(questionViewController)
         let questionView = questionViewController.view!
         scrollContentView.addSubview(questionView)
         questionViewController.didMove(toParent: self)
-        
+
         questionView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             questionView
                 .topAnchor
@@ -197,21 +182,22 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
             questionView
                 .heightAnchor
                 .constraint(equalToConstant: questionViewController.contentHeight)
+
         ])
     }
-    
+
     private func addAnswersViewController() {
         addChild(answersViewController)
         let answersView = answersViewController.view!
         scrollContentView.addSubview(answersView)
         answersViewController.didMove(toParent: self)
-        
+
         answersView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let topInset: CGFloat = 4
         let contentHeight = topInset + questionViewController.contentHeight + barsHeight
         let collectionHeight = UIScreen.main.bounds.height - contentHeight
-        
+
         NSLayoutConstraint.activate([
             answersView
                 .topAnchor

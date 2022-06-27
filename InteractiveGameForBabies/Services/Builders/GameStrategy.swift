@@ -6,38 +6,58 @@
 //
 
 import Foundation
+import UIKit
 
-enum TypeOfGame {
+enum TypeOfGame: Int, CaseIterable {
     case speakAnimalGame
     case colorGame
     case countGame
     case figureGame
+    
+    var name: String {
+        switch self {
+        case .speakAnimalGame:
+            return "Как говорят животные"
+        case .countGame:
+            return "Один - много"
+        case .colorGame:
+            return "Изучаем цвета"
+        case .figureGame:
+            return "Лягушки и фигуры"
+        }
+    }
+    
+    var image: UIImage? {
+        switch self {
+        case .speakAnimalGame:
+            return UIImage(named: "notes")
+        case .countGame:
+            return UIImage(named: "many")
+        case .colorGame:
+            return UIImage(named: "colors")
+        case .figureGame:
+            return UIImage(named: "figures")
+        }
+    }
 }
-
-enum MediaType {
-    case sound
-    case image
-    case text
-    case none
-}
-
 
 protocol GameStrategyProtocol {
     static func setUpGameSession(typeOfGame: TypeOfGame)
 }
 
 class GameStrategy: GameStrategyProtocol {
-    
-    static func clearGameSession () {
 
-        GameSession.shared.counterOfRightAnswers.value = 0
-        
+    static func clearGameSession () {
+        GameSession.shared.counterOfRightAnswers = 0
+
     }
 
     static func setUpGameSession (typeOfGame: TypeOfGame) {
-        
+
         clearGameSession()
 
+        GameSession.shared.numberOfCardsInSession = 6
+        
         switch typeOfGame {
         case .speakAnimalGame:
             GameSession.shared.questionsArray = GameDatabase.shared.animalQuestions
@@ -51,6 +71,7 @@ class GameStrategy: GameStrategyProtocol {
         case .figureGame:
             GameSession.shared.questionsArray = GameDatabase.shared.figureQuestions
             GameSession.shared.cardsArray = GameDatabase.shared.figureCards
+            GameSession.shared.numberOfCardsInSession = 4
         }
     }
 }
