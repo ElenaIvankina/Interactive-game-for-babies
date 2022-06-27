@@ -119,7 +119,7 @@ class GameAnswersView: UIView {
         let destinationCard = GameSession.shared.currentRandomCards[destinationIndexPath.row]
         var isRightAnswer = false
         
-        if sourceCard.isEqualTo(destinationCard) {
+        if sourceCard.isEqualTo(destinationCard) && sourceIndexPath.section != destinationIndexPath.section {
             isRightAnswer = true
             collectionView.performBatchUpdates({
                 collectionView.deleteItems(at: [sourceIndexPath])
@@ -130,11 +130,13 @@ class GameAnswersView: UIView {
         }
         
         if let cell = collectionView.cellForItem(at: destinationIndexPath) as? AnswerCell {
-            switch isRightAnswer {
-            case true:
-                cell.animationChangeImageAndFlip(card: destinationCard, duration: durationRightAnswer)
-            case false:
-                cell.animateWrongAnswer(duration: durationWrongAnswer)
+            if sourceIndexPath.section != destinationIndexPath.section {
+                switch isRightAnswer {
+                case true:
+                    cell.animationChangeImageAndFlip(card: destinationCard, duration: durationRightAnswer)
+                case false:
+                    cell.animateWrongAnswer(duration: durationWrongAnswer)
+                }
             }
         }
     }
