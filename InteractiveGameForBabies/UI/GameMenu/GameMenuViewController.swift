@@ -80,15 +80,13 @@ class GameMenuViewController: UIViewController {
     
     private func setupViews() {
         setBackgroundView()
-        
+        setupHeaderLabel()
+        setupSubLabel()
+        setupCollectionView()
+    }
+    
+    private func setupHeaderLabel() {
         view.addSubview(headerLabel)
-        view.addSubview(subLabel)
-        view.addSubview(collectionView)
-        
-        let heightConstraint = collectionView
-            .heightAnchor
-            .constraint(equalToConstant: 300)
-        heightConstraint.priority = UILayoutPriority(250)
         
         NSLayoutConstraint.activate([
             headerLabel
@@ -100,9 +98,14 @@ class GameMenuViewController: UIViewController {
                 .constraint(equalTo: view.leadingAnchor),
             headerLabel
                 .trailingAnchor
-                .constraint(equalTo: view.trailingAnchor),
-            
-            
+                .constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+    
+    private func setupSubLabel() {
+        view.addSubview(subLabel)
+        
+        NSLayoutConstraint.activate([
             subLabel
                 .topAnchor
                 .constraint(equalTo: headerLabel.bottomAnchor,
@@ -113,7 +116,18 @@ class GameMenuViewController: UIViewController {
             subLabel
                 .trailingAnchor
                 .constraint(equalTo: view.trailingAnchor),
-            
+        ])
+    }
+    
+    private func setupCollectionView() {
+        view.addSubview(collectionView)
+        
+        let heightConstraint = collectionView
+            .heightAnchor
+            .constraint(equalToConstant: 300)
+        heightConstraint.priority = UILayoutPriority(250)
+        
+        NSLayoutConstraint.activate([
             collectionView
                 .topAnchor
                 .constraint(greaterThanOrEqualTo: subLabel.bottomAnchor,
@@ -142,10 +156,6 @@ class GameMenuViewController: UIViewController {
 }
 
 extension GameMenuViewController: UICollectionViewDelegate {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return TypeOfGame.allCases.count

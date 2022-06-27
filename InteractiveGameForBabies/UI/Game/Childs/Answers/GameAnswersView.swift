@@ -58,6 +58,14 @@ class GameAnswersView: UIView {
             sectionsCount = 2
             collectionView.dragDelegate = self
             collectionView.dropDelegate = self
+            collectionView.isScrollEnabled = false
+            
+            collectionView.gestureRecognizers?.forEach {
+                if(String(describing: type(of: $0)) == "_UIDragLiftGestureRecognizer"),
+                  let longGesture = $0 as? UILongPressGestureRecognizer {
+                    longGesture.minimumPressDuration = 0.01
+                }
+            }
         default:
             let rowCount = lround(Double(GameSession.shared.currentRandomCards.count) / 2.0)
             collectionView.configureGridLayout(rowCount: rowCount)
@@ -72,7 +80,7 @@ class GameAnswersView: UIView {
         }
         figureCardIndexes = Array(0...3)
     }
-        
+    
     func animationCollectionView(isAfterReload: Bool, duration: CFTimeInterval) {
         let fromValue = isAfterReload ? 0 : 1
         let toValue = isAfterReload ? 1 : 0
@@ -105,7 +113,7 @@ class GameAnswersView: UIView {
                             constant: Constants.inset)
         ])
     }
-            
+    
     private func checkAnswer(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView) {
         guard let item = coordinator.items.first,
               let sourceIndexPath = item.sourceIndexPath,
@@ -113,13 +121,17 @@ class GameAnswersView: UIView {
         else {
             return
         }
-
+        
+        if sourceIndexPath.section == destinationIndexPath.section {
+            return
+        }
+        
         let sourceCardId = figureCardIndexes[sourceIndexPath.row]
         let sourceCard = figureQuestion.cardsFigure[sourceCardId]
         let destinationCard = GameSession.shared.currentRandomCards[destinationIndexPath.row]
         var isRightAnswer = false
         
-        if sourceCard.isEqualTo(destinationCard) && sourceIndexPath.section != destinationIndexPath.section {
+        if sourceCard.isEqualTo(destinationCard) {
             isRightAnswer = true
             collectionView.performBatchUpdates({
                 collectionView.deleteItems(at: [sourceIndexPath])
@@ -130,13 +142,11 @@ class GameAnswersView: UIView {
         }
         
         if let cell = collectionView.cellForItem(at: destinationIndexPath) as? AnswerCell {
-            if sourceIndexPath.section != destinationIndexPath.section {
-                switch isRightAnswer {
-                case true:
-                    cell.animationChangeImageAndFlip(card: destinationCard, duration: durationRightAnswer)
-                case false:
-                    cell.animateWrongAnswer(duration: durationWrongAnswer)
-                }
+            switch isRightAnswer {
+            case true:
+                cell.animationChangeImageAndFlip(card: destinationCard, duration: durationRightAnswer)
+            case false:
+                cell.animateWrongAnswer(duration: durationWrongAnswer)
             }
         }
     }
