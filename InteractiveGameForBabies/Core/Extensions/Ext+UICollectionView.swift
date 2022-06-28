@@ -45,39 +45,6 @@ extension UICollectionView {
         collectionViewLayout = layout
     }
     
-    func configureSectionsLayout(columnCount count: [Int],
-                                 itemInset inset: CGFloat = 4,
-                                 sectionInset contentInsets: CGFloat = 8) {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            
-            let columns = count[sectionIndex]
-            
-            let widthDimension = NSCollectionLayoutDimension.fractionalWidth(1.0 / CGFloat(columns))
-            
-            let itemSize = NSCollectionLayoutSize(widthDimension: widthDimension,
-                                                  heightDimension: .fractionalHeight(1.0))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = .init(top: inset,
-                                       leading: inset,
-                                       bottom: inset,
-                                       trailing: inset)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: widthDimension)
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = .init(top: contentInsets,
-                                          leading: contentInsets,
-                                          bottom: contentInsets,
-                                          trailing: contentInsets)
-            
-            return section
-        }
-        
-        collectionViewLayout = layout
-    }
-    
     func configureDragLiftGesture(minimumPressDuration duration: TimeInterval) {
         gestureRecognizers?.forEach {
             if(String(describing: type(of: $0)) == "_UIDragLiftGestureRecognizer"),
