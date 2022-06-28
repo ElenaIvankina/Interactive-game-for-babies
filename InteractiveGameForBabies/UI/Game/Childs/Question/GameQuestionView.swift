@@ -160,19 +160,23 @@ class GameQuestionView: UIView {
         if let colorCard = question.card as? ColorCard {
             let imageName = colorCard.imageName
             addQuestionUIImageView(named: imageName)
+            return
         }
 
         if let countCard = question.card as? CountCard {
             let imageName = countCard.imageName
             addQuestionUIImageView(named: imageName)
+            return
         }
 
-        if let _ = question.card as? AnimalCard {
+        if question.card is AnimalCard {
             addPlaySoundButton()
+            return
         }
         
-        if let _ = question.card as? FigureCard {
+        if question.card is FigureCard {
             addFigureCards()
+            return
         }
     }
 

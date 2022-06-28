@@ -108,11 +108,6 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
                                             action: #selector(homeButtonTapped))
 
         navigationItem.leftBarButtonItem = newBackButton
-        
-        guard #available(iOS 15, *) else {
-            navigationController?.isNavigationBarHidden = true
-            return
-        }
     }
 
     @objc
@@ -157,7 +152,8 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
                 .constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
             scrollContentView
                 .widthAnchor
-                .constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor)
+                .constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+            heightConstraint
         ])
     }
 
@@ -175,14 +171,13 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
                 .constraint(equalTo: scrollContentView.topAnchor),
             questionView
                 .leadingAnchor
-                .constraint(equalTo: view.leadingAnchor),
+                .constraint(equalTo: scrollContentView.leadingAnchor),
             questionView
                 .trailingAnchor
-                .constraint(equalTo: view.trailingAnchor),
+                .constraint(equalTo: scrollContentView.trailingAnchor),
             questionView
                 .heightAnchor
                 .constraint(equalToConstant: questionViewController.contentHeight)
-
         ])
     }
 
@@ -194,9 +189,9 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
 
         answersView.translatesAutoresizingMaskIntoConstraints = false
 
-        let topInset: CGFloat = 4
+        let topInset: CGFloat = 16
         let contentHeight = topInset + questionViewController.contentHeight + barsHeight
-        let collectionHeight = UIScreen.main.bounds.height - contentHeight
+        let _ = UIScreen.main.bounds.height - contentHeight
 
         NSLayoutConstraint.activate([
             answersView
@@ -205,16 +200,13 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
                             constant: topInset),
             answersView
                 .leadingAnchor
-                .constraint(equalTo: view.leadingAnchor),
+                .constraint(equalTo: scrollContentView.leadingAnchor),
             answersView
                 .trailingAnchor
-                .constraint(equalTo: view.trailingAnchor),
+                .constraint(equalTo: scrollContentView.trailingAnchor),
             answersView
                 .bottomAnchor
-                .constraint(equalTo: scrollContentView.bottomAnchor),
-            answersView
-                .heightAnchor
-                .constraint(equalToConstant: collectionHeight)
+                .constraint(equalTo: scrollContentView.bottomAnchor)
         ])
     }
 }

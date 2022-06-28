@@ -9,7 +9,23 @@ import SwiftUI
 
 class GameAnswersView: UIView {
     
-    private var collectionView: UICollectionView = {
+    private weak var delegate: GameDelegate?
+    
+    private let isAnimation = true
+    private let animation = Animation()
+    private let durationRightAnswer: CFTimeInterval = 0.6
+    private let durationWrongAnswer: CFTimeInterval = 0.4
+    
+    private var figureCardIndexes = Array(0...3)
+    private var sectionsCount = 0
+    
+    private enum Constants {
+        static let inset: CGFloat = 4
+        static let itemInset: CGFloat = 2
+        static let sectionInset: CGFloat = 10
+    }
+    
+    private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInsetAdjustmentBehavior = .always
@@ -21,29 +37,16 @@ class GameAnswersView: UIView {
         
         collectionView.register(registerClass: AnswerCell.self)
         
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         return collectionView
     }()
-    
-    private weak var delegate: GameDelegate?
-    
-    private let isAnimation = true
-    private var figureCardIndexes = Array(0...3)
-    private let animation = Animation()
-    private let durationRightAnswer: CFTimeInterval = 0.6
-    private let durationWrongAnswer: CFTimeInterval = 0.4
-    
-    private enum Constants {
-        static let inset: CGFloat = 4
-        static let itemInset: CGFloat = 2
-        static let sectionInset: CGFloat = 10
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
-    
-    private var sectionsCount = 0
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -52,15 +55,19 @@ class GameAnswersView: UIView {
     func setDelegate(delegate: GameDelegate) {
         self.delegate = delegate
         
+        let answerRowCount = lround(Double(GameSession.shared.currentRandomCards.count) / 2.0)
+        
         switch delegate.gameViewController?.typeOfGame {
         case .figureGame:
-            collectionView.configureSectionsLayout(columnCount: [4, 2])
-            sectionsCount = 2
+            let figuresCount = GameSession.shared.currentRandomCards.count
+            collectionView.configureSectionsLayout(columnCount: [figuresCount, 2], rowCount: [1, answerRowCount])
             collectionView.dragDelegate = self
             collectionView.dropDelegate = self
+            collectionView.isScrollEnabled = false
+            collectionView.configureDragLiftGesture(minimumPressDuration: 0.01)
+            sectionsCount = 2
         default:
-            let rowCount = lround(Double(GameSession.shared.currentRandomCards.count) / 2.0)
-            collectionView.configureGridLayout(rowCount: rowCount)
+            collectionView.configureGridLayout(rowCount: answerRowCount)
             sectionsCount = 1
         }
     }
@@ -72,7 +79,7 @@ class GameAnswersView: UIView {
         }
         figureCardIndexes = Array(0...3)
     }
-        
+    
     func animationCollectionView(isAfterReload: Bool, duration: CFTimeInterval) {
         let fromValue = isAfterReload ? 0 : 1
         let toValue = isAfterReload ? 1 : 0
@@ -82,9 +89,6 @@ class GameAnswersView: UIView {
     
     private func setupView() {
         addSubview(collectionView)
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
         
         NSLayoutConstraint.activate([
             collectionView
@@ -105,21 +109,22 @@ class GameAnswersView: UIView {
                             constant: Constants.inset)
         ])
     }
-            
+    
     private func checkAnswer(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView) {
         guard let item = coordinator.items.first,
               let sourceIndexPath = item.sourceIndexPath,
+              sourceIndexPath.section != destinationIndexPath.section,
               let figureQuestion = GameSession.shared.currentQuestion as? FigureQuestion
         else {
             return
         }
-
+        
         let sourceCardId = figureCardIndexes[sourceIndexPath.row]
         let sourceCard = figureQuestion.cardsFigure[sourceCardId]
         let destinationCard = GameSession.shared.currentRandomCards[destinationIndexPath.row]
         var isRightAnswer = false
         
-        if sourceCard.isEqualTo(destinationCard) && sourceIndexPath.section != destinationIndexPath.section {
+        if sourceCard.isEqualTo(destinationCard) {
             isRightAnswer = true
             collectionView.performBatchUpdates({
                 collectionView.deleteItems(at: [sourceIndexPath])
@@ -130,13 +135,11 @@ class GameAnswersView: UIView {
         }
         
         if let cell = collectionView.cellForItem(at: destinationIndexPath) as? AnswerCell {
-            if sourceIndexPath.section != destinationIndexPath.section {
-                switch isRightAnswer {
-                case true:
-                    cell.animationChangeImageAndFlip(card: destinationCard, duration: durationRightAnswer)
-                case false:
-                    cell.animateWrongAnswer(duration: durationWrongAnswer)
-                }
+            switch isRightAnswer {
+            case true:
+                cell.animationChangeImageAndFlip(card: destinationCard, duration: durationRightAnswer)
+            case false:
+                cell.animateWrongAnswer(duration: durationWrongAnswer)
             }
         }
     }
@@ -223,5 +226,83 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
         } else {
             cell.animateWrongAnswer(duration: durationWrongAnswer)
         }
+    }
+}
+
+extension UICollectionView {
+    
+    func configureSectionsLayout(columnCount columns: [Int],
+                                 rowCount rows: [Int],
+                                 itemInset inset: CGFloat = 4,
+                                 groupSpacing spacing: CGFloat = 8) {
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
+            
+            switch sectionIndex {
+            case 0:
+                return self.createFigureSection(columns: columns[sectionIndex],
+                                                itemInset: inset,
+                                                groupSpacing: spacing)
+            case 1:
+                return self.createAnswersSection(columns: columns[sectionIndex],
+                                                 rows: rows[sectionIndex],
+                                                 itemInset: inset,
+                                                 groupSpacing: spacing)
+            default:
+                return nil
+            }
+        }
+        
+        collectionViewLayout = layout
+    }
+    
+    private func createFigureSection(columns: Int,
+                                     itemInset: CGFloat,
+                                     groupSpacing: CGFloat) -> NSCollectionLayoutSection {
+        let widthDimension = NSCollectionLayoutDimension.fractionalWidth(1.0 / CGFloat(columns))
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: widthDimension,
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: itemInset,
+                                   leading: itemInset,
+                                   bottom: itemInset,
+                                   trailing: itemInset)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: widthDimension)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = groupSpacing
+        
+        return section
+    }
+    
+    private func createAnswersSection(columns: Int,
+                                      rows: Int,
+                                      itemInset: CGFloat,
+                                      groupSpacing: CGFloat) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0 / CGFloat(columns)),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: itemInset,
+                                   leading: itemInset,
+                                   bottom: itemInset,
+                                   trailing: itemInset)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0 / (CGFloat(rows) + 0.5))
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = groupSpacing
+        
+        return section
     }
 }
