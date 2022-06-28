@@ -40,19 +40,22 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
     private func setupView() {
         contentView.addSubview(cardImageView)
         
+        let bounds = contentView.bounds
+        let sideSize = min(bounds.width, bounds.height)
+        
         NSLayoutConstraint.activate([
             cardImageView
-                .topAnchor
-                .constraint(equalTo: contentView.topAnchor),
+                .widthAnchor
+                .constraint(equalToConstant: sideSize),
             cardImageView
-                .trailingAnchor
-                .constraint(equalTo: contentView.trailingAnchor),
+                .heightAnchor
+                .constraint(equalToConstant: sideSize),
             cardImageView
-                .leadingAnchor
-                .constraint(equalTo: contentView.leadingAnchor),
+                .centerXAnchor
+                .constraint(equalTo: contentView.centerXAnchor),
             cardImageView
-                .bottomAnchor
-                .constraint(equalTo: contentView.bottomAnchor)
+                .centerYAnchor
+                .constraint(equalTo: contentView.centerYAnchor)
         ])
         
         layer.borderWidth = 1.5

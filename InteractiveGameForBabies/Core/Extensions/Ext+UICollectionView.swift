@@ -61,7 +61,7 @@ extension UICollectionView {
                                        trailing: inset)
             
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .fractionalHeight(1.0 / 3.0))
+                                                   heightDimension: .fractionalHeight(1.0 / 3.2))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
             
             let section = NSCollectionLayoutSection(group: group)

@@ -9,7 +9,7 @@ import UIKit
 
 class GameMenuViewController: UIViewController {
     
-    let gameVCBuilder = GameViewControllerBuilder()
+    private let gameVCBuilder = GameViewControllerBuilder()
     
     // MARK: - Views
     
@@ -124,7 +124,7 @@ class GameMenuViewController: UIViewController {
         
         let heightConstraint = collectionView
             .heightAnchor
-            .constraint(equalToConstant: 300)
+            .constraint(equalToConstant: 320)
         heightConstraint.priority = UILayoutPriority(250)
         
         NSLayoutConstraint.activate([
