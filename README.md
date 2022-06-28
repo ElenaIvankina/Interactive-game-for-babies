@@ -16,8 +16,7 @@
 На данный момент в меню 4 игры: Как говорят животные, изучаем цвета, один-много, лягушки и фигуры.
 
 ***
-![image](https://user-images.githubusercontent.com/21302465/176193214-22666f51-d22c-4c7f-9455-bdc1c096a07b.png)
-
+![image](https://user-images.githubusercontent.com/21302465/176193665-dbf3e324-3fde-4135-a552-c1254e22c6a3.png)
 
 
 ### Игра как говорят животные
