@@ -75,6 +75,15 @@ extension UICollectionView {
         
         collectionViewLayout = layout
     }
+    
+    func configureDragLiftGesture(minimumPressDuration duration: TimeInterval) {
+        gestureRecognizers?.forEach {
+            if(String(describing: type(of: $0)) == "_UIDragLiftGestureRecognizer"),
+              let longGesture = $0 as? UILongPressGestureRecognizer {
+                longGesture.minimumPressDuration = duration
+            }
+        }
+    }
 }
 
 extension UICollectionViewCell: ReusableView {
