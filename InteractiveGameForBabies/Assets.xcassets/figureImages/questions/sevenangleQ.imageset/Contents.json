@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "sevenangleQ-1.png",
+      "filename" : "sevenangleQ@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "sevenangleQ-2.png",
+      "filename" : "sevenangleQ@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

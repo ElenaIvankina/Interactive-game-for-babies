@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "diamondQ-1.png",
+      "filename" : "diamondQ@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "diamondQ-2.png",
+      "filename" : "diamondQ@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
