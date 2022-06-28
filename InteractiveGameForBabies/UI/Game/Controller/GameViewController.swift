@@ -157,7 +157,8 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
                 .constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
             scrollContentView
                 .widthAnchor
-                .constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor)
+                .constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+            heightConstraint
         ])
     }
 

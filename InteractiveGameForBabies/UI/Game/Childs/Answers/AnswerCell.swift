@@ -8,8 +8,10 @@
 import UIKit
 
 class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
-
+    
     private let borderColor = UIColor.answerCellBorder.cgColor
+    private let animation = Animation()
+    
     private var markViewRight: UIImageView?
     private var markViewWrong: UIImageView?
 
@@ -20,30 +22,24 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-
-    private let animation = Animation()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
         backgroundColor = .white
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     func configure(with card: CardProtocol) {
-
-        if let image: UIImage = UIImage(named: card.imageName) {
-            cardImageView.image = image
-        }
-
+        cardImageView.image = UIImage(named: card.imageName)
     }
     
     private func setupView() {
         contentView.addSubview(cardImageView)
-
+        
         NSLayoutConstraint.activate([
             cardImageView
                 .topAnchor
@@ -58,12 +54,12 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
                 .bottomAnchor
                 .constraint(equalTo: contentView.bottomAnchor)
         ])
-
+        
         layer.borderWidth = 1.5
         layer.borderColor = self.borderColor
         layer.cornerRadius = 10
     }
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         cardImageView.image = nil
@@ -73,7 +69,7 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
         }
         self.isUserInteractionEnabled = true
     }
-
+    
     func animateRightAnswer(duration: CFTimeInterval) {
         let result = animation.makeAnimationRightAnswer(view: self,duration: duration)
         if let rightAnimation = result.animation {
@@ -81,7 +77,7 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
             markViewRight?.layer.add(rightAnimation, forKey: Animation.keyRightAnswer)
         }
     }
-
+    
     func animateWrongAnswer(duration: CFTimeInterval) {
         let result = animation.makeAnimationWrongAnswer(view: self, duration: duration)
         if let wrongAnimation = result.animation {
@@ -101,16 +97,22 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
             if imageName.isEmpty { return }
             let image = UIImage(named: imageName)
             self.cardImageView.image = image
-            self.animation.changeAlphaAnimation(view: self, fromValue: 0, toValue: 1, duration: duration)
+            self.animation.changeAlphaAnimation(view: self,
+                                                fromValue: 0,
+                                                toValue: 1,
+                                                duration: duration)
             self.animateRightAnswer(duration: duration)
         }
-        animation.changeAlphaAnimation(view: self, fromValue: 1, toValue: 0, duration: duration)
+        animation.changeAlphaAnimation(view: self,
+                                       fromValue: 1,
+                                       toValue: 0,
+                                       duration: duration)
     }
-
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard let value = anim.value(forKey: Animation.keyWrongAnswer) as? String else { return }
-        if value == Animation.keyWrongAnswer {
-            markViewWrong?.removeFromSuperview()
-        }
+    
+    func animationDidStop(_ animation: CAAnimation, finished flag: Bool) {
+        guard let value = animation.value(forKey: Animation.keyWrongAnswer) as? String,
+              value == Animation.keyWrongAnswer
+        else { return }
+        markViewWrong?.removeFromSuperview()
     }
 }
