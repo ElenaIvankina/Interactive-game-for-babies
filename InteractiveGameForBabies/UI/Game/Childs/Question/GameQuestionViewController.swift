@@ -49,7 +49,8 @@ class GameQuestionViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    func reloadData(question: QuestionProtocol) {
+    func reloadData() {
+        let question = GameSession.shared.currentQuestion
         gameQuestionView.setQuestion(text: question.questionText)
         gameQuestionView.setQuestionImage(imageName: question.card.imageName)
         stopPlayer()

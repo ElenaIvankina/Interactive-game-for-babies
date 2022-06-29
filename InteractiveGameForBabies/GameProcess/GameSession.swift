@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol GameSessionProtocol: AnyObject {
+protocol GameSessionProtocol {
     
     var questionsArray: [QuestionProtocol] { get set }
     var cardsArray: [CardProtocol] { get set }
@@ -22,8 +22,7 @@ class GameSession: GameSessionProtocol {
 
     static let shared = GameSession()
     
-    private init() {
-    }
+    private init() {}
     
     var questionsArray: [QuestionProtocol] = []
     var cardsArray: [CardProtocol] = []

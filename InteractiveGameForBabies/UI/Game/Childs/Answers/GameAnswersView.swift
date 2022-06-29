@@ -9,7 +9,7 @@ import SwiftUI
 
 class GameAnswersView: UIView {
     
-    private weak var delegate: GameDelegate?
+    private var delegate: GameDelegate?
     
     private let isAnimation = true
     private let animation = Animation()

@@ -9,7 +9,7 @@ import UIKit
 
 class GameDelegate {
 
-    var gameViewController: GameViewControllerProtocol?
+    weak var gameViewController: GameViewControllerProtocol?
 
     func checkingAnswer(answerCard: CardProtocol) -> Bool {
         if GameSession.shared.currentQuestion.card.isEqualTo(answerCard) {
@@ -28,7 +28,7 @@ class GameDelegate {
         guard let viewController = gameViewController as? GameViewController else {return}
         let gameVCBuilder = GameViewControllerBuilder()
         gameVCBuilder.buildNewGameSession(typeOfGame: viewController.typeOfGame)
-        viewController.reloadData(gameSession: GameSession.shared)
+        viewController.reloadData()
     }
 
     func endGame() {

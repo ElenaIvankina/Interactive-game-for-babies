@@ -53,9 +53,9 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
         configureView()
     }
 
-    func reloadData (gameSession: GameSessionProtocol) {
+    func reloadData () {
         answersViewController.reloadCollectionView()
-        questionViewController.reloadData(question: gameSession.currentQuestion)
+        questionViewController.reloadData()
     }
 
     private func makeGameEndAlert() {
