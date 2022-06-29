@@ -28,10 +28,8 @@ class GameViewControllerBuilder {
 
     func buildGame(typeOfGame: TypeOfGame) -> GameViewController {
         buildNewGameSession(typeOfGame: typeOfGame)
-        let gameDelegate = GameDelegate()
-        let viewController = GameViewController(gameDelegate: gameDelegate, typeOfGame: typeOfGame)
+        let viewController = GameViewController(typeOfGame: typeOfGame)
         GameSession.shared.gameViewController = viewController
-        gameDelegate.gameViewController = viewController
         return viewController
     }
 }

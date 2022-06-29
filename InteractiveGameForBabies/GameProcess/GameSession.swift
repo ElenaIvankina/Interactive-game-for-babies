@@ -50,7 +50,7 @@ class GameSession: GameSessionProtocol {
                 }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                    vc.gameDelegate.newGame()
+                    vc.gameWorker.newGame(viewController: vc)
                 }
 
         }

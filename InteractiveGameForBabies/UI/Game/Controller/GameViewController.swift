@@ -7,15 +7,13 @@
 
 import UIKit
 
-protocol GameViewControllerProtocol: UIViewController {
-
-    var gameDelegate: GameDelegate { get set }
+protocol GameViewControllerProtocol {
     var typeOfGame: TypeOfGame { get set }
 }
 
 class GameViewController: UIViewController, GameViewControllerProtocol {
 
-    var gameDelegate: GameDelegate
+    var gameWorker = GameWorker()
     var typeOfGame: TypeOfGame
     let questionViewController: GameQuestionViewController
     let answersViewController: GameAnswersViewController
@@ -33,12 +31,11 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
     }()
 
     // MARK: - Lyfecycle
-    init(gameDelegate: GameDelegate, typeOfGame: TypeOfGame) {
-        self.gameDelegate = gameDelegate
+    init(typeOfGame: TypeOfGame) {
         self.typeOfGame = typeOfGame
 
         self.questionViewController = GameQuestionViewController(typeOfGame: typeOfGame)
-        self.answersViewController = GameAnswersViewController(delegate: gameDelegate)
+        self.answersViewController = GameAnswersViewController()
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -56,28 +53,6 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
     func reloadData () {
         answersViewController.reloadCollectionView()
         questionViewController.reloadData()
-    }
-
-    private func makeGameEndAlert() {
-        let alert = UIAlertController(title: "Молодец, малыш!",
-                                      message: "Сыграем еще?",
-                                      preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "Нет",
-                                      style: .default,
-                                      handler: { [weak self] _ in
-            guard let self = self else {return}
-            self.gameDelegate.endGame()
-        }))
-
-        alert.addAction(UIAlertAction(title: "Да",
-                                      style: .default,
-                                      handler: { [weak self] _ in
-            guard let self = self else {return}
-            self.gameDelegate.newGame()
-        }))
-
-        self.present(alert, animated: true)
     }
 
     // MARK: - Private
