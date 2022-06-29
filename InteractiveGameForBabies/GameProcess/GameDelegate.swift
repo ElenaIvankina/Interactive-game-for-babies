@@ -22,8 +22,7 @@ class GameWorker {
         GameSession.shared.counterOfRightAnswers += 1
     }
 
-    func newGame() {
-        guard let viewController = gameViewController as? GameViewController else {return}
+    func newGame(viewController: GameViewController) {
         let gameVCBuilder = GameViewControllerBuilder()
         gameVCBuilder.buildNewGameSession(typeOfGame: viewController.typeOfGame)
         viewController.reloadData()
