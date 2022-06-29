@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "fiveangleQ-1.png",
+      "filename" : "fiveangleQ@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "fiveangleQ-2.png",
+      "filename" : "fiveangleQ@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

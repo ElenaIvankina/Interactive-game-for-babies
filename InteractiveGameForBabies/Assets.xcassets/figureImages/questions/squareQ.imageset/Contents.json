@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "squareQ-1.png",
+      "filename" : "squareQ@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "squareQ-2.png",
+      "filename" : "squareQ@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

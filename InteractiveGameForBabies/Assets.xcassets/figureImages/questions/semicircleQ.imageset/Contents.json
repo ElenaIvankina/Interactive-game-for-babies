@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "semicircleQ-1.png",
+      "filename" : "semicircleQ@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "semicircleQ-2.png",
+      "filename" : "semicircleQ@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
