@@ -92,6 +92,7 @@ class GameViewController: UIViewController, GameViewControllerProtocol {
 
     private func configureNavigationController() {
         navigationItem.largeTitleDisplayMode = .never
+        self.navigationController?.isNavigationBarHidden = false
 
         if let navigationBar = navigationController?.navigationBar {
             let homeImage = UIImage(systemName: "house.fill")
