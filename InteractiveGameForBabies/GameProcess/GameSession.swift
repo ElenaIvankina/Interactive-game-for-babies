@@ -45,11 +45,12 @@ class GameSession: GameSessionProtocol {
             if counterOfRightAnswers == numberOfRightAnswers && counterOfRightAnswers != 0 {
                 guard let vc = self.gameViewController as? GameViewController else {return}
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                    vc.answersViewController.gameAnswersView.animationCollectionView(isAfterReload: false, duration: 0.6)
+                let duration = 0.6
+                DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                    vc.answersViewController.gameAnswersView.animationCollectionView(isAfterReload: false, duration: duration)
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + duration * 1.5) {
                     vc.gameWorker.newGame(viewController: vc)
                 }
 
