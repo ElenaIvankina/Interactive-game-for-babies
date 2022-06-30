@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "starQ-1.png",
+      "filename" : "starQ@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "starQ-2.png",
+      "filename" : "starQ@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

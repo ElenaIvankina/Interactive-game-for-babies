@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "ovalQ-1.png",
+      "filename" : "ovalQ@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ovalQ-2.png",
+      "filename" : "ovalQ@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
