@@ -93,6 +93,13 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
         
         let duration = 0.6
         UIView.transition(with: self, duration: duration, options: transitionFlip, animations: nil) { _ in
+            
+        }
+        animation.changeAlphaAnimation(view: self,
+                                       fromValue: 1,
+                                       toValue: 0,
+                                       duration: duration)
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration / 2) {
             let imageName = card.imageNameFill
             if imageName.isEmpty { return }
             let image = UIImage(named: imageName)
@@ -103,10 +110,7 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
                                                 duration: duration)
             self.animateRightAnswer(duration: duration)
         }
-        animation.changeAlphaAnimation(view: self,
-                                       fromValue: 1,
-                                       toValue: 0,
-                                       duration: duration)
+        
     }
     
     func animationDidStop(_ animation: CAAnimation, finished flag: Bool) {

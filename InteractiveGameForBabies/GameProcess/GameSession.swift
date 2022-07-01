@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol GameSessionProtocol: AnyObject {
+protocol GameSessionProtocol {
     
     var questionsArray: [QuestionProtocol] { get set }
     var cardsArray: [CardProtocol] { get set }
@@ -22,8 +22,7 @@ class GameSession: GameSessionProtocol {
 
     static let shared = GameSession()
     
-    private init() {
-    }
+    private init() {}
     
     var questionsArray: [QuestionProtocol] = []
     var cardsArray: [CardProtocol] = []
@@ -46,12 +45,13 @@ class GameSession: GameSessionProtocol {
             if counterOfRightAnswers == numberOfRightAnswers && counterOfRightAnswers != 0 {
                 guard let vc = self.gameViewController as? GameViewController else {return}
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                    vc.answersViewController.gameAnswersView.animationCollectionView(isAfterReload: false, duration: 0.6)
+                let duration = 0.6
+                DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                    vc.answersViewController.gameAnswersView.animationCollectionView(isAfterReload: false, duration: duration)
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                    vc.gameDelegate.newGame()
+                DispatchQueue.main.asyncAfter(deadline: .now() + duration * 1.5) {
+                    vc.gameWorker.newGame(viewController: vc)
                 }
 
         }

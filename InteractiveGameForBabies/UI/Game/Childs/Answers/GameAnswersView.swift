@@ -9,8 +9,6 @@ import SwiftUI
 
 class GameAnswersView: UIView {
     
-    private weak var delegate: GameDelegate?
-    
     private let isAnimation = true
     private let animation = Animation()
     private let durationRightAnswer: CFTimeInterval = 0.6
@@ -46,18 +44,20 @@ class GameAnswersView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        setDelegate()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setDelegate(delegate: GameDelegate) {
-        self.delegate = delegate
-        
+    func setDelegate() {
+
         let answerRowCount = lround(Double(GameSession.shared.currentRandomCards.count) / 2.0)
         
-        switch delegate.gameViewController?.typeOfGame {
+        guard let gameViewController = GameSession.shared.gameViewController as? GameViewController else { return }
+        
+        switch gameViewController.typeOfGame {
         case .figureGame:
             let figuresCount = GameSession.shared.currentRandomCards.count
             collectionView.configureSectionsLayout(columnCount: [figuresCount, 2], rowCount: [1, answerRowCount])
@@ -129,7 +129,8 @@ class GameAnswersView: UIView {
             collectionView.performBatchUpdates({
                 collectionView.deleteItems(at: [sourceIndexPath])
                 figureCardIndexes.remove(at: sourceIndexPath.row)
-                delegate?.handlingRightAnswer()
+                guard let gameViewController = GameSession.shared.gameViewController as? GameViewController else { return }
+                gameViewController.gameWorker.handlingRightAnswer()
             },
                                                completion: nil)
         }
@@ -217,7 +218,8 @@ extension GameAnswersView: UICollectionViewDelegateFlowLayout {
         guard collectionView.numberOfSections < 2 else { return }
         
         let selectedCard = GameSession.shared.currentRandomCards[indexPath.row]
-        guard let resultCheck = delegate?.checkingAnswer(answerCard: selectedCard) else { return }
+        guard let gameViewController = GameSession.shared.gameViewController as? GameViewController else { return }
+        let resultCheck = gameViewController.gameWorker.checkingAnswer(answerCard: selectedCard)
         guard let cell = collectionView.cellForItem(at: indexPath) as? AnswerCell else { return }
         
         if resultCheck {

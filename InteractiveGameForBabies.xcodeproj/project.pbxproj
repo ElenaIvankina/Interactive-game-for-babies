@@ -11,7 +11,7 @@
 		0A52DB92285E531B00F79AE7 /* UIPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D27A52858F8E2004995CB /* UIPreviewView.swift */; };
 		0A52DB93285E531B00F79AE7 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429202857677F008600DB /* GameSession.swift */; };
 		0A52DB94285E531B00F79AE7 /* GameDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33429142857614E008600DB /* GameDatabase.swift */; };
-		0A52DB95285E531B00F79AE7 /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3342934285CB060008600DB /* GameDelegate.swift */; };
+		0A52DB95285E531B00F79AE7 /* GameWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3342934285CB060008600DB /* GameWorker.swift */; };
 		0A52DB96285E531B00F79AE7 /* AnimalQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334293C285DD8EA008600DB /* AnimalQuestion.swift */; };
 		0A52DB97285E531B00F79AE7 /* FigureQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292E285778E7008600DB /* FigureQuestion.swift */; };
 		0A52DB98285E531B00F79AE7 /* CountQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334292A28577441008600DB /* CountQuestion.swift */; };
@@ -165,7 +165,7 @@
 		B334292A28577441008600DB /* CountQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountQuestion.swift; sourceTree = "<group>"; };
 		B334292C2857748B008600DB /* QuestionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProtocol.swift; sourceTree = "<group>"; };
 		B334292E285778E7008600DB /* FigureQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureQuestion.swift; sourceTree = "<group>"; };
-		B3342934285CB060008600DB /* GameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDelegate.swift; sourceTree = "<group>"; };
+		B3342934285CB060008600DB /* GameWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameWorker.swift; sourceTree = "<group>"; };
 		B3342937285CD87B008600DB /* GameViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewControllerBuilder.swift; sourceTree = "<group>"; };
 		B334293A285DD670008600DB /* GameStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStrategy.swift; sourceTree = "<group>"; };
 		B334293C285DD8EA008600DB /* AnimalQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalQuestion.swift; sourceTree = "<group>"; };
@@ -424,7 +424,7 @@
 			children = (
 				B33429202857677F008600DB /* GameSession.swift */,
 				B33429142857614E008600DB /* GameDatabase.swift */,
-				B3342934285CB060008600DB /* GameDelegate.swift */,
+				B3342934285CB060008600DB /* GameWorker.swift */,
 			);
 			path = GameProcess;
 			sourceTree = "<group>";
@@ -638,7 +638,7 @@
 				0A52DB92285E531B00F79AE7 /* UIPreviewView.swift in Sources */,
 				0A52DB93285E531B00F79AE7 /* GameSession.swift in Sources */,
 				0A52DB94285E531B00F79AE7 /* GameDatabase.swift in Sources */,
-				0A52DB95285E531B00F79AE7 /* GameDelegate.swift in Sources */,
+				0A52DB95285E531B00F79AE7 /* GameWorker.swift in Sources */,
 				0A52DBBC285E547600F79AE7 /* Ext+UIColor.swift in Sources */,
 				0A52DB96285E531B00F79AE7 /* AnimalQuestion.swift in Sources */,
 				0A52DB97285E531B00F79AE7 /* FigureQuestion.swift in Sources */,
