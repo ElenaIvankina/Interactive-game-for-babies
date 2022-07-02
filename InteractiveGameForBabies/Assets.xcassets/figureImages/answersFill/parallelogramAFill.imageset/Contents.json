@@ -1,23 +1,23 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "parallelogramAFill.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "idiom": "universal",
+      "scale": "2x",
+      "filename": "parallelogramAFill@2x.png"
     },
     {
-      "filename" : "parallelogramAFill-1.png",
-      "idiom" : "universal",
-      "scale" : "2x"
+      "idiom": "universal",
+      "scale": "3x",
+      "filename": "parallelogramAFill@3x.png"
     },
     {
-      "filename" : "parallelogramAFill-2.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "idiom": "universal",
+      "scale": "1x",
+      "filename": "parallelogramAFill.png"
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "version": 1,
+    "author": "xcode"
   }
 }
