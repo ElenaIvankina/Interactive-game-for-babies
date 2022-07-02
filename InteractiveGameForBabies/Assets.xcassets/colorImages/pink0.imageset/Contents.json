@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "pink0-1.png",
+      "filename" : "pink0@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "pink0-2.png",
+      "filename" : "pink0@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
