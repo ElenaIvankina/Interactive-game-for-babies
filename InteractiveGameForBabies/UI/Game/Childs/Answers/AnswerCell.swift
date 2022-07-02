@@ -26,7 +26,7 @@ class AnswerCell: UICollectionViewCell, CAAnimationDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        backgroundColor = .white
+        //backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {
