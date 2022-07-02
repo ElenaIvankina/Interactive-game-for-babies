@@ -1,23 +1,23 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "trapezoidA.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "idiom": "universal",
+      "scale": "2x",
+      "filename": "trapezoidA@2x.png"
     },
     {
-      "filename" : "trapezoidA-1.png",
-      "idiom" : "universal",
-      "scale" : "2x"
+      "idiom": "universal",
+      "scale": "3x",
+      "filename": "trapezoidA@3x.png"
     },
     {
-      "filename" : "trapezoidA-2.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "idiom": "universal",
+      "scale": "1x",
+      "filename": "trapezoidA.png"
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "version": 1,
+    "author": "xcode"
   }
 }

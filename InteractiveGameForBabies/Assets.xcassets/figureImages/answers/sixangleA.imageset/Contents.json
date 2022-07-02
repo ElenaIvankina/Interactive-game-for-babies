@@ -1,23 +1,23 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "sixangleA.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "idiom": "universal",
+      "scale": "2x",
+      "filename": "sixangleA@2x.png"
     },
     {
-      "filename" : "sixangleA-1.png",
-      "idiom" : "universal",
-      "scale" : "2x"
+      "idiom": "universal",
+      "scale": "3x",
+      "filename": "sixangleA@3x.png"
     },
     {
-      "filename" : "sixangleA-2.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "idiom": "universal",
+      "scale": "1x",
+      "filename": "sixangleA.png"
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "version": 1,
+    "author": "xcode"
   }
 }

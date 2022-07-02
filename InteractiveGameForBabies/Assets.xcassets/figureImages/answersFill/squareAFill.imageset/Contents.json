@@ -1,23 +1,23 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "squareAFill.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "idiom": "universal",
+      "scale": "2x",
+      "filename": "squareAFill@2x.png"
     },
     {
-      "filename" : "squareAFill-1.png",
-      "idiom" : "universal",
-      "scale" : "2x"
+      "idiom": "universal",
+      "scale": "3x",
+      "filename": "squareAFill@3x.png"
     },
     {
-      "filename" : "squareAFill-2.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "idiom": "universal",
+      "scale": "1x",
+      "filename": "squareAFill.png"
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "version": 1,
+    "author": "xcode"
   }
 }
